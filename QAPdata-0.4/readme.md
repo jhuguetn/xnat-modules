@@ -16,9 +16,8 @@ More information about the QAP computed metrics/measurements can be found [here]
 
 2. Create the module jar file (more info [here](https://wiki.xnat.org/display/XNAT16/Exploring+Module+Structure)): 
   ```
-  pushd xnat-modules/QAPdata
+  cd xnat-modules/QAPdata
   jar cf ${modules_location}/QAPdata.jar *
-  popd
   ```
 
 3. Re-update XNAT webapp (more info [here] (https://wiki.xnat.org/display/XNAT16/Setting+Up+and+Updating+XNAT)):
@@ -26,3 +25,7 @@ More information about the QAP computed metrics/measurements can be found [here]
   bash ${XNAT_HOME}/bin/update.sh -Ddeploy=true
   psql -f ${XNAT_HOME}/deployments/xnat/sql/xnat-update.sql
   ```
+
+##Questions/Comments?
+
+Submit an issue, fork and/or PR. Alternatively, reach me at j.huguet(at)amc.uva.nl
