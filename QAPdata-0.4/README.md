@@ -1,10 +1,9 @@
 #QAPdata
 
 ##Introduction
-[Quality Assessment Protocol](http://preprocessed-connectomes-project.org/quality-assessment-protocol/)
+[Quality Assessment Protocol](http://preprocessed-connectomes-project.org/quality-assessment-protocol/) (QAP) is a Python-based package for computing functional and anatomical MRI data quality measures. A
 
-QAP is a Python-based package for computing functional and anatomical MRI data quality measures. 
-QAPdata module structures and models QAP output measurements to inner XNAT datatypes (ImageData assessments) for integrating them as an additional extension to XNAT.
+QAPdata module models & structures QAP output measurements to custom XNAT data-types (ImageData assessments) for integrating them as an additional extension to XNAT.
 
 More information about the QAP computed metrics/measurements can be found [here] (http://preprocessed-connectomes-project.org/quality-assessment-protocol/#taxonomy-of-qa-measures).
 
