@@ -43,15 +43,15 @@ $page.setVlinkColor($ui.vlink)
 							<TR><TD>protocol</TD><TD>$!item.getStringProperty("AMCZ0:ftempQAPData/protocol")</TD></TR>
 							<TR><TD>label</TD><TD>$!item.getStringProperty("AMCZ0:ftempQAPData/label")</TD></TR>
                             <TR><TD>&nbsp;</TD><TD></TD></TR>
-							<TR><TD><b>quality - Median Distance Index</b></TD><TD>$!item.getDoubleProperty("AMCZ0:ftempQAPData/quality")</TD></TR>
+							<TR><TD><b>quality (Median Distance Index)</b></TD><TD>$!item.getDoubleProperty("AMCZ0:ftempQAPData/quality")</TD></TR>
 							<TR><TD><b>temporal signal-to-noise ratio</b></TD><TD>$!item.getDoubleProperty("AMCZ0:ftempQAPData/m_tsnr")</TD></TR>
 							<TR><TD><b>outlier detection</b></TD><TD>$!item.getDoubleProperty("AMCZ0:ftempQAPData/outlier")</TD></TR>
 							<TR><TD><b>standardized DVARS</b></TD><TD>$!item.getDoubleProperty("AMCZ0:ftempQAPData/dvars")</TD></TR>
 							<TR><TD><b>global correlation</b></TD><TD>$!item.getDoubleProperty("AMCZ0:ftempQAPData/gcor")</TD></TR>
                             <TR><TD><b>fractional displacement (FD)</b></TD><TD></TD></TR>
-							<TR><TD><b>mean FD</b></TD><TD>$!item.getDoubleProperty("AMCZ0:ftempQAPData/fd/mean_fd")</TD></TR>
-							<TR><TD><b>number of volumes with FD</b></TD><TD>$!item.getIntegerProperty("AMCZ0:ftempQAPData/fd/num_fd")</TD></TR>
-							<TR><TD><b>percent of volumes with FD</b></TD><TD>$!item.getDoubleProperty("AMCZ0:ftempQAPData/fd/perc_fd")</TD></TR>
+							<TR><TD><b>&nbsp;&nbsp;FD/mean FD</b></TD><TD>$!item.getDoubleProperty("AMCZ0:ftempQAPData/fd/mean_fd")</TD></TR>
+							<TR><TD><b>&nbsp;&nbsp;FD/number of volumes with FD</b></TD><TD>$!item.getIntegerProperty("AMCZ0:ftempQAPData/fd/num_fd")</TD></TR>
+							<TR><TD><b>&nbsp;&nbsp;FD/percent of volumes with FD</b></TD><TD>$!item.getDoubleProperty("AMCZ0:ftempQAPData/fd/perc_fd")</TD></TR>
 						</TABLE>
 					</TD>
 					<TD valign="top" align="right">
