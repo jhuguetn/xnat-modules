@@ -1,2 +1,3 @@
 # xnat-modules
-XNAT modules repository
+XNAT modules repository:
+* QAPdata
