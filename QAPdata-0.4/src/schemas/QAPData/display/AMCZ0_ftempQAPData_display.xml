@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Displays xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xdat/display.xsd" schema-element="AMCZ0:ftempQAPData" full-description="ftempQA" brief-description="ftempQA">
+	<DisplayField id="EXPT_ID" header="ID" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="AMCZ0:ftempQAPData.ID"/>
+		<HTML-Link>
+			<Property name="HREF" value="none"/>
+			<Property name="ONCLICK" value="return rpt('@Field1','AMCZ0:ftempQAPData','AMCZ0:ftempQAPData.ID');">
+				<InsertValue id="Field1" field="EXPT_ID"/>
+			</Property>
+		</HTML-Link>
+	</DisplayField>
+	<DisplayField id="RPT" header="ID" visible="true" image="true">
+		<Content type="sql">'/@WEBAPP/images/r.gif'::text</Content>
+		<HTML-Link>
+			<Property name="HREF" value="none"/>
+			<Property name="ONCLICK" value="return rpt('@Field1','AMCZ0:ftempQAPData','AMCZ0:ftempQAPData.ID');">
+				<InsertValue id="Field1" field="EXPT_ID"/>
+			</Property>
+		</HTML-Link>
+	</DisplayField>
+	<DisplayField id="DATE" header="Date" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="AMCZ0:ftempQAPData.date"/>
+	</DisplayField>
+	<DisplayField header="Projects" id="PROJECTS" data-type="string">
+		<DisplayFieldElement name="Field1" viewName="AMCZ0_FTEMPQAPDATA_PROJECTS" viewColumn="PROJECTS"/>
+	</DisplayField>
+	<DisplayField header="Label" id="LABEL" data-type="string">
+	<DisplayFieldElement name="Field1" schema-element="AMCZ0:ftempQAPData.ID"/>
+	<DisplayFieldElement name="Field2" schema-element="AMCZ0:ftempQAPData.label"/>
+	<Content type="sql">COALESCE(@Field2, @Field1)</Content>
+		<HTML-Link>
+			<SecureLink elementName="AMCZ0:ftempQAPData">
+				<securityMappingValue displayFieldId="PROJECTS" schemaElementMap="AMCZ0:ftempQAPData/sharing/share/project"/>
+				<securityMappingValue displayFieldId="PROJECT" schemaElementMap="AMCZ0:ftempQAPData/project"/>
+			</SecureLink>
+			<Property name="HREF" value="@WEBAPPapp/action/DisplayItemAction/search_value/@Field1/search_element/AMCZ0:ftempQAPData/search_field/AMCZ0:ftempQAPData.ID">
+				<InsertValue id="Field1" field="EXPT_ID"/>
+			</Property>
+			<Property name="ONCLICK" value="return rpt('@Field1','AMCZ0:ftempQAPData','AMCZ0:ftempQAPData.ID');">
+				<InsertValue id="Field1" field="EXPT_ID"/>
+			</Property>
+			<Property name="TITLE" value="Inserted: @Field1 (@Field2)">
+				<InsertValue id="Field1" field="INSERT_DATE"/>
+				<InsertValue id="Field2" field="INSERT_USER"/>
+			</Property>
+		</HTML-Link>
+	</DisplayField>
+	<DisplayField id="PROJECT" header="Project" visible="true" searchable="true" data-type="string">
+		<DisplayFieldElement name="Field1" schema-element="AMCZ0:ftempQAPData.project"/>
+	</DisplayField>
+	<DisplayField id="AMCZ0_FTEMPQAPDATA_PROJECT_IDENTIFIER" header="AMCZ0_FTEMPQAPDATA ID" visible="true" searchable="false" data-type="string" xsi:type="SubQueryField">
+		<Content type="sql">amcz0_ftempqapdata_project_id</Content>
+		<HTML-Link>
+			<SecureLink elementName="AMCZ0:ftempQAPData">
+				<securityMappingValue displayFieldId="PROJECTS" schemaElementMap="AMCZ0:ftempQAPData/sharing/share/project"/>
+				<securityMappingValue displayFieldId="PROJECT" schemaElementMap="AMCZ0:ftempQAPData/project"/>
+			</SecureLink>
+			<Property name="HREF" value="@WEBAPPapp/action/DisplayItemAction/search_value/@Field1/search_element/AMCZ0:ftempQAPData/search_field/AMCZ0:ftempQAPData.ID/project/@Field2">
+				<InsertValue id="Field1" field="EXPT_ID"/>
+				<InsertValue id="Field2" field="@WHERE"/>
+			</Property>
+		</HTML-Link>
+		<SubQuery>SELECT DISTINCT COALESCE(label,sharing_share_xnat_experimentda_id) AS amcz0_ftempqapdata_project_id,sharing_share_xnat_experimentda_id FROM (	SELECT sharing_share_xnat_experimentda_id,label FROM xnat_experimentdata_share WHERE project='@WHERE'	UNION 	SELECT id,label FROM xnat_experimentData WHERE project='@WHERE' )SEARCH</SubQuery>
+		<MappingColumns>
+			<MappingColumn schemaField="AMCZ0:ftempQAPData.ID" queryField="sharing_share_xnat_experimentda_id"/>
+		</MappingColumns>
+	</DisplayField>
+	<DisplayField id="INSERT_DATE" header="Inserted" visible="true" searchable="true" data-type="string">
+		<DisplayFieldElement name="Field1" schema-element="AMCZ0:ftempQAPData.meta.insert_date"/>
+	</DisplayField>
+	<DisplayField id="INSERT_USER" header="Creator" visible="true" searchable="true" data-type="string">
+		<DisplayFieldElement name="Field1" schema-element="AMCZ0:ftempQAPData.meta.insert_user.login"/>
+	</DisplayField>
+	<DisplayField id="AMCZ0_FTEMPQAPDATA_FIELD_MAP" header="Field" visible="true" searchable="false" data-type="string" xsi:type="SubQueryField">
+		<Content type="sql">field</Content>
+		<SubQuery>SELECT DISTINCT ON ( e.ID) e.ID AS expt_id,field FROM xnat_experimentData_field ef JOIN (SELECT ID,extension,element_name FROM xnat_experimentData e JOIN xdat_meta_element xme ON e.extension=xme.xdat_meta_element_id WHERE xme.element_name='AMCZ0:ftempQAPData') e on ef.fields_field_xnat_experimentdat_id=e.id WHERE name='@WHERE'</SubQuery>
+		<MappingColumns>
+			<MappingColumn schemaField="AMCZ0:ftempQAPData.ID" queryField="expt_id"/>
+		</MappingColumns>
+	</DisplayField>
+	<DisplayField id="QUALITY" header="quality" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="AMCZ0:ftempQAPData/quality"/>
+	</DisplayField>
+	<DisplayField id="M_TSNR" header="tSNR" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="AMCZ0:ftempQAPData/m_tsnr"/>
+	</DisplayField>
+	<DisplayField id="OUTLIER" header="outlier" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="AMCZ0:ftempQAPData/outlier"/>
+	</DisplayField>
+	<DisplayField id="DVARS" header="DVARS" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="AMCZ0:ftempQAPData/dvars"/>
+	</DisplayField>
+	<DisplayField id="GCOR" header="global correlation" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="AMCZ0:ftempQAPData/gcor"/>
+	</DisplayField>
+	<DisplayField id="FD_MEAN_FD" header="mean FD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="AMCZ0:ftempQAPData/fd/mean_fd"/>
+	</DisplayField>
+	<DisplayField id="FD_NUM_FD" header="num. FD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="AMCZ0:ftempQAPData/fd/num_fd"/>
+	</DisplayField>
+	<DisplayField id="FD_PERC_FD" header="perc. FD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="AMCZ0:ftempQAPData/fd/perc_fd"/>
+	</DisplayField>
+	<DisplayVersion versionName="listing" default-order-by="DATE" default-sort-order="DESC" brief-description="ftempQA" dark-color="9999CC" light-color="CCCCFF">
+		<DisplayFieldRef id="RPT"/>
+		<DisplayFieldRef id="LABEL"/>
+		<DisplayFieldRef id="DATE"/>
+		<DisplayFieldRef id="QUALITY"/>
+		<DisplayFieldRef id="M_TSNR"/>
+		<DisplayFieldRef id="OUTLIER"/>
+		<DisplayFieldRef id="DVARS"/>
+		<DisplayFieldRef id="GCOR"/>
+		<DisplayFieldRef id="FD_MEAN_FD"/>
+		<DisplayFieldRef id="FD_NUM_FD"/>
+		<DisplayFieldRef id="FD_PERC_FD"/>
+	</DisplayVersion>
+	<DisplayVersion versionName="listing_csv" default-order-by="DATE" default-sort-order="DESC" brief-description="ftempQA" dark-color="9999CC" light-color="CCCCFF">
+		<DisplayFieldRef id="LABEL"/>
+		<DisplayFieldRef id="DATE"/>
+		<DisplayFieldRef id="QUALITY"/>
+		<DisplayFieldRef id="M_TSNR"/>
+		<DisplayFieldRef id="OUTLIER"/>
+		<DisplayFieldRef id="DVARS"/>
+		<DisplayFieldRef id="GCOR"/>
+		<DisplayFieldRef id="FD_MEAN_FD"/>
+		<DisplayFieldRef id="FD_NUM_FD"/>
+		<DisplayFieldRef id="FD_PERC_FD"/>
+	</DisplayVersion>
+	<DisplayVersion versionName="full" default-order-by="DATE" default-sort-order="DESC" brief-description="ftempQA" dark-color="9999CC" light-color="CCCCFF">
+		<DisplayFieldRef id="EXPT_ID"/>
+		<DisplayFieldRef id="DATE"/>
+		<DisplayFieldRef id="QUALITY"/>
+		<DisplayFieldRef id="M_TSNR"/>
+		<DisplayFieldRef id="OUTLIER"/>
+		<DisplayFieldRef id="DVARS"/>
+		<DisplayFieldRef id="GCOR"/>
+		<DisplayFieldRef id="FD_MEAN_FD"/>
+		<DisplayFieldRef id="FD_NUM_FD"/>
+		<DisplayFieldRef id="FD_PERC_FD"/>
+	</DisplayVersion>
+	<DisplayVersion versionName="detailed" default-order-by="DATE" default-sort-order="DESC" brief-description="ftempQA" dark-color="9999CC" light-color="CCCCFF">
+		<DisplayFieldRef id="EXPT_ID"/>
+		<DisplayFieldRef id="DATE"/>
+		<DisplayFieldRef id="QUALITY"/>
+		<DisplayFieldRef id="M_TSNR"/>
+		<DisplayFieldRef id="OUTLIER"/>
+		<DisplayFieldRef id="DVARS"/>
+		<DisplayFieldRef id="GCOR"/>
+		<DisplayFieldRef id="FD_MEAN_FD"/>
+		<DisplayFieldRef id="FD_NUM_FD"/>
+		<DisplayFieldRef id="FD_PERC_FD"/>
+	</DisplayVersion>
+	<DisplayVersion versionName="project_bundle" default-order-by="DATE" default-sort-order="DESC" brief-description="ftempQA" dark-color="9999CC" light-color="CCCCFF">
+		<DisplayFieldRef id="AMCZ0_FTEMPQAPDATA_PROJECT_IDENTIFIER"/>
+		<DisplayFieldRef id="DATE"/>
+		<DisplayFieldRef id="QUALITY"/>
+		<DisplayFieldRef id="M_TSNR"/>
+		<DisplayFieldRef id="OUTLIER"/>
+		<DisplayFieldRef id="DVARS"/>
+		<DisplayFieldRef id="GCOR"/>
+		<DisplayFieldRef id="FD_MEAN_FD"/>
+		<DisplayFieldRef id="FD_NUM_FD"/>
+		<DisplayFieldRef id="FD_PERC_FD"/>
+	</DisplayVersion>
+	<ViewLink alias="AMCZ0_FTEMPQAPDATA_PROJECTS">
+		<Mapping TableName="AMCZ0_FTEMPQAPDATA_PROJECTS">
+			<MappingColumn rootElement="AMCZ0:ftempQAPData" fieldElement="AMCZ0:ftempQAPData.ID" mapsTo="id"/>
+		</Mapping>
+	</ViewLink>
+	<SQLView name="AMCZ0_FTEMPQAPDATA_PROJECTS" sql="SELECT id, '&lt;' || expt.project || '&gt;' || xs_a_concat(',&lt;' || shared.project || '&gt;') AS projects FROM xnat_experimentData expt LEFT JOIN xnat_experimentData_share shared ON expt.id=shared.sharing_share_xnat_experimentda_id LEFT JOIN xdat_meta_element xme ON expt.extension = xme.xdat_meta_element_id WHERE element_name='AMCZ0:ftempQAPData' GROUP BY expt.id,expt.project"/>
+</Displays>

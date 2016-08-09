@@ -1,0 +1,359 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 3.2//EN">
+$page.setTitle("XDAT")
+$page.setLinkColor($ui.alink)
+$page.setVlinkColor($ui.vlink)
+#set($months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"])
+#set($days = [ 1..31 ])
+#set($years = [ $!turbineUtils.getYear()..1900])
+#if ($data.message)
+<font color="red" size="3">$data.message</font>
+#end
+<p>
+<form ID="form1" name="form1" method="post" action="$link.setAction("ModifyImageAssessorData")">
+<input type="hidden" name="project" value="$!{project}" >
+#if($vr)
+	<font color="red">Invalid parameters:<BR>$vr.toHTML()</font>
+<HR>
+#end
+
+<TABLE width="100%">
+	<TR>
+		<TD>
+			<table width="100%">
+				<TR>
+					<TD align="left" valign="middle">
+						<DIV class="edit_title">anatomical QA Details</DIV>
+					</TD>
+				</TR>
+			</TABLE>
+		</TD>
+	</TR>
+	<TR>
+		<TD>
+			<TABLE width="100%">
+				<TR>
+					<TD valign="top">
+						<TABLE>
+							<TR><TD colspan='2'>
+								<hr>
+								#parse("/screens/xnat_edit_experimentData.vm")
+								<HR></TD></TR>
+							<tr>
+								<th align="left">anatQA ID</th>
+								<TD align="left">#xdatStringBox("AMCZ0:anatQAPData.ID" $item "" $vr)</TD>
+							</tr>
+							<tr>
+								<TD colspan="2">#parse("/screens/EditProjectSpecificFields.vm")</TD>
+							</tr>
+							<TR><TD>scan/ID</TD><TD>#xdatStringBox("AMCZ0:anatQAPData/scan/ID" $item "" $vr)</TD></TR>
+							<TR><TD>scan/type</TD><TD>#xdatStringBox("AMCZ0:anatQAPData/scan/type" $item "" $vr)</TD></TR>
+							<TR><TD>imageSession_ID</TD><TD>#xdatStringBox("AMCZ0:anatQAPData/imageSession_ID" $item "" $vr)</TD></TR>
+							<TR><TD>date</TD><TD>#xdatDateBox("AMCZ0:anatQAPData/date" $item $vr $years)</TD></TR>
+							<TR><TD>time</TD><TD>#xdatTextBox("AMCZ0:anatQAPData/time" $item "" $vr)</TD></TR>
+							<!--<TR><TD>duration</TD><TD>#xdatTextBox("AMCZ0:anatQAPData/duration" $item "" $vr)</TD></TR>
+							<TR><TD>delay</TD><TD>#xdatTextBox("AMCZ0:anatQAPData/delay" $item "" $vr)</TD></TR>
+							<TR><TD>delay/ref_expt_id</TD><TD>#xdatStringBox("AMCZ0:anatQAPData/delay/ref_expt_id" $item "" $vr)</TD></TR>-->
+							<TR><TD>note</TD><TD>#xdatStringBox("AMCZ0:anatQAPData/note" $item "" $vr)</TD></TR>
+							<TR><TD>acquisition_site</TD><TD>#xdatStringBox("AMCZ0:anatQAPData/acquisition_site" $item "" $vr)</TD></TR>
+							<!--<TR><TD>visit_id</TD><TD>#xdatStringBox("AMCZ0:anatQAPData/visit_id" $item "" $vr)</TD></TR>
+							<TR><TD>visit</TD><TD>#xdatStringBox("AMCZ0:anatQAPData/visit" $item "" $vr)</TD></TR>
+							<TR><TD>original</TD><TD>#xdatStringBox("AMCZ0:anatQAPData/original" $item "" $vr)</TD></TR>-->
+							<TR><TD>version</TD><TD>#xdatTextBox("AMCZ0:anatQAPData/version" $item "" $vr)</TD></TR>
+                            <TR><TD>protocol</TD><TD>#xdatStringBox("AMCZ0:anatQAPData/protocol" $item "" $vr)</TD></TR>
+							<TR><TD>label</TD><TD>#xdatStringBox("AMCZ0:anatQAPData/label" $item "" $vr)</TD></TR>
+							<TR><TD>cnr</TD><TD>#xdatTextBox("AMCZ0:anatQAPData/cnr" $item "" $vr)</TD></TR>
+							<TR><TD>efc</TD><TD>#xdatTextBox("AMCZ0:anatQAPData/efc" $item "" $vr)</TD></TR>
+							<TR><TD>snr</TD><TD>#xdatTextBox("AMCZ0:anatQAPData/snr" $item "" $vr)</TD></TR>
+							<TR><TD>fber</TD><TD>#xdatTextBox("AMCZ0:anatQAPData/fber" $item "" $vr)</TD></TR>
+							<TR><TD>qi1</TD><TD>#xdatTextBox("AMCZ0:anatQAPData/qi1" $item "" $vr)</TD></TR>
+							<TR><TD>gm/gm_mean</TD><TD>#xdatTextBox("AMCZ0:anatQAPData/gm/gm_mean" $item "" $vr)</TD></TR>
+							<TR><TD>gm/gm_size</TD><TD>#xdatTextBox("AMCZ0:anatQAPData/gm/gm_size" $item "" $vr)</TD></TR>
+							<TR><TD>gm/gm_std</TD><TD>#xdatTextBox("AMCZ0:anatQAPData/gm/gm_std" $item "" $vr)</TD></TR>
+							<TR><TD>wm/wm_mean</TD><TD>#xdatTextBox("AMCZ0:anatQAPData/wm/wm_mean" $item "" $vr)</TD></TR>
+							<TR><TD>wm/wm_size</TD><TD>#xdatTextBox("AMCZ0:anatQAPData/wm/wm_size" $item "" $vr)</TD></TR>
+							<TR><TD>wm/wm_std</TD><TD>#xdatTextBox("AMCZ0:anatQAPData/wm/wm_std" $item "" $vr)</TD></TR>
+							<TR><TD>csf/csf_mean</TD><TD>#xdatTextBox("AMCZ0:anatQAPData/csf/csf_mean" $item "" $vr)</TD></TR>
+							<TR><TD>csf/csf_size</TD><TD>#xdatTextBox("AMCZ0:anatQAPData/csf/csf_size" $item "" $vr)</TD></TR>
+							<TR><TD>csf/csf_std</TD><TD>#xdatTextBox("AMCZ0:anatQAPData/csf/csf_std" $item "" $vr)</TD></TR>
+							<TR><TD>fg/fg_mean</TD><TD>#xdatTextBox("AMCZ0:anatQAPData/fg/fg_mean" $item "" $vr)</TD></TR>
+							<TR><TD>fg/fg_size</TD><TD>#xdatTextBox("AMCZ0:anatQAPData/fg/fg_size" $item "" $vr)</TD></TR>
+							<TR><TD>fg/fg_std</TD><TD>#xdatTextBox("AMCZ0:anatQAPData/fg/fg_std" $item "" $vr)</TD></TR>
+							<TR><TD>bg/bg_mean</TD><TD>#xdatTextBox("AMCZ0:anatQAPData/bg/bg_mean" $item "" $vr)</TD></TR>
+							<TR><TD>bg/bg_size</TD><TD>#xdatTextBox("AMCZ0:anatQAPData/bg/bg_size" $item "" $vr)</TD></TR>
+							<TR><TD>bg/bg_std</TD><TD>#xdatTextBox("AMCZ0:anatQAPData/bg/bg_std" $item "" $vr)</TD></TR>
+							<TR><TD>fwhm</TD><TD>#xdatTextBox("AMCZ0:anatQAPData/fwhm" $item "" $vr)</TD></TR>
+							<TR><TD>fwhm/fwhm_x</TD><TD>#xdatTextBox("AMCZ0:anatQAPData/fwhm/fwhm_x" $item "" $vr)</TD></TR>
+							<TR><TD>fwhm/fwhm_y</TD><TD>#xdatTextBox("AMCZ0:anatQAPData/fwhm/fwhm_y" $item "" $vr)</TD></TR>
+							<TR><TD>fwhm/fwhm_z</TD><TD>#xdatTextBox("AMCZ0:anatQAPData/fwhm/fwhm_z" $item "" $vr)</TD></TR>
+						</TABLE>
+					</TD>
+				</TR>
+			</TABLE>
+		</TD>
+	</TR>
+	<TR>
+		<TD>
+<!-- BEGIN AMCZ0:anatQAPData -->
+			<TABLE>
+				<TR><TH align="left"><font face="$ui.sansSerifFonts" size="2">Related Items</font></TH></TR>
+				<TR>
+					<TD align="left" valign="top">
+						<TABLE><TR><TD>
+							#foreach($xnat_abstractResource_1_COUNTER in [0..5])
+<!-- BEGIN AMCZ0:anatQAPData/in/file[$xnat_abstractResource_1_COUNTER] -->
+								<TABLE>
+									<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">AMCZ0:anatQAPData/in/file[$xnat_abstractResource_1_COUNTER]</font></TH></TR>
+									<TR>
+										<TD align="left" valign="top">
+											<TABLE>
+												<TR><TD>note</TD><TD>#xdatStringBox("AMCZ0:anatQAPData/in/file[$xnat_abstractResource_1_COUNTER]/note" $item "" $vr)</TD></TR>
+												<TR><TD>label</TD><TD>#xdatStringBox("AMCZ0:anatQAPData/in/file[$xnat_abstractResource_1_COUNTER]/label" $item "" $vr)</TD></TR>
+												<TR><TD>file_count</TD><TD>#xdatTextBox("AMCZ0:anatQAPData/in/file[$xnat_abstractResource_1_COUNTER]/file_count" $item "" $vr)</TD></TR>
+												<TR><TD>file_size</TD><TD>#xdatTextBox("AMCZ0:anatQAPData/in/file[$xnat_abstractResource_1_COUNTER]/file_size" $item "" $vr)</TD></TR>
+																		#xdatHiddenBox("AMCZ0:anatQAPData/in/file[$xnat_abstractResource_1_COUNTER]/xnat_abstractResource_id" $item "")
+											</TABLE>
+										</TD>
+									</TR>
+<!-- BEGIN AMCZ0:anatQAPData/in/file[$xnat_abstractResource_1_COUNTER]/tags/tag -->
+									<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">AMCZ0:anatQAPData/in/file[$xnat_abstractResource_1_COUNTER]/tags/tag</font></TH></TR>
+									<TR>
+										<TD align="left" valign="top">
+											<TABLE>
+												<TR>
+													<TD>tag</TD>
+													<TD>name</TD>
+												</TR>
+												#foreach($xnat_abstractResource_tag_2_COUNTER in [0..5])
+													<TR>
+														<TD>#xdatTextBox("AMCZ0:anatQAPData/in/file[$xnat_abstractResource_1_COUNTER]/tags/tag[$xnat_abstractResource_tag_2_COUNTER]/tag" $item "" $vr)</TD>
+														<TD>#xdatTextBox("AMCZ0:anatQAPData/in/file[$xnat_abstractResource_1_COUNTER]/tags/tag[$xnat_abstractResource_tag_2_COUNTER]/name" $item "" $vr)</TD>
+														#xdatHiddenBox("AMCZ0:anatQAPData/in/file[$xnat_abstractResource_1_COUNTER]/tags/tag[$xnat_abstractResource_tag_2_COUNTER]/xnat_abstractResource_tag_id" $item "")
+													</TR>
+												#end
+											</TABLE>
+										</TD>
+									</TR>
+<!-- END AMCZ0:anatQAPData/in/file[$xnat_abstractResource_1_COUNTER]/tags/tag -->
+								</TABLE>
+<!-- END AMCZ0:anatQAPData/in/file[$xnat_abstractResource_1_COUNTER] -->
+							#end
+						</TD></TR></TABLE>
+					</TD>
+				</TR>
+				<TR>
+					<TD align="left" valign="top">
+						<TABLE><TR><TD>
+							#foreach($xnat_abstractResource_2_COUNTER in [0..5])
+<!-- BEGIN AMCZ0:anatQAPData/out/file[$xnat_abstractResource_2_COUNTER] -->
+								<TABLE>
+									<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">AMCZ0:anatQAPData/out/file[$xnat_abstractResource_2_COUNTER]</font></TH></TR>
+									<TR>
+										<TD align="left" valign="top">
+											<TABLE>
+												<TR><TD>note</TD><TD>#xdatStringBox("AMCZ0:anatQAPData/out/file[$xnat_abstractResource_2_COUNTER]/note" $item "" $vr)</TD></TR>
+												<TR><TD>label</TD><TD>#xdatStringBox("AMCZ0:anatQAPData/out/file[$xnat_abstractResource_2_COUNTER]/label" $item "" $vr)</TD></TR>
+												<TR><TD>file_count</TD><TD>#xdatTextBox("AMCZ0:anatQAPData/out/file[$xnat_abstractResource_2_COUNTER]/file_count" $item "" $vr)</TD></TR>
+												<TR><TD>file_size</TD><TD>#xdatTextBox("AMCZ0:anatQAPData/out/file[$xnat_abstractResource_2_COUNTER]/file_size" $item "" $vr)</TD></TR>
+																		#xdatHiddenBox("AMCZ0:anatQAPData/out/file[$xnat_abstractResource_2_COUNTER]/xnat_abstractResource_id" $item "")
+											</TABLE>
+										</TD>
+									</TR>
+<!-- BEGIN AMCZ0:anatQAPData/out/file[$xnat_abstractResource_2_COUNTER]/tags/tag -->
+									<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">AMCZ0:anatQAPData/out/file[$xnat_abstractResource_2_COUNTER]/tags/tag</font></TH></TR>
+									<TR>
+										<TD align="left" valign="top">
+											<TABLE>
+												<TR>
+													<TD>tag</TD>
+													<TD>name</TD>
+												</TR>
+												#foreach($xnat_abstractResource_tag_3_COUNTER in [0..5])
+													<TR>
+														<TD>#xdatTextBox("AMCZ0:anatQAPData/out/file[$xnat_abstractResource_2_COUNTER]/tags/tag[$xnat_abstractResource_tag_3_COUNTER]/tag" $item "" $vr)</TD>
+														<TD>#xdatTextBox("AMCZ0:anatQAPData/out/file[$xnat_abstractResource_2_COUNTER]/tags/tag[$xnat_abstractResource_tag_3_COUNTER]/name" $item "" $vr)</TD>
+														#xdatHiddenBox("AMCZ0:anatQAPData/out/file[$xnat_abstractResource_2_COUNTER]/tags/tag[$xnat_abstractResource_tag_3_COUNTER]/xnat_abstractResource_tag_id" $item "")
+													</TR>
+												#end
+											</TABLE>
+										</TD>
+									</TR>
+<!-- END AMCZ0:anatQAPData/out/file[$xnat_abstractResource_2_COUNTER]/tags/tag -->
+								</TABLE>
+<!-- END AMCZ0:anatQAPData/out/file[$xnat_abstractResource_2_COUNTER] -->
+							#end
+						</TD></TR></TABLE>
+					</TD>
+				</TR>
+<!-- BEGIN AMCZ0:anatQAPData/parameters/addParam -->
+				<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">AMCZ0:anatQAPData/parameters/addParam</font></TH></TR>
+				<TR>
+					<TD align="left" valign="top">
+						<TABLE>
+							<TR>
+								<TD>addField</TD>
+								<TD>name</TD>
+							</TR>
+							#foreach($xnat_addField_3_COUNTER in [0..5])
+								<TR>
+									<TD>#xdatTextBox("AMCZ0:anatQAPData/parameters/addParam[$xnat_addField_3_COUNTER]/addField" $item "" $vr)</TD>
+									<TD>#xdatTextBox("AMCZ0:anatQAPData/parameters/addParam[$xnat_addField_3_COUNTER]/name" $item "" $vr)</TD>
+									#xdatHiddenBox("AMCZ0:anatQAPData/parameters/addParam[$xnat_addField_3_COUNTER]/xnat_addField_id" $item "")
+								</TR>
+							#end
+						</TABLE>
+					</TD>
+				</TR>
+<!-- END AMCZ0:anatQAPData/parameters/addParam -->
+				<TR>
+					<TD align="left" valign="top">
+<!-- BEGIN AMCZ0:anatQAPData/provenance -->
+						<TABLE>
+							<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">AMCZ0:anatQAPData/provenance</font></TH></TR>
+							<TR>
+								<TD align="left" valign="top">
+									<TABLE>
+																#xdatHiddenBox("AMCZ0:anatQAPData/provenance/prov_process_id" $item "")
+									</TABLE>
+								</TD>
+							</TR>
+							<TR>
+								<TD align="left" valign="top">
+									<TABLE><TR><TD>
+										#foreach($prov_processStep_4_COUNTER in [0..5])
+<!-- BEGIN AMCZ0:anatQAPData/provenance/processStep[$prov_processStep_4_COUNTER] -->
+											<TABLE>
+												<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">AMCZ0:anatQAPData/provenance/processStep[$prov_processStep_4_COUNTER]</font></TH></TR>
+												<TR>
+													<TD align="left" valign="top">
+														<TABLE>
+															<TR><TD>program</TD><TD>#xdatStringBox("AMCZ0:anatQAPData/provenance/processStep[$prov_processStep_4_COUNTER]/program" $item "" $vr)</TD></TR>
+															<TR><TD>program/version</TD><TD>#xdatStringBox("AMCZ0:anatQAPData/provenance/processStep[$prov_processStep_4_COUNTER]/program/version" $item "" $vr)</TD></TR>
+															<TR><TD>program/arguments</TD><TD>#xdatStringBox("AMCZ0:anatQAPData/provenance/processStep[$prov_processStep_4_COUNTER]/program/arguments" $item "" $vr)</TD></TR>
+															<TR><TD>timestamp</TD><TD>#xdatTextBox("AMCZ0:anatQAPData/provenance/processStep[$prov_processStep_4_COUNTER]/timestamp" $item "" $vr)</TD></TR>
+															<TR><TD>cvs</TD><TD>#xdatStringBox("AMCZ0:anatQAPData/provenance/processStep[$prov_processStep_4_COUNTER]/cvs" $item "" $vr)</TD></TR>
+															<TR><TD>user</TD><TD>#xdatStringBox("AMCZ0:anatQAPData/provenance/processStep[$prov_processStep_4_COUNTER]/user" $item "" $vr)</TD></TR>
+															<TR><TD>machine</TD><TD>#xdatStringBox("AMCZ0:anatQAPData/provenance/processStep[$prov_processStep_4_COUNTER]/machine" $item "" $vr)</TD></TR>
+															<TR><TD>platform</TD><TD>#xdatStringBox("AMCZ0:anatQAPData/provenance/processStep[$prov_processStep_4_COUNTER]/platform" $item "" $vr)</TD></TR>
+															<TR><TD>platform/version</TD><TD>#xdatStringBox("AMCZ0:anatQAPData/provenance/processStep[$prov_processStep_4_COUNTER]/platform/version" $item "" $vr)</TD></TR>
+															<TR><TD>compiler</TD><TD>#xdatStringBox("AMCZ0:anatQAPData/provenance/processStep[$prov_processStep_4_COUNTER]/compiler" $item "" $vr)</TD></TR>
+															<TR><TD>compiler/version</TD><TD>#xdatStringBox("AMCZ0:anatQAPData/provenance/processStep[$prov_processStep_4_COUNTER]/compiler/version" $item "" $vr)</TD></TR>
+																					#xdatHiddenBox("AMCZ0:anatQAPData/provenance/processStep[$prov_processStep_4_COUNTER]/prov_processStep_id" $item "")
+														</TABLE>
+													</TD>
+												</TR>
+<!-- BEGIN AMCZ0:anatQAPData/provenance/processStep[$prov_processStep_4_COUNTER]/library -->
+												<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">AMCZ0:anatQAPData/provenance/processStep[$prov_processStep_4_COUNTER]/library</font></TH></TR>
+												<TR>
+													<TD align="left" valign="top">
+														<TABLE>
+															<TR>
+																<TD>library</TD>
+																<TD>version</TD>
+															</TR>
+															#foreach($prov_processStep_library_5_COUNTER in [0..5])
+																<TR>
+																	<TD>#xdatTextBox("AMCZ0:anatQAPData/provenance/processStep[$prov_processStep_4_COUNTER]/library[$prov_processStep_library_5_COUNTER]/library" $item "" $vr)</TD>
+																	<TD>#xdatTextBox("AMCZ0:anatQAPData/provenance/processStep[$prov_processStep_4_COUNTER]/library[$prov_processStep_library_5_COUNTER]/version" $item "" $vr)</TD>
+																	#xdatHiddenBox("AMCZ0:anatQAPData/provenance/processStep[$prov_processStep_4_COUNTER]/library[$prov_processStep_library_5_COUNTER]/prov_processStep_library_id" $item "")
+																</TR>
+															#end
+														</TABLE>
+													</TD>
+												</TR>
+<!-- END AMCZ0:anatQAPData/provenance/processStep[$prov_processStep_4_COUNTER]/library -->
+											</TABLE>
+<!-- END AMCZ0:anatQAPData/provenance/processStep[$prov_processStep_4_COUNTER] -->
+										#end
+									</TD></TR></TABLE>
+								</TD>
+							</TR>
+						</TABLE>
+<!-- END AMCZ0:anatQAPData/provenance -->
+					</TD>
+				</TR>
+				<TR>
+					<TD align="left" valign="top">
+						<TABLE><TR><TD>
+							#foreach($xnat_abstractResource_7_COUNTER in [0..5])
+<!-- BEGIN AMCZ0:anatQAPData/resources/resource[$xnat_abstractResource_7_COUNTER] -->
+								<TABLE>
+									<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">AMCZ0:anatQAPData/resources/resource[$xnat_abstractResource_7_COUNTER]</font></TH></TR>
+									<TR>
+										<TD align="left" valign="top">
+											<TABLE>
+												<TR><TD>note</TD><TD>#xdatStringBox("AMCZ0:anatQAPData/resources/resource[$xnat_abstractResource_7_COUNTER]/note" $item "" $vr)</TD></TR>
+												<TR><TD>label</TD><TD>#xdatStringBox("AMCZ0:anatQAPData/resources/resource[$xnat_abstractResource_7_COUNTER]/label" $item "" $vr)</TD></TR>
+												<TR><TD>file_count</TD><TD>#xdatTextBox("AMCZ0:anatQAPData/resources/resource[$xnat_abstractResource_7_COUNTER]/file_count" $item "" $vr)</TD></TR>
+												<TR><TD>file_size</TD><TD>#xdatTextBox("AMCZ0:anatQAPData/resources/resource[$xnat_abstractResource_7_COUNTER]/file_size" $item "" $vr)</TD></TR>
+																		#xdatHiddenBox("AMCZ0:anatQAPData/resources/resource[$xnat_abstractResource_7_COUNTER]/xnat_abstractResource_id" $item "")
+											</TABLE>
+										</TD>
+									</TR>
+<!-- BEGIN AMCZ0:anatQAPData/resources/resource[$xnat_abstractResource_7_COUNTER]/tags/tag -->
+									<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">AMCZ0:anatQAPData/resources/resource[$xnat_abstractResource_7_COUNTER]/tags/tag</font></TH></TR>
+									<TR>
+										<TD align="left" valign="top">
+											<TABLE>
+												<TR>
+													<TD>tag</TD>
+													<TD>name</TD>
+												</TR>
+												#foreach($xnat_abstractResource_tag_8_COUNTER in [0..5])
+													<TR>
+														<TD>#xdatTextBox("AMCZ0:anatQAPData/resources/resource[$xnat_abstractResource_7_COUNTER]/tags/tag[$xnat_abstractResource_tag_8_COUNTER]/tag" $item "" $vr)</TD>
+														<TD>#xdatTextBox("AMCZ0:anatQAPData/resources/resource[$xnat_abstractResource_7_COUNTER]/tags/tag[$xnat_abstractResource_tag_8_COUNTER]/name" $item "" $vr)</TD>
+														#xdatHiddenBox("AMCZ0:anatQAPData/resources/resource[$xnat_abstractResource_7_COUNTER]/tags/tag[$xnat_abstractResource_tag_8_COUNTER]/xnat_abstractResource_tag_id" $item "")
+													</TR>
+												#end
+											</TABLE>
+										</TD>
+									</TR>
+<!-- END AMCZ0:anatQAPData/resources/resource[$xnat_abstractResource_7_COUNTER]/tags/tag -->
+								</TABLE>
+<!-- END AMCZ0:anatQAPData/resources/resource[$xnat_abstractResource_7_COUNTER] -->
+							#end
+						</TD></TR></TABLE>
+					</TD>
+				</TR>
+<!-- BEGIN AMCZ0:anatQAPData/fields/field -->
+				<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">AMCZ0:anatQAPData/fields/field</font></TH></TR>
+				<TR>
+					<TD align="left" valign="top">
+						<TABLE>
+							<TR>
+								<TD>field</TD>
+								<TD>name</TD>
+							</TR>
+							#foreach($xnat_experimentData_field_8_COUNTER in [0..5])
+								<TR>
+									<TD>#xdatTextBox("AMCZ0:anatQAPData/fields/field[$xnat_experimentData_field_8_COUNTER]/field" $item "" $vr)</TD>
+									<TD>#xdatTextBox("AMCZ0:anatQAPData/fields/field[$xnat_experimentData_field_8_COUNTER]/name" $item "" $vr)</TD>
+									#xdatHiddenBox("AMCZ0:anatQAPData/fields/field[$xnat_experimentData_field_8_COUNTER]/xnat_experimentData_field_id" $item "")
+								</TR>
+							#end
+						</TABLE>
+					</TD>
+				</TR>
+<!-- END AMCZ0:anatQAPData/fields/field -->
+			</TABLE>
+<!-- END AMCZ0:anatQAPData -->
+		</TD>
+	</TR>
+	<TR>
+		<TD>
+		#xdatEditProps($item $edit_screen)
+		<TR><TD COLSPAN=2 ALIGN=left><input type="button" ONCLICK="validateForm();"  name="eventSubmit_doInsert" value="Submit"/></TD></TR>
+		</TD>
+	</TR>
+</TABLE>
+</form>
+
+<script type="text/javascript">
+function validateForm()
+{
+   //INSERT CUSTOM CONTENT HERE
+
+   validateExperimentForm();
+   return false;
+}
+</script>

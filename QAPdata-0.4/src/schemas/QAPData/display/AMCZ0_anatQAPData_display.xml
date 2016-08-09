@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Displays xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xdat/display.xsd" schema-element="AMCZ0:anatQAPData" full-description="anatQA" brief-description="anatQA">
+	<DisplayField id="EXPT_ID" header="ID" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="AMCZ0:anatQAPData.ID"/>
+		<HTML-Link>
+			<Property name="HREF" value="none"/>
+			<Property name="ONCLICK" value="return rpt('@Field1','AMCZ0:anatQAPData','AMCZ0:anatQAPData.ID');">
+				<InsertValue id="Field1" field="EXPT_ID"/>
+			</Property>
+		</HTML-Link>
+	</DisplayField>
+	<DisplayField id="RPT" header="ID" visible="true" image="true">
+		<Content type="sql">'/@WEBAPP/images/r.gif'::text</Content>
+		<HTML-Link>
+			<Property name="HREF" value="none"/>
+			<Property name="ONCLICK" value="return rpt('@Field1','AMCZ0:anatQAPData','AMCZ0:anatQAPData.ID');">
+				<InsertValue id="Field1" field="EXPT_ID"/>
+			</Property>
+		</HTML-Link>
+	</DisplayField>
+	<DisplayField id="DATE" header="Date" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="AMCZ0:anatQAPData.date"/>
+	</DisplayField>
+	<DisplayField header="Projects" id="PROJECTS" data-type="string">
+		<DisplayFieldElement name="Field1" viewName="AMCZ0_ANATQAPDATA_PROJECTS" viewColumn="PROJECTS"/>
+	</DisplayField>
+	<DisplayField header="Label" id="LABEL" data-type="string">
+	<DisplayFieldElement name="Field1" schema-element="AMCZ0:anatQAPData.ID"/>
+	<DisplayFieldElement name="Field2" schema-element="AMCZ0:anatQAPData.label"/>
+	<Content type="sql">COALESCE(@Field2, @Field1)</Content>
+		<HTML-Link>
+			<SecureLink elementName="AMCZ0:anatQAPData">
+				<securityMappingValue displayFieldId="PROJECTS" schemaElementMap="AMCZ0:anatQAPData/sharing/share/project"/>
+				<securityMappingValue displayFieldId="PROJECT" schemaElementMap="AMCZ0:anatQAPData/project"/>
+			</SecureLink>
+			<Property name="HREF" value="@WEBAPPapp/action/DisplayItemAction/search_value/@Field1/search_element/AMCZ0:anatQAPData/search_field/AMCZ0:anatQAPData.ID">
+				<InsertValue id="Field1" field="EXPT_ID"/>
+			</Property>
+			<Property name="ONCLICK" value="return rpt('@Field1','AMCZ0:anatQAPData','AMCZ0:anatQAPData.ID');">
+				<InsertValue id="Field1" field="EXPT_ID"/>
+			</Property>
+			<Property name="TITLE" value="Inserted: @Field1 (@Field2)">
+				<InsertValue id="Field1" field="INSERT_DATE"/>
+				<InsertValue id="Field2" field="INSERT_USER"/>
+			</Property>
+		</HTML-Link>
+	</DisplayField>
+	<DisplayField id="PROJECT" header="Project" visible="true" searchable="true" data-type="string">
+		<DisplayFieldElement name="Field1" schema-element="AMCZ0:anatQAPData.project"/>
+	</DisplayField>
+	<DisplayField id="AMCZ0_ANATQAPDATA_PROJECT_IDENTIFIER" header="AMCZ0_ANATQAPDATA ID" visible="true" searchable="false" data-type="string" xsi:type="SubQueryField">
+		<Content type="sql">amcz0_anatqapdata_project_id</Content>
+		<HTML-Link>
+			<SecureLink elementName="AMCZ0:anatQAPData">
+				<securityMappingValue displayFieldId="PROJECTS" schemaElementMap="AMCZ0:anatQAPData/sharing/share/project"/>
+				<securityMappingValue displayFieldId="PROJECT" schemaElementMap="AMCZ0:anatQAPData/project"/>
+			</SecureLink>
+			<Property name="HREF" value="@WEBAPPapp/action/DisplayItemAction/search_value/@Field1/search_element/AMCZ0:anatQAPData/search_field/AMCZ0:anatQAPData.ID/project/@Field2">
+				<InsertValue id="Field1" field="EXPT_ID"/>
+				<InsertValue id="Field2" field="@WHERE"/>
+			</Property>
+		</HTML-Link>
+		<SubQuery>SELECT DISTINCT COALESCE(label,sharing_share_xnat_experimentda_id) AS amcz0_anatqapdata_project_id,sharing_share_xnat_experimentda_id FROM (	SELECT sharing_share_xnat_experimentda_id,label FROM xnat_experimentdata_share WHERE project='@WHERE'	UNION 	SELECT id,label FROM xnat_experimentData WHERE project='@WHERE' )SEARCH</SubQuery>
+		<MappingColumns>
+			<MappingColumn schemaField="AMCZ0:anatQAPData.ID" queryField="sharing_share_xnat_experimentda_id"/>
+		</MappingColumns>
+	</DisplayField>
+	<DisplayField id="INSERT_DATE" header="Inserted" visible="true" searchable="true" data-type="string">
+		<DisplayFieldElement name="Field1" schema-element="AMCZ0:anatQAPData.meta.insert_date"/>
+	</DisplayField>
+	<DisplayField id="INSERT_USER" header="Creator" visible="true" searchable="true" data-type="string">
+		<DisplayFieldElement name="Field1" schema-element="AMCZ0:anatQAPData.meta.insert_user.login"/>
+	</DisplayField>
+	<DisplayField id="AMCZ0_ANATQAPDATA_FIELD_MAP" header="Field" visible="true" searchable="false" data-type="string" xsi:type="SubQueryField">
+		<Content type="sql">field</Content>
+		<SubQuery>SELECT DISTINCT ON ( e.ID) e.ID AS expt_id,field FROM xnat_experimentData_field ef JOIN (SELECT ID,extension,element_name FROM xnat_experimentData e JOIN xdat_meta_element xme ON e.extension=xme.xdat_meta_element_id WHERE xme.element_name='AMCZ0:anatQAPData') e on ef.fields_field_xnat_experimentdat_id=e.id WHERE name='@WHERE'</SubQuery>
+		<MappingColumns>
+			<MappingColumn schemaField="AMCZ0:anatQAPData.ID" queryField="expt_id"/>
+		</MappingColumns>
+	</DisplayField>
+	<DisplayField id="CNR" header="CNR" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="AMCZ0:anatQAPData/cnr"/>
+	</DisplayField>
+	<DisplayField id="EFC" header="EFC" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="AMCZ0:anatQAPData/efc"/>
+	</DisplayField>
+	<DisplayField id="SNR" header="SNR" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="AMCZ0:anatQAPData/snr"/>
+	</DisplayField>
+	<DisplayField id="FBER" header="FBER" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="AMCZ0:anatQAPData/fber"/>
+	</DisplayField>
+	<DisplayField id="QI1" header="Qi1" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="AMCZ0:anatQAPData/qi1"/>
+	</DisplayField>
+	<DisplayField id="GM_GM_MEAN" header="GM mean" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="AMCZ0:anatQAPData/gm/gm_mean"/>
+	</DisplayField>
+	<DisplayField id="GM_GM_SIZE" header="GM size" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="AMCZ0:anatQAPData/gm/gm_size"/>
+	</DisplayField>
+	<DisplayField id="GM_GM_STD" header="GM stddev" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="AMCZ0:anatQAPData/gm/gm_std"/>
+	</DisplayField>
+	<DisplayField id="WM_WM_MEAN" header="WM mean" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="AMCZ0:anatQAPData/wm/wm_mean"/>
+	</DisplayField>
+	<DisplayField id="WM_WM_SIZE" header="WM size" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="AMCZ0:anatQAPData/wm/wm_size"/>
+	</DisplayField>
+	<DisplayField id="WM_WM_STD" header="WM stddev" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="AMCZ0:anatQAPData/wm/wm_std"/>
+	</DisplayField>
+	<DisplayField id="CSF_CSF_MEAN" header="CSF mean" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="AMCZ0:anatQAPData/csf/csf_mean"/>
+	</DisplayField>
+	<DisplayField id="CSF_CSF_SIZE" header="CSF size" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="AMCZ0:anatQAPData/csf/csf_size"/>
+	</DisplayField>
+	<DisplayField id="CSF_CSF_STD" header="CSF stddev" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="AMCZ0:anatQAPData/csf/csf_std"/>
+	</DisplayField>
+	<DisplayField id="FG_FG_MEAN" header="Foreground mean" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="AMCZ0:anatQAPData/fg/fg_mean"/>
+	</DisplayField>
+	<DisplayField id="FG_FG_SIZE" header="Foreground size" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="AMCZ0:anatQAPData/fg/fg_size"/>
+	</DisplayField>
+	<DisplayField id="FG_FG_STD" header="Foreground stddev" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="AMCZ0:anatQAPData/fg/fg_std"/>
+	</DisplayField>
+	<DisplayField id="BG_BG_MEAN" header="Background mean" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="AMCZ0:anatQAPData/bg/bg_mean"/>
+	</DisplayField>
+	<DisplayField id="BG_BG_SIZE" header="Background size" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="AMCZ0:anatQAPData/bg/bg_size"/>
+	</DisplayField>
+	<DisplayField id="BG_BG_STD" header="Background stddev" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="AMCZ0:anatQAPData/bg/bg_std"/>
+	</DisplayField>
+	<DisplayField id="FWHM" header="FWHM" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="AMCZ0:anatQAPData/fwhm"/>
+	</DisplayField>
+	<DisplayField id="FWHM_FWHM_X" header="FWHM_X" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="AMCZ0:anatQAPData/fwhm/fwhm_x"/>
+	</DisplayField>
+	<DisplayField id="FWHM_FWHM_Y" header="FWHM_Y" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="AMCZ0:anatQAPData/fwhm/fwhm_y"/>
+	</DisplayField>
+	<DisplayField id="FWHM_FWHM_Z" header="FWHM_Z" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="AMCZ0:anatQAPData/fwhm/fwhm_z"/>
+	</DisplayField>
+	<DisplayVersion versionName="listing" default-order-by="DATE" default-sort-order="DESC" brief-description="anatQA" dark-color="9999CC" light-color="CCCCFF">
+		<DisplayFieldRef id="RPT"/>
+		<DisplayFieldRef id="LABEL"/>
+		<DisplayFieldRef id="DATE"/>
+		<DisplayFieldRef id="CNR"/>
+		<DisplayFieldRef id="EFC"/>
+		<DisplayFieldRef id="SNR"/>
+		<DisplayFieldRef id="FBER"/>
+		<DisplayFieldRef id="QI1"/>
+		<DisplayFieldRef id="GM_GM_MEAN"/>
+		<DisplayFieldRef id="GM_GM_SIZE"/>
+		<DisplayFieldRef id="GM_GM_STD"/>
+		<DisplayFieldRef id="WM_WM_MEAN"/>
+		<DisplayFieldRef id="WM_WM_SIZE"/>
+		<DisplayFieldRef id="WM_WM_STD"/>
+		<DisplayFieldRef id="CSF_CSF_MEAN"/>
+		<DisplayFieldRef id="CSF_CSF_SIZE"/>
+		<DisplayFieldRef id="CSF_CSF_STD"/>
+		<DisplayFieldRef id="FG_FG_MEAN"/>
+		<DisplayFieldRef id="FG_FG_SIZE"/>
+		<DisplayFieldRef id="FG_FG_STD"/>
+		<DisplayFieldRef id="BG_BG_MEAN"/>
+		<DisplayFieldRef id="BG_BG_SIZE"/>
+		<DisplayFieldRef id="BG_BG_STD"/>
+		<DisplayFieldRef id="FWHM"/>
+		<DisplayFieldRef id="FWHM_FWHM_X"/>
+		<DisplayFieldRef id="FWHM_FWHM_Y"/>
+		<DisplayFieldRef id="FWHM_FWHM_Z"/>
+	</DisplayVersion>
+	<DisplayVersion versionName="listing_csv" default-order-by="DATE" default-sort-order="DESC" brief-description="anatQA" dark-color="9999CC" light-color="CCCCFF">
+		<DisplayFieldRef id="LABEL"/>
+		<DisplayFieldRef id="DATE"/>
+		<DisplayFieldRef id="CNR"/>
+		<DisplayFieldRef id="EFC"/>
+		<DisplayFieldRef id="SNR"/>
+		<DisplayFieldRef id="FBER"/>
+		<DisplayFieldRef id="QI1"/>
+		<DisplayFieldRef id="GM_GM_MEAN"/>
+		<DisplayFieldRef id="GM_GM_SIZE"/>
+		<DisplayFieldRef id="GM_GM_STD"/>
+		<DisplayFieldRef id="WM_WM_MEAN"/>
+		<DisplayFieldRef id="WM_WM_SIZE"/>
+		<DisplayFieldRef id="WM_WM_STD"/>
+		<DisplayFieldRef id="CSF_CSF_MEAN"/>
+		<DisplayFieldRef id="CSF_CSF_SIZE"/>
+		<DisplayFieldRef id="CSF_CSF_STD"/>
+		<DisplayFieldRef id="FG_FG_MEAN"/>
+		<DisplayFieldRef id="FG_FG_SIZE"/>
+		<DisplayFieldRef id="FG_FG_STD"/>
+		<DisplayFieldRef id="BG_BG_MEAN"/>
+		<DisplayFieldRef id="BG_BG_SIZE"/>
+		<DisplayFieldRef id="BG_BG_STD"/>
+		<DisplayFieldRef id="FWHM"/>
+		<DisplayFieldRef id="FWHM_FWHM_X"/>
+		<DisplayFieldRef id="FWHM_FWHM_Y"/>
+		<DisplayFieldRef id="FWHM_FWHM_Z"/>
+	</DisplayVersion>
+	<DisplayVersion versionName="full" default-order-by="DATE" default-sort-order="DESC" brief-description="anatQA" dark-color="9999CC" light-color="CCCCFF">
+		<DisplayFieldRef id="EXPT_ID"/>
+		<DisplayFieldRef id="DATE"/>
+		<DisplayFieldRef id="CNR"/>
+		<DisplayFieldRef id="EFC"/>
+		<DisplayFieldRef id="SNR"/>
+		<DisplayFieldRef id="FBER"/>
+		<DisplayFieldRef id="QI1"/>
+		<DisplayFieldRef id="GM_GM_MEAN"/>
+		<DisplayFieldRef id="GM_GM_SIZE"/>
+		<DisplayFieldRef id="GM_GM_STD"/>
+		<DisplayFieldRef id="WM_WM_MEAN"/>
+		<DisplayFieldRef id="WM_WM_SIZE"/>
+		<DisplayFieldRef id="WM_WM_STD"/>
+		<DisplayFieldRef id="CSF_CSF_MEAN"/>
+		<DisplayFieldRef id="CSF_CSF_SIZE"/>
+		<DisplayFieldRef id="CSF_CSF_STD"/>
+		<DisplayFieldRef id="FG_FG_MEAN"/>
+		<DisplayFieldRef id="FG_FG_SIZE"/>
+		<DisplayFieldRef id="FG_FG_STD"/>
+		<DisplayFieldRef id="BG_BG_MEAN"/>
+		<DisplayFieldRef id="BG_BG_SIZE"/>
+		<DisplayFieldRef id="BG_BG_STD"/>
+		<DisplayFieldRef id="FWHM"/>
+		<DisplayFieldRef id="FWHM_FWHM_X"/>
+		<DisplayFieldRef id="FWHM_FWHM_Y"/>
+		<DisplayFieldRef id="FWHM_FWHM_Z"/>
+	</DisplayVersion>
+	<DisplayVersion versionName="detailed" default-order-by="DATE" default-sort-order="DESC" brief-description="anatQA" dark-color="9999CC" light-color="CCCCFF">
+		<DisplayFieldRef id="EXPT_ID"/>
+		<DisplayFieldRef id="DATE"/>
+		<DisplayFieldRef id="CNR"/>
+		<DisplayFieldRef id="EFC"/>
+		<DisplayFieldRef id="SNR"/>
+		<DisplayFieldRef id="FBER"/>
+		<DisplayFieldRef id="QI1"/>
+		<DisplayFieldRef id="GM_GM_MEAN"/>
+		<DisplayFieldRef id="GM_GM_SIZE"/>
+		<DisplayFieldRef id="GM_GM_STD"/>
+		<DisplayFieldRef id="WM_WM_MEAN"/>
+		<DisplayFieldRef id="WM_WM_SIZE"/>
+		<DisplayFieldRef id="WM_WM_STD"/>
+		<DisplayFieldRef id="CSF_CSF_MEAN"/>
+		<DisplayFieldRef id="CSF_CSF_SIZE"/>
+		<DisplayFieldRef id="CSF_CSF_STD"/>
+		<DisplayFieldRef id="FG_FG_MEAN"/>
+		<DisplayFieldRef id="FG_FG_SIZE"/>
+		<DisplayFieldRef id="FG_FG_STD"/>
+		<DisplayFieldRef id="BG_BG_MEAN"/>
+		<DisplayFieldRef id="BG_BG_SIZE"/>
+		<DisplayFieldRef id="BG_BG_STD"/>
+		<DisplayFieldRef id="FWHM"/>
+		<DisplayFieldRef id="FWHM_FWHM_X"/>
+		<DisplayFieldRef id="FWHM_FWHM_Y"/>
+		<DisplayFieldRef id="FWHM_FWHM_Z"/>
+	</DisplayVersion>
+	<DisplayVersion versionName="project_bundle" default-order-by="DATE" default-sort-order="DESC" brief-description="anatQA" dark-color="9999CC" light-color="CCCCFF">
+		<DisplayFieldRef id="AMCZ0_ANATQAPDATA_PROJECT_IDENTIFIER"/>
+		<DisplayFieldRef id="DATE"/>
+		<DisplayFieldRef id="CNR"/>
+		<DisplayFieldRef id="EFC"/>
+		<DisplayFieldRef id="SNR"/>
+		<DisplayFieldRef id="FBER"/>
+		<DisplayFieldRef id="QI1"/>
+		<DisplayFieldRef id="GM_GM_MEAN"/>
+		<DisplayFieldRef id="GM_GM_SIZE"/>
+		<DisplayFieldRef id="GM_GM_STD"/>
+		<DisplayFieldRef id="WM_WM_MEAN"/>
+		<DisplayFieldRef id="WM_WM_SIZE"/>
+		<DisplayFieldRef id="WM_WM_STD"/>
+		<DisplayFieldRef id="CSF_CSF_MEAN"/>
+		<DisplayFieldRef id="CSF_CSF_SIZE"/>
+		<DisplayFieldRef id="CSF_CSF_STD"/>
+		<DisplayFieldRef id="FG_FG_MEAN"/>
+		<DisplayFieldRef id="FG_FG_SIZE"/>
+		<DisplayFieldRef id="FG_FG_STD"/>
+		<DisplayFieldRef id="BG_BG_MEAN"/>
+		<DisplayFieldRef id="BG_BG_SIZE"/>
+		<DisplayFieldRef id="BG_BG_STD"/>
+		<DisplayFieldRef id="FWHM"/>
+		<DisplayFieldRef id="FWHM_FWHM_X"/>
+		<DisplayFieldRef id="FWHM_FWHM_Y"/>
+		<DisplayFieldRef id="FWHM_FWHM_Z"/>
+	</DisplayVersion>
+	<ViewLink alias="AMCZ0_ANATQAPDATA_PROJECTS">
+		<Mapping TableName="AMCZ0_ANATQAPDATA_PROJECTS">
+			<MappingColumn rootElement="AMCZ0:anatQAPData" fieldElement="AMCZ0:anatQAPData.ID" mapsTo="id"/>
+		</Mapping>
+	</ViewLink>
+	<SQLView name="AMCZ0_ANATQAPDATA_PROJECTS" sql="SELECT id, '&lt;' || expt.project || '&gt;' || xs_a_concat(',&lt;' || shared.project || '&gt;') AS projects FROM xnat_experimentData expt LEFT JOIN xnat_experimentData_share shared ON expt.id=shared.sharing_share_xnat_experimentda_id LEFT JOIN xdat_meta_element xme ON expt.extension = xme.xdat_meta_element_id WHERE element_name='AMCZ0:anatQAPData' GROUP BY expt.id,expt.project"/>
+</Displays>
