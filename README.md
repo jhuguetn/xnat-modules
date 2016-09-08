@@ -3,6 +3,7 @@
 ##Synopsis
 XNAT modules public repository
 * QAPdata
+* freesurfer
 
 ##Contributors
 Jordi Huguet, Department of Neuroradiology & Brain Imaging Centre, AMC-UvA Amsterdam
