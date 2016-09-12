@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- credits to Tim Olsen and Dan Marcus (Washington University) -->
+<!-- created by Jordi Huguet - 2014 (AMC Amsterdam) -->
+<xs:schema targetNamespace="http://nrg.wustl.edu/AMCZ0" xmlns:AMCZ0="http://nrg.wustl.edu/AMCZ0" xmlns:xdat="http://nrg.wustl.edu/xdat" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xnat="http://nrg.wustl.edu/xnat" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:import namespace="http://nrg.wustl.edu/xnat" schemaLocation="../xnat/xnat.xsd"/>
+	<xs:element name="freesurfer" type="AMCZ0:fsData"/>
+	<xs:complexType name="fsData">
+	<!-- modeling effort to define common freesurfer output data (recon-all result) as an XNAT image assessment -->	
+		<xs:complexContent>
+			<xs:extension base="xnat:imageAssessorData">
+				<xs:sequence>
+					<!--<xs:element name="fs_version" type="xs:string"/>-->
+					<xs:element name="measures">
+						<xs:complexType>
+							<xs:sequence>
+								<!--  subcortical segmentation (asec.stats) output file content, more info here: http://surfer.nmr.mgh.harvard.edu/fswiki/FsTutorial/VolumetricGroupAnalysis#aseg.stats -->	
+								<xs:element name="volumetric">								
+									<xs:complexType>
+										<xs:sequence>
+										<!-- global brain volume stats -->	
+											<xs:element name="ICV" type="xs:float" minOccurs="0"/>
+											<xs:element name="lhCortexVol" type="xs:float" minOccurs="0"/>
+											<xs:element name="rhCortexVol" type="xs:float" minOccurs="0"/>
+											<xs:element name="CortexVol" type="xs:float" minOccurs="0"/>
+											<xs:element name="SubCortGrayVol" type="xs:float" minOccurs="0"/>
+											<xs:element name="TotalGrayVol" type="xs:float" minOccurs="0"/>
+											<xs:element name="SupraTentorialVol" type="xs:float" minOccurs="0"/>
+											<xs:element name="lhCorticalWhiteMatterVol" type="xs:float" minOccurs="0"/>
+											<xs:element name="rhCorticalWhiteMatterVol" type="xs:float" minOccurs="0"/>
+											<xs:element name="CorticalWhiteMatterVol" type="xs:float" minOccurs="0"/>
+											<xs:element name="structures" minOccurs="0">
+												<xs:complexType>
+													<xs:sequence minOccurs="0">
+														<xs:element name="structure" minOccurs="0" maxOccurs="unbounded">
+														<!-- regions/structures labeled in the aseg file -->												
+															<xs:annotation>																
+																<xs:appinfo>
+																<!-- specify that such structure elements' name should be unique within the fsData instance context -->	
+																	<xdat:element>
+																		<xdat:sqlElement name="fsData_vol_region"/>
+																	</xdat:element>
+																	<xdat:field>
+																		<xdat:relation uniqueComposite="name" relationType="single"/>
+																	</xdat:field>
+																</xs:appinfo>
+															</xs:annotation>
+															<xs:complexType>
+																<xs:sequence minOccurs="0">
+																	<xs:element name="NVoxels" type="xs:float" minOccurs="0"/>
+																	<xs:element name="Volume" type="xs:float" minOccurs="0"/>
+																	<xs:element name="normMean" type="xs:float" minOccurs="0"/>
+																	<xs:element name="normStdDev" type="xs:float" minOccurs="0"/>
+																	<xs:element name="normMin" type="xs:float" minOccurs="0"/>
+																	<xs:element name="normMax" type="xs:float" minOccurs="0"/>
+																	<xs:element name="normRange" type="xs:float" minOccurs="0"/>
+																</xs:sequence>
+																<xs:attribute name="SegId" type="xs:string" use="optional"/>
+																<xs:attribute name="name" type="xs:string" use="required">
+																	<!-- specify that structure name attribute should be unique within the context of a fsData instance instance-->	
+																	<xs:annotation>
+																		<xs:appinfo>
+																			<xdat:field uniqueComposite="name"/>
+																		</xs:appinfo>
+																	</xs:annotation>
+																</xs:attribute>
+																<!--<xs:attribute name="hemisphere">																
+																	<xs:simpleType>
+																		<xs:restriction base="xs:string">
+																			<xs:enumeration value="left"/>
+																			<xs:enumeration value="right"/>
+																		</xs:restriction>
+																	</xs:simpleType>
+																</xs:attribute>-->
+																<!-- information not available 'per se' in the file, but can be obtained from each structure name -->	
+															</xs:complexType>
+														</xs:element>
+													</xs:sequence>
+												</xs:complexType>
+											</xs:element>
+										</xs:sequence>
+									</xs:complexType>
+								</xs:element>
+								<!--  statistical output content of the cortical parcellation (lh.aparc.stats and rh.aparc.stats), more info here: http://surfer.nmr.mgh.harvard.edu/fswiki/FsTutorial/VolumetricGroupAnalysis#aparc.stats -->	
+								<xs:element name="surface">									
+									<xs:complexType>
+										<xs:sequence>
+											<xs:element name="hemisphere" maxOccurs="2">
+												<!-- 2 main elements since there are 2 different files, one foreach hemisphere -->
+												<xs:complexType>
+													<xs:sequence>
+													<!-- global brain surface stats -->		
+														<xs:element name="NumVert" type="xs:float" minOccurs="0"/>
+														<xs:element name="SurfArea" type="xs:float" minOccurs="0"/>
+														<xs:element name="MeanThickness" type="xs:float" minOccurs="0"/>
+														<xs:element name="regions" minOccurs="0">
+															<xs:complexType>
+																<xs:sequence minOccurs="0">
+																	<xs:element name="region" minOccurs="0" maxOccurs="unbounded">
+																	<!-- regions/structures labeled in the aparc file -->												
+																		<xs:annotation>
+																			<xs:appinfo>
+																			<!-- specify that such structure elements' name should be unique within the fsData instance context -->	
+																				<xdat:element>
+																					<xdat:sqlElement name="fsData_surf_region"/>
+																				</xdat:element>
+																				<xdat:field>
+																					<xdat:relation uniqueComposite="name" relationType="single"/>
+																				</xdat:field>
+																			</xs:appinfo>
+																		</xs:annotation>
+																		<xs:complexType>
+																			<xs:sequence minOccurs="0">
+																				<xs:element name="NumVert" type="xs:float" minOccurs="0"/>
+																				<xs:element name="SurfArea" type="xs:float" minOccurs="0"/>
+																				<xs:element name="GrayVol" type="xs:float" minOccurs="0"/>
+																				<xs:element name="ThickAvg" type="xs:float" minOccurs="0"/>
+																				<xs:element name="ThickStd" type="xs:float" minOccurs="0"/>
+																				<xs:element name="MeanCurv" type="xs:float" minOccurs="0"/>
+																				<xs:element name="GausCurv" type="xs:float" minOccurs="0"/>
+																				<xs:element name="FoldInd" type="xs:float" minOccurs="0"/>
+																				<xs:element name="CurvInd" type="xs:float" minOccurs="0"/>
+																			</xs:sequence>
+																			<xs:attribute name="name" type="xs:string" use="required">
+																				<!-- specify that structure name attribute should be unique within the context of a fsData instance instance-->	
+																				<xs:annotation>
+																					<xs:appinfo>
+																						<xdat:field uniqueComposite="name"/>
+																					</xs:appinfo>
+																				</xs:annotation>
+																			</xs:attribute>
+																		</xs:complexType>
+																	</xs:element>
+																</xs:sequence>
+															</xs:complexType>
+														</xs:element>
+													</xs:sequence>
+													<xs:attribute name="name" use="required">
+														<xs:simpleType>
+															<xs:restriction base="xs:string">
+																<xs:enumeration value="left"/>
+																<xs:enumeration value="right"/>
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:attribute>
+													<!-- hemisphere name (left | right) -->	
+												</xs:complexType>
+											</xs:element>
+										</xs:sequence>
+									</xs:complexType>
+								</xs:element>-->
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+</xs:schema>

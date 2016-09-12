@@ -1,0 +1,86 @@
+
+<TABLE VALIGN="top" style="border-right:1px solid #6D99B6;border-left:1px solid #6D99B6;border-top:1px solid #6D99B6;border-bottom:1px solid #6D99B6;">
+	<TR>
+		<TD>ID</TD>
+		<TD>
+			#xdatSearchField($schemaElement $schemaElement.getDisplayField("EXPT_ID"))
+		</TD>
+		
+		<TD>Date</TD>
+		<TD>
+			#xdatSearchField($schemaElement $schemaElement.getDisplayField("DATE"))
+		</TD>
+		
+		<TD>Project</TD>
+		<TD>
+			#xdatSearchField($schemaElement $schemaElement.getDisplayField("PROJECT"))
+		</TD>
+		
+		<TD>Inserted</TD>
+		<TD>
+			#xdatSearchField($schemaElement $schemaElement.getDisplayField("INSERT_DATE"))
+		</TD>
+		
+	</TR>
+	<TR>
+		<TD>Creator</TD>
+		<TD>
+			#xdatSearchField($schemaElement $schemaElement.getDisplayField("INSERT_USER"))
+		</TD>
+		
+		<TD>ICV</TD>
+		<TD>
+			#xdatSearchField($schemaElement $schemaElement.getDisplayField("MEASURES_VOLUMETRIC_ICV"))
+		</TD>
+		
+		<TD>lhCortexVol</TD>
+		<TD>
+			#xdatSearchField($schemaElement $schemaElement.getDisplayField("MEASURES_VOLUMETRIC_LHCORTEXVOL"))
+		</TD>
+		
+		<TD>rhCortexVol</TD>
+		<TD>
+			#xdatSearchField($schemaElement $schemaElement.getDisplayField("MEASURES_VOLUMETRIC_RHCORTEXVOL"))
+		</TD>
+		
+	</TR>
+	<TR>
+		<TD>CortexVol</TD>
+		<TD>
+			#xdatSearchField($schemaElement $schemaElement.getDisplayField("MEASURES_VOLUMETRIC_CORTEXVOL"))
+		</TD>
+		
+		<TD>SubCortGrayVol</TD>
+		<TD>
+			#xdatSearchField($schemaElement $schemaElement.getDisplayField("MEASURES_VOLUMETRIC_SUBCORTGRAYVOL"))
+		</TD>
+		
+		<TD>TotalGrayVol</TD>
+		<TD>
+			#xdatSearchField($schemaElement $schemaElement.getDisplayField("MEASURES_VOLUMETRIC_TOTALGRAYVOL"))
+		</TD>
+		
+		<TD>SupraTentorialVol</TD>
+		<TD>
+			#xdatSearchField($schemaElement $schemaElement.getDisplayField("MEASURES_VOLUMETRIC_SUPRATENTORIALVOL"))
+		</TD>
+		
+	</TR>
+	<TR>
+		<TD>lhCorticalWhiteMatterVol</TD>
+		<TD>
+			#xdatSearchField($schemaElement $schemaElement.getDisplayField("MEASURES_VOLUMETRIC_LHCORTICALWHITEMATTERVOL"))
+		</TD>
+		
+		<TD>rhCorticalWhiteMatterVol</TD>
+		<TD>
+			#xdatSearchField($schemaElement $schemaElement.getDisplayField("MEASURES_VOLUMETRIC_RHCORTICALWHITEMATTERVOL"))
+		</TD>
+		
+		<TD>CorticalWhiteMatterVol</TD>
+		<TD>
+			#xdatSearchField($schemaElement $schemaElement.getDisplayField("MEASURES_VOLUMETRIC_CORTICALWHITEMATTERVOL"))
+		</TD>
+		
+	</TR>
+</TABLE>

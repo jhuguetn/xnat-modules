@@ -1,0 +1,484 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 3.2//EN">
+$page.setTitle("freesurfer Details")
+$page.setLinkColor($ui.alink)
+$page.setVlinkColor($ui.vlink)
+#if ($turbineUtils.GetPassedParameter("popup", $data))
+	#set ($popup = $turbineUtils.GetPassedParameter("popup", data) )
+	#set ($popup = "false")
+#end
+<TABLE width="100%">
+	<TR>
+		<TD>
+			<table width="100%">
+				<TR>
+					<TD align="left" valign="middle">
+						<font face="$ui.sansSerifFonts" size="3"><b>FreeSurfer stats Details</b></font>
+					</TD>
+				</TR>
+			</TABLE>
+		</TD>
+	</TR>
+	<TR>
+		<TD>
+			<TABLE width="100%">
+				<TR>
+					<TD valign="top">
+						<TABLE>
+							<TR><TD>imageSession_ID</TD><TD>$!item.getStringProperty("AMCZ0:fsData/imageSession_ID")</TD></TR>
+							<TR><TD>date</TD><TD>$!item.getProperty("AMCZ0:fsData/date")</TD></TR>
+							<TR><TD>time</TD><TD>$!item.getProperty("AMCZ0:fsData/time")</TD></TR>
+							<!--<TR><TD>duration</TD><TD>$!item.getProperty("AMCZ0:fsData/duration")</TD></TR>
+							<TR><TD>delay</TD><TD>$!item.getIntegerProperty("AMCZ0:fsData/delay")</TD></TR>
+							<TR><TD>delay/ref_expt_id</TD><TD>$!item.getStringProperty("AMCZ0:fsData/delay/ref_expt_id")</TD></TR>-->
+							<TR><TD>note</TD><TD>$!item.getStringProperty("AMCZ0:fsData/note")</TD></TR>
+							<TR><TD>acquisition_site</TD><TD>$!item.getStringProperty("AMCZ0:fsData/acquisition_site")</TD></TR>
+							<TR><TD>ID</TD><TD>$!item.getStringProperty("AMCZ0:fsData/ID")</TD></TR>
+							<TR><TD>project</TD><TD>$!item.getStringProperty("AMCZ0:fsData/project")</TD></TR>
+							<!--<TR><TD>visit_id</TD><TD>$!item.getStringProperty("AMCZ0:fsData/visit_id")</TD></TR>
+							<TR><TD>visit</TD><TD>$!item.getStringProperty("AMCZ0:fsData/visit")</TD></TR>							
+							<TR><TD>original</TD><TD>$!item.getStringProperty("AMCZ0:fsData/original")</TD></TR>-->
+							<TR><TD>version</TD><TD>$!item.getIntegerProperty("AMCZ0:fsData/version")</TD></TR>
+							<TR><TD>protocol</TD><TD>$!item.getStringProperty("AMCZ0:fsData/protocol")</TD></TR>
+							<TR><TD>label</TD><TD>$!item.getStringProperty("AMCZ0:fsData/label")</TD></TR>
+							<TR><TD>&nbsp;</TD><TD></TD></TR>
+							<TR><TD>measures/volumetric/ICV</TD><TD>$!item.getDoubleProperty("AMCZ0:fsData/measures/volumetric/ICV")</TD></TR>
+							<TR><TD>measures/volumetric/lhCortexVol</TD><TD>$!item.getDoubleProperty("AMCZ0:fsData/measures/volumetric/lhCortexVol")</TD></TR>
+							<TR><TD>measures/volumetric/rhCortexVol</TD><TD>$!item.getDoubleProperty("AMCZ0:fsData/measures/volumetric/rhCortexVol")</TD></TR>
+							<TR><TD>measures/volumetric/CortexVol</TD><TD>$!item.getDoubleProperty("AMCZ0:fsData/measures/volumetric/CortexVol")</TD></TR>
+							<TR><TD>measures/volumetric/SubCortGrayVol</TD><TD>$!item.getDoubleProperty("AMCZ0:fsData/measures/volumetric/SubCortGrayVol")</TD></TR>
+							<TR><TD>measures/volumetric/TotalGrayVol</TD><TD>$!item.getDoubleProperty("AMCZ0:fsData/measures/volumetric/TotalGrayVol")</TD></TR>
+							<TR><TD>measures/volumetric/SupraTentorialVol</TD><TD>$!item.getDoubleProperty("AMCZ0:fsData/measures/volumetric/SupraTentorialVol")</TD></TR>
+							<TR><TD>measures/volumetric/lhCorticalWhiteMatterVol</TD><TD>$!item.getDoubleProperty("AMCZ0:fsData/measures/volumetric/lhCorticalWhiteMatterVol")</TD></TR>
+							<TR><TD>measures/volumetric/rhCorticalWhiteMatterVol</TD><TD>$!item.getDoubleProperty("AMCZ0:fsData/measures/volumetric/rhCorticalWhiteMatterVol")</TD></TR>
+							<TR><TD>measures/volumetric/CorticalWhiteMatterVol</TD><TD>$!item.getDoubleProperty("AMCZ0:fsData/measures/volumetric/CorticalWhiteMatterVol")</TD></TR>
+						</TABLE>
+					</TD>
+					<TD valign="top" align="right">
+						#parse($turbineUtils.getTemplateName("actions",$om.getXSIType(),$project))
+					</TD>
+				</TR>
+			</TABLE>
+		</TD>
+	</TR>
+	<TR>
+		<TD>
+<!-- BEGIN AMCZ0:fsData -->
+			<TABLE>
+				<TR><TH align="left"><font face="$ui.sansSerifFonts" size="2">Related Items</font></TH></TR>
+				<TR>
+					<TD align="left" valign="top">
+						<TABLE>
+						</TABLE>
+					</TD>
+				</TR>
+				<TR>
+					<TD align="left" valign="top">
+						<TABLE><TR><TD>
+							#set($xnat_abstractResource_1_NUM_ROWS=$item.getChildItems("AMCZ0:fsData/in/file").size() - 1)
+							#if($xnat_abstractResource_1_NUM_ROWS>=0)
+								#foreach($xnat_abstractResource_1_COUNTER in [0..$xnat_abstractResource_1_NUM_ROWS])
+<!-- BEGIN AMCZ0:fsData/in/file[$xnat_abstractResource_1_COUNTER] -->
+									<TABLE>
+										<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">AMCZ0:fsData/in/file[$xnat_abstractResource_1_COUNTER]</font></TH></TR>
+										<TR>
+											<TD align="left" valign="top">
+												<TABLE>
+													<TR><TD>note</TD><TD>$!item.getStringProperty("AMCZ0:fsData/in/file[$xnat_abstractResource_1_COUNTER]/note")</TD></TR>
+													<TR><TD>label</TD><TD>$!item.getStringProperty("AMCZ0:fsData/in/file[$xnat_abstractResource_1_COUNTER]/label")</TD></TR>
+													<TR><TD>file_count</TD><TD>$!item.getIntegerProperty("AMCZ0:fsData/in/file[$xnat_abstractResource_1_COUNTER]/file_count")</TD></TR>
+													<TR><TD>file_size</TD><TD>$!item.getProperty("AMCZ0:fsData/in/file[$xnat_abstractResource_1_COUNTER]/file_size")</TD></TR>
+												</TABLE>
+											</TD>
+										</TR>
+										<TR>
+											<TD align="left" valign="top">
+												<TABLE><TR><TD>
+													#set($xnat_abstractResource_tag_2_NUM_ROWS=$item.getChildItems("AMCZ0:fsData/in/file[$xnat_abstractResource_1_COUNTER]/tags/tag").size() - 1)
+													#if($xnat_abstractResource_tag_2_NUM_ROWS>=0)
+														#foreach($xnat_abstractResource_tag_2_COUNTER in [0..$xnat_abstractResource_tag_2_NUM_ROWS])
+<!-- BEGIN AMCZ0:fsData/in/file[$xnat_abstractResource_1_COUNTER]/tags/tag[$xnat_abstractResource_tag_2_COUNTER] -->
+															<TABLE>
+																<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">AMCZ0:fsData/in/file[$xnat_abstractResource_1_COUNTER]/tags/tag[$xnat_abstractResource_tag_2_COUNTER]</font></TH></TR>
+																<TR>
+																	<TD align="left" valign="top">
+																		<TABLE>
+																			<TR><TD>tag</TD><TD>$!item.getStringProperty("AMCZ0:fsData/in/file[$xnat_abstractResource_1_COUNTER]/tags/tag[$xnat_abstractResource_tag_2_COUNTER]/tag")</TD></TR>
+																			<TR><TD>name</TD><TD>$!item.getStringProperty("AMCZ0:fsData/in/file[$xnat_abstractResource_1_COUNTER]/tags/tag[$xnat_abstractResource_tag_2_COUNTER]/name")</TD></TR>
+																		</TABLE>
+																	</TD>
+																</TR>
+															</TABLE>
+<!-- END AMCZ0:fsData/in/file[$xnat_abstractResource_1_COUNTER]/tags/tag[$xnat_abstractResource_tag_2_COUNTER] -->
+														#end
+													#end
+												</TD></TR></TABLE>
+											</TD>
+										</TR>
+									</TABLE>
+<!-- END AMCZ0:fsData/in/file[$xnat_abstractResource_1_COUNTER] -->
+								#end
+							#end
+						</TD></TR></TABLE>
+					</TD>
+				</TR>
+				<TR>
+					<TD align="left" valign="top">
+						<TABLE><TR><TD>
+							#set($xnat_abstractResource_3_NUM_ROWS=$item.getChildItems("AMCZ0:fsData/out/file").size() - 1)
+							#if($xnat_abstractResource_3_NUM_ROWS>=0)
+								#foreach($xnat_abstractResource_3_COUNTER in [0..$xnat_abstractResource_3_NUM_ROWS])
+<!-- BEGIN AMCZ0:fsData/out/file[$xnat_abstractResource_3_COUNTER] -->
+									<TABLE>
+										<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">AMCZ0:fsData/out/file[$xnat_abstractResource_3_COUNTER]</font></TH></TR>
+										<TR>
+											<TD align="left" valign="top">
+												<TABLE>
+													<TR><TD>note</TD><TD>$!item.getStringProperty("AMCZ0:fsData/out/file[$xnat_abstractResource_3_COUNTER]/note")</TD></TR>
+													<TR><TD>label</TD><TD>$!item.getStringProperty("AMCZ0:fsData/out/file[$xnat_abstractResource_3_COUNTER]/label")</TD></TR>
+													<TR><TD>file_count</TD><TD>$!item.getIntegerProperty("AMCZ0:fsData/out/file[$xnat_abstractResource_3_COUNTER]/file_count")</TD></TR>
+													<TR><TD>file_size</TD><TD>$!item.getProperty("AMCZ0:fsData/out/file[$xnat_abstractResource_3_COUNTER]/file_size")</TD></TR>
+												</TABLE>
+											</TD>
+										</TR>
+										<TR>
+											<TD align="left" valign="top">
+												<TABLE><TR><TD>
+													#set($xnat_abstractResource_tag_4_NUM_ROWS=$item.getChildItems("AMCZ0:fsData/out/file[$xnat_abstractResource_3_COUNTER]/tags/tag").size() - 1)
+													#if($xnat_abstractResource_tag_4_NUM_ROWS>=0)
+														#foreach($xnat_abstractResource_tag_4_COUNTER in [0..$xnat_abstractResource_tag_4_NUM_ROWS])
+<!-- BEGIN AMCZ0:fsData/out/file[$xnat_abstractResource_3_COUNTER]/tags/tag[$xnat_abstractResource_tag_4_COUNTER] -->
+															<TABLE>
+																<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">AMCZ0:fsData/out/file[$xnat_abstractResource_3_COUNTER]/tags/tag[$xnat_abstractResource_tag_4_COUNTER]</font></TH></TR>
+																<TR>
+																	<TD align="left" valign="top">
+																		<TABLE>
+																			<TR><TD>tag</TD><TD>$!item.getStringProperty("AMCZ0:fsData/out/file[$xnat_abstractResource_3_COUNTER]/tags/tag[$xnat_abstractResource_tag_4_COUNTER]/tag")</TD></TR>
+																			<TR><TD>name</TD><TD>$!item.getStringProperty("AMCZ0:fsData/out/file[$xnat_abstractResource_3_COUNTER]/tags/tag[$xnat_abstractResource_tag_4_COUNTER]/name")</TD></TR>
+																		</TABLE>
+																	</TD>
+																</TR>
+															</TABLE>
+<!-- END AMCZ0:fsData/out/file[$xnat_abstractResource_3_COUNTER]/tags/tag[$xnat_abstractResource_tag_4_COUNTER] -->
+														#end
+													#end
+												</TD></TR></TABLE>
+											</TD>
+										</TR>
+									</TABLE>
+<!-- END AMCZ0:fsData/out/file[$xnat_abstractResource_3_COUNTER] -->
+								#end
+							#end
+						</TD></TR></TABLE>
+					</TD>
+				</TR>
+				<TR>
+					<TD align="left" valign="top">
+						<TABLE><TR><TD>
+							#set($xnat_addField_5_NUM_ROWS=$item.getChildItems("AMCZ0:fsData/parameters/addParam").size() - 1)
+							#if($xnat_addField_5_NUM_ROWS>=0)
+								#foreach($xnat_addField_5_COUNTER in [0..$xnat_addField_5_NUM_ROWS])
+<!-- BEGIN AMCZ0:fsData/parameters/addParam[$xnat_addField_5_COUNTER] -->
+									<TABLE>
+										<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">AMCZ0:fsData/parameters/addParam[$xnat_addField_5_COUNTER]</font></TH></TR>
+										<TR>
+											<TD align="left" valign="top">
+												<TABLE>
+													<TR><TD>addField</TD><TD>$!item.getStringProperty("AMCZ0:fsData/parameters/addParam[$xnat_addField_5_COUNTER]/addField")</TD></TR>
+													<TR><TD>name</TD><TD>$!item.getStringProperty("AMCZ0:fsData/parameters/addParam[$xnat_addField_5_COUNTER]/name")</TD></TR>
+												</TABLE>
+											</TD>
+										</TR>
+									</TABLE>
+<!-- END AMCZ0:fsData/parameters/addParam[$xnat_addField_5_COUNTER] -->
+								#end
+							#end
+						</TD></TR></TABLE>
+					</TD>
+				</TR>
+				<TR>
+					<TD align="left" valign="top">
+<!-- BEGIN AMCZ0:fsData/provenance -->
+						<TABLE>
+							<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">AMCZ0:fsData/provenance</font></TH></TR>
+							<TR>
+								<TD align="left" valign="top">
+									<TABLE>
+									</TABLE>
+								</TD>
+							</TR>
+							<TR>
+								<TD align="left" valign="top">
+									<TABLE><TR><TD>
+										#set($prov_processStep_7_NUM_ROWS=$item.getChildItems("AMCZ0:fsData/provenance/processStep").size() - 1)
+										#if($prov_processStep_7_NUM_ROWS>=0)
+											#foreach($prov_processStep_7_COUNTER in [0..$prov_processStep_7_NUM_ROWS])
+<!-- BEGIN AMCZ0:fsData/provenance/processStep[$prov_processStep_7_COUNTER] -->
+												<TABLE>
+													<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">AMCZ0:fsData/provenance/processStep[$prov_processStep_7_COUNTER]</font></TH></TR>
+													<TR>
+														<TD align="left" valign="top">
+															<TABLE>
+																<TR><TD>program</TD><TD>$!item.getStringProperty("AMCZ0:fsData/provenance/processStep[$prov_processStep_7_COUNTER]/program")</TD></TR>
+																<TR><TD>program/version</TD><TD>$!item.getStringProperty("AMCZ0:fsData/provenance/processStep[$prov_processStep_7_COUNTER]/program/version")</TD></TR>
+																<TR><TD>program/arguments</TD><TD>$!item.getStringProperty("AMCZ0:fsData/provenance/processStep[$prov_processStep_7_COUNTER]/program/arguments")</TD></TR>
+																<TR><TD>timestamp</TD><TD>$!item.getProperty("AMCZ0:fsData/provenance/processStep[$prov_processStep_7_COUNTER]/timestamp")</TD></TR>
+																<TR><TD>cvs</TD><TD>$!item.getStringProperty("AMCZ0:fsData/provenance/processStep[$prov_processStep_7_COUNTER]/cvs")</TD></TR>
+																<TR><TD>user</TD><TD>$!item.getStringProperty("AMCZ0:fsData/provenance/processStep[$prov_processStep_7_COUNTER]/user")</TD></TR>
+																<TR><TD>machine</TD><TD>$!item.getStringProperty("AMCZ0:fsData/provenance/processStep[$prov_processStep_7_COUNTER]/machine")</TD></TR>
+																<TR><TD>platform</TD><TD>$!item.getStringProperty("AMCZ0:fsData/provenance/processStep[$prov_processStep_7_COUNTER]/platform")</TD></TR>
+																<TR><TD>platform/version</TD><TD>$!item.getStringProperty("AMCZ0:fsData/provenance/processStep[$prov_processStep_7_COUNTER]/platform/version")</TD></TR>
+																<TR><TD>compiler</TD><TD>$!item.getStringProperty("AMCZ0:fsData/provenance/processStep[$prov_processStep_7_COUNTER]/compiler")</TD></TR>
+																<TR><TD>compiler/version</TD><TD>$!item.getStringProperty("AMCZ0:fsData/provenance/processStep[$prov_processStep_7_COUNTER]/compiler/version")</TD></TR>
+															</TABLE>
+														</TD>
+													</TR>
+													<TR>
+														<TD align="left" valign="top">
+															<TABLE><TR><TD>
+																#set($prov_processStep_library_8_NUM_ROWS=$item.getChildItems("AMCZ0:fsData/provenance/processStep[$prov_processStep_7_COUNTER]/library").size() - 1)
+																#if($prov_processStep_library_8_NUM_ROWS>=0)
+																	#foreach($prov_processStep_library_8_COUNTER in [0..$prov_processStep_library_8_NUM_ROWS])
+<!-- BEGIN AMCZ0:fsData/provenance/processStep[$prov_processStep_7_COUNTER]/library[$prov_processStep_library_8_COUNTER] -->
+																		<TABLE>
+																			<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">AMCZ0:fsData/provenance/processStep[$prov_processStep_7_COUNTER]/library[$prov_processStep_library_8_COUNTER]</font></TH></TR>
+																			<TR>
+																				<TD align="left" valign="top">
+																					<TABLE>
+																						<TR><TD>library</TD><TD>$!item.getStringProperty("AMCZ0:fsData/provenance/processStep[$prov_processStep_7_COUNTER]/library[$prov_processStep_library_8_COUNTER]/library")</TD></TR>
+																						<TR><TD>version</TD><TD>$!item.getStringProperty("AMCZ0:fsData/provenance/processStep[$prov_processStep_7_COUNTER]/library[$prov_processStep_library_8_COUNTER]/version")</TD></TR>
+																					</TABLE>
+																				</TD>
+																			</TR>
+																		</TABLE>
+<!-- END AMCZ0:fsData/provenance/processStep[$prov_processStep_7_COUNTER]/library[$prov_processStep_library_8_COUNTER] -->
+																	#end
+																#end
+															</TD></TR></TABLE>
+														</TD>
+													</TR>
+												</TABLE>
+<!-- END AMCZ0:fsData/provenance/processStep[$prov_processStep_7_COUNTER] -->
+											#end
+										#end
+									</TD></TR></TABLE>
+								</TD>
+							</TR>
+						</TABLE>
+<!-- END AMCZ0:fsData/provenance -->
+					</TD>
+				</TR>
+				<TR>
+					<TD align="left" valign="top">
+						<TABLE><TR><TD>
+							#set($xnat_experimentData_share_9_NUM_ROWS=$item.getChildItems("AMCZ0:fsData/sharing/share").size() - 1)
+							#if($xnat_experimentData_share_9_NUM_ROWS>=0)
+								#foreach($xnat_experimentData_share_9_COUNTER in [0..$xnat_experimentData_share_9_NUM_ROWS])
+<!-- BEGIN AMCZ0:fsData/sharing/share[$xnat_experimentData_share_9_COUNTER] -->
+									<TABLE>
+										<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">AMCZ0:fsData/sharing/share[$xnat_experimentData_share_9_COUNTER]</font></TH></TR>
+										<TR>
+											<TD align="left" valign="top">
+												<TABLE>
+													<TR><TD>share</TD><TD>$!item.getStringProperty("AMCZ0:fsData/sharing/share[$xnat_experimentData_share_9_COUNTER]/share")</TD></TR>
+													<TR><TD>label</TD><TD>$!item.getStringProperty("AMCZ0:fsData/sharing/share[$xnat_experimentData_share_9_COUNTER]/label")</TD></TR>
+													<TR><TD>project</TD><TD>$!item.getStringProperty("AMCZ0:fsData/sharing/share[$xnat_experimentData_share_9_COUNTER]/project")</TD></TR>
+													<TR><TD>visit</TD><TD>$!item.getStringProperty("AMCZ0:fsData/sharing/share[$xnat_experimentData_share_9_COUNTER]/visit")</TD></TR>
+													<TR><TD>protocol</TD><TD>$!item.getStringProperty("AMCZ0:fsData/sharing/share[$xnat_experimentData_share_9_COUNTER]/protocol")</TD></TR>
+												</TABLE>
+											</TD>
+										</TR>
+									</TABLE>
+<!-- END AMCZ0:fsData/sharing/share[$xnat_experimentData_share_9_COUNTER] -->
+								#end
+							#end
+						</TD></TR></TABLE>
+					</TD>
+				</TR>
+				<TR>
+					<TD align="left" valign="top">
+<!-- BEGIN AMCZ0:fsData/validation -->
+						<TABLE>
+							<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">AMCZ0:fsData/validation</font></TH></TR>
+							<TR>
+								<TD align="left" valign="top">
+									<TABLE>
+										<TR><TD>method</TD><TD>$!item.getStringProperty("AMCZ0:fsData/validation/method")</TD></TR>
+										<TR><TD>date</TD><TD>$!item.getProperty("AMCZ0:fsData/validation/date")</TD></TR>
+										<TR><TD>notes</TD><TD>$!item.getStringProperty("AMCZ0:fsData/validation/notes")</TD></TR>
+										<TR><TD>validated_by</TD><TD>$!item.getStringProperty("AMCZ0:fsData/validation/validated_by")</TD></TR>
+										<TR><TD>status</TD><TD>$!item.getStringProperty("AMCZ0:fsData/validation/status")</TD></TR>
+									</TABLE>
+								</TD>
+							</TR>
+						</TABLE>
+<!-- END AMCZ0:fsData/validation -->
+					</TD>
+				</TR>
+				<TR>
+					<TD align="left" valign="top">
+						<TABLE><TR><TD>
+							#set($xnat_abstractResource_12_NUM_ROWS=$item.getChildItems("AMCZ0:fsData/resources/resource").size() - 1)
+							#if($xnat_abstractResource_12_NUM_ROWS>=0)
+								#foreach($xnat_abstractResource_12_COUNTER in [0..$xnat_abstractResource_12_NUM_ROWS])
+<!-- BEGIN AMCZ0:fsData/resources/resource[$xnat_abstractResource_12_COUNTER] -->
+									<TABLE>
+										<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">AMCZ0:fsData/resources/resource[$xnat_abstractResource_12_COUNTER]</font></TH></TR>
+										<TR>
+											<TD align="left" valign="top">
+												<TABLE>
+													<TR><TD>note</TD><TD>$!item.getStringProperty("AMCZ0:fsData/resources/resource[$xnat_abstractResource_12_COUNTER]/note")</TD></TR>
+													<TR><TD>label</TD><TD>$!item.getStringProperty("AMCZ0:fsData/resources/resource[$xnat_abstractResource_12_COUNTER]/label")</TD></TR>
+													<TR><TD>file_count</TD><TD>$!item.getIntegerProperty("AMCZ0:fsData/resources/resource[$xnat_abstractResource_12_COUNTER]/file_count")</TD></TR>
+													<TR><TD>file_size</TD><TD>$!item.getProperty("AMCZ0:fsData/resources/resource[$xnat_abstractResource_12_COUNTER]/file_size")</TD></TR>
+												</TABLE>
+											</TD>
+										</TR>
+										<TR>
+											<TD align="left" valign="top">
+												<TABLE><TR><TD>
+													#set($xnat_abstractResource_tag_13_NUM_ROWS=$item.getChildItems("AMCZ0:fsData/resources/resource[$xnat_abstractResource_12_COUNTER]/tags/tag").size() - 1)
+													#if($xnat_abstractResource_tag_13_NUM_ROWS>=0)
+														#foreach($xnat_abstractResource_tag_13_COUNTER in [0..$xnat_abstractResource_tag_13_NUM_ROWS])
+<!-- BEGIN AMCZ0:fsData/resources/resource[$xnat_abstractResource_12_COUNTER]/tags/tag[$xnat_abstractResource_tag_13_COUNTER] -->
+															<TABLE>
+																<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">AMCZ0:fsData/resources/resource[$xnat_abstractResource_12_COUNTER]/tags/tag[$xnat_abstractResource_tag_13_COUNTER]</font></TH></TR>
+																<TR>
+																	<TD align="left" valign="top">
+																		<TABLE>
+																			<TR><TD>tag</TD><TD>$!item.getStringProperty("AMCZ0:fsData/resources/resource[$xnat_abstractResource_12_COUNTER]/tags/tag[$xnat_abstractResource_tag_13_COUNTER]/tag")</TD></TR>
+																			<TR><TD>name</TD><TD>$!item.getStringProperty("AMCZ0:fsData/resources/resource[$xnat_abstractResource_12_COUNTER]/tags/tag[$xnat_abstractResource_tag_13_COUNTER]/name")</TD></TR>
+																		</TABLE>
+																	</TD>
+																</TR>
+															</TABLE>
+<!-- END AMCZ0:fsData/resources/resource[$xnat_abstractResource_12_COUNTER]/tags/tag[$xnat_abstractResource_tag_13_COUNTER] -->
+														#end
+													#end
+												</TD></TR></TABLE>
+											</TD>
+										</TR>
+									</TABLE>
+<!-- END AMCZ0:fsData/resources/resource[$xnat_abstractResource_12_COUNTER] -->
+								#end
+							#end
+						</TD></TR></TABLE>
+					</TD>
+				</TR>
+				<TR>
+					<TD align="left" valign="top">
+						<TABLE><TR><TD>
+							#set($xnat_experimentData_field_14_NUM_ROWS=$item.getChildItems("AMCZ0:fsData/fields/field").size() - 1)
+							#if($xnat_experimentData_field_14_NUM_ROWS>=0)
+								#foreach($xnat_experimentData_field_14_COUNTER in [0..$xnat_experimentData_field_14_NUM_ROWS])
+<!-- BEGIN AMCZ0:fsData/fields/field[$xnat_experimentData_field_14_COUNTER] -->
+									<TABLE>
+										<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">AMCZ0:fsData/fields/field[$xnat_experimentData_field_14_COUNTER]</font></TH></TR>
+										<TR>
+											<TD align="left" valign="top">
+												<TABLE>
+													<TR><TD>field</TD><TD>$!item.getStringProperty("AMCZ0:fsData/fields/field[$xnat_experimentData_field_14_COUNTER]/field")</TD></TR>
+													<TR><TD>name</TD><TD>$!item.getStringProperty("AMCZ0:fsData/fields/field[$xnat_experimentData_field_14_COUNTER]/name")</TD></TR>
+												</TABLE>
+											</TD>
+										</TR>
+									</TABLE>
+<!-- END AMCZ0:fsData/fields/field[$xnat_experimentData_field_14_COUNTER] -->
+								#end
+							#end
+						</TD></TR></TABLE>
+					</TD>
+				</TR>
+				<TR>
+					<TD align="left" valign="top">
+						<TABLE><TR><TD>
+							#set($AMCZ0_fsData_vol_region_15_NUM_ROWS=$item.getChildItems("AMCZ0:fsData/measures/volumetric/structures/structure").size() - 1)
+							#if($AMCZ0_fsData_vol_region_15_NUM_ROWS>=0)
+								#foreach($AMCZ0_fsData_vol_region_15_COUNTER in [0..$AMCZ0_fsData_vol_region_15_NUM_ROWS])
+<!-- BEGIN AMCZ0:fsData/measures/volumetric/structures/structure[$AMCZ0_fsData_vol_region_15_COUNTER] -->
+									<TABLE>
+										<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">AMCZ0:fsData/measures/volumetric/structures/structure[$AMCZ0_fsData_vol_region_15_COUNTER]</font></TH></TR>
+										<TR>
+											<TD align="left" valign="top">
+												<TABLE>
+													<TR><TD>NVoxels</TD><TD>$!item.getDoubleProperty("AMCZ0:fsData/measures/volumetric/structures/structure[$AMCZ0_fsData_vol_region_15_COUNTER]/NVoxels")</TD></TR>
+													<TR><TD>Volume</TD><TD>$!item.getDoubleProperty("AMCZ0:fsData/measures/volumetric/structures/structure[$AMCZ0_fsData_vol_region_15_COUNTER]/Volume")</TD></TR>
+													<TR><TD>normMean</TD><TD>$!item.getDoubleProperty("AMCZ0:fsData/measures/volumetric/structures/structure[$AMCZ0_fsData_vol_region_15_COUNTER]/normMean")</TD></TR>
+													<TR><TD>normStdDev</TD><TD>$!item.getDoubleProperty("AMCZ0:fsData/measures/volumetric/structures/structure[$AMCZ0_fsData_vol_region_15_COUNTER]/normStdDev")</TD></TR>
+													<TR><TD>normMin</TD><TD>$!item.getDoubleProperty("AMCZ0:fsData/measures/volumetric/structures/structure[$AMCZ0_fsData_vol_region_15_COUNTER]/normMin")</TD></TR>
+													<TR><TD>normMax</TD><TD>$!item.getDoubleProperty("AMCZ0:fsData/measures/volumetric/structures/structure[$AMCZ0_fsData_vol_region_15_COUNTER]/normMax")</TD></TR>
+													<TR><TD>normRange</TD><TD>$!item.getDoubleProperty("AMCZ0:fsData/measures/volumetric/structures/structure[$AMCZ0_fsData_vol_region_15_COUNTER]/normRange")</TD></TR>
+													<TR><TD>SegId</TD><TD>$!item.getStringProperty("AMCZ0:fsData/measures/volumetric/structures/structure[$AMCZ0_fsData_vol_region_15_COUNTER]/SegId")</TD></TR>
+													<TR><TD>name</TD><TD>$!item.getStringProperty("AMCZ0:fsData/measures/volumetric/structures/structure[$AMCZ0_fsData_vol_region_15_COUNTER]/name")</TD></TR>
+												</TABLE>
+											</TD>
+										</TR>
+									</TABLE>
+<!-- END AMCZ0:fsData/measures/volumetric/structures/structure[$AMCZ0_fsData_vol_region_15_COUNTER] -->
+								#end
+							#end
+						</TD></TR></TABLE>
+					</TD>
+				</TR>
+				<TR>
+					<TD align="left" valign="top">
+						<TABLE><TR><TD>
+							#set($AMCZ0_fsData_hemisphere_16_NUM_ROWS=$item.getChildItems("AMCZ0:fsData/measures/surface/hemisphere").size() - 1)
+							#if($AMCZ0_fsData_hemisphere_16_NUM_ROWS>=0)
+								#foreach($AMCZ0_fsData_hemisphere_16_COUNTER in [0..$AMCZ0_fsData_hemisphere_16_NUM_ROWS])
+<!-- BEGIN AMCZ0:fsData/measures/surface/hemisphere[$AMCZ0_fsData_hemisphere_16_COUNTER] -->
+									<TABLE>
+										<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">AMCZ0:fsData/measures/surface/hemisphere[$AMCZ0_fsData_hemisphere_16_COUNTER]</font></TH></TR>
+										<TR>
+											<TD align="left" valign="top">
+												<TABLE>
+													<TR><TD>NumVert</TD><TD>$!item.getDoubleProperty("AMCZ0:fsData/measures/surface/hemisphere[$AMCZ0_fsData_hemisphere_16_COUNTER]/NumVert")</TD></TR>
+													<TR><TD>SurfArea</TD><TD>$!item.getDoubleProperty("AMCZ0:fsData/measures/surface/hemisphere[$AMCZ0_fsData_hemisphere_16_COUNTER]/SurfArea")</TD></TR>
+													<TR><TD>MeanThickness</TD><TD>$!item.getDoubleProperty("AMCZ0:fsData/measures/surface/hemisphere[$AMCZ0_fsData_hemisphere_16_COUNTER]/MeanThickness")</TD></TR>
+													<TR><TD>name</TD><TD>$!item.getStringProperty("AMCZ0:fsData/measures/surface/hemisphere[$AMCZ0_fsData_hemisphere_16_COUNTER]/name")</TD></TR>
+												</TABLE>
+											</TD>
+										</TR>
+										<TR>
+											<TD align="left" valign="top">
+												<TABLE><TR><TD>
+													#set($AMCZ0_fsData_surf_region_17_NUM_ROWS=$item.getChildItems("AMCZ0:fsData/measures/surface/hemisphere[$AMCZ0_fsData_hemisphere_16_COUNTER]/regions/region").size() - 1)
+													#if($AMCZ0_fsData_surf_region_17_NUM_ROWS>=0)
+														#foreach($AMCZ0_fsData_surf_region_17_COUNTER in [0..$AMCZ0_fsData_surf_region_17_NUM_ROWS])
+<!-- BEGIN AMCZ0:fsData/measures/surface/hemisphere[$AMCZ0_fsData_hemisphere_16_COUNTER]/regions/region[$AMCZ0_fsData_surf_region_17_COUNTER] -->
+															<TABLE>
+																<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">AMCZ0:fsData/measures/surface/hemisphere[$AMCZ0_fsData_hemisphere_16_COUNTER]/regions/region[$AMCZ0_fsData_surf_region_17_COUNTER]</font></TH></TR>
+																<TR>
+																	<TD align="left" valign="top">
+																		<TABLE>
+																			<TR><TD>NumVert</TD><TD>$!item.getDoubleProperty("AMCZ0:fsData/measures/surface/hemisphere[$AMCZ0_fsData_hemisphere_16_COUNTER]/regions/region[$AMCZ0_fsData_surf_region_17_COUNTER]/NumVert")</TD></TR>
+																			<TR><TD>SurfArea</TD><TD>$!item.getDoubleProperty("AMCZ0:fsData/measures/surface/hemisphere[$AMCZ0_fsData_hemisphere_16_COUNTER]/regions/region[$AMCZ0_fsData_surf_region_17_COUNTER]/SurfArea")</TD></TR>
+																			<TR><TD>GrayVol</TD><TD>$!item.getDoubleProperty("AMCZ0:fsData/measures/surface/hemisphere[$AMCZ0_fsData_hemisphere_16_COUNTER]/regions/region[$AMCZ0_fsData_surf_region_17_COUNTER]/GrayVol")</TD></TR>
+																			<TR><TD>ThickAvg</TD><TD>$!item.getDoubleProperty("AMCZ0:fsData/measures/surface/hemisphere[$AMCZ0_fsData_hemisphere_16_COUNTER]/regions/region[$AMCZ0_fsData_surf_region_17_COUNTER]/ThickAvg")</TD></TR>
+																			<TR><TD>ThickStd</TD><TD>$!item.getDoubleProperty("AMCZ0:fsData/measures/surface/hemisphere[$AMCZ0_fsData_hemisphere_16_COUNTER]/regions/region[$AMCZ0_fsData_surf_region_17_COUNTER]/ThickStd")</TD></TR>
+																			<TR><TD>MeanCurv</TD><TD>$!item.getDoubleProperty("AMCZ0:fsData/measures/surface/hemisphere[$AMCZ0_fsData_hemisphere_16_COUNTER]/regions/region[$AMCZ0_fsData_surf_region_17_COUNTER]/MeanCurv")</TD></TR>
+																			<TR><TD>GausCurv</TD><TD>$!item.getDoubleProperty("AMCZ0:fsData/measures/surface/hemisphere[$AMCZ0_fsData_hemisphere_16_COUNTER]/regions/region[$AMCZ0_fsData_surf_region_17_COUNTER]/GausCurv")</TD></TR>
+																			<TR><TD>FoldInd</TD><TD>$!item.getDoubleProperty("AMCZ0:fsData/measures/surface/hemisphere[$AMCZ0_fsData_hemisphere_16_COUNTER]/regions/region[$AMCZ0_fsData_surf_region_17_COUNTER]/FoldInd")</TD></TR>
+																			<TR><TD>CurvInd</TD><TD>$!item.getDoubleProperty("AMCZ0:fsData/measures/surface/hemisphere[$AMCZ0_fsData_hemisphere_16_COUNTER]/regions/region[$AMCZ0_fsData_surf_region_17_COUNTER]/CurvInd")</TD></TR>
+																			<TR><TD>name</TD><TD>$!item.getStringProperty("AMCZ0:fsData/measures/surface/hemisphere[$AMCZ0_fsData_hemisphere_16_COUNTER]/regions/region[$AMCZ0_fsData_surf_region_17_COUNTER]/name")</TD></TR>
+																		</TABLE>
+																	</TD>
+																</TR>
+															</TABLE>
+<!-- END AMCZ0:fsData/measures/surface/hemisphere[$AMCZ0_fsData_hemisphere_16_COUNTER]/regions/region[$AMCZ0_fsData_surf_region_17_COUNTER] -->
+														#end
+													#end
+												</TD></TR></TABLE>
+											</TD>
+										</TR>
+									</TABLE>
+<!-- END AMCZ0:fsData/measures/surface/hemisphere[$AMCZ0_fsData_hemisphere_16_COUNTER] -->
+								#end
+							#end
+						</TD></TR></TABLE>
+					</TD>
+				</TR>
+			</TABLE>
+<!-- END AMCZ0:fsData -->
+		</TD>
+	</TR>
+</TABLE>
