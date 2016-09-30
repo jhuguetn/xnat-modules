@@ -23,7 +23,7 @@ More information about the QAP computed metrics/measurements can be found [here]
 3. Re-update XNAT webapp (more info [here] (https://wiki.xnat.org/display/XNAT16/Setting+Up+and+Updating+XNAT)):
   ```
   bash ${XNAT_HOME}/bin/update.sh -Ddeploy=true
-  psql -f ${XNAT_HOME}/deployments/xnat/sql/xnat-update.sql
+  psql -h {HOSTNAME} -d {XNAT_DB_NAME} -U {XNAT_DB_USER} -f ${XNAT_HOME}/deployments/xnat/sql/xnat-update.sql 
   ```
 
 ##Questions/Comments?
