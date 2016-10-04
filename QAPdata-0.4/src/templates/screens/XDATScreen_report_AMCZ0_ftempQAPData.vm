@@ -53,11 +53,39 @@ $page.setVlinkColor($ui.vlink)
 							<TR><TD>&nbsp;&nbsp;FD/number of volumes with FD</TD><TD>$!item.getIntegerProperty("AMCZ0:ftempQAPData/fd/num_fd")</TD></TR>
 							<TR><TD>&nbsp;&nbsp;FD/percent of volumes with FD</TD><TD>$!item.getDoubleProperty("AMCZ0:ftempQAPData/fd/perc_fd")</TD></TR>
 						</TABLE>
-					</TD>
+					</TD>                    
 					<TD valign="top" align="right">
 						#parse($turbineUtils.getTemplateName("actions",$om.getXSIType(),$project))
 					</TD>
 				</TR>
+                <!-- Jordi Huguet @ AMC UvA - 20161004 -->
+				#set($fileNum=$item.getChildItems("AMCZ0:ftempQAPData/out/file").size() - 1)
+				#if($fileNum>=0)
+                    #foreach($currentFile in [0..$fileNum])
+                        #if($!item.getStringProperty("AMCZ0:ftempQAPData/out/file[$currentFile]/label")=="SNAPSHOTS")
+                            #set($exp_ID=$!item.getStringProperty("AMCZ0:ftempQAPData/imageSession_ID"))
+                            #set($asses_ID=$!item.getStringProperty("AMCZ0:ftempQAPData/ID"))
+                <TR><TD>&nbsp;</TD><TD></TD></TR>
+                <TR><TH align="left"><font face="$ui.sansSerifFonts" size="2">framewise displacement plot</font></TH></TR>
+                <TR>
+				     <TD align="left">
+					  <A target="_blank" HREF="/xnat/data/archive/experiments/${exp_ID}/assessors/${asses_ID}/resources/SNAPSHOTS/files?file_content=FD&index=0" >
+					       <IMG SRC="/xnat/data/archive/experiments/${exp_ID}/assessors/${asses_ID}/resources/SNAPSHOTS/files?file_content=FD&index=0" height=200>
+					  </A>
+				     </TD>	
+				</TR>
+                <TR><TH align="left"><font face="$ui.sansSerifFonts" size="2">temporal signal-to-noise ratio mosaic</font></TH></TR>
+                <TR>
+				     <TD align="left">					  
+					  <A target="_blank" HREF="/xnat/data/archive/experiments/${exp_ID}/assessors/${asses_ID}/resources/SNAPSHOTS/files?file_content=MOSAIC&index=0" >
+					       <IMG SRC="/xnat/data/archive/experiments/${exp_ID}/assessors/${asses_ID}/resources/SNAPSHOTS/files?file_content=MOSAIC&index=0" height=500>
+					  </A>
+				     </TD>	
+				</TR>
+                        #end
+                    #end
+				#end
+				<!-- -->
 			</TABLE>
 		</TD>
 	</TR>
