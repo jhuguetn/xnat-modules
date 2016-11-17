@@ -62,25 +62,25 @@
                     <xs:element name="Left-Accumbens-area" type="xs:double" minOccurs="0" maxOccurs="1"/>
                     <!-- Ventral diencephalon - left -->
                     <xs:element name="Left-VentralDC" type="xs:double" minOccurs="0" maxOccurs="1"/>
-                    <!-- Cerebellum white matter - left -->
+                    <!-- Cerebellum white matter - right -->
                     <xs:element name="Right-Cerebellum-White-Matter" type="xs:double" minOccurs="0" maxOccurs="1"/>
-                    <!-- Cerebellum grey matter - left -->
+                    <!-- Cerebellum grey matter - right -->
                     <xs:element name="Right-Cerebellum-Cortex" type="xs:double" minOccurs="0" maxOccurs="1"/>
-                    <!-- Thalamus - left -->
+                    <!-- Thalamus - right -->
                     <xs:element name="Right-Thalamus-Proper" type="xs:double" minOccurs="0" maxOccurs="1"/>
-                    <!-- Caudate - left -->
+                    <!-- Caudate - right -->
                     <xs:element name="Right-Caudate" type="xs:double" minOccurs="0" maxOccurs="1"/>
-                    <!-- Putamen - left -->
+                    <!-- Putamen - right -->
                     <xs:element name="Right-Putamen" type="xs:double" minOccurs="0" maxOccurs="1"/>
-                    <!-- Pallidum - left -->
+                    <!-- Pallidum - right -->
                     <xs:element name="Right-Pallidum" type="xs:double" minOccurs="0" maxOccurs="1"/>
-                    <!-- Hippcampus - left -->
+                    <!-- Hippcampus - right -->
                     <xs:element name="Right-Hippocampus" type="xs:double" minOccurs="0" maxOccurs="1"/>
-                    <!-- Amgydala - left -->
+                    <!-- Amgydala - right -->
                     <xs:element name="Right-Amygdala" type="xs:double" minOccurs="0" maxOccurs="1"/>
-                    <!-- Nucleus Accumbens - left -->
+                    <!-- Nucleus Accumbens - right -->
                     <xs:element name="Right-Accumbens-area" type="xs:double" minOccurs="0" maxOccurs="1"/>
-                    <!-- Ventral diencephalon - left -->
+                    <!-- Ventral diencephalon - right -->
                     <xs:element name="Right-VentralDC" type="xs:double" minOccurs="0" maxOccurs="1"/>
                     <!-- Optic chiasm -->
                     <xs:element name="Optic-Chiasm" type="xs:double" minOccurs="0" maxOccurs="1"/>
@@ -94,7 +94,7 @@
                     <xs:element name="CC_Mid_Anterior" type="xs:double" minOccurs="0" maxOccurs="1"/>
                     <!-- Corpus callosum - anterior -->
                     <xs:element name="CC_Anterior" type="xs:double" minOccurs="0" maxOccurs="1"/>
-                    <!-- left hemisphere cortical parcellation ROIs (Freesurfer) G = gyrus -->
+                    <!-- left hemisphere cortical parcellation ROIs (Freesurfer) -->
                     <xs:element name="lh_G_and_S_frontomargin_thickness" type="xs:double" minOccurs="0" maxOccurs="1"/>
                     <xs:element name="lh_G_and_S_occipital_inf_thickness" type="xs:double" minOccurs="0" maxOccurs="1"/>
                     <xs:element name="lh_G_and_S_paracentral_thickness" type="xs:double" minOccurs="0" maxOccurs="1"/>

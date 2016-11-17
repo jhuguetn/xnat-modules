@@ -60,16 +60,16 @@ $page.setVlinkColor($ui.vlink)
 							<TR><TD>Amgydala - left (mm^3)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/Left-Amygdala")</TD></TR>
 							<TR><TD>Nucleus Accumbens - left (mm^3)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/Left-Accumbens-area")</TD></TR>
 							<TR><TD>Ventral diencephalon - left (mm^3)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/Left-VentralDC")</TD></TR>
-							<TR><TD>Cerebellum white matter - left (mm^3)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/Right-Cerebellum-White-Matter")</TD></TR>
-							<TR><TD>Cerebellum grey matter - left (mm^3)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/Right-Cerebellum-Cortex")</TD></TR>
-							<TR><TD>Thalamus - left (mm^3)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/Right-Thalamus-Proper")</TD></TR>
-							<TR><TD>Caudate - left (mm^3)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/Right-Caudate")</TD></TR>
-							<TR><TD>Putamen - left (mm^3)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/Right-Putamen")</TD></TR>
-							<TR><TD>Pallidum - left (mm^3)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/Right-Pallidum")</TD></TR>
-							<TR><TD>Hippcampus - left (mm^3)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/Right-Hippocampus")</TD></TR>
-							<TR><TD>Amgydala - left (mm^3)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/Right-Amygdala")</TD></TR>
-							<TR><TD>Nucleus Accumbens - left (mm^3)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/Right-Accumbens-area")</TD></TR>
-							<TR><TD>Ventral diencephalon - left (mm^3)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/Right-VentralDC")</TD></TR>
+							<TR><TD>Cerebellum white matter - right (mm^3)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/Right-Cerebellum-White-Matter")</TD></TR>
+							<TR><TD>Cerebellum grey matter - right (mm^3)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/Right-Cerebellum-Cortex")</TD></TR>
+							<TR><TD>Thalamus - right (mm^3)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/Right-Thalamus-Proper")</TD></TR>
+							<TR><TD>Caudate - right (mm^3)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/Right-Caudate")</TD></TR>
+							<TR><TD>Putamen - right (mm^3)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/Right-Putamen")</TD></TR>
+							<TR><TD>Pallidum - right (mm^3)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/Right-Pallidum")</TD></TR>
+							<TR><TD>Hippcampus - right (mm^3)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/Right-Hippocampus")</TD></TR>
+							<TR><TD>Amgydala - right (mm^3)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/Right-Amygdala")</TD></TR>
+							<TR><TD>Nucleus Accumbens - right (mm^3)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/Right-Accumbens-area")</TD></TR>
+							<TR><TD>Ventral diencephalon - right (mm^3)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/Right-VentralDC")</TD></TR>
 							<TR><TD>Optic chiasm (mm^3)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/Optic-Chiasm")</TD></TR>
 							<TR><TD>Corpus callosum - posterior (mm^3)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/CC_Posterior")</TD></TR>
 							<TR><TD>Corpus callosum - mid posterior (mm^3)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/CC_Mid_Posterior")</TD></TR>
