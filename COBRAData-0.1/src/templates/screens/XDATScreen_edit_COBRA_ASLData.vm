@@ -1,0 +1,388 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 3.2//EN">
+$page.setTitle("XDAT")
+$page.setLinkColor($ui.alink)
+$page.setVlinkColor($ui.vlink)
+#set($months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"])
+#set($days = [ 1..31 ])
+#set($years = [ $!turbineUtils.getYear()..1900])
+#if ($data.message)
+<font color="red" size="3">$data.message</font>
+#end
+<p>
+<form ID="form1" name="form1" method="post" action="$link.setAction("ModifyImageAssessorData")">
+<input type="hidden" name="project" value="$!{project}" >
+#if($vr)
+	<font color="red">Invalid parameters:<BR>$vr.toHTML()</font>
+<HR>
+#end
+
+<TABLE width="100%">
+	<TR>
+		<TD>
+			<table width="100%">
+				<TR>
+					<TD align="left" valign="middle">
+						<DIV class="edit_title">Arterial Spin Labeling (ASL) details</DIV>
+					</TD>
+				</TR>
+			</TABLE>
+		</TD>
+	</TR>
+	<TR>
+		<TD>
+			<TABLE width="100%">
+				<TR>
+					<TD valign="top">
+						<TABLE>
+							<TR><TD colspan='2'>
+								<hr>
+								#parse("/screens/xnat_edit_experimentData.vm")
+								<HR></TD></TR>
+							<tr>
+								<th align="left">ASL ID</th>
+								<TD align="left">#xdatStringBox("COBRA:ASLData.ID" $item "" $vr)</TD>
+							</tr>
+							<tr>
+								<TD colspan="2">#parse("/screens/EditProjectSpecificFields.vm")</TD>
+							</tr>
+							<TR><TD>scan/ID</TD><TD>#xdatStringBox("COBRA:ASLData/scan/ID" $item "" $vr)</TD></TR>
+							<TR><TD>scan/type</TD><TD>#xdatStringBox("COBRA:ASLData/scan/type" $item "" $vr)</TD></TR>
+							<TR><TD>imageSession_ID</TD><TD>#xdatStringBox("COBRA:ASLData/imageSession_ID" $item "" $vr)</TD></TR>
+							<TR><TD>date</TD><TD>#xdatDateBox("COBRA:ASLData/date" $item $vr $years)</TD></TR>
+							<TR><TD>time</TD><TD>#xdatTextBox("COBRA:ASLData/time" $item "" $vr)</TD></TR>
+							<TR><TD>note</TD><TD>#xdatStringBox("COBRA:ASLData/note" $item "" $vr)</TD></TR>
+							<TR><TD>acquisition_site</TD><TD>#xdatStringBox("COBRA:ASLData/acquisition_site" $item "" $vr)</TD></TR>
+							<TR><TD>version</TD><TD>#xdatTextBox("COBRA:ASLData/version" $item "" $vr)</TD></TR>
+							<TR><TD>protocol</TD><TD>#xdatStringBox("COBRA:ASLData/protocol" $item "" $vr)</TD></TR>
+							<TR><TD>label</TD><TD>#xdatStringBox("COBRA:ASLData/label" $item "" $vr)</TD></TR>
+                            <TR><TD>&nbsp;</TD><TD></TD></TR>
+							<TR><TD>CBF_GM</TD><TD>#xdatTextBox("COBRA:ASLData/CBF_GM" $item "" $vr)</TD></TR>
+							<TR><TD>CBF_WM</TD><TD>#xdatTextBox("COBRA:ASLData/CBF_WM" $item "" $vr)</TD></TR>
+							<TR><TD>L_ICA</TD><TD>#xdatTextBox("COBRA:ASLData/L_ICA" $item "" $vr)</TD></TR>
+							<TR><TD>R_ICA</TD><TD>#xdatTextBox("COBRA:ASLData/R_ICA" $item "" $vr)</TD></TR>
+							<TR><TD>POS</TD><TD>#xdatTextBox("COBRA:ASLData/POS" $item "" $vr)</TD></TR>
+							<TR><TD>Caudate</TD><TD>#xdatTextBox("COBRA:ASLData/Caudate" $item "" $vr)</TD></TR>
+							<TR><TD>Frontal</TD><TD>#xdatTextBox("COBRA:ASLData/Frontal" $item "" $vr)</TD></TR>
+							<TR><TD>Insula</TD><TD>#xdatTextBox("COBRA:ASLData/Insula" $item "" $vr)</TD></TR>
+							<TR><TD>Occipital</TD><TD>#xdatTextBox("COBRA:ASLData/Occipital" $item "" $vr)</TD></TR>
+							<TR><TD>Parietal</TD><TD>#xdatTextBox("COBRA:ASLData/Parietal" $item "" $vr)</TD></TR>
+							<TR><TD>Putamen</TD><TD>#xdatTextBox("COBRA:ASLData/Putamen" $item "" $vr)</TD></TR>
+							<TR><TD>Temporal</TD><TD>#xdatTextBox("COBRA:ASLData/Temporal" $item "" $vr)</TD></TR>
+							<TR><TD>Thalamus</TD><TD>#xdatTextBox("COBRA:ASLData/Thalamus" $item "" $vr)</TD></TR>
+						</TABLE>
+					</TD>
+				</TR>
+			</TABLE>
+		</TD>
+	</TR>
+	<TR>
+		<TD>
+<!-- BEGIN COBRA:ASLData -->
+			<TABLE>
+				<TR><TH align="left"><font face="$ui.sansSerifFonts" size="2">Related Items</font></TH></TR>
+				<TR>
+					<TD align="left" valign="top">
+						<TABLE><TR><TD>
+							#foreach($xnat_abstractResource_1_COUNTER in [0..5])
+<!-- BEGIN COBRA:ASLData/in/file[$xnat_abstractResource_1_COUNTER] -->
+								<TABLE>
+									<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">COBRA:ASLData/in/file[$xnat_abstractResource_1_COUNTER]</font></TH></TR>
+									<TR>
+										<TD align="left" valign="top">
+											<TABLE>
+												<TR><TD>note</TD><TD>#xdatStringBox("COBRA:ASLData/in/file[$xnat_abstractResource_1_COUNTER]/note" $item "" $vr)</TD></TR>
+												<TR><TD>label</TD><TD>#xdatStringBox("COBRA:ASLData/in/file[$xnat_abstractResource_1_COUNTER]/label" $item "" $vr)</TD></TR>
+												<TR><TD>file_count</TD><TD>#xdatTextBox("COBRA:ASLData/in/file[$xnat_abstractResource_1_COUNTER]/file_count" $item "" $vr)</TD></TR>
+												<TR><TD>file_size</TD><TD>#xdatTextBox("COBRA:ASLData/in/file[$xnat_abstractResource_1_COUNTER]/file_size" $item "" $vr)</TD></TR>
+																		#xdatHiddenBox("COBRA:ASLData/in/file[$xnat_abstractResource_1_COUNTER]/xnat_abstractResource_id" $item "")
+											</TABLE>
+										</TD>
+									</TR>
+<!-- BEGIN COBRA:ASLData/in/file[$xnat_abstractResource_1_COUNTER]/tags/tag -->
+									<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">COBRA:ASLData/in/file[$xnat_abstractResource_1_COUNTER]/tags/tag</font></TH></TR>
+									<TR>
+										<TD align="left" valign="top">
+											<TABLE>
+												<TR>
+													<TD>tag</TD>
+													<TD>name</TD>
+												</TR>
+												#foreach($xnat_abstractResource_tag_2_COUNTER in [0..5])
+													<TR>
+														<TD>#xdatTextBox("COBRA:ASLData/in/file[$xnat_abstractResource_1_COUNTER]/tags/tag[$xnat_abstractResource_tag_2_COUNTER]/tag" $item "" $vr)</TD>
+														<TD>#xdatTextBox("COBRA:ASLData/in/file[$xnat_abstractResource_1_COUNTER]/tags/tag[$xnat_abstractResource_tag_2_COUNTER]/name" $item "" $vr)</TD>
+														#xdatHiddenBox("COBRA:ASLData/in/file[$xnat_abstractResource_1_COUNTER]/tags/tag[$xnat_abstractResource_tag_2_COUNTER]/xnat_abstractResource_tag_id" $item "")
+													</TR>
+												#end
+											</TABLE>
+										</TD>
+									</TR>
+<!-- END COBRA:ASLData/in/file[$xnat_abstractResource_1_COUNTER]/tags/tag -->
+								</TABLE>
+<!-- END COBRA:ASLData/in/file[$xnat_abstractResource_1_COUNTER] -->
+							#end
+						</TD></TR></TABLE>
+					</TD>
+				</TR>
+				<TR>
+					<TD align="left" valign="top">
+						<TABLE><TR><TD>
+							#foreach($xnat_abstractResource_2_COUNTER in [0..5])
+<!-- BEGIN COBRA:ASLData/out/file[$xnat_abstractResource_2_COUNTER] -->
+								<TABLE>
+									<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">COBRA:ASLData/out/file[$xnat_abstractResource_2_COUNTER]</font></TH></TR>
+									<TR>
+										<TD align="left" valign="top">
+											<TABLE>
+												<TR><TD>note</TD><TD>#xdatStringBox("COBRA:ASLData/out/file[$xnat_abstractResource_2_COUNTER]/note" $item "" $vr)</TD></TR>
+												<TR><TD>label</TD><TD>#xdatStringBox("COBRA:ASLData/out/file[$xnat_abstractResource_2_COUNTER]/label" $item "" $vr)</TD></TR>
+												<TR><TD>file_count</TD><TD>#xdatTextBox("COBRA:ASLData/out/file[$xnat_abstractResource_2_COUNTER]/file_count" $item "" $vr)</TD></TR>
+												<TR><TD>file_size</TD><TD>#xdatTextBox("COBRA:ASLData/out/file[$xnat_abstractResource_2_COUNTER]/file_size" $item "" $vr)</TD></TR>
+																		#xdatHiddenBox("COBRA:ASLData/out/file[$xnat_abstractResource_2_COUNTER]/xnat_abstractResource_id" $item "")
+											</TABLE>
+										</TD>
+									</TR>
+<!-- BEGIN COBRA:ASLData/out/file[$xnat_abstractResource_2_COUNTER]/tags/tag -->
+									<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">COBRA:ASLData/out/file[$xnat_abstractResource_2_COUNTER]/tags/tag</font></TH></TR>
+									<TR>
+										<TD align="left" valign="top">
+											<TABLE>
+												<TR>
+													<TD>tag</TD>
+													<TD>name</TD>
+												</TR>
+												#foreach($xnat_abstractResource_tag_3_COUNTER in [0..5])
+													<TR>
+														<TD>#xdatTextBox("COBRA:ASLData/out/file[$xnat_abstractResource_2_COUNTER]/tags/tag[$xnat_abstractResource_tag_3_COUNTER]/tag" $item "" $vr)</TD>
+														<TD>#xdatTextBox("COBRA:ASLData/out/file[$xnat_abstractResource_2_COUNTER]/tags/tag[$xnat_abstractResource_tag_3_COUNTER]/name" $item "" $vr)</TD>
+														#xdatHiddenBox("COBRA:ASLData/out/file[$xnat_abstractResource_2_COUNTER]/tags/tag[$xnat_abstractResource_tag_3_COUNTER]/xnat_abstractResource_tag_id" $item "")
+													</TR>
+												#end
+											</TABLE>
+										</TD>
+									</TR>
+<!-- END COBRA:ASLData/out/file[$xnat_abstractResource_2_COUNTER]/tags/tag -->
+								</TABLE>
+<!-- END COBRA:ASLData/out/file[$xnat_abstractResource_2_COUNTER] -->
+							#end
+						</TD></TR></TABLE>
+					</TD>
+				</TR>
+<!-- BEGIN COBRA:ASLData/parameters/addParam -->
+				<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">COBRA:ASLData/parameters/addParam</font></TH></TR>
+				<TR>
+					<TD align="left" valign="top">
+						<TABLE>
+							<TR>
+								<TD>addField</TD>
+								<TD>name</TD>
+							</TR>
+							#foreach($xnat_addField_3_COUNTER in [0..5])
+								<TR>
+									<TD>#xdatTextBox("COBRA:ASLData/parameters/addParam[$xnat_addField_3_COUNTER]/addField" $item "" $vr)</TD>
+									<TD>#xdatTextBox("COBRA:ASLData/parameters/addParam[$xnat_addField_3_COUNTER]/name" $item "" $vr)</TD>
+									#xdatHiddenBox("COBRA:ASLData/parameters/addParam[$xnat_addField_3_COUNTER]/xnat_addField_id" $item "")
+								</TR>
+							#end
+						</TABLE>
+					</TD>
+				</TR>
+<!-- END COBRA:ASLData/parameters/addParam -->
+				<TR>
+					<TD align="left" valign="top">
+<!-- BEGIN COBRA:ASLData/provenance -->
+						<TABLE>
+							<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">COBRA:ASLData/provenance</font></TH></TR>
+							<TR>
+								<TD align="left" valign="top">
+									<TABLE>
+																#xdatHiddenBox("COBRA:ASLData/provenance/prov_process_id" $item "")
+									</TABLE>
+								</TD>
+							</TR>
+							<TR>
+								<TD align="left" valign="top">
+									<TABLE><TR><TD>
+										#foreach($prov_processStep_4_COUNTER in [0..5])
+<!-- BEGIN COBRA:ASLData/provenance/processStep[$prov_processStep_4_COUNTER] -->
+											<TABLE>
+												<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">COBRA:ASLData/provenance/processStep[$prov_processStep_4_COUNTER]</font></TH></TR>
+												<TR>
+													<TD align="left" valign="top">
+														<TABLE>
+															<TR><TD>program</TD><TD>#xdatStringBox("COBRA:ASLData/provenance/processStep[$prov_processStep_4_COUNTER]/program" $item "" $vr)</TD></TR>
+															<TR><TD>program/version</TD><TD>#xdatStringBox("COBRA:ASLData/provenance/processStep[$prov_processStep_4_COUNTER]/program/version" $item "" $vr)</TD></TR>
+															<TR><TD>program/arguments</TD><TD>#xdatStringBox("COBRA:ASLData/provenance/processStep[$prov_processStep_4_COUNTER]/program/arguments" $item "" $vr)</TD></TR>
+															<TR><TD>timestamp</TD><TD>#xdatTextBox("COBRA:ASLData/provenance/processStep[$prov_processStep_4_COUNTER]/timestamp" $item "" $vr)</TD></TR>
+															<TR><TD>cvs</TD><TD>#xdatStringBox("COBRA:ASLData/provenance/processStep[$prov_processStep_4_COUNTER]/cvs" $item "" $vr)</TD></TR>
+															<TR><TD>user</TD><TD>#xdatStringBox("COBRA:ASLData/provenance/processStep[$prov_processStep_4_COUNTER]/user" $item "" $vr)</TD></TR>
+															<TR><TD>machine</TD><TD>#xdatStringBox("COBRA:ASLData/provenance/processStep[$prov_processStep_4_COUNTER]/machine" $item "" $vr)</TD></TR>
+															<TR><TD>platform</TD><TD>#xdatStringBox("COBRA:ASLData/provenance/processStep[$prov_processStep_4_COUNTER]/platform" $item "" $vr)</TD></TR>
+															<TR><TD>platform/version</TD><TD>#xdatStringBox("COBRA:ASLData/provenance/processStep[$prov_processStep_4_COUNTER]/platform/version" $item "" $vr)</TD></TR>
+															<TR><TD>compiler</TD><TD>#xdatStringBox("COBRA:ASLData/provenance/processStep[$prov_processStep_4_COUNTER]/compiler" $item "" $vr)</TD></TR>
+															<TR><TD>compiler/version</TD><TD>#xdatStringBox("COBRA:ASLData/provenance/processStep[$prov_processStep_4_COUNTER]/compiler/version" $item "" $vr)</TD></TR>
+																					#xdatHiddenBox("COBRA:ASLData/provenance/processStep[$prov_processStep_4_COUNTER]/prov_processStep_id" $item "")
+														</TABLE>
+													</TD>
+												</TR>
+<!-- BEGIN COBRA:ASLData/provenance/processStep[$prov_processStep_4_COUNTER]/library -->
+												<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">COBRA:ASLData/provenance/processStep[$prov_processStep_4_COUNTER]/library</font></TH></TR>
+												<TR>
+													<TD align="left" valign="top">
+														<TABLE>
+															<TR>
+																<TD>library</TD>
+																<TD>version</TD>
+															</TR>
+															#foreach($prov_processStep_library_5_COUNTER in [0..5])
+																<TR>
+																	<TD>#xdatTextBox("COBRA:ASLData/provenance/processStep[$prov_processStep_4_COUNTER]/library[$prov_processStep_library_5_COUNTER]/library" $item "" $vr)</TD>
+																	<TD>#xdatTextBox("COBRA:ASLData/provenance/processStep[$prov_processStep_4_COUNTER]/library[$prov_processStep_library_5_COUNTER]/version" $item "" $vr)</TD>
+																	#xdatHiddenBox("COBRA:ASLData/provenance/processStep[$prov_processStep_4_COUNTER]/library[$prov_processStep_library_5_COUNTER]/prov_processStep_library_id" $item "")
+																</TR>
+															#end
+														</TABLE>
+													</TD>
+												</TR>
+<!-- END COBRA:ASLData/provenance/processStep[$prov_processStep_4_COUNTER]/library -->
+											</TABLE>
+<!-- END COBRA:ASLData/provenance/processStep[$prov_processStep_4_COUNTER] -->
+										#end
+									</TD></TR></TABLE>
+								</TD>
+							</TR>
+						</TABLE>
+<!-- END COBRA:ASLData/provenance -->
+					</TD>
+				</TR>
+				<TR>
+					<TD align="left" valign="top">
+<!-- BEGIN COBRA:ASLData/investigator -->
+						<TABLE>
+							<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">COBRA:ASLData/investigator</font></TH></TR>
+							<TR>
+								<TD align="left" valign="top">
+									<TABLE>
+										<TR><TD>title</TD><TD>#xdatStringBox("COBRA:ASLData/investigator/title" $item "" $vr)</TD></TR>
+										<TR><TD>firstname</TD><TD>#xdatStringBox("COBRA:ASLData/investigator/firstname" $item "" $vr)</TD></TR>
+										<TR><TD>lastname</TD><TD>#xdatStringBox("COBRA:ASLData/investigator/lastname" $item "" $vr)</TD></TR>
+										<TR><TD>institution</TD><TD>#xdatStringBox("COBRA:ASLData/investigator/institution" $item "" $vr)</TD></TR>
+										<TR><TD>department</TD><TD>#xdatStringBox("COBRA:ASLData/investigator/department" $item "" $vr)</TD></TR>
+										<TR><TD>email</TD><TD>#xdatStringBox("COBRA:ASLData/investigator/email" $item "" $vr)</TD></TR>
+										<TR><TD>phone</TD><TD>#xdatStringBox("COBRA:ASLData/investigator/phone" $item "" $vr)</TD></TR>
+										<TR><TD>ID</TD><TD>#xdatStringBox("COBRA:ASLData/investigator/ID" $item "" $vr)</TD></TR>
+																#xdatHiddenBox("COBRA:ASLData/investigator/xnat_investigatorData_id" $item "")
+									</TABLE>
+								</TD>
+							</TR>
+						</TABLE>
+<!-- END COBRA:ASLData/investigator -->
+					</TD>
+				</TR>
+				<TR>
+					<TD align="left" valign="top">
+<!-- BEGIN COBRA:ASLData/validation -->
+						<TABLE>
+							<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">COBRA:ASLData/validation</font></TH></TR>
+							<TR>
+								<TD align="left" valign="top">
+									<TABLE>
+										<TR><TD>method</TD><TD>#xdatStringBox("COBRA:ASLData/validation/method" $item "" $vr)</TD></TR>
+										<TR><TD>date</TD><TD>#xdatDateBox("COBRA:ASLData/validation/date" $item $vr $years)</TD></TR>
+										<TR><TD>notes</TD><TD>#xdatStringBox("COBRA:ASLData/validation/notes" $item "" $vr)</TD></TR>
+										<TR><TD>validated_by</TD><TD>#xdatStringBox("COBRA:ASLData/validation/validated_by" $item "" $vr)</TD></TR>
+										<TR><TD>status</TD><TD>#xdatStringBox("COBRA:ASLData/validation/status" $item "" $vr)</TD></TR>
+																#xdatHiddenBox("COBRA:ASLData/validation/xnat_validationData_id" $item "")
+									</TABLE>
+								</TD>
+							</TR>
+						</TABLE>
+<!-- END COBRA:ASLData/validation -->
+					</TD>
+				</TR>
+				<TR>
+					<TD align="left" valign="top">
+						<TABLE><TR><TD>
+							#foreach($xnat_abstractResource_7_COUNTER in [0..5])
+<!-- BEGIN COBRA:ASLData/resources/resource[$xnat_abstractResource_7_COUNTER] -->
+								<TABLE>
+									<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">COBRA:ASLData/resources/resource[$xnat_abstractResource_7_COUNTER]</font></TH></TR>
+									<TR>
+										<TD align="left" valign="top">
+											<TABLE>
+												<TR><TD>note</TD><TD>#xdatStringBox("COBRA:ASLData/resources/resource[$xnat_abstractResource_7_COUNTER]/note" $item "" $vr)</TD></TR>
+												<TR><TD>label</TD><TD>#xdatStringBox("COBRA:ASLData/resources/resource[$xnat_abstractResource_7_COUNTER]/label" $item "" $vr)</TD></TR>
+												<TR><TD>file_count</TD><TD>#xdatTextBox("COBRA:ASLData/resources/resource[$xnat_abstractResource_7_COUNTER]/file_count" $item "" $vr)</TD></TR>
+												<TR><TD>file_size</TD><TD>#xdatTextBox("COBRA:ASLData/resources/resource[$xnat_abstractResource_7_COUNTER]/file_size" $item "" $vr)</TD></TR>
+																		#xdatHiddenBox("COBRA:ASLData/resources/resource[$xnat_abstractResource_7_COUNTER]/xnat_abstractResource_id" $item "")
+											</TABLE>
+										</TD>
+									</TR>
+<!-- BEGIN COBRA:ASLData/resources/resource[$xnat_abstractResource_7_COUNTER]/tags/tag -->
+									<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">COBRA:ASLData/resources/resource[$xnat_abstractResource_7_COUNTER]/tags/tag</font></TH></TR>
+									<TR>
+										<TD align="left" valign="top">
+											<TABLE>
+												<TR>
+													<TD>tag</TD>
+													<TD>name</TD>
+												</TR>
+												#foreach($xnat_abstractResource_tag_8_COUNTER in [0..5])
+													<TR>
+														<TD>#xdatTextBox("COBRA:ASLData/resources/resource[$xnat_abstractResource_7_COUNTER]/tags/tag[$xnat_abstractResource_tag_8_COUNTER]/tag" $item "" $vr)</TD>
+														<TD>#xdatTextBox("COBRA:ASLData/resources/resource[$xnat_abstractResource_7_COUNTER]/tags/tag[$xnat_abstractResource_tag_8_COUNTER]/name" $item "" $vr)</TD>
+														#xdatHiddenBox("COBRA:ASLData/resources/resource[$xnat_abstractResource_7_COUNTER]/tags/tag[$xnat_abstractResource_tag_8_COUNTER]/xnat_abstractResource_tag_id" $item "")
+													</TR>
+												#end
+											</TABLE>
+										</TD>
+									</TR>
+<!-- END COBRA:ASLData/resources/resource[$xnat_abstractResource_7_COUNTER]/tags/tag -->
+								</TABLE>
+<!-- END COBRA:ASLData/resources/resource[$xnat_abstractResource_7_COUNTER] -->
+							#end
+						</TD></TR></TABLE>
+					</TD>
+				</TR>
+<!-- BEGIN COBRA:ASLData/fields/field -->
+				<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">COBRA:ASLData/fields/field</font></TH></TR>
+				<TR>
+					<TD align="left" valign="top">
+						<TABLE>
+							<TR>
+								<TD>field</TD>
+								<TD>name</TD>
+							</TR>
+							#foreach($xnat_experimentData_field_8_COUNTER in [0..5])
+								<TR>
+									<TD>#xdatTextBox("COBRA:ASLData/fields/field[$xnat_experimentData_field_8_COUNTER]/field" $item "" $vr)</TD>
+									<TD>#xdatTextBox("COBRA:ASLData/fields/field[$xnat_experimentData_field_8_COUNTER]/name" $item "" $vr)</TD>
+									#xdatHiddenBox("COBRA:ASLData/fields/field[$xnat_experimentData_field_8_COUNTER]/xnat_experimentData_field_id" $item "")
+								</TR>
+							#end
+						</TABLE>
+					</TD>
+				</TR>
+<!-- END COBRA:ASLData/fields/field -->
+			</TABLE>
+<!-- END COBRA:ASLData -->
+		</TD>
+	</TR>
+	<TR>
+		<TD>
+		#xdatEditProps($item $edit_screen)
+		<TR><TD COLSPAN=2 ALIGN=left><input type="button" ONCLICK="validateForm();"  name="eventSubmit_doInsert" value="Submit"/></TD></TR>
+		</TD>
+	</TR>
+</TABLE>
+</form>
+
+<script type="text/javascript">
+function validateForm()
+{
+   //INSERT CUSTOM CONTENT HERE
+
+   validateExperimentForm();
+   return false;
+}
+</script>

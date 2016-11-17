@@ -1,0 +1,376 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 3.2//EN">
+$page.setTitle("brainVol Details")
+$page.setLinkColor($ui.alink)
+$page.setVlinkColor($ui.vlink)
+#if ($turbineUtils.GetPassedParameter("popup", $data))
+	#set ($popup = $turbineUtils.GetPassedParameter("popup", data) )
+	#set ($popup = "false")
+#end
+<TABLE width="100%">
+	<TR>
+		<TD>
+			<table width="100%">
+				<TR>
+					<TD align="left" valign="middle">
+						<font face="$ui.sansSerifFonts" size="3"><b>Brain Volume details</b></font>
+					</TD>
+				</TR>
+			</TABLE>
+		</TD>
+	</TR>
+	<TR>
+		<TD>
+			<TABLE width="100%">
+				<TR>
+					<TD valign="top">
+						<TABLE>
+							<TR><TD>scan/ID</TD><TD>$!item.getStringProperty("COBRA:brainVolumeData/scan/ID")</TD></TR>
+							<TR><TD>scan/type</TD><TD>$!item.getStringProperty("COBRA:brainVolumeData/scan/type")</TD></TR>
+							<TR><TD>imageSession ID</TD><TD>$!item.getStringProperty("COBRA:brainVolumeData/imageSession_ID")</TD></TR>
+							<TR><TD>date</TD><TD>$!item.getProperty("COBRA:brainVolumeData/date")</TD></TR>
+							<TR><TD>time</TD><TD>$!item.getProperty("COBRA:brainVolumeData/time")</TD></TR>
+							<!--
+                            <TR><TD>duration</TD><TD>$!item.getProperty("COBRA:brainVolumeData/duration")</TD></TR>
+							<TR><TD>delay</TD><TD>$!item.getIntegerProperty("COBRA:brainVolumeData/delay")</TD></TR>
+							<TR><TD>delay/ref_expt_id</TD><TD>$!item.getStringProperty("COBRA:brainVolumeData/delay/ref_expt_id")</TD></TR>
+                            -->
+							<TR><TD>note</TD><TD>$!item.getStringProperty("COBRA:brainVolumeData/note")</TD></TR>
+							<TR><TD>acquisition site</TD><TD>$!item.getStringProperty("COBRA:brainVolumeData/acquisition_site")</TD></TR>
+							<TR><TD>ID</TD><TD>$!item.getStringProperty("COBRA:brainVolumeData/ID")</TD></TR>
+							<TR><TD>project</TD><TD>$!item.getStringProperty("COBRA:brainVolumeData/project")</TD></TR>
+							<!--
+                            <TR><TD>visit_id</TD><TD>$!item.getStringProperty("COBRA:brainVolumeData/visit_id")</TD></TR>
+							<TR><TD>visit</TD><TD>$!item.getStringProperty("COBRA:brainVolumeData/visit")</TD></TR>
+                            <TR><TD>original</TD><TD>$!item.getStringProperty("COBRA:brainVolumeData/original")</TD></TR>
+                            -->
+							<TR><TD>version</TD><TD>$!item.getIntegerProperty("COBRA:brainVolumeData/version")</TD></TR>
+							<TR><TD>protocol</TD><TD>$!item.getStringProperty("COBRA:brainVolumeData/protocol")</TD></TR>
+							<TR><TD>label</TD><TD>$!item.getStringProperty("COBRA:brainVolumeData/label")</TD></TR>
+                            <TR><TD>&nbsp;</TD><TD></TD></TR>
+							<TR><TD>Grey matter volume (litres)</TD><TD>$!item.getDoubleProperty("COBRA:brainVolumeData/GM")</TD></TR>
+							<TR><TD>White matter volume (litre)</TD><TD>$!item.getDoubleProperty("COBRA:brainVolumeData/WM")</TD></TR>
+							<TR><TD>Cerebrospinal fluid volume (litres)</TD><TD>$!item.getDoubleProperty("COBRA:brainVolumeData/CSF")</TD></TR>
+							<TR><TD>Whole brain volume [gm + wm] (litres)</TD><TD>$!item.getDoubleProperty("COBRA:brainVolumeData/WBV")</TD></TR>
+							<TR><TD>Intracranial volume [gm + wm + csf] (litres)</TD><TD>$!item.getDoubleProperty("COBRA:brainVolumeData/ICV")</TD></TR>
+						</TABLE>
+					</TD>
+					<TD valign="top" align="right">
+						#parse($turbineUtils.getTemplateName("actions",$om.getXSIType(),$project))
+					</TD>
+				</TR>
+			</TABLE>
+		</TD>
+	</TR>
+	<TR>
+		<TD>
+<!-- BEGIN COBRA:brainVolumeData -->
+			<TABLE>
+				<TR><TH align="left"><font face="$ui.sansSerifFonts" size="2">Related Items</font></TH></TR>
+				<TR>
+					<TD align="left" valign="top">
+						<TABLE>
+						</TABLE>
+					</TD>
+				</TR>
+				<TR>
+					<TD align="left" valign="top">
+						<TABLE><TR><TD>
+							#set($xnat_abstractResource_1_NUM_ROWS=$item.getChildItems("COBRA:brainVolumeData/in/file").size() - 1)
+							#if($xnat_abstractResource_1_NUM_ROWS>=0)
+								#foreach($xnat_abstractResource_1_COUNTER in [0..$xnat_abstractResource_1_NUM_ROWS])
+<!-- BEGIN COBRA:brainVolumeData/in/file[$xnat_abstractResource_1_COUNTER] -->
+									<TABLE>
+										<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">COBRA:brainVolumeData/in/file[$xnat_abstractResource_1_COUNTER]</font></TH></TR>
+										<TR>
+											<TD align="left" valign="top">
+												<TABLE>
+													<TR><TD>note</TD><TD>$!item.getStringProperty("COBRA:brainVolumeData/in/file[$xnat_abstractResource_1_COUNTER]/note")</TD></TR>
+													<TR><TD>label</TD><TD>$!item.getStringProperty("COBRA:brainVolumeData/in/file[$xnat_abstractResource_1_COUNTER]/label")</TD></TR>
+													<TR><TD>file_count</TD><TD>$!item.getIntegerProperty("COBRA:brainVolumeData/in/file[$xnat_abstractResource_1_COUNTER]/file_count")</TD></TR>
+													<TR><TD>file_size</TD><TD>$!item.getProperty("COBRA:brainVolumeData/in/file[$xnat_abstractResource_1_COUNTER]/file_size")</TD></TR>
+												</TABLE>
+											</TD>
+										</TR>
+										<TR>
+											<TD align="left" valign="top">
+												<TABLE><TR><TD>
+													#set($xnat_abstractResource_tag_2_NUM_ROWS=$item.getChildItems("COBRA:brainVolumeData/in/file[$xnat_abstractResource_1_COUNTER]/tags/tag").size() - 1)
+													#if($xnat_abstractResource_tag_2_NUM_ROWS>=0)
+														#foreach($xnat_abstractResource_tag_2_COUNTER in [0..$xnat_abstractResource_tag_2_NUM_ROWS])
+<!-- BEGIN COBRA:brainVolumeData/in/file[$xnat_abstractResource_1_COUNTER]/tags/tag[$xnat_abstractResource_tag_2_COUNTER] -->
+															<TABLE>
+																<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">COBRA:brainVolumeData/in/file[$xnat_abstractResource_1_COUNTER]/tags/tag[$xnat_abstractResource_tag_2_COUNTER]</font></TH></TR>
+																<TR>
+																	<TD align="left" valign="top">
+																		<TABLE>
+																			<TR><TD>tag</TD><TD>$!item.getStringProperty("COBRA:brainVolumeData/in/file[$xnat_abstractResource_1_COUNTER]/tags/tag[$xnat_abstractResource_tag_2_COUNTER]/tag")</TD></TR>
+																			<TR><TD>name</TD><TD>$!item.getStringProperty("COBRA:brainVolumeData/in/file[$xnat_abstractResource_1_COUNTER]/tags/tag[$xnat_abstractResource_tag_2_COUNTER]/name")</TD></TR>
+																		</TABLE>
+																	</TD>
+																</TR>
+															</TABLE>
+<!-- END COBRA:brainVolumeData/in/file[$xnat_abstractResource_1_COUNTER]/tags/tag[$xnat_abstractResource_tag_2_COUNTER] -->
+														#end
+													#end
+												</TD></TR></TABLE>
+											</TD>
+										</TR>
+									</TABLE>
+<!-- END COBRA:brainVolumeData/in/file[$xnat_abstractResource_1_COUNTER] -->
+								#end
+							#end
+						</TD></TR></TABLE>
+					</TD>
+				</TR>
+				<TR>
+					<TD align="left" valign="top">
+						<TABLE><TR><TD>
+							#set($xnat_abstractResource_3_NUM_ROWS=$item.getChildItems("COBRA:brainVolumeData/out/file").size() - 1)
+							#if($xnat_abstractResource_3_NUM_ROWS>=0)
+								#foreach($xnat_abstractResource_3_COUNTER in [0..$xnat_abstractResource_3_NUM_ROWS])
+<!-- BEGIN COBRA:brainVolumeData/out/file[$xnat_abstractResource_3_COUNTER] -->
+									<TABLE>
+										<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">COBRA:brainVolumeData/out/file[$xnat_abstractResource_3_COUNTER]</font></TH></TR>
+										<TR>
+											<TD align="left" valign="top">
+												<TABLE>
+													<TR><TD>note</TD><TD>$!item.getStringProperty("COBRA:brainVolumeData/out/file[$xnat_abstractResource_3_COUNTER]/note")</TD></TR>
+													<TR><TD>label</TD><TD>$!item.getStringProperty("COBRA:brainVolumeData/out/file[$xnat_abstractResource_3_COUNTER]/label")</TD></TR>
+													<TR><TD>file_count</TD><TD>$!item.getIntegerProperty("COBRA:brainVolumeData/out/file[$xnat_abstractResource_3_COUNTER]/file_count")</TD></TR>
+													<TR><TD>file_size</TD><TD>$!item.getProperty("COBRA:brainVolumeData/out/file[$xnat_abstractResource_3_COUNTER]/file_size")</TD></TR>
+												</TABLE>
+											</TD>
+										</TR>
+										<TR>
+											<TD align="left" valign="top">
+												<TABLE><TR><TD>
+													#set($xnat_abstractResource_tag_4_NUM_ROWS=$item.getChildItems("COBRA:brainVolumeData/out/file[$xnat_abstractResource_3_COUNTER]/tags/tag").size() - 1)
+													#if($xnat_abstractResource_tag_4_NUM_ROWS>=0)
+														#foreach($xnat_abstractResource_tag_4_COUNTER in [0..$xnat_abstractResource_tag_4_NUM_ROWS])
+<!-- BEGIN COBRA:brainVolumeData/out/file[$xnat_abstractResource_3_COUNTER]/tags/tag[$xnat_abstractResource_tag_4_COUNTER] -->
+															<TABLE>
+																<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">COBRA:brainVolumeData/out/file[$xnat_abstractResource_3_COUNTER]/tags/tag[$xnat_abstractResource_tag_4_COUNTER]</font></TH></TR>
+																<TR>
+																	<TD align="left" valign="top">
+																		<TABLE>
+																			<TR><TD>tag</TD><TD>$!item.getStringProperty("COBRA:brainVolumeData/out/file[$xnat_abstractResource_3_COUNTER]/tags/tag[$xnat_abstractResource_tag_4_COUNTER]/tag")</TD></TR>
+																			<TR><TD>name</TD><TD>$!item.getStringProperty("COBRA:brainVolumeData/out/file[$xnat_abstractResource_3_COUNTER]/tags/tag[$xnat_abstractResource_tag_4_COUNTER]/name")</TD></TR>
+																		</TABLE>
+																	</TD>
+																</TR>
+															</TABLE>
+<!-- END COBRA:brainVolumeData/out/file[$xnat_abstractResource_3_COUNTER]/tags/tag[$xnat_abstractResource_tag_4_COUNTER] -->
+														#end
+													#end
+												</TD></TR></TABLE>
+											</TD>
+										</TR>
+									</TABLE>
+<!-- END COBRA:brainVolumeData/out/file[$xnat_abstractResource_3_COUNTER] -->
+								#end
+							#end
+						</TD></TR></TABLE>
+					</TD>
+				</TR>
+				<TR>
+					<TD align="left" valign="top">
+						<TABLE><TR><TD>
+							#set($xnat_addField_5_NUM_ROWS=$item.getChildItems("COBRA:brainVolumeData/parameters/addParam").size() - 1)
+							#if($xnat_addField_5_NUM_ROWS>=0)
+								#foreach($xnat_addField_5_COUNTER in [0..$xnat_addField_5_NUM_ROWS])
+<!-- BEGIN COBRA:brainVolumeData/parameters/addParam[$xnat_addField_5_COUNTER] -->
+									<TABLE>
+										<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">COBRA:brainVolumeData/parameters/addParam[$xnat_addField_5_COUNTER]</font></TH></TR>
+										<TR>
+											<TD align="left" valign="top">
+												<TABLE>
+													<TR><TD>addField</TD><TD>$!item.getStringProperty("COBRA:brainVolumeData/parameters/addParam[$xnat_addField_5_COUNTER]/addField")</TD></TR>
+													<TR><TD>name</TD><TD>$!item.getStringProperty("COBRA:brainVolumeData/parameters/addParam[$xnat_addField_5_COUNTER]/name")</TD></TR>
+												</TABLE>
+											</TD>
+										</TR>
+									</TABLE>
+<!-- END COBRA:brainVolumeData/parameters/addParam[$xnat_addField_5_COUNTER] -->
+								#end
+							#end
+						</TD></TR></TABLE>
+					</TD>
+				</TR>
+				<TR>
+					<TD align="left" valign="top">
+<!-- BEGIN COBRA:brainVolumeData/provenance -->
+						<TABLE>
+							<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">COBRA:brainVolumeData/provenance</font></TH></TR>
+							<TR>
+								<TD align="left" valign="top">
+									<TABLE>
+									</TABLE>
+								</TD>
+							</TR>
+							<TR>
+								<TD align="left" valign="top">
+									<TABLE><TR><TD>
+										#set($prov_processStep_7_NUM_ROWS=$item.getChildItems("COBRA:brainVolumeData/provenance/processStep").size() - 1)
+										#if($prov_processStep_7_NUM_ROWS>=0)
+											#foreach($prov_processStep_7_COUNTER in [0..$prov_processStep_7_NUM_ROWS])
+<!-- BEGIN COBRA:brainVolumeData/provenance/processStep[$prov_processStep_7_COUNTER] -->
+												<TABLE>
+													<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">COBRA:brainVolumeData/provenance/processStep[$prov_processStep_7_COUNTER]</font></TH></TR>
+													<TR>
+														<TD align="left" valign="top">
+															<TABLE>
+																<TR><TD>program</TD><TD>$!item.getStringProperty("COBRA:brainVolumeData/provenance/processStep[$prov_processStep_7_COUNTER]/program")</TD></TR>
+																<TR><TD>program/version</TD><TD>$!item.getStringProperty("COBRA:brainVolumeData/provenance/processStep[$prov_processStep_7_COUNTER]/program/version")</TD></TR>
+																<TR><TD>program/arguments</TD><TD>$!item.getStringProperty("COBRA:brainVolumeData/provenance/processStep[$prov_processStep_7_COUNTER]/program/arguments")</TD></TR>
+																<TR><TD>timestamp</TD><TD>$!item.getProperty("COBRA:brainVolumeData/provenance/processStep[$prov_processStep_7_COUNTER]/timestamp")</TD></TR>
+																<TR><TD>cvs</TD><TD>$!item.getStringProperty("COBRA:brainVolumeData/provenance/processStep[$prov_processStep_7_COUNTER]/cvs")</TD></TR>
+																<TR><TD>user</TD><TD>$!item.getStringProperty("COBRA:brainVolumeData/provenance/processStep[$prov_processStep_7_COUNTER]/user")</TD></TR>
+																<TR><TD>machine</TD><TD>$!item.getStringProperty("COBRA:brainVolumeData/provenance/processStep[$prov_processStep_7_COUNTER]/machine")</TD></TR>
+																<TR><TD>platform</TD><TD>$!item.getStringProperty("COBRA:brainVolumeData/provenance/processStep[$prov_processStep_7_COUNTER]/platform")</TD></TR>
+																<TR><TD>platform/version</TD><TD>$!item.getStringProperty("COBRA:brainVolumeData/provenance/processStep[$prov_processStep_7_COUNTER]/platform/version")</TD></TR>
+																<TR><TD>compiler</TD><TD>$!item.getStringProperty("COBRA:brainVolumeData/provenance/processStep[$prov_processStep_7_COUNTER]/compiler")</TD></TR>
+																<TR><TD>compiler/version</TD><TD>$!item.getStringProperty("COBRA:brainVolumeData/provenance/processStep[$prov_processStep_7_COUNTER]/compiler/version")</TD></TR>
+															</TABLE>
+														</TD>
+													</TR>
+													<TR>
+														<TD align="left" valign="top">
+															<TABLE><TR><TD>
+																#set($prov_processStep_library_8_NUM_ROWS=$item.getChildItems("COBRA:brainVolumeData/provenance/processStep[$prov_processStep_7_COUNTER]/library").size() - 1)
+																#if($prov_processStep_library_8_NUM_ROWS>=0)
+																	#foreach($prov_processStep_library_8_COUNTER in [0..$prov_processStep_library_8_NUM_ROWS])
+<!-- BEGIN COBRA:brainVolumeData/provenance/processStep[$prov_processStep_7_COUNTER]/library[$prov_processStep_library_8_COUNTER] -->
+																		<TABLE>
+																			<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">COBRA:brainVolumeData/provenance/processStep[$prov_processStep_7_COUNTER]/library[$prov_processStep_library_8_COUNTER]</font></TH></TR>
+																			<TR>
+																				<TD align="left" valign="top">
+																					<TABLE>
+																						<TR><TD>library</TD><TD>$!item.getStringProperty("COBRA:brainVolumeData/provenance/processStep[$prov_processStep_7_COUNTER]/library[$prov_processStep_library_8_COUNTER]/library")</TD></TR>
+																						<TR><TD>version</TD><TD>$!item.getStringProperty("COBRA:brainVolumeData/provenance/processStep[$prov_processStep_7_COUNTER]/library[$prov_processStep_library_8_COUNTER]/version")</TD></TR>
+																					</TABLE>
+																				</TD>
+																			</TR>
+																		</TABLE>
+<!-- END COBRA:brainVolumeData/provenance/processStep[$prov_processStep_7_COUNTER]/library[$prov_processStep_library_8_COUNTER] -->
+																	#end
+																#end
+															</TD></TR></TABLE>
+														</TD>
+													</TR>
+												</TABLE>
+<!-- END COBRA:brainVolumeData/provenance/processStep[$prov_processStep_7_COUNTER] -->
+											#end
+										#end
+									</TD></TR></TABLE>
+								</TD>
+							</TR>
+						</TABLE>
+<!-- END COBRA:brainVolumeData/provenance -->
+					</TD>
+				</TR>
+				<TR>
+					<TD align="left" valign="top">
+						<TABLE><TR><TD>
+							#set($xnat_experimentData_share_9_NUM_ROWS=$item.getChildItems("COBRA:brainVolumeData/sharing/share").size() - 1)
+							#if($xnat_experimentData_share_9_NUM_ROWS>=0)
+								#foreach($xnat_experimentData_share_9_COUNTER in [0..$xnat_experimentData_share_9_NUM_ROWS])
+<!-- BEGIN COBRA:brainVolumeData/sharing/share[$xnat_experimentData_share_9_COUNTER] -->
+									<TABLE>
+										<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">COBRA:brainVolumeData/sharing/share[$xnat_experimentData_share_9_COUNTER]</font></TH></TR>
+										<TR>
+											<TD align="left" valign="top">
+												<TABLE>
+													<TR><TD>share</TD><TD>$!item.getStringProperty("COBRA:brainVolumeData/sharing/share[$xnat_experimentData_share_9_COUNTER]/share")</TD></TR>
+													<TR><TD>label</TD><TD>$!item.getStringProperty("COBRA:brainVolumeData/sharing/share[$xnat_experimentData_share_9_COUNTER]/label")</TD></TR>
+													<TR><TD>project</TD><TD>$!item.getStringProperty("COBRA:brainVolumeData/sharing/share[$xnat_experimentData_share_9_COUNTER]/project")</TD></TR>
+													<TR><TD>visit</TD><TD>$!item.getStringProperty("COBRA:brainVolumeData/sharing/share[$xnat_experimentData_share_9_COUNTER]/visit")</TD></TR>
+													<TR><TD>protocol</TD><TD>$!item.getStringProperty("COBRA:brainVolumeData/sharing/share[$xnat_experimentData_share_9_COUNTER]/protocol")</TD></TR>
+												</TABLE>
+											</TD>
+										</TR>
+									</TABLE>
+<!-- END COBRA:brainVolumeData/sharing/share[$xnat_experimentData_share_9_COUNTER] -->
+								#end
+							#end
+						</TD></TR></TABLE>
+					</TD>
+				</TR>				
+				<TR>
+					<TD align="left" valign="top">
+						<TABLE><TR><TD>
+							#set($xnat_abstractResource_12_NUM_ROWS=$item.getChildItems("COBRA:brainVolumeData/resources/resource").size() - 1)
+							#if($xnat_abstractResource_12_NUM_ROWS>=0)
+								#foreach($xnat_abstractResource_12_COUNTER in [0..$xnat_abstractResource_12_NUM_ROWS])
+<!-- BEGIN COBRA:brainVolumeData/resources/resource[$xnat_abstractResource_12_COUNTER] -->
+									<TABLE>
+										<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">COBRA:brainVolumeData/resources/resource[$xnat_abstractResource_12_COUNTER]</font></TH></TR>
+										<TR>
+											<TD align="left" valign="top">
+												<TABLE>
+													<TR><TD>note</TD><TD>$!item.getStringProperty("COBRA:brainVolumeData/resources/resource[$xnat_abstractResource_12_COUNTER]/note")</TD></TR>
+													<TR><TD>label</TD><TD>$!item.getStringProperty("COBRA:brainVolumeData/resources/resource[$xnat_abstractResource_12_COUNTER]/label")</TD></TR>
+													<TR><TD>file_count</TD><TD>$!item.getIntegerProperty("COBRA:brainVolumeData/resources/resource[$xnat_abstractResource_12_COUNTER]/file_count")</TD></TR>
+													<TR><TD>file_size</TD><TD>$!item.getProperty("COBRA:brainVolumeData/resources/resource[$xnat_abstractResource_12_COUNTER]/file_size")</TD></TR>
+												</TABLE>
+											</TD>
+										</TR>
+										<TR>
+											<TD align="left" valign="top">
+												<TABLE><TR><TD>
+													#set($xnat_abstractResource_tag_13_NUM_ROWS=$item.getChildItems("COBRA:brainVolumeData/resources/resource[$xnat_abstractResource_12_COUNTER]/tags/tag").size() - 1)
+													#if($xnat_abstractResource_tag_13_NUM_ROWS>=0)
+														#foreach($xnat_abstractResource_tag_13_COUNTER in [0..$xnat_abstractResource_tag_13_NUM_ROWS])
+<!-- BEGIN COBRA:brainVolumeData/resources/resource[$xnat_abstractResource_12_COUNTER]/tags/tag[$xnat_abstractResource_tag_13_COUNTER] -->
+															<TABLE>
+																<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">COBRA:brainVolumeData/resources/resource[$xnat_abstractResource_12_COUNTER]/tags/tag[$xnat_abstractResource_tag_13_COUNTER]</font></TH></TR>
+																<TR>
+																	<TD align="left" valign="top">
+																		<TABLE>
+																			<TR><TD>tag</TD><TD>$!item.getStringProperty("COBRA:brainVolumeData/resources/resource[$xnat_abstractResource_12_COUNTER]/tags/tag[$xnat_abstractResource_tag_13_COUNTER]/tag")</TD></TR>
+																			<TR><TD>name</TD><TD>$!item.getStringProperty("COBRA:brainVolumeData/resources/resource[$xnat_abstractResource_12_COUNTER]/tags/tag[$xnat_abstractResource_tag_13_COUNTER]/name")</TD></TR>
+																		</TABLE>
+																	</TD>
+																</TR>
+															</TABLE>
+<!-- END COBRA:brainVolumeData/resources/resource[$xnat_abstractResource_12_COUNTER]/tags/tag[$xnat_abstractResource_tag_13_COUNTER] -->
+														#end
+													#end
+												</TD></TR></TABLE>
+											</TD>
+										</TR>
+									</TABLE>
+<!-- END COBRA:brainVolumeData/resources/resource[$xnat_abstractResource_12_COUNTER] -->
+								#end
+							#end
+						</TD></TR></TABLE>
+					</TD>
+				</TR>
+				<TR>
+					<TD align="left" valign="top">
+						<TABLE><TR><TD>
+							#set($xnat_experimentData_field_14_NUM_ROWS=$item.getChildItems("COBRA:brainVolumeData/fields/field").size() - 1)
+							#if($xnat_experimentData_field_14_NUM_ROWS>=0)
+								#foreach($xnat_experimentData_field_14_COUNTER in [0..$xnat_experimentData_field_14_NUM_ROWS])
+<!-- BEGIN COBRA:brainVolumeData/fields/field[$xnat_experimentData_field_14_COUNTER] -->
+									<TABLE>
+										<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">COBRA:brainVolumeData/fields/field[$xnat_experimentData_field_14_COUNTER]</font></TH></TR>
+										<TR>
+											<TD align="left" valign="top">
+												<TABLE>
+													<TR><TD>field</TD><TD>$!item.getStringProperty("COBRA:brainVolumeData/fields/field[$xnat_experimentData_field_14_COUNTER]/field")</TD></TR>
+													<TR><TD>name</TD><TD>$!item.getStringProperty("COBRA:brainVolumeData/fields/field[$xnat_experimentData_field_14_COUNTER]/name")</TD></TR>
+												</TABLE>
+											</TD>
+										</TR>
+									</TABLE>
+<!-- END COBRA:brainVolumeData/fields/field[$xnat_experimentData_field_14_COUNTER] -->
+								#end
+							#end
+						</TD></TR></TABLE>
+					</TD>
+				</TR>
+			</TABLE>
+<!-- END COBRA:brainVolumeData -->
+		</TD>
+	</TR>
+</TABLE>

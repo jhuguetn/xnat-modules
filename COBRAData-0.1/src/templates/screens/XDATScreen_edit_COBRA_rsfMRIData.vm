@@ -1,0 +1,385 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 3.2//EN">
+$page.setTitle("XDAT")
+$page.setLinkColor($ui.alink)
+$page.setVlinkColor($ui.vlink)
+#set($months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"])
+#set($days = [ 1..31 ])
+#set($years = [ $!turbineUtils.getYear()..1900])
+#if ($data.message)
+<font color="red" size="3">$data.message</font>
+#end
+<p>
+<form ID="form1" name="form1" method="post" action="$link.setAction("ModifyImageAssessorData")">
+<input type="hidden" name="project" value="$!{project}" >
+#if($vr)
+	<font color="red">Invalid parameters:<BR>$vr.toHTML()</font>
+<HR>
+#end
+
+<TABLE width="100%">
+	<TR>
+		<TD>
+			<table width="100%">
+				<TR>
+					<TD align="left" valign="middle">
+						<DIV class="edit_title">resting state fMRI details</DIV>
+					</TD>
+				</TR>
+			</TABLE>
+		</TD>
+	</TR>
+	<TR>
+		<TD>
+			<TABLE width="100%">
+				<TR>
+					<TD valign="top">
+						<TABLE>
+							<TR><TD colspan='2'>
+								<hr>
+								#parse("/screens/xnat_edit_experimentData.vm")
+								<HR></TD></TR>
+							<tr>
+								<th align="left">fMRI ID</th>
+								<TD align="left">#xdatStringBox("COBRA:rsfMRIData.ID" $item "" $vr)</TD>
+							</tr>
+							<tr>
+								<TD colspan="2">#parse("/screens/EditProjectSpecificFields.vm")</TD>
+							</tr>
+							<TR><TD>scan/ID</TD><TD>#xdatStringBox("COBRA:rsfMRIData/scan/ID" $item "" $vr)</TD></TR>
+							<TR><TD>scan/type</TD><TD>#xdatStringBox("COBRA:rsfMRIData/scan/type" $item "" $vr)</TD></TR>
+							<TR><TD>imageSession_ID</TD><TD>#xdatStringBox("COBRA:rsfMRIData/imageSession_ID" $item "" $vr)</TD></TR>
+							<TR><TD>date</TD><TD>#xdatDateBox("COBRA:rsfMRIData/date" $item $vr $years)</TD></TR>
+							<TR><TD>time</TD><TD>#xdatTextBox("COBRA:rsfMRIData/time" $item "" $vr)</TD></TR>
+							<TR><TD>note</TD><TD>#xdatStringBox("COBRA:rsfMRIData/note" $item "" $vr)</TD></TR>
+							<TR><TD>acquisition_site</TD><TD>#xdatStringBox("COBRA:rsfMRIData/acquisition_site" $item "" $vr)</TD></TR>
+							<TR><TD>version</TD><TD>#xdatTextBox("COBRA:rsfMRIData/version" $item "" $vr)</TD></TR>
+							<TR><TD>protocol</TD><TD>#xdatStringBox("COBRA:rsfMRIData/protocol" $item "" $vr)</TD></TR>
+							<TR><TD>label</TD><TD>#xdatStringBox("COBRA:rsfMRIData/label" $item "" $vr)</TD></TR>
+                            <TR><TD>&nbsp;</TD><TD></TD></TR>
+							<TR><TD>Sensorimotor</TD><TD>#xdatTextBox("COBRA:rsfMRIData/Sensorimotor" $item "" $vr)</TD></TR>
+							<TR><TD>Auditory</TD><TD>#xdatTextBox("COBRA:rsfMRIData/Auditory" $item "" $vr)</TD></TR>
+							<TR><TD>Visual_medial</TD><TD>#xdatTextBox("COBRA:rsfMRIData/Visual_medial" $item "" $vr)</TD></TR>
+							<TR><TD>Default_mode</TD><TD>#xdatTextBox("COBRA:rsfMRIData/Default_mode" $item "" $vr)</TD></TR>
+							<TR><TD>Executive_control</TD><TD>#xdatTextBox("COBRA:rsfMRIData/Executive_control" $item "" $vr)</TD></TR>
+							<TR><TD>Cerebellar</TD><TD>#xdatTextBox("COBRA:rsfMRIData/Cerebellar" $item "" $vr)</TD></TR>
+							<TR><TD>Visual_lateral</TD><TD>#xdatTextBox("COBRA:rsfMRIData/Visual_lateral" $item "" $vr)</TD></TR>
+							<TR><TD>Fronto-parietal_Right</TD><TD>#xdatTextBox("COBRA:rsfMRIData/Fronto-parietal_Right" $item "" $vr)</TD></TR>
+							<TR><TD>Fronto-parietal_Left</TD><TD>#xdatTextBox("COBRA:rsfMRIData/Fronto-parietal_Left" $item "" $vr)</TD></TR>
+							<TR><TD>Visual_occipital</TD><TD>#xdatTextBox("COBRA:rsfMRIData/Visual_occipital" $item "" $vr)</TD></TR>
+						</TABLE>
+					</TD>
+				</TR>
+			</TABLE>
+		</TD>
+	</TR>
+	<TR>
+		<TD>
+<!-- BEGIN COBRA:rsfMRIData -->
+			<TABLE>
+				<TR><TH align="left"><font face="$ui.sansSerifFonts" size="2">Related Items</font></TH></TR>
+				<TR>
+					<TD align="left" valign="top">
+						<TABLE><TR><TD>
+							#foreach($xnat_abstractResource_1_COUNTER in [0..5])
+<!-- BEGIN COBRA:rsfMRIData/in/file[$xnat_abstractResource_1_COUNTER] -->
+								<TABLE>
+									<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">COBRA:rsfMRIData/in/file[$xnat_abstractResource_1_COUNTER]</font></TH></TR>
+									<TR>
+										<TD align="left" valign="top">
+											<TABLE>
+												<TR><TD>note</TD><TD>#xdatStringBox("COBRA:rsfMRIData/in/file[$xnat_abstractResource_1_COUNTER]/note" $item "" $vr)</TD></TR>
+												<TR><TD>label</TD><TD>#xdatStringBox("COBRA:rsfMRIData/in/file[$xnat_abstractResource_1_COUNTER]/label" $item "" $vr)</TD></TR>
+												<TR><TD>file_count</TD><TD>#xdatTextBox("COBRA:rsfMRIData/in/file[$xnat_abstractResource_1_COUNTER]/file_count" $item "" $vr)</TD></TR>
+												<TR><TD>file_size</TD><TD>#xdatTextBox("COBRA:rsfMRIData/in/file[$xnat_abstractResource_1_COUNTER]/file_size" $item "" $vr)</TD></TR>
+																		#xdatHiddenBox("COBRA:rsfMRIData/in/file[$xnat_abstractResource_1_COUNTER]/xnat_abstractResource_id" $item "")
+											</TABLE>
+										</TD>
+									</TR>
+<!-- BEGIN COBRA:rsfMRIData/in/file[$xnat_abstractResource_1_COUNTER]/tags/tag -->
+									<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">COBRA:rsfMRIData/in/file[$xnat_abstractResource_1_COUNTER]/tags/tag</font></TH></TR>
+									<TR>
+										<TD align="left" valign="top">
+											<TABLE>
+												<TR>
+													<TD>tag</TD>
+													<TD>name</TD>
+												</TR>
+												#foreach($xnat_abstractResource_tag_2_COUNTER in [0..5])
+													<TR>
+														<TD>#xdatTextBox("COBRA:rsfMRIData/in/file[$xnat_abstractResource_1_COUNTER]/tags/tag[$xnat_abstractResource_tag_2_COUNTER]/tag" $item "" $vr)</TD>
+														<TD>#xdatTextBox("COBRA:rsfMRIData/in/file[$xnat_abstractResource_1_COUNTER]/tags/tag[$xnat_abstractResource_tag_2_COUNTER]/name" $item "" $vr)</TD>
+														#xdatHiddenBox("COBRA:rsfMRIData/in/file[$xnat_abstractResource_1_COUNTER]/tags/tag[$xnat_abstractResource_tag_2_COUNTER]/xnat_abstractResource_tag_id" $item "")
+													</TR>
+												#end
+											</TABLE>
+										</TD>
+									</TR>
+<!-- END COBRA:rsfMRIData/in/file[$xnat_abstractResource_1_COUNTER]/tags/tag -->
+								</TABLE>
+<!-- END COBRA:rsfMRIData/in/file[$xnat_abstractResource_1_COUNTER] -->
+							#end
+						</TD></TR></TABLE>
+					</TD>
+				</TR>
+				<TR>
+					<TD align="left" valign="top">
+						<TABLE><TR><TD>
+							#foreach($xnat_abstractResource_2_COUNTER in [0..5])
+<!-- BEGIN COBRA:rsfMRIData/out/file[$xnat_abstractResource_2_COUNTER] -->
+								<TABLE>
+									<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">COBRA:rsfMRIData/out/file[$xnat_abstractResource_2_COUNTER]</font></TH></TR>
+									<TR>
+										<TD align="left" valign="top">
+											<TABLE>
+												<TR><TD>note</TD><TD>#xdatStringBox("COBRA:rsfMRIData/out/file[$xnat_abstractResource_2_COUNTER]/note" $item "" $vr)</TD></TR>
+												<TR><TD>label</TD><TD>#xdatStringBox("COBRA:rsfMRIData/out/file[$xnat_abstractResource_2_COUNTER]/label" $item "" $vr)</TD></TR>
+												<TR><TD>file_count</TD><TD>#xdatTextBox("COBRA:rsfMRIData/out/file[$xnat_abstractResource_2_COUNTER]/file_count" $item "" $vr)</TD></TR>
+												<TR><TD>file_size</TD><TD>#xdatTextBox("COBRA:rsfMRIData/out/file[$xnat_abstractResource_2_COUNTER]/file_size" $item "" $vr)</TD></TR>
+																		#xdatHiddenBox("COBRA:rsfMRIData/out/file[$xnat_abstractResource_2_COUNTER]/xnat_abstractResource_id" $item "")
+											</TABLE>
+										</TD>
+									</TR>
+<!-- BEGIN COBRA:rsfMRIData/out/file[$xnat_abstractResource_2_COUNTER]/tags/tag -->
+									<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">COBRA:rsfMRIData/out/file[$xnat_abstractResource_2_COUNTER]/tags/tag</font></TH></TR>
+									<TR>
+										<TD align="left" valign="top">
+											<TABLE>
+												<TR>
+													<TD>tag</TD>
+													<TD>name</TD>
+												</TR>
+												#foreach($xnat_abstractResource_tag_3_COUNTER in [0..5])
+													<TR>
+														<TD>#xdatTextBox("COBRA:rsfMRIData/out/file[$xnat_abstractResource_2_COUNTER]/tags/tag[$xnat_abstractResource_tag_3_COUNTER]/tag" $item "" $vr)</TD>
+														<TD>#xdatTextBox("COBRA:rsfMRIData/out/file[$xnat_abstractResource_2_COUNTER]/tags/tag[$xnat_abstractResource_tag_3_COUNTER]/name" $item "" $vr)</TD>
+														#xdatHiddenBox("COBRA:rsfMRIData/out/file[$xnat_abstractResource_2_COUNTER]/tags/tag[$xnat_abstractResource_tag_3_COUNTER]/xnat_abstractResource_tag_id" $item "")
+													</TR>
+												#end
+											</TABLE>
+										</TD>
+									</TR>
+<!-- END COBRA:rsfMRIData/out/file[$xnat_abstractResource_2_COUNTER]/tags/tag -->
+								</TABLE>
+<!-- END COBRA:rsfMRIData/out/file[$xnat_abstractResource_2_COUNTER] -->
+							#end
+						</TD></TR></TABLE>
+					</TD>
+				</TR>
+<!-- BEGIN COBRA:rsfMRIData/parameters/addParam -->
+				<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">COBRA:rsfMRIData/parameters/addParam</font></TH></TR>
+				<TR>
+					<TD align="left" valign="top">
+						<TABLE>
+							<TR>
+								<TD>addField</TD>
+								<TD>name</TD>
+							</TR>
+							#foreach($xnat_addField_3_COUNTER in [0..5])
+								<TR>
+									<TD>#xdatTextBox("COBRA:rsfMRIData/parameters/addParam[$xnat_addField_3_COUNTER]/addField" $item "" $vr)</TD>
+									<TD>#xdatTextBox("COBRA:rsfMRIData/parameters/addParam[$xnat_addField_3_COUNTER]/name" $item "" $vr)</TD>
+									#xdatHiddenBox("COBRA:rsfMRIData/parameters/addParam[$xnat_addField_3_COUNTER]/xnat_addField_id" $item "")
+								</TR>
+							#end
+						</TABLE>
+					</TD>
+				</TR>
+<!-- END COBRA:rsfMRIData/parameters/addParam -->
+				<TR>
+					<TD align="left" valign="top">
+<!-- BEGIN COBRA:rsfMRIData/provenance -->
+						<TABLE>
+							<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">COBRA:rsfMRIData/provenance</font></TH></TR>
+							<TR>
+								<TD align="left" valign="top">
+									<TABLE>
+																#xdatHiddenBox("COBRA:rsfMRIData/provenance/prov_process_id" $item "")
+									</TABLE>
+								</TD>
+							</TR>
+							<TR>
+								<TD align="left" valign="top">
+									<TABLE><TR><TD>
+										#foreach($prov_processStep_4_COUNTER in [0..5])
+<!-- BEGIN COBRA:rsfMRIData/provenance/processStep[$prov_processStep_4_COUNTER] -->
+											<TABLE>
+												<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">COBRA:rsfMRIData/provenance/processStep[$prov_processStep_4_COUNTER]</font></TH></TR>
+												<TR>
+													<TD align="left" valign="top">
+														<TABLE>
+															<TR><TD>program</TD><TD>#xdatStringBox("COBRA:rsfMRIData/provenance/processStep[$prov_processStep_4_COUNTER]/program" $item "" $vr)</TD></TR>
+															<TR><TD>program/version</TD><TD>#xdatStringBox("COBRA:rsfMRIData/provenance/processStep[$prov_processStep_4_COUNTER]/program/version" $item "" $vr)</TD></TR>
+															<TR><TD>program/arguments</TD><TD>#xdatStringBox("COBRA:rsfMRIData/provenance/processStep[$prov_processStep_4_COUNTER]/program/arguments" $item "" $vr)</TD></TR>
+															<TR><TD>timestamp</TD><TD>#xdatTextBox("COBRA:rsfMRIData/provenance/processStep[$prov_processStep_4_COUNTER]/timestamp" $item "" $vr)</TD></TR>
+															<TR><TD>cvs</TD><TD>#xdatStringBox("COBRA:rsfMRIData/provenance/processStep[$prov_processStep_4_COUNTER]/cvs" $item "" $vr)</TD></TR>
+															<TR><TD>user</TD><TD>#xdatStringBox("COBRA:rsfMRIData/provenance/processStep[$prov_processStep_4_COUNTER]/user" $item "" $vr)</TD></TR>
+															<TR><TD>machine</TD><TD>#xdatStringBox("COBRA:rsfMRIData/provenance/processStep[$prov_processStep_4_COUNTER]/machine" $item "" $vr)</TD></TR>
+															<TR><TD>platform</TD><TD>#xdatStringBox("COBRA:rsfMRIData/provenance/processStep[$prov_processStep_4_COUNTER]/platform" $item "" $vr)</TD></TR>
+															<TR><TD>platform/version</TD><TD>#xdatStringBox("COBRA:rsfMRIData/provenance/processStep[$prov_processStep_4_COUNTER]/platform/version" $item "" $vr)</TD></TR>
+															<TR><TD>compiler</TD><TD>#xdatStringBox("COBRA:rsfMRIData/provenance/processStep[$prov_processStep_4_COUNTER]/compiler" $item "" $vr)</TD></TR>
+															<TR><TD>compiler/version</TD><TD>#xdatStringBox("COBRA:rsfMRIData/provenance/processStep[$prov_processStep_4_COUNTER]/compiler/version" $item "" $vr)</TD></TR>
+																					#xdatHiddenBox("COBRA:rsfMRIData/provenance/processStep[$prov_processStep_4_COUNTER]/prov_processStep_id" $item "")
+														</TABLE>
+													</TD>
+												</TR>
+<!-- BEGIN COBRA:rsfMRIData/provenance/processStep[$prov_processStep_4_COUNTER]/library -->
+												<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">COBRA:rsfMRIData/provenance/processStep[$prov_processStep_4_COUNTER]/library</font></TH></TR>
+												<TR>
+													<TD align="left" valign="top">
+														<TABLE>
+															<TR>
+																<TD>library</TD>
+																<TD>version</TD>
+															</TR>
+															#foreach($prov_processStep_library_5_COUNTER in [0..5])
+																<TR>
+																	<TD>#xdatTextBox("COBRA:rsfMRIData/provenance/processStep[$prov_processStep_4_COUNTER]/library[$prov_processStep_library_5_COUNTER]/library" $item "" $vr)</TD>
+																	<TD>#xdatTextBox("COBRA:rsfMRIData/provenance/processStep[$prov_processStep_4_COUNTER]/library[$prov_processStep_library_5_COUNTER]/version" $item "" $vr)</TD>
+																	#xdatHiddenBox("COBRA:rsfMRIData/provenance/processStep[$prov_processStep_4_COUNTER]/library[$prov_processStep_library_5_COUNTER]/prov_processStep_library_id" $item "")
+																</TR>
+															#end
+														</TABLE>
+													</TD>
+												</TR>
+<!-- END COBRA:rsfMRIData/provenance/processStep[$prov_processStep_4_COUNTER]/library -->
+											</TABLE>
+<!-- END COBRA:rsfMRIData/provenance/processStep[$prov_processStep_4_COUNTER] -->
+										#end
+									</TD></TR></TABLE>
+								</TD>
+							</TR>
+						</TABLE>
+<!-- END COBRA:rsfMRIData/provenance -->
+					</TD>
+				</TR>
+				<TR>
+					<TD align="left" valign="top">
+<!-- BEGIN COBRA:rsfMRIData/investigator -->
+						<TABLE>
+							<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">COBRA:rsfMRIData/investigator</font></TH></TR>
+							<TR>
+								<TD align="left" valign="top">
+									<TABLE>
+										<TR><TD>title</TD><TD>#xdatStringBox("COBRA:rsfMRIData/investigator/title" $item "" $vr)</TD></TR>
+										<TR><TD>firstname</TD><TD>#xdatStringBox("COBRA:rsfMRIData/investigator/firstname" $item "" $vr)</TD></TR>
+										<TR><TD>lastname</TD><TD>#xdatStringBox("COBRA:rsfMRIData/investigator/lastname" $item "" $vr)</TD></TR>
+										<TR><TD>institution</TD><TD>#xdatStringBox("COBRA:rsfMRIData/investigator/institution" $item "" $vr)</TD></TR>
+										<TR><TD>department</TD><TD>#xdatStringBox("COBRA:rsfMRIData/investigator/department" $item "" $vr)</TD></TR>
+										<TR><TD>email</TD><TD>#xdatStringBox("COBRA:rsfMRIData/investigator/email" $item "" $vr)</TD></TR>
+										<TR><TD>phone</TD><TD>#xdatStringBox("COBRA:rsfMRIData/investigator/phone" $item "" $vr)</TD></TR>
+										<TR><TD>ID</TD><TD>#xdatStringBox("COBRA:rsfMRIData/investigator/ID" $item "" $vr)</TD></TR>
+																#xdatHiddenBox("COBRA:rsfMRIData/investigator/xnat_investigatorData_id" $item "")
+									</TABLE>
+								</TD>
+							</TR>
+						</TABLE>
+<!-- END COBRA:rsfMRIData/investigator -->
+					</TD>
+				</TR>
+				<TR>
+					<TD align="left" valign="top">
+<!-- BEGIN COBRA:rsfMRIData/validation -->
+						<TABLE>
+							<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">COBRA:rsfMRIData/validation</font></TH></TR>
+							<TR>
+								<TD align="left" valign="top">
+									<TABLE>
+										<TR><TD>method</TD><TD>#xdatStringBox("COBRA:rsfMRIData/validation/method" $item "" $vr)</TD></TR>
+										<TR><TD>date</TD><TD>#xdatDateBox("COBRA:rsfMRIData/validation/date" $item $vr $years)</TD></TR>
+										<TR><TD>notes</TD><TD>#xdatStringBox("COBRA:rsfMRIData/validation/notes" $item "" $vr)</TD></TR>
+										<TR><TD>validated_by</TD><TD>#xdatStringBox("COBRA:rsfMRIData/validation/validated_by" $item "" $vr)</TD></TR>
+										<TR><TD>status</TD><TD>#xdatStringBox("COBRA:rsfMRIData/validation/status" $item "" $vr)</TD></TR>
+																#xdatHiddenBox("COBRA:rsfMRIData/validation/xnat_validationData_id" $item "")
+									</TABLE>
+								</TD>
+							</TR>
+						</TABLE>
+<!-- END COBRA:rsfMRIData/validation -->
+					</TD>
+				</TR>
+				<TR>
+					<TD align="left" valign="top">
+						<TABLE><TR><TD>
+							#foreach($xnat_abstractResource_7_COUNTER in [0..5])
+<!-- BEGIN COBRA:rsfMRIData/resources/resource[$xnat_abstractResource_7_COUNTER] -->
+								<TABLE>
+									<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">COBRA:rsfMRIData/resources/resource[$xnat_abstractResource_7_COUNTER]</font></TH></TR>
+									<TR>
+										<TD align="left" valign="top">
+											<TABLE>
+												<TR><TD>note</TD><TD>#xdatStringBox("COBRA:rsfMRIData/resources/resource[$xnat_abstractResource_7_COUNTER]/note" $item "" $vr)</TD></TR>
+												<TR><TD>label</TD><TD>#xdatStringBox("COBRA:rsfMRIData/resources/resource[$xnat_abstractResource_7_COUNTER]/label" $item "" $vr)</TD></TR>
+												<TR><TD>file_count</TD><TD>#xdatTextBox("COBRA:rsfMRIData/resources/resource[$xnat_abstractResource_7_COUNTER]/file_count" $item "" $vr)</TD></TR>
+												<TR><TD>file_size</TD><TD>#xdatTextBox("COBRA:rsfMRIData/resources/resource[$xnat_abstractResource_7_COUNTER]/file_size" $item "" $vr)</TD></TR>
+																		#xdatHiddenBox("COBRA:rsfMRIData/resources/resource[$xnat_abstractResource_7_COUNTER]/xnat_abstractResource_id" $item "")
+											</TABLE>
+										</TD>
+									</TR>
+<!-- BEGIN COBRA:rsfMRIData/resources/resource[$xnat_abstractResource_7_COUNTER]/tags/tag -->
+									<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">COBRA:rsfMRIData/resources/resource[$xnat_abstractResource_7_COUNTER]/tags/tag</font></TH></TR>
+									<TR>
+										<TD align="left" valign="top">
+											<TABLE>
+												<TR>
+													<TD>tag</TD>
+													<TD>name</TD>
+												</TR>
+												#foreach($xnat_abstractResource_tag_8_COUNTER in [0..5])
+													<TR>
+														<TD>#xdatTextBox("COBRA:rsfMRIData/resources/resource[$xnat_abstractResource_7_COUNTER]/tags/tag[$xnat_abstractResource_tag_8_COUNTER]/tag" $item "" $vr)</TD>
+														<TD>#xdatTextBox("COBRA:rsfMRIData/resources/resource[$xnat_abstractResource_7_COUNTER]/tags/tag[$xnat_abstractResource_tag_8_COUNTER]/name" $item "" $vr)</TD>
+														#xdatHiddenBox("COBRA:rsfMRIData/resources/resource[$xnat_abstractResource_7_COUNTER]/tags/tag[$xnat_abstractResource_tag_8_COUNTER]/xnat_abstractResource_tag_id" $item "")
+													</TR>
+												#end
+											</TABLE>
+										</TD>
+									</TR>
+<!-- END COBRA:rsfMRIData/resources/resource[$xnat_abstractResource_7_COUNTER]/tags/tag -->
+								</TABLE>
+<!-- END COBRA:rsfMRIData/resources/resource[$xnat_abstractResource_7_COUNTER] -->
+							#end
+						</TD></TR></TABLE>
+					</TD>
+				</TR>
+<!-- BEGIN COBRA:rsfMRIData/fields/field -->
+				<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">COBRA:rsfMRIData/fields/field</font></TH></TR>
+				<TR>
+					<TD align="left" valign="top">
+						<TABLE>
+							<TR>
+								<TD>field</TD>
+								<TD>name</TD>
+							</TR>
+							#foreach($xnat_experimentData_field_8_COUNTER in [0..5])
+								<TR>
+									<TD>#xdatTextBox("COBRA:rsfMRIData/fields/field[$xnat_experimentData_field_8_COUNTER]/field" $item "" $vr)</TD>
+									<TD>#xdatTextBox("COBRA:rsfMRIData/fields/field[$xnat_experimentData_field_8_COUNTER]/name" $item "" $vr)</TD>
+									#xdatHiddenBox("COBRA:rsfMRIData/fields/field[$xnat_experimentData_field_8_COUNTER]/xnat_experimentData_field_id" $item "")
+								</TR>
+							#end
+						</TABLE>
+					</TD>
+				</TR>
+<!-- END COBRA:rsfMRIData/fields/field -->
+			</TABLE>
+<!-- END COBRA:rsfMRIData -->
+		</TD>
+	</TR>
+	<TR>
+		<TD>
+		#xdatEditProps($item $edit_screen)
+		<TR><TD COLSPAN=2 ALIGN=left><input type="button" ONCLICK="validateForm();"  name="eventSubmit_doInsert" value="Submit"/></TD></TR>
+		</TD>
+	</TR>
+</TABLE>
+</form>
+
+<script type="text/javascript">
+function validateForm()
+{
+   //INSERT CUSTOM CONTENT HERE
+
+   validateExperimentForm();
+   return false;
+}
+</script>

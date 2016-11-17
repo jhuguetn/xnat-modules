@@ -1,0 +1,552 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 3.2//EN">
+$page.setTitle("XDAT")
+$page.setLinkColor($ui.alink)
+$page.setVlinkColor($ui.vlink)
+#set($months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"])
+#set($days = [ 1..31 ])
+#set($years = [ $!turbineUtils.getYear()..1900])
+#if ($data.message)
+<font color="red" size="3">$data.message</font>
+#end
+<p>
+<form ID="form1" name="form1" method="post" action="$link.setAction("ModifyImageAssessorData")">
+<input type="hidden" name="project" value="$!{project}" >
+#if($vr)
+	<font color="red">Invalid parameters:<BR>$vr.toHTML()</font>
+<HR>
+#end
+
+<TABLE width="100%">
+	<TR>
+		<TD>
+			<table width="100%">
+				<TR>
+					<TD align="left" valign="middle">
+						<DIV class="edit_title">Cortical Thickness details</DIV>
+					</TD>
+				</TR>
+			</TABLE>
+		</TD>
+	</TR>
+	<TR>
+		<TD>
+			<TABLE width="100%">
+				<TR>
+					<TD valign="top">
+						<TABLE>
+							<TR><TD colspan='2'>
+								<hr>
+								#parse("/screens/xnat_edit_experimentData.vm")
+								<HR></TD></TR>
+							<tr>
+								<th align="left">corticalThick ID</th>
+								<TD align="left">#xdatStringBox("COBRA:corticalThicknessData.ID" $item "" $vr)</TD>
+							</tr>
+							<tr>
+								<TD colspan="2">#parse("/screens/EditProjectSpecificFields.vm")</TD>
+							</tr>
+							<TR><TD>scan/ID</TD><TD>#xdatStringBox("COBRA:corticalThicknessData/scan/ID" $item "" $vr)</TD></TR>
+							<TR><TD>scan/type</TD><TD>#xdatStringBox("COBRA:corticalThicknessData/scan/type" $item "" $vr)</TD></TR>
+							<TR><TD>imageSession_ID</TD><TD>#xdatStringBox("COBRA:corticalThicknessData/imageSession_ID" $item "" $vr)</TD></TR>
+							<TR><TD>date</TD><TD>#xdatDateBox("COBRA:corticalThicknessData/date" $item $vr $years)</TD></TR>
+							<TR><TD>time</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/time" $item "" $vr)</TD></TR>
+							<TR><TD>note</TD><TD>#xdatStringBox("COBRA:corticalThicknessData/note" $item "" $vr)</TD></TR>
+							<TR><TD>acquisition_site</TD><TD>#xdatStringBox("COBRA:corticalThicknessData/acquisition_site" $item "" $vr)</TD></TR>
+							<TR><TD>version</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/version" $item "" $vr)</TD></TR>
+							<TR><TD>protocol</TD><TD>#xdatStringBox("COBRA:corticalThicknessData/protocol" $item "" $vr)</TD></TR>
+							<TR><TD>label</TD><TD>#xdatStringBox("COBRA:corticalThicknessData/label" $item "" $vr)</TD></TR>
+                            <TR><TD>&nbsp;</TD><TD></TD></TR>
+							<TR><TD>lh_MeanThickness_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/lh_MeanThickness_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>rh_MeanThickness_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/rh_MeanThickness_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>Left-Cerebellum-White-Matter</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/Left-Cerebellum-White-Matter" $item "" $vr)</TD></TR>
+							<TR><TD>Left-Cerebellum-Cortex</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/Left-Cerebellum-Cortex" $item "" $vr)</TD></TR>
+							<TR><TD>Left-Thalamus-Proper</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/Left-Thalamus-Proper" $item "" $vr)</TD></TR>
+							<TR><TD>Left-Caudate</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/Left-Caudate" $item "" $vr)</TD></TR>
+							<TR><TD>Left-Putamen</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/Left-Putamen" $item "" $vr)</TD></TR>
+							<TR><TD>Left-Pallidum</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/Left-Pallidum" $item "" $vr)</TD></TR>
+							<TR><TD>Brain-Stem</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/Brain-Stem" $item "" $vr)</TD></TR>
+							<TR><TD>Left-Hippocampus</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/Left-Hippocampus" $item "" $vr)</TD></TR>
+							<TR><TD>Left-Amygdala</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/Left-Amygdala" $item "" $vr)</TD></TR>
+							<TR><TD>Left-Accumbens-area</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/Left-Accumbens-area" $item "" $vr)</TD></TR>
+							<TR><TD>Left-VentralDC</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/Left-VentralDC" $item "" $vr)</TD></TR>
+							<TR><TD>Right-Cerebellum-White-Matter</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/Right-Cerebellum-White-Matter" $item "" $vr)</TD></TR>
+							<TR><TD>Right-Cerebellum-Cortex</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/Right-Cerebellum-Cortex" $item "" $vr)</TD></TR>
+							<TR><TD>Right-Thalamus-Proper</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/Right-Thalamus-Proper" $item "" $vr)</TD></TR>
+							<TR><TD>Right-Caudate</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/Right-Caudate" $item "" $vr)</TD></TR>
+							<TR><TD>Right-Putamen</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/Right-Putamen" $item "" $vr)</TD></TR>
+							<TR><TD>Right-Pallidum</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/Right-Pallidum" $item "" $vr)</TD></TR>
+							<TR><TD>Right-Hippocampus</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/Right-Hippocampus" $item "" $vr)</TD></TR>
+							<TR><TD>Right-Amygdala</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/Right-Amygdala" $item "" $vr)</TD></TR>
+							<TR><TD>Right-Accumbens-area</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/Right-Accumbens-area" $item "" $vr)</TD></TR>
+							<TR><TD>Right-VentralDC</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/Right-VentralDC" $item "" $vr)</TD></TR>
+							<TR><TD>Optic-Chiasm</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/Optic-Chiasm" $item "" $vr)</TD></TR>
+							<TR><TD>CC_Posterior</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/CC_Posterior" $item "" $vr)</TD></TR>
+							<TR><TD>CC_Mid_Posterior</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/CC_Mid_Posterior" $item "" $vr)</TD></TR>
+							<TR><TD>CC_Central</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/CC_Central" $item "" $vr)</TD></TR>
+							<TR><TD>CC_Mid_Anterior</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/CC_Mid_Anterior" $item "" $vr)</TD></TR>
+							<TR><TD>CC_Anterior</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/CC_Anterior" $item "" $vr)</TD></TR>
+							<TR><TD>lh_G_and_S_frontomargin_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/lh_G_and_S_frontomargin_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>lh_G_and_S_occipital_inf_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/lh_G_and_S_occipital_inf_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>lh_G_and_S_paracentral_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/lh_G_and_S_paracentral_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>lh_G_and_S_subcentral_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/lh_G_and_S_subcentral_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>lh_G_and_S_transv_frontopol_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/lh_G_and_S_transv_frontopol_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>lh_G_and_S_cingul-Ant_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/lh_G_and_S_cingul-Ant_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>lh_G_and_S_cingul-Mid-Ant_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/lh_G_and_S_cingul-Mid-Ant_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>lh_G_and_S_cingul-Mid-Post_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/lh_G_and_S_cingul-Mid-Post_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>lh_G_cingul-Post-dorsal_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/lh_G_cingul-Post-dorsal_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>lh_G_cingul-Post-ventral_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/lh_G_cingul-Post-ventral_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>lh_G_cuneus_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/lh_G_cuneus_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>lh_G_front_inf-Opercular_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/lh_G_front_inf-Opercular_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>lh_G_front_inf-Orbital_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/lh_G_front_inf-Orbital_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>lh_G_front_inf-Triangul_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/lh_G_front_inf-Triangul_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>lh_G_front_middle_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/lh_G_front_middle_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>lh_G_front_sup_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/lh_G_front_sup_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>lh_G_Ins_lg_and_S_cent_ins_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/lh_G_Ins_lg_and_S_cent_ins_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>lh_G_insular_short_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/lh_G_insular_short_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>lh_G_occipital_middle_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/lh_G_occipital_middle_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>lh_G_occipital_sup_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/lh_G_occipital_sup_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>lh_G_oc-temp_lat-fusifor_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/lh_G_oc-temp_lat-fusifor_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>lh_G_oc-temp_med-Lingual_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/lh_G_oc-temp_med-Lingual_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>lh_G_oc-temp_med-Parahip_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/lh_G_oc-temp_med-Parahip_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>lh_G_orbital_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/lh_G_orbital_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>lh_G_pariet_inf-Angular_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/lh_G_pariet_inf-Angular_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>lh_G_pariet_inf-Supramar_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/lh_G_pariet_inf-Supramar_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>lh_G_parietal_sup_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/lh_G_parietal_sup_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>lh_G_postcentral_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/lh_G_postcentral_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>lh_G_precentral_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/lh_G_precentral_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>lh_G_precuneus_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/lh_G_precuneus_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>lh_G_rectus_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/lh_G_rectus_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>lh_G_subcallosal_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/lh_G_subcallosal_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>lh_G_temp_sup-G_T_transv_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/lh_G_temp_sup-G_T_transv_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>lh_G_temp_sup-Lateral_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/lh_G_temp_sup-Lateral_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>lh_G_temp_sup-Plan_polar_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/lh_G_temp_sup-Plan_polar_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>lh_G_temp_sup-Plan_tempo_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/lh_G_temp_sup-Plan_tempo_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>lh_G_temporal_inf_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/lh_G_temporal_inf_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>lh_G_temporal_middle_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/lh_G_temporal_middle_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>lh_Lat_Fis-ant-Horizont_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/lh_Lat_Fis-ant-Horizont_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>lh_Lat_Fis-ant-Vertical_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/lh_Lat_Fis-ant-Vertical_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>lh_Lat_Fis-post_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/lh_Lat_Fis-post_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>lh_Pole_occipital_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/lh_Pole_occipital_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>lh_Pole_temporal_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/lh_Pole_temporal_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>lh_S_calcarine_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/lh_S_calcarine_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>lh_S_central_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/lh_S_central_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>lh_S_cingul-Marginalis_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/lh_S_cingul-Marginalis_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>lh_S_circular_insula_ant_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/lh_S_circular_insula_ant_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>lh_S_circular_insula_inf_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/lh_S_circular_insula_inf_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>lh_S_circular_insula_sup_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/lh_S_circular_insula_sup_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>lh_S_collat_transv_ant_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/lh_S_collat_transv_ant_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>lh_S_collat_transv_post_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/lh_S_collat_transv_post_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>lh_S_front_inf_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/lh_S_front_inf_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>lh_S_front_middle_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/lh_S_front_middle_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>lh_S_front_sup_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/lh_S_front_sup_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>lh_S_interm_prim-Jensen_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/lh_S_interm_prim-Jensen_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>lh_S_intrapariet_and_P_trans_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/lh_S_intrapariet_and_P_trans_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>lh_S_oc_middle_and_Lunatus_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/lh_S_oc_middle_and_Lunatus_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>lh_S_oc_sup_and_transversal_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/lh_S_oc_sup_and_transversal_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>lh_S_occipital_ant_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/lh_S_occipital_ant_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>lh_S_oc-temp_lat_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/lh_S_oc-temp_lat_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>lh_S_oc-temp_med_and_Lingual_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/lh_S_oc-temp_med_and_Lingual_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>lh_S_orbital_lateral_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/lh_S_orbital_lateral_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>lh_S_orbital_med-olfact_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/lh_S_orbital_med-olfact_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>lh_S_orbital-H_Shaped_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/lh_S_orbital-H_Shaped_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>lh_S_parieto_occipital_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/lh_S_parieto_occipital_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>lh_S_pericallosal_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/lh_S_pericallosal_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>lh_S_postcentral_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/lh_S_postcentral_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>lh_S_precentral-inf-part_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/lh_S_precentral-inf-part_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>lh_S_precentral-sup-part_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/lh_S_precentral-sup-part_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>lh_S_suborbital_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/lh_S_suborbital_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>lh_S_subparietal_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/lh_S_subparietal_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>lh_S_temporal_inf_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/lh_S_temporal_inf_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>lh_S_temporal_sup_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/lh_S_temporal_sup_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>lh_S_temporal_transverse_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/lh_S_temporal_transverse_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>rh_G_and_S_frontomargin_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/rh_G_and_S_frontomargin_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>rh_G_and_S_occipital_inf_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/rh_G_and_S_occipital_inf_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>rh_G_and_S_paracentral_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/rh_G_and_S_paracentral_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>rh_G_and_S_subcentral_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/rh_G_and_S_subcentral_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>rh_G_and_S_transv_frontopol_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/rh_G_and_S_transv_frontopol_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>rh_G_and_S_cingul-Ant_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/rh_G_and_S_cingul-Ant_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>rh_G_and_S_cingul-Mid-Ant_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/rh_G_and_S_cingul-Mid-Ant_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>rh_G_and_S_cingul-Mid-Post_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/rh_G_and_S_cingul-Mid-Post_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>rh_G_cingul-Post-dorsal_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/rh_G_cingul-Post-dorsal_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>rh_G_cingul-Post-ventral_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/rh_G_cingul-Post-ventral_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>rh_G_cuneus_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/rh_G_cuneus_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>rh_G_front_inf-Opercular_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/rh_G_front_inf-Opercular_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>rh_G_front_inf-Orbital_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/rh_G_front_inf-Orbital_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>rh_G_front_inf-Triangul_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/rh_G_front_inf-Triangul_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>rh_G_front_middle_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/rh_G_front_middle_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>rh_G_front_sup_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/rh_G_front_sup_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>rh_G_Ins_lg_and_S_cent_ins_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/rh_G_Ins_lg_and_S_cent_ins_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>rh_G_insular_short_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/rh_G_insular_short_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>rh_G_occipital_middle_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/rh_G_occipital_middle_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>rh_G_occipital_sup_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/rh_G_occipital_sup_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>rh_G_oc-temp_lat-fusifor_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/rh_G_oc-temp_lat-fusifor_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>rh_G_oc-temp_med-Lingual_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/rh_G_oc-temp_med-Lingual_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>rh_G_oc-temp_med-Parahip_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/rh_G_oc-temp_med-Parahip_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>rh_G_orbital_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/rh_G_orbital_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>rh_G_pariet_inf-Angular_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/rh_G_pariet_inf-Angular_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>rh_G_pariet_inf-Supramar_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/rh_G_pariet_inf-Supramar_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>rh_G_parietal_sup_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/rh_G_parietal_sup_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>rh_G_postcentral_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/rh_G_postcentral_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>rh_G_precentral_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/rh_G_precentral_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>rh_G_precuneus_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/rh_G_precuneus_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>rh_G_rectus_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/rh_G_rectus_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>rh_G_subcallosal_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/rh_G_subcallosal_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>rh_G_temp_sup-G_T_transv_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/rh_G_temp_sup-G_T_transv_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>rh_G_temp_sup-Lateral_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/rh_G_temp_sup-Lateral_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>rh_G_temp_sup-Plan_polar_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/rh_G_temp_sup-Plan_polar_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>rh_G_temp_sup-Plan_tempo_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/rh_G_temp_sup-Plan_tempo_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>rh_G_temporal_inf_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/rh_G_temporal_inf_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>rh_G_temporal_middle_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/rh_G_temporal_middle_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>rh_Lat_Fis-ant-Horizont_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/rh_Lat_Fis-ant-Horizont_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>rh_Lat_Fis-ant-Vertical_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/rh_Lat_Fis-ant-Vertical_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>rh_Lat_Fis-post_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/rh_Lat_Fis-post_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>rh_Pole_occipital_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/rh_Pole_occipital_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>rh_Pole_temporal_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/rh_Pole_temporal_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>rh_S_calcarine_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/rh_S_calcarine_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>rh_S_central_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/rh_S_central_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>rh_S_cingul-Marginalis_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/rh_S_cingul-Marginalis_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>rh_S_circular_insula_ant_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/rh_S_circular_insula_ant_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>rh_S_circular_insula_inf_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/rh_S_circular_insula_inf_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>rh_S_circular_insula_sup_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/rh_S_circular_insula_sup_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>rh_S_collat_transv_ant_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/rh_S_collat_transv_ant_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>rh_S_collat_transv_post_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/rh_S_collat_transv_post_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>rh_S_front_inf_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/rh_S_front_inf_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>rh_S_front_middle_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/rh_S_front_middle_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>rh_S_front_sup_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/rh_S_front_sup_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>rh_S_interm_prim-Jensen_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/rh_S_interm_prim-Jensen_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>rh_S_intrapariet_and_P_trans_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/rh_S_intrapariet_and_P_trans_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>rh_S_oc_middle_and_Lunatus_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/rh_S_oc_middle_and_Lunatus_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>rh_S_oc_sup_and_transversal_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/rh_S_oc_sup_and_transversal_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>rh_S_occipital_ant_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/rh_S_occipital_ant_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>rh_S_oc-temp_lat_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/rh_S_oc-temp_lat_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>rh_S_oc-temp_med_and_Lingual_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/rh_S_oc-temp_med_and_Lingual_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>rh_S_orbital_lateral_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/rh_S_orbital_lateral_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>rh_S_orbital_med-olfact_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/rh_S_orbital_med-olfact_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>rh_S_orbital-H_Shaped_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/rh_S_orbital-H_Shaped_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>rh_S_parieto_occipital_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/rh_S_parieto_occipital_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>rh_S_pericallosal_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/rh_S_pericallosal_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>rh_S_postcentral_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/rh_S_postcentral_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>rh_S_precentral-inf-part_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/rh_S_precentral-inf-part_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>rh_S_precentral-sup-part_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/rh_S_precentral-sup-part_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>rh_S_suborbital_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/rh_S_suborbital_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>rh_S_subparietal_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/rh_S_subparietal_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>rh_S_temporal_inf_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/rh_S_temporal_inf_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>rh_S_temporal_sup_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/rh_S_temporal_sup_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>rh_S_temporal_transverse_thickness</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/rh_S_temporal_transverse_thickness" $item "" $vr)</TD></TR>
+						</TABLE>
+					</TD>
+				</TR>
+			</TABLE>
+		</TD>
+	</TR>
+	<TR>
+		<TD>
+<!-- BEGIN COBRA:corticalThicknessData -->
+			<TABLE>
+				<TR><TH align="left"><font face="$ui.sansSerifFonts" size="2">Related Items</font></TH></TR>
+				<TR>
+					<TD align="left" valign="top">
+						<TABLE><TR><TD>
+							#foreach($xnat_abstractResource_1_COUNTER in [0..5])
+<!-- BEGIN COBRA:corticalThicknessData/in/file[$xnat_abstractResource_1_COUNTER] -->
+								<TABLE>
+									<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">COBRA:corticalThicknessData/in/file[$xnat_abstractResource_1_COUNTER]</font></TH></TR>
+									<TR>
+										<TD align="left" valign="top">
+											<TABLE>
+												<TR><TD>note</TD><TD>#xdatStringBox("COBRA:corticalThicknessData/in/file[$xnat_abstractResource_1_COUNTER]/note" $item "" $vr)</TD></TR>
+												<TR><TD>label</TD><TD>#xdatStringBox("COBRA:corticalThicknessData/in/file[$xnat_abstractResource_1_COUNTER]/label" $item "" $vr)</TD></TR>
+												<TR><TD>file_count</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/in/file[$xnat_abstractResource_1_COUNTER]/file_count" $item "" $vr)</TD></TR>
+												<TR><TD>file_size</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/in/file[$xnat_abstractResource_1_COUNTER]/file_size" $item "" $vr)</TD></TR>
+																		#xdatHiddenBox("COBRA:corticalThicknessData/in/file[$xnat_abstractResource_1_COUNTER]/xnat_abstractResource_id" $item "")
+											</TABLE>
+										</TD>
+									</TR>
+<!-- BEGIN COBRA:corticalThicknessData/in/file[$xnat_abstractResource_1_COUNTER]/tags/tag -->
+									<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">COBRA:corticalThicknessData/in/file[$xnat_abstractResource_1_COUNTER]/tags/tag</font></TH></TR>
+									<TR>
+										<TD align="left" valign="top">
+											<TABLE>
+												<TR>
+													<TD>tag</TD>
+													<TD>name</TD>
+												</TR>
+												#foreach($xnat_abstractResource_tag_2_COUNTER in [0..5])
+													<TR>
+														<TD>#xdatTextBox("COBRA:corticalThicknessData/in/file[$xnat_abstractResource_1_COUNTER]/tags/tag[$xnat_abstractResource_tag_2_COUNTER]/tag" $item "" $vr)</TD>
+														<TD>#xdatTextBox("COBRA:corticalThicknessData/in/file[$xnat_abstractResource_1_COUNTER]/tags/tag[$xnat_abstractResource_tag_2_COUNTER]/name" $item "" $vr)</TD>
+														#xdatHiddenBox("COBRA:corticalThicknessData/in/file[$xnat_abstractResource_1_COUNTER]/tags/tag[$xnat_abstractResource_tag_2_COUNTER]/xnat_abstractResource_tag_id" $item "")
+													</TR>
+												#end
+											</TABLE>
+										</TD>
+									</TR>
+<!-- END COBRA:corticalThicknessData/in/file[$xnat_abstractResource_1_COUNTER]/tags/tag -->
+								</TABLE>
+<!-- END COBRA:corticalThicknessData/in/file[$xnat_abstractResource_1_COUNTER] -->
+							#end
+						</TD></TR></TABLE>
+					</TD>
+				</TR>
+				<TR>
+					<TD align="left" valign="top">
+						<TABLE><TR><TD>
+							#foreach($xnat_abstractResource_2_COUNTER in [0..5])
+<!-- BEGIN COBRA:corticalThicknessData/out/file[$xnat_abstractResource_2_COUNTER] -->
+								<TABLE>
+									<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">COBRA:corticalThicknessData/out/file[$xnat_abstractResource_2_COUNTER]</font></TH></TR>
+									<TR>
+										<TD align="left" valign="top">
+											<TABLE>
+												<TR><TD>note</TD><TD>#xdatStringBox("COBRA:corticalThicknessData/out/file[$xnat_abstractResource_2_COUNTER]/note" $item "" $vr)</TD></TR>
+												<TR><TD>label</TD><TD>#xdatStringBox("COBRA:corticalThicknessData/out/file[$xnat_abstractResource_2_COUNTER]/label" $item "" $vr)</TD></TR>
+												<TR><TD>file_count</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/out/file[$xnat_abstractResource_2_COUNTER]/file_count" $item "" $vr)</TD></TR>
+												<TR><TD>file_size</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/out/file[$xnat_abstractResource_2_COUNTER]/file_size" $item "" $vr)</TD></TR>
+																		#xdatHiddenBox("COBRA:corticalThicknessData/out/file[$xnat_abstractResource_2_COUNTER]/xnat_abstractResource_id" $item "")
+											</TABLE>
+										</TD>
+									</TR>
+<!-- BEGIN COBRA:corticalThicknessData/out/file[$xnat_abstractResource_2_COUNTER]/tags/tag -->
+									<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">COBRA:corticalThicknessData/out/file[$xnat_abstractResource_2_COUNTER]/tags/tag</font></TH></TR>
+									<TR>
+										<TD align="left" valign="top">
+											<TABLE>
+												<TR>
+													<TD>tag</TD>
+													<TD>name</TD>
+												</TR>
+												#foreach($xnat_abstractResource_tag_3_COUNTER in [0..5])
+													<TR>
+														<TD>#xdatTextBox("COBRA:corticalThicknessData/out/file[$xnat_abstractResource_2_COUNTER]/tags/tag[$xnat_abstractResource_tag_3_COUNTER]/tag" $item "" $vr)</TD>
+														<TD>#xdatTextBox("COBRA:corticalThicknessData/out/file[$xnat_abstractResource_2_COUNTER]/tags/tag[$xnat_abstractResource_tag_3_COUNTER]/name" $item "" $vr)</TD>
+														#xdatHiddenBox("COBRA:corticalThicknessData/out/file[$xnat_abstractResource_2_COUNTER]/tags/tag[$xnat_abstractResource_tag_3_COUNTER]/xnat_abstractResource_tag_id" $item "")
+													</TR>
+												#end
+											</TABLE>
+										</TD>
+									</TR>
+<!-- END COBRA:corticalThicknessData/out/file[$xnat_abstractResource_2_COUNTER]/tags/tag -->
+								</TABLE>
+<!-- END COBRA:corticalThicknessData/out/file[$xnat_abstractResource_2_COUNTER] -->
+							#end
+						</TD></TR></TABLE>
+					</TD>
+				</TR>
+<!-- BEGIN COBRA:corticalThicknessData/parameters/addParam -->
+				<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">COBRA:corticalThicknessData/parameters/addParam</font></TH></TR>
+				<TR>
+					<TD align="left" valign="top">
+						<TABLE>
+							<TR>
+								<TD>addField</TD>
+								<TD>name</TD>
+							</TR>
+							#foreach($xnat_addField_3_COUNTER in [0..5])
+								<TR>
+									<TD>#xdatTextBox("COBRA:corticalThicknessData/parameters/addParam[$xnat_addField_3_COUNTER]/addField" $item "" $vr)</TD>
+									<TD>#xdatTextBox("COBRA:corticalThicknessData/parameters/addParam[$xnat_addField_3_COUNTER]/name" $item "" $vr)</TD>
+									#xdatHiddenBox("COBRA:corticalThicknessData/parameters/addParam[$xnat_addField_3_COUNTER]/xnat_addField_id" $item "")
+								</TR>
+							#end
+						</TABLE>
+					</TD>
+				</TR>
+<!-- END COBRA:corticalThicknessData/parameters/addParam -->
+				<TR>
+					<TD align="left" valign="top">
+<!-- BEGIN COBRA:corticalThicknessData/provenance -->
+						<TABLE>
+							<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">COBRA:corticalThicknessData/provenance</font></TH></TR>
+							<TR>
+								<TD align="left" valign="top">
+									<TABLE>
+																#xdatHiddenBox("COBRA:corticalThicknessData/provenance/prov_process_id" $item "")
+									</TABLE>
+								</TD>
+							</TR>
+							<TR>
+								<TD align="left" valign="top">
+									<TABLE><TR><TD>
+										#foreach($prov_processStep_4_COUNTER in [0..5])
+<!-- BEGIN COBRA:corticalThicknessData/provenance/processStep[$prov_processStep_4_COUNTER] -->
+											<TABLE>
+												<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">COBRA:corticalThicknessData/provenance/processStep[$prov_processStep_4_COUNTER]</font></TH></TR>
+												<TR>
+													<TD align="left" valign="top">
+														<TABLE>
+															<TR><TD>program</TD><TD>#xdatStringBox("COBRA:corticalThicknessData/provenance/processStep[$prov_processStep_4_COUNTER]/program" $item "" $vr)</TD></TR>
+															<TR><TD>program/version</TD><TD>#xdatStringBox("COBRA:corticalThicknessData/provenance/processStep[$prov_processStep_4_COUNTER]/program/version" $item "" $vr)</TD></TR>
+															<TR><TD>program/arguments</TD><TD>#xdatStringBox("COBRA:corticalThicknessData/provenance/processStep[$prov_processStep_4_COUNTER]/program/arguments" $item "" $vr)</TD></TR>
+															<TR><TD>timestamp</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/provenance/processStep[$prov_processStep_4_COUNTER]/timestamp" $item "" $vr)</TD></TR>
+															<TR><TD>cvs</TD><TD>#xdatStringBox("COBRA:corticalThicknessData/provenance/processStep[$prov_processStep_4_COUNTER]/cvs" $item "" $vr)</TD></TR>
+															<TR><TD>user</TD><TD>#xdatStringBox("COBRA:corticalThicknessData/provenance/processStep[$prov_processStep_4_COUNTER]/user" $item "" $vr)</TD></TR>
+															<TR><TD>machine</TD><TD>#xdatStringBox("COBRA:corticalThicknessData/provenance/processStep[$prov_processStep_4_COUNTER]/machine" $item "" $vr)</TD></TR>
+															<TR><TD>platform</TD><TD>#xdatStringBox("COBRA:corticalThicknessData/provenance/processStep[$prov_processStep_4_COUNTER]/platform" $item "" $vr)</TD></TR>
+															<TR><TD>platform/version</TD><TD>#xdatStringBox("COBRA:corticalThicknessData/provenance/processStep[$prov_processStep_4_COUNTER]/platform/version" $item "" $vr)</TD></TR>
+															<TR><TD>compiler</TD><TD>#xdatStringBox("COBRA:corticalThicknessData/provenance/processStep[$prov_processStep_4_COUNTER]/compiler" $item "" $vr)</TD></TR>
+															<TR><TD>compiler/version</TD><TD>#xdatStringBox("COBRA:corticalThicknessData/provenance/processStep[$prov_processStep_4_COUNTER]/compiler/version" $item "" $vr)</TD></TR>
+																					#xdatHiddenBox("COBRA:corticalThicknessData/provenance/processStep[$prov_processStep_4_COUNTER]/prov_processStep_id" $item "")
+														</TABLE>
+													</TD>
+												</TR>
+<!-- BEGIN COBRA:corticalThicknessData/provenance/processStep[$prov_processStep_4_COUNTER]/library -->
+												<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">COBRA:corticalThicknessData/provenance/processStep[$prov_processStep_4_COUNTER]/library</font></TH></TR>
+												<TR>
+													<TD align="left" valign="top">
+														<TABLE>
+															<TR>
+																<TD>library</TD>
+																<TD>version</TD>
+															</TR>
+															#foreach($prov_processStep_library_5_COUNTER in [0..5])
+																<TR>
+																	<TD>#xdatTextBox("COBRA:corticalThicknessData/provenance/processStep[$prov_processStep_4_COUNTER]/library[$prov_processStep_library_5_COUNTER]/library" $item "" $vr)</TD>
+																	<TD>#xdatTextBox("COBRA:corticalThicknessData/provenance/processStep[$prov_processStep_4_COUNTER]/library[$prov_processStep_library_5_COUNTER]/version" $item "" $vr)</TD>
+																	#xdatHiddenBox("COBRA:corticalThicknessData/provenance/processStep[$prov_processStep_4_COUNTER]/library[$prov_processStep_library_5_COUNTER]/prov_processStep_library_id" $item "")
+																</TR>
+															#end
+														</TABLE>
+													</TD>
+												</TR>
+<!-- END COBRA:corticalThicknessData/provenance/processStep[$prov_processStep_4_COUNTER]/library -->
+											</TABLE>
+<!-- END COBRA:corticalThicknessData/provenance/processStep[$prov_processStep_4_COUNTER] -->
+										#end
+									</TD></TR></TABLE>
+								</TD>
+							</TR>
+						</TABLE>
+<!-- END COBRA:corticalThicknessData/provenance -->
+					</TD>
+				</TR>
+				<TR>
+					<TD align="left" valign="top">
+<!-- BEGIN COBRA:corticalThicknessData/investigator -->
+						<TABLE>
+							<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">COBRA:corticalThicknessData/investigator</font></TH></TR>
+							<TR>
+								<TD align="left" valign="top">
+									<TABLE>
+										<TR><TD>title</TD><TD>#xdatStringBox("COBRA:corticalThicknessData/investigator/title" $item "" $vr)</TD></TR>
+										<TR><TD>firstname</TD><TD>#xdatStringBox("COBRA:corticalThicknessData/investigator/firstname" $item "" $vr)</TD></TR>
+										<TR><TD>lastname</TD><TD>#xdatStringBox("COBRA:corticalThicknessData/investigator/lastname" $item "" $vr)</TD></TR>
+										<TR><TD>institution</TD><TD>#xdatStringBox("COBRA:corticalThicknessData/investigator/institution" $item "" $vr)</TD></TR>
+										<TR><TD>department</TD><TD>#xdatStringBox("COBRA:corticalThicknessData/investigator/department" $item "" $vr)</TD></TR>
+										<TR><TD>email</TD><TD>#xdatStringBox("COBRA:corticalThicknessData/investigator/email" $item "" $vr)</TD></TR>
+										<TR><TD>phone</TD><TD>#xdatStringBox("COBRA:corticalThicknessData/investigator/phone" $item "" $vr)</TD></TR>
+										<TR><TD>ID</TD><TD>#xdatStringBox("COBRA:corticalThicknessData/investigator/ID" $item "" $vr)</TD></TR>
+																#xdatHiddenBox("COBRA:corticalThicknessData/investigator/xnat_investigatorData_id" $item "")
+									</TABLE>
+								</TD>
+							</TR>
+						</TABLE>
+<!-- END COBRA:corticalThicknessData/investigator -->
+					</TD>
+				</TR>
+				<TR>
+					<TD align="left" valign="top">
+<!-- BEGIN COBRA:corticalThicknessData/validation -->
+						<TABLE>
+							<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">COBRA:corticalThicknessData/validation</font></TH></TR>
+							<TR>
+								<TD align="left" valign="top">
+									<TABLE>
+										<TR><TD>method</TD><TD>#xdatStringBox("COBRA:corticalThicknessData/validation/method" $item "" $vr)</TD></TR>
+										<TR><TD>date</TD><TD>#xdatDateBox("COBRA:corticalThicknessData/validation/date" $item $vr $years)</TD></TR>
+										<TR><TD>notes</TD><TD>#xdatStringBox("COBRA:corticalThicknessData/validation/notes" $item "" $vr)</TD></TR>
+										<TR><TD>validated_by</TD><TD>#xdatStringBox("COBRA:corticalThicknessData/validation/validated_by" $item "" $vr)</TD></TR>
+										<TR><TD>status</TD><TD>#xdatStringBox("COBRA:corticalThicknessData/validation/status" $item "" $vr)</TD></TR>
+																#xdatHiddenBox("COBRA:corticalThicknessData/validation/xnat_validationData_id" $item "")
+									</TABLE>
+								</TD>
+							</TR>
+						</TABLE>
+<!-- END COBRA:corticalThicknessData/validation -->
+					</TD>
+				</TR>
+				<TR>
+					<TD align="left" valign="top">
+						<TABLE><TR><TD>
+							#foreach($xnat_abstractResource_7_COUNTER in [0..5])
+<!-- BEGIN COBRA:corticalThicknessData/resources/resource[$xnat_abstractResource_7_COUNTER] -->
+								<TABLE>
+									<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">COBRA:corticalThicknessData/resources/resource[$xnat_abstractResource_7_COUNTER]</font></TH></TR>
+									<TR>
+										<TD align="left" valign="top">
+											<TABLE>
+												<TR><TD>note</TD><TD>#xdatStringBox("COBRA:corticalThicknessData/resources/resource[$xnat_abstractResource_7_COUNTER]/note" $item "" $vr)</TD></TR>
+												<TR><TD>label</TD><TD>#xdatStringBox("COBRA:corticalThicknessData/resources/resource[$xnat_abstractResource_7_COUNTER]/label" $item "" $vr)</TD></TR>
+												<TR><TD>file_count</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/resources/resource[$xnat_abstractResource_7_COUNTER]/file_count" $item "" $vr)</TD></TR>
+												<TR><TD>file_size</TD><TD>#xdatTextBox("COBRA:corticalThicknessData/resources/resource[$xnat_abstractResource_7_COUNTER]/file_size" $item "" $vr)</TD></TR>
+																		#xdatHiddenBox("COBRA:corticalThicknessData/resources/resource[$xnat_abstractResource_7_COUNTER]/xnat_abstractResource_id" $item "")
+											</TABLE>
+										</TD>
+									</TR>
+<!-- BEGIN COBRA:corticalThicknessData/resources/resource[$xnat_abstractResource_7_COUNTER]/tags/tag -->
+									<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">COBRA:corticalThicknessData/resources/resource[$xnat_abstractResource_7_COUNTER]/tags/tag</font></TH></TR>
+									<TR>
+										<TD align="left" valign="top">
+											<TABLE>
+												<TR>
+													<TD>tag</TD>
+													<TD>name</TD>
+												</TR>
+												#foreach($xnat_abstractResource_tag_8_COUNTER in [0..5])
+													<TR>
+														<TD>#xdatTextBox("COBRA:corticalThicknessData/resources/resource[$xnat_abstractResource_7_COUNTER]/tags/tag[$xnat_abstractResource_tag_8_COUNTER]/tag" $item "" $vr)</TD>
+														<TD>#xdatTextBox("COBRA:corticalThicknessData/resources/resource[$xnat_abstractResource_7_COUNTER]/tags/tag[$xnat_abstractResource_tag_8_COUNTER]/name" $item "" $vr)</TD>
+														#xdatHiddenBox("COBRA:corticalThicknessData/resources/resource[$xnat_abstractResource_7_COUNTER]/tags/tag[$xnat_abstractResource_tag_8_COUNTER]/xnat_abstractResource_tag_id" $item "")
+													</TR>
+												#end
+											</TABLE>
+										</TD>
+									</TR>
+<!-- END COBRA:corticalThicknessData/resources/resource[$xnat_abstractResource_7_COUNTER]/tags/tag -->
+								</TABLE>
+<!-- END COBRA:corticalThicknessData/resources/resource[$xnat_abstractResource_7_COUNTER] -->
+							#end
+						</TD></TR></TABLE>
+					</TD>
+				</TR>
+<!-- BEGIN COBRA:corticalThicknessData/fields/field -->
+				<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">COBRA:corticalThicknessData/fields/field</font></TH></TR>
+				<TR>
+					<TD align="left" valign="top">
+						<TABLE>
+							<TR>
+								<TD>field</TD>
+								<TD>name</TD>
+							</TR>
+							#foreach($xnat_experimentData_field_8_COUNTER in [0..5])
+								<TR>
+									<TD>#xdatTextBox("COBRA:corticalThicknessData/fields/field[$xnat_experimentData_field_8_COUNTER]/field" $item "" $vr)</TD>
+									<TD>#xdatTextBox("COBRA:corticalThicknessData/fields/field[$xnat_experimentData_field_8_COUNTER]/name" $item "" $vr)</TD>
+									#xdatHiddenBox("COBRA:corticalThicknessData/fields/field[$xnat_experimentData_field_8_COUNTER]/xnat_experimentData_field_id" $item "")
+								</TR>
+							#end
+						</TABLE>
+					</TD>
+				</TR>
+<!-- END COBRA:corticalThicknessData/fields/field -->
+			</TABLE>
+<!-- END COBRA:corticalThicknessData -->
+		</TD>
+	</TR>
+	<TR>
+		<TD>
+		#xdatEditProps($item $edit_screen)
+		<TR><TD COLSPAN=2 ALIGN=left><input type="button" ONCLICK="validateForm();"  name="eventSubmit_doInsert" value="Submit"/></TD></TR>
+		</TD>
+	</TR>
+</TABLE>
+</form>
+
+<script type="text/javascript">
+function validateForm()
+{
+   //INSERT CUSTOM CONTENT HERE
+
+   validateExperimentForm();
+   return false;
+}
+</script>

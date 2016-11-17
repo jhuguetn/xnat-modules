@@ -1,0 +1,632 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 3.2//EN">
+$page.setTitle("XDAT")
+$page.setLinkColor($ui.alink)
+$page.setVlinkColor($ui.vlink)
+#set($months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"])
+#set($days = [ 1..31 ])
+#set($years = [ $!turbineUtils.getYear()..1900])
+#if ($data.message)
+<font color="red" size="3">$data.message</font>
+#end
+<p>
+<form ID="form1" name="form1" method="post" action="$link.setAction("ModifyImageAssessorData")">
+<input type="hidden" name="project" value="$!{project}" >
+#if($vr)
+	<font color="red">Invalid parameters:<BR>$vr.toHTML()</font>
+<HR>
+#end
+
+<TABLE width="100%">
+	<TR>
+		<TD>
+			<table width="100%">
+				<TR>
+					<TD align="left" valign="middle">
+						<DIV class="edit_title">Diffusion Tensor Imaging (DTI) details</DIV>
+					</TD>
+				</TR>
+			</TABLE>
+		</TD>
+	</TR>
+	<TR>
+		<TD>
+			<TABLE width="100%">
+				<TR>
+					<TD valign="top">
+						<TABLE>
+							<TR><TD colspan='2'>
+								<hr>
+								#parse("/screens/xnat_edit_experimentData.vm")
+								<HR></TD></TR>
+							<tr>
+								<th align="left">DTI ID</th>
+								<TD align="left">#xdatStringBox("COBRA:DTIData.ID" $item "" $vr)</TD>
+							</tr>
+							<tr>
+								<TD colspan="2">#parse("/screens/EditProjectSpecificFields.vm")</TD>
+							</tr>
+							<TR><TD>scan/ID</TD><TD>#xdatStringBox("COBRA:DTIData/scan/ID" $item "" $vr)</TD></TR>
+							<TR><TD>scan/type</TD><TD>#xdatStringBox("COBRA:DTIData/scan/type" $item "" $vr)</TD></TR>
+							<TR><TD>imageSession_ID</TD><TD>#xdatStringBox("COBRA:DTIData/imageSession_ID" $item "" $vr)</TD></TR>
+							<TR><TD>date</TD><TD>#xdatDateBox("COBRA:DTIData/date" $item $vr $years)</TD></TR>
+							<TR><TD>time</TD><TD>#xdatTextBox("COBRA:DTIData/time" $item "" $vr)</TD></TR>
+							<TR><TD>duration</TD><TD>#xdatTextBox("COBRA:DTIData/duration" $item "" $vr)</TD></TR>
+							<TR><TD>note</TD><TD>#xdatStringBox("COBRA:DTIData/note" $item "" $vr)</TD></TR>
+							<TR><TD>acquisition_site</TD><TD>#xdatStringBox("COBRA:DTIData/acquisition_site" $item "" $vr)</TD></TR>
+							<TR><TD>version</TD><TD>#xdatTextBox("COBRA:DTIData/version" $item "" $vr)</TD></TR>
+							<TR><TD>protocol</TD><TD>#xdatStringBox("COBRA:DTIData/protocol" $item "" $vr)</TD></TR>
+							<TR><TD>label</TD><TD>#xdatStringBox("COBRA:DTIData/label" $item "" $vr)</TD></TR>
+                            <TR><TD>&nbsp;</TD><TD></TD></TR>
+							<TR><TD>labels_Ant_corona_radiata_L_FA</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Ant_corona_radiata_L_FA" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Ant_corona_radiata_R_FA</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Ant_corona_radiata_R_FA" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Ant_limb_internal_capsule_L_FA</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Ant_limb_internal_capsule_L_FA" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Ant_limb_internal_capsule_R_FA</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Ant_limb_internal_capsule_R_FA" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Body_corpus_callosum_FA</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Body_corpus_callosum_FA" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Cerebral_ped_L_FA</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Cerebral_ped_L_FA" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Cerebral_ped_R_FA</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Cerebral_ped_R_FA" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Cingulum_L_FA</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Cingulum_L_FA" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Cingulum_R_FA</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Cingulum_R_FA" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Corticospinal_tract_L_FA</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Corticospinal_tract_L_FA" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Corticospinal_tract_R_FA</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Corticospinal_tract_R_FA" $item "" $vr)</TD></TR>
+							<TR><TD>labels_External_capsule_L_FA</TD><TD>#xdatTextBox("COBRA:DTIData/labels_External_capsule_L_FA" $item "" $vr)</TD></TR>
+							<TR><TD>labels_External_capsule_R_FA</TD><TD>#xdatTextBox("COBRA:DTIData/labels_External_capsule_R_FA" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Fornix_FA</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Fornix_FA" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Fornix_Stria_terminalis_L_FA</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Fornix_Stria_terminalis_L_FA" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Fornix_Stria_terminalis_R_FA</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Fornix_Stria_terminalis_R_FA" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Genu_corpus_callosum_FA</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Genu_corpus_callosum_FA" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Inf_cerebellar_ped_L_FA</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Inf_cerebellar_ped_L_FA" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Inf_cerebellar_ped_R_FA</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Inf_cerebellar_ped_R_FA" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Medial_lemniscus_L_FA</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Medial_lemniscus_L_FA" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Medial_lemniscus_R_FA</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Medial_lemniscus_R_FA" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Middle_cerebellar_ped_FA</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Middle_cerebellar_ped_FA" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Pontine_crossing_tract_FA</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Pontine_crossing_tract_FA" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Post_corona_radiata_L_FA</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Post_corona_radiata_L_FA" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Post_corona_radiata_R_FA</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Post_corona_radiata_R_FA" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Post_limb_internal_capsule_L_FA</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Post_limb_internal_capsule_L_FA" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Post_limb_internal_capsule_R_FA</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Post_limb_internal_capsule_R_FA" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Post_thalamic_radiation_L_FA</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Post_thalamic_radiation_L_FA" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Post_thalamic_radiation_R_FA</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Post_thalamic_radiation_R_FA" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Retrolenticular_part_internal_capsule_L_FA</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Retrolenticular_part_internal_capsule_L_FA" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Retrolenticular_part_internal_capsule_R_FA</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Retrolenticular_part_internal_capsule_R_FA" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Sagittal_stratum_L_FA</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Sagittal_stratum_L_FA" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Sagittal_stratum_R_FA</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Sagittal_stratum_R_FA" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Splenium_corpus_callosum_FA</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Splenium_corpus_callosum_FA" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Sup_cerebellar_ped_L_FA</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Sup_cerebellar_ped_L_FA" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Sup_cerebellar_ped_R_FA</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Sup_cerebellar_ped_R_FA" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Sup_corona_radiata_L_FA</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Sup_corona_radiata_L_FA" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Sup_corona_radiata_R_FA</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Sup_corona_radiata_R_FA" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Sup_fronto-occipital_fasc_L_FA</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Sup_fronto-occipital_fasc_L_FA" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Sup_fronto-occipital_fasc_R_FA</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Sup_fronto-occipital_fasc_R_FA" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Sup_long_fasc_L_FA</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Sup_long_fasc_L_FA" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Sup_long_fasc_R_FA</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Sup_long_fasc_R_FA" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Tapetum_L_FA</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Tapetum_L_FA" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Tapetum_R_FA</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Tapetum_R_FA" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Uncinate_fasc_L_FA</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Uncinate_fasc_L_FA" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Uncinate_fasc_R_FA</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Uncinate_fasc_R_FA" $item "" $vr)</TD></TR>
+							<TR><TD>labels_whole_brain_FA</TD><TD>#xdatTextBox("COBRA:DTIData/labels_whole_brain_FA" $item "" $vr)</TD></TR>
+							<TR><TD>tracts_Ant_thalamic_radiation_L_FA</TD><TD>#xdatTextBox("COBRA:DTIData/tracts_Ant_thalamic_radiation_L_FA" $item "" $vr)</TD></TR>
+							<TR><TD>tracts_Ant_thalamic_radiation_R_FA</TD><TD>#xdatTextBox("COBRA:DTIData/tracts_Ant_thalamic_radiation_R_FA" $item "" $vr)</TD></TR>
+							<TR><TD>tracts_Cingulum_L_FA</TD><TD>#xdatTextBox("COBRA:DTIData/tracts_Cingulum_L_FA" $item "" $vr)</TD></TR>
+							<TR><TD>tracts_Cingulum_R_FA</TD><TD>#xdatTextBox("COBRA:DTIData/tracts_Cingulum_R_FA" $item "" $vr)</TD></TR>
+							<TR><TD>tracts_Corticospinal_tract_L_FA</TD><TD>#xdatTextBox("COBRA:DTIData/tracts_Corticospinal_tract_L_FA" $item "" $vr)</TD></TR>
+							<TR><TD>tracts_Corticospinal_tract_R_FA</TD><TD>#xdatTextBox("COBRA:DTIData/tracts_Corticospinal_tract_R_FA" $item "" $vr)</TD></TR>
+							<TR><TD>tracts_Forceps_major_FA</TD><TD>#xdatTextBox("COBRA:DTIData/tracts_Forceps_major_FA" $item "" $vr)</TD></TR>
+							<TR><TD>tracts_Forceps_minor_FA</TD><TD>#xdatTextBox("COBRA:DTIData/tracts_Forceps_minor_FA" $item "" $vr)</TD></TR>
+							<TR><TD>tracts_Inf_fronto-occipital_fasc_L_FA</TD><TD>#xdatTextBox("COBRA:DTIData/tracts_Inf_fronto-occipital_fasc_L_FA" $item "" $vr)</TD></TR>
+							<TR><TD>tracts_Inf_fronto-occipital_fasc_R_FA</TD><TD>#xdatTextBox("COBRA:DTIData/tracts_Inf_fronto-occipital_fasc_R_FA" $item "" $vr)</TD></TR>
+							<TR><TD>tracts_Inf_long_fasc_L_FA</TD><TD>#xdatTextBox("COBRA:DTIData/tracts_Inf_long_fasc_L_FA" $item "" $vr)</TD></TR>
+							<TR><TD>tracts_Inf_long_fasc_R_FA</TD><TD>#xdatTextBox("COBRA:DTIData/tracts_Inf_long_fasc_R_FA" $item "" $vr)</TD></TR>
+							<TR><TD>tracts_Sup_long_fasc_L_FA</TD><TD>#xdatTextBox("COBRA:DTIData/tracts_Sup_long_fasc_L_FA" $item "" $vr)</TD></TR>
+							<TR><TD>tracts_Sup_long_fasc_R_FA</TD><TD>#xdatTextBox("COBRA:DTIData/tracts_Sup_long_fasc_R_FA" $item "" $vr)</TD></TR>
+							<TR><TD>tracts_Uncinate_fasc_L_FA</TD><TD>#xdatTextBox("COBRA:DTIData/tracts_Uncinate_fasc_L_FA" $item "" $vr)</TD></TR>
+							<TR><TD>tracts_Uncinate_fasc_R_FA</TD><TD>#xdatTextBox("COBRA:DTIData/tracts_Uncinate_fasc_R_FA" $item "" $vr)</TD></TR>
+							<TR><TD>tracts_whole_brain_FA</TD><TD>#xdatTextBox("COBRA:DTIData/tracts_whole_brain_FA" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Ant_corona_radiata_L_TR</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Ant_corona_radiata_L_TR" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Ant_corona_radiata_R_TR</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Ant_corona_radiata_R_TR" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Ant_limb_internal_capsule_L_TR</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Ant_limb_internal_capsule_L_TR" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Ant_limb_internal_capsule_R_TR</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Ant_limb_internal_capsule_R_TR" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Body_corpus_callosum_TR</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Body_corpus_callosum_TR" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Cerebral_ped_L_TR</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Cerebral_ped_L_TR" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Cerebral_ped_R_TR</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Cerebral_ped_R_TR" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Cingulum_L_TR</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Cingulum_L_TR" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Cingulum_R_TR</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Cingulum_R_TR" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Corticospinal_tract_L_TR</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Corticospinal_tract_L_TR" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Corticospinal_tract_R_TR</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Corticospinal_tract_R_TR" $item "" $vr)</TD></TR>
+							<TR><TD>labels_External_capsule_L_TR</TD><TD>#xdatTextBox("COBRA:DTIData/labels_External_capsule_L_TR" $item "" $vr)</TD></TR>
+							<TR><TD>labels_External_capsule_R_TR</TD><TD>#xdatTextBox("COBRA:DTIData/labels_External_capsule_R_TR" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Fornix_TR</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Fornix_TR" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Fornix_Stria_terminalis_L_TR</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Fornix_Stria_terminalis_L_TR" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Fornix_Stria_terminalis_R_TR</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Fornix_Stria_terminalis_R_TR" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Genu_corpus_callosum_TR</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Genu_corpus_callosum_TR" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Inf_cerebellar_ped_L_TR</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Inf_cerebellar_ped_L_TR" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Inf_cerebellar_ped_R_TR</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Inf_cerebellar_ped_R_TR" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Medial_lemniscus_L_TR</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Medial_lemniscus_L_TR" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Medial_lemniscus_R_TR</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Medial_lemniscus_R_TR" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Middle_cerebellar_ped_TR</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Middle_cerebellar_ped_TR" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Pontine_crossing_tract_TR</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Pontine_crossing_tract_TR" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Post_corona_radiata_L_TR</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Post_corona_radiata_L_TR" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Post_corona_radiata_R_TR</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Post_corona_radiata_R_TR" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Post_limb_internal_capsule_L_TR</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Post_limb_internal_capsule_L_TR" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Post_limb_internal_capsule_R_TR</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Post_limb_internal_capsule_R_TR" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Post_thalamic_radiation_L_TR</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Post_thalamic_radiation_L_TR" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Post_thalamic_radiation_R_TR</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Post_thalamic_radiation_R_TR" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Retrolenticular_part_internal_capsule_L_TR</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Retrolenticular_part_internal_capsule_L_TR" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Retrolenticular_part_internal_capsule_R_TR</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Retrolenticular_part_internal_capsule_R_TR" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Sagittal_stratum_L_TR</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Sagittal_stratum_L_TR" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Sagittal_stratum_R_TR</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Sagittal_stratum_R_TR" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Splenium_corpus_callosum_TR</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Splenium_corpus_callosum_TR" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Sup_cerebellar_ped_L_TR</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Sup_cerebellar_ped_L_TR" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Sup_cerebellar_ped_R_TR</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Sup_cerebellar_ped_R_TR" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Sup_corona_radiata_L_TR</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Sup_corona_radiata_L_TR" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Sup_corona_radiata_R_TR</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Sup_corona_radiata_R_TR" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Sup_fronto-occipital_fasc_L_TR</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Sup_fronto-occipital_fasc_L_TR" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Sup_fronto-occipital_fasc_R_TR</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Sup_fronto-occipital_fasc_R_TR" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Sup_long_fasc_L_TR</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Sup_long_fasc_L_TR" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Sup_long_fasc_R_TR</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Sup_long_fasc_R_TR" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Tapetum_L_TR</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Tapetum_L_TR" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Tapetum_R_TR</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Tapetum_R_TR" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Uncinate_fasc_L_TR</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Uncinate_fasc_L_TR" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Uncinate_fasc_R_TR</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Uncinate_fasc_R_TR" $item "" $vr)</TD></TR>
+							<TR><TD>labels_whole_brain_TR</TD><TD>#xdatTextBox("COBRA:DTIData/labels_whole_brain_TR" $item "" $vr)</TD></TR>
+							<TR><TD>tracts_Ant_thalamic_radiation_L_TR</TD><TD>#xdatTextBox("COBRA:DTIData/tracts_Ant_thalamic_radiation_L_TR" $item "" $vr)</TD></TR>
+							<TR><TD>tracts_Ant_thalamic_radiation_R_TR</TD><TD>#xdatTextBox("COBRA:DTIData/tracts_Ant_thalamic_radiation_R_TR" $item "" $vr)</TD></TR>
+							<TR><TD>tracts_Cingulum_L_TR</TD><TD>#xdatTextBox("COBRA:DTIData/tracts_Cingulum_L_TR" $item "" $vr)</TD></TR>
+							<TR><TD>tracts_Cingulum_R_TR</TD><TD>#xdatTextBox("COBRA:DTIData/tracts_Cingulum_R_TR" $item "" $vr)</TD></TR>
+							<TR><TD>tracts_Corticospinal_tract_L_TR</TD><TD>#xdatTextBox("COBRA:DTIData/tracts_Corticospinal_tract_L_TR" $item "" $vr)</TD></TR>
+							<TR><TD>tracts_Corticospinal_tract_R_TR</TD><TD>#xdatTextBox("COBRA:DTIData/tracts_Corticospinal_tract_R_TR" $item "" $vr)</TD></TR>
+							<TR><TD>tracts_Forceps_major_TR</TD><TD>#xdatTextBox("COBRA:DTIData/tracts_Forceps_major_TR" $item "" $vr)</TD></TR>
+							<TR><TD>tracts_Forceps_minor_TR</TD><TD>#xdatTextBox("COBRA:DTIData/tracts_Forceps_minor_TR" $item "" $vr)</TD></TR>
+							<TR><TD>tracts_Inf_fronto-occipital_fasc_L_TR</TD><TD>#xdatTextBox("COBRA:DTIData/tracts_Inf_fronto-occipital_fasc_L_TR" $item "" $vr)</TD></TR>
+							<TR><TD>tracts_Inf_fronto-occipital_fasc_R_TR</TD><TD>#xdatTextBox("COBRA:DTIData/tracts_Inf_fronto-occipital_fasc_R_TR" $item "" $vr)</TD></TR>
+							<TR><TD>tracts_Inf_long_fasc_L_TR</TD><TD>#xdatTextBox("COBRA:DTIData/tracts_Inf_long_fasc_L_TR" $item "" $vr)</TD></TR>
+							<TR><TD>tracts_Inf_long_fasc_R_TR</TD><TD>#xdatTextBox("COBRA:DTIData/tracts_Inf_long_fasc_R_TR" $item "" $vr)</TD></TR>
+							<TR><TD>tracts_Sup_long_fasc_L_TR</TD><TD>#xdatTextBox("COBRA:DTIData/tracts_Sup_long_fasc_L_TR" $item "" $vr)</TD></TR>
+							<TR><TD>tracts_Sup_long_fasc_R_TR</TD><TD>#xdatTextBox("COBRA:DTIData/tracts_Sup_long_fasc_R_TR" $item "" $vr)</TD></TR>
+							<TR><TD>tracts_Uncinate_fasc_L_TR</TD><TD>#xdatTextBox("COBRA:DTIData/tracts_Uncinate_fasc_L_TR" $item "" $vr)</TD></TR>
+							<TR><TD>tracts_Uncinate_fasc_R_TR</TD><TD>#xdatTextBox("COBRA:DTIData/tracts_Uncinate_fasc_R_TR" $item "" $vr)</TD></TR>
+							<TR><TD>tracts_whole_brain_TR</TD><TD>#xdatTextBox("COBRA:DTIData/tracts_whole_brain_TR" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Ant_corona_radiata_L_AD</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Ant_corona_radiata_L_AD" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Ant_corona_radiata_R_AD</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Ant_corona_radiata_R_AD" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Ant_limb_internal_capsule_L_AD</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Ant_limb_internal_capsule_L_AD" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Ant_limb_internal_capsule_R_AD</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Ant_limb_internal_capsule_R_AD" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Body_corpus_callosum_AD</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Body_corpus_callosum_AD" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Cerebral_ped_L_AD</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Cerebral_ped_L_AD" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Cerebral_ped_R_AD</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Cerebral_ped_R_AD" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Cingulum_L_AD</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Cingulum_L_AD" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Cingulum_R_AD</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Cingulum_R_AD" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Corticospinal_tract_L_AD</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Corticospinal_tract_L_AD" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Corticospinal_tract_R_AD</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Corticospinal_tract_R_AD" $item "" $vr)</TD></TR>
+							<TR><TD>labels_External_capsule_L_AD</TD><TD>#xdatTextBox("COBRA:DTIData/labels_External_capsule_L_AD" $item "" $vr)</TD></TR>
+							<TR><TD>labels_External_capsule_R_AD</TD><TD>#xdatTextBox("COBRA:DTIData/labels_External_capsule_R_AD" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Fornix_AD</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Fornix_AD" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Fornix_Stria_terminalis_L_AD</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Fornix_Stria_terminalis_L_AD" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Fornix_Stria_terminalis_R_AD</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Fornix_Stria_terminalis_R_AD" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Genu_corpus_callosum_AD</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Genu_corpus_callosum_AD" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Inf_cerebellar_ped_L_AD</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Inf_cerebellar_ped_L_AD" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Inf_cerebellar_ped_R_AD</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Inf_cerebellar_ped_R_AD" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Medial_lemniscus_L_AD</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Medial_lemniscus_L_AD" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Medial_lemniscus_R_AD</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Medial_lemniscus_R_AD" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Middle_cerebellar_ped_AD</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Middle_cerebellar_ped_AD" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Pontine_crossing_tract_AD</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Pontine_crossing_tract_AD" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Post_corona_radiata_L_AD</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Post_corona_radiata_L_AD" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Post_corona_radiata_R_AD</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Post_corona_radiata_R_AD" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Post_limb_internal_capsule_L_AD</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Post_limb_internal_capsule_L_AD" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Post_limb_internal_capsule_R_AD</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Post_limb_internal_capsule_R_AD" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Post_thalamic_radiation_L_AD</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Post_thalamic_radiation_L_AD" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Post_thalamic_radiation_R_AD</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Post_thalamic_radiation_R_AD" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Retrolenticular_part_internal_capsule_L_AD</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Retrolenticular_part_internal_capsule_L_AD" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Retrolenticular_part_internal_capsule_R_AD</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Retrolenticular_part_internal_capsule_R_AD" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Sagittal_stratum_L_AD</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Sagittal_stratum_L_AD" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Sagittal_stratum_R_AD</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Sagittal_stratum_R_AD" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Splenium_corpus_callosum_AD</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Splenium_corpus_callosum_AD" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Sup_cerebellar_ped_L_AD</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Sup_cerebellar_ped_L_AD" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Sup_cerebellar_ped_R_AD</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Sup_cerebellar_ped_R_AD" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Sup_corona_radiata_L_AD</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Sup_corona_radiata_L_AD" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Sup_corona_radiata_R_AD</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Sup_corona_radiata_R_AD" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Sup_fronto-occipital_fasc_L_AD</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Sup_fronto-occipital_fasc_L_AD" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Sup_fronto-occipital_fasc_R_AD</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Sup_fronto-occipital_fasc_R_AD" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Sup_long_fasc_L_AD</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Sup_long_fasc_L_AD" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Sup_long_fasc_R_AD</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Sup_long_fasc_R_AD" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Tapetum_L_AD</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Tapetum_L_AD" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Tapetum_R_AD</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Tapetum_R_AD" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Uncinate_fasc_L_AD</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Uncinate_fasc_L_AD" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Uncinate_fasc_R_AD</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Uncinate_fasc_R_AD" $item "" $vr)</TD></TR>
+							<TR><TD>labels_whole_brain_AD</TD><TD>#xdatTextBox("COBRA:DTIData/labels_whole_brain_AD" $item "" $vr)</TD></TR>
+							<TR><TD>tracts_Ant_thalamic_radiation_L_AD</TD><TD>#xdatTextBox("COBRA:DTIData/tracts_Ant_thalamic_radiation_L_AD" $item "" $vr)</TD></TR>
+							<TR><TD>tracts_Ant_thalamic_radiation_R_AD</TD><TD>#xdatTextBox("COBRA:DTIData/tracts_Ant_thalamic_radiation_R_AD" $item "" $vr)</TD></TR>
+							<TR><TD>tracts_Cingulum_L_AD</TD><TD>#xdatTextBox("COBRA:DTIData/tracts_Cingulum_L_AD" $item "" $vr)</TD></TR>
+							<TR><TD>tracts_Cingulum_R_AD</TD><TD>#xdatTextBox("COBRA:DTIData/tracts_Cingulum_R_AD" $item "" $vr)</TD></TR>
+							<TR><TD>tracts_Corticospinal_tract_L_AD</TD><TD>#xdatTextBox("COBRA:DTIData/tracts_Corticospinal_tract_L_AD" $item "" $vr)</TD></TR>
+							<TR><TD>tracts_Corticospinal_tract_R_AD</TD><TD>#xdatTextBox("COBRA:DTIData/tracts_Corticospinal_tract_R_AD" $item "" $vr)</TD></TR>
+							<TR><TD>tracts_Forceps_major_AD</TD><TD>#xdatTextBox("COBRA:DTIData/tracts_Forceps_major_AD" $item "" $vr)</TD></TR>
+							<TR><TD>tracts_Forceps_minor_AD</TD><TD>#xdatTextBox("COBRA:DTIData/tracts_Forceps_minor_AD" $item "" $vr)</TD></TR>
+							<TR><TD>tracts_Inf_fronto-occipital_fasc_L_AD</TD><TD>#xdatTextBox("COBRA:DTIData/tracts_Inf_fronto-occipital_fasc_L_AD" $item "" $vr)</TD></TR>
+							<TR><TD>tracts_Inf_fronto-occipital_fasc_R_AD</TD><TD>#xdatTextBox("COBRA:DTIData/tracts_Inf_fronto-occipital_fasc_R_AD" $item "" $vr)</TD></TR>
+							<TR><TD>tracts_Inf_long_fasc_L_AD</TD><TD>#xdatTextBox("COBRA:DTIData/tracts_Inf_long_fasc_L_AD" $item "" $vr)</TD></TR>
+							<TR><TD>tracts_Inf_long_fasc_R_AD</TD><TD>#xdatTextBox("COBRA:DTIData/tracts_Inf_long_fasc_R_AD" $item "" $vr)</TD></TR>
+							<TR><TD>tracts_Sup_long_fasc_L_AD</TD><TD>#xdatTextBox("COBRA:DTIData/tracts_Sup_long_fasc_L_AD" $item "" $vr)</TD></TR>
+							<TR><TD>tracts_Sup_long_fasc_R_AD</TD><TD>#xdatTextBox("COBRA:DTIData/tracts_Sup_long_fasc_R_AD" $item "" $vr)</TD></TR>
+							<TR><TD>tracts_Uncinate_fasc_L_AD</TD><TD>#xdatTextBox("COBRA:DTIData/tracts_Uncinate_fasc_L_AD" $item "" $vr)</TD></TR>
+							<TR><TD>tracts_Uncinate_fasc_R_AD</TD><TD>#xdatTextBox("COBRA:DTIData/tracts_Uncinate_fasc_R_AD" $item "" $vr)</TD></TR>
+							<TR><TD>tracts_whole_brain_AD</TD><TD>#xdatTextBox("COBRA:DTIData/tracts_whole_brain_AD" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Ant_corona_radiata_L_RD</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Ant_corona_radiata_L_RD" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Ant_corona_radiata_R_RD</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Ant_corona_radiata_R_RD" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Ant_limb_internal_capsule_L_RD</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Ant_limb_internal_capsule_L_RD" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Ant_limb_internal_capsule_R_RD</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Ant_limb_internal_capsule_R_RD" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Body_corpus_callosum_RD</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Body_corpus_callosum_RD" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Cerebral_ped_L_RD</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Cerebral_ped_L_RD" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Cerebral_ped_R_RD</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Cerebral_ped_R_RD" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Cingulum_L_RD</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Cingulum_L_RD" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Cingulum_R_RD</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Cingulum_R_RD" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Corticospinal_tract_L_RD</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Corticospinal_tract_L_RD" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Corticospinal_tract_R_RD</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Corticospinal_tract_R_RD" $item "" $vr)</TD></TR>
+							<TR><TD>labels_External_capsule_L_RD</TD><TD>#xdatTextBox("COBRA:DTIData/labels_External_capsule_L_RD" $item "" $vr)</TD></TR>
+							<TR><TD>labels_External_capsule_R_RD</TD><TD>#xdatTextBox("COBRA:DTIData/labels_External_capsule_R_RD" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Fornix_RD</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Fornix_RD" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Fornix_Stria_terminalis_L_RD</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Fornix_Stria_terminalis_L_RD" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Fornix_Stria_terminalis_R_RD</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Fornix_Stria_terminalis_R_RD" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Genu_corpus_callosum_RD</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Genu_corpus_callosum_RD" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Inf_cerebellar_ped_L_RD</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Inf_cerebellar_ped_L_RD" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Inf_cerebellar_ped_R_RD</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Inf_cerebellar_ped_R_RD" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Medial_lemniscus_L_RD</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Medial_lemniscus_L_RD" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Medial_lemniscus_R_RD</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Medial_lemniscus_R_RD" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Middle_cerebellar_ped_RD</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Middle_cerebellar_ped_RD" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Pontine_crossing_tract_RD</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Pontine_crossing_tract_RD" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Post_corona_radiata_L_RD</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Post_corona_radiata_L_RD" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Post_corona_radiata_R_RD</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Post_corona_radiata_R_RD" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Post_limb_internal_capsule_L_RD</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Post_limb_internal_capsule_L_RD" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Post_limb_internal_capsule_R_RD</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Post_limb_internal_capsule_R_RD" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Post_thalamic_radiation_L_RD</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Post_thalamic_radiation_L_RD" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Post_thalamic_radiation_R_RD</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Post_thalamic_radiation_R_RD" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Retrolenticular_part_internal_capsule_L_RD</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Retrolenticular_part_internal_capsule_L_RD" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Retrolenticular_part_internal_capsule_R_RD</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Retrolenticular_part_internal_capsule_R_RD" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Sagittal_stratum_L_RD</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Sagittal_stratum_L_RD" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Sagittal_stratum_R_RD</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Sagittal_stratum_R_RD" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Splenium_corpus_callosum_RD</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Splenium_corpus_callosum_RD" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Sup_cerebellar_ped_L_RD</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Sup_cerebellar_ped_L_RD" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Sup_cerebellar_ped_R_RD</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Sup_cerebellar_ped_R_RD" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Sup_corona_radiata_L_RD</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Sup_corona_radiata_L_RD" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Sup_corona_radiata_R_RD</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Sup_corona_radiata_R_RD" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Sup_fronto-occipital_fasc_L_RD</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Sup_fronto-occipital_fasc_L_RD" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Sup_fronto-occipital_fasc_R_RD</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Sup_fronto-occipital_fasc_R_RD" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Sup_long_fasc_L_RD</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Sup_long_fasc_L_RD" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Sup_long_fasc_R_RD</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Sup_long_fasc_R_RD" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Tapetum_L_RD</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Tapetum_L_RD" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Tapetum_R_RD</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Tapetum_R_RD" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Uncinate_fasc_L_RD</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Uncinate_fasc_L_RD" $item "" $vr)</TD></TR>
+							<TR><TD>labels_Uncinate_fasc_R_RD</TD><TD>#xdatTextBox("COBRA:DTIData/labels_Uncinate_fasc_R_RD" $item "" $vr)</TD></TR>
+							<TR><TD>labels_whole_brain_RD</TD><TD>#xdatTextBox("COBRA:DTIData/labels_whole_brain_RD" $item "" $vr)</TD></TR>
+							<TR><TD>tracts_Ant_thalamic_radiation_L_RD</TD><TD>#xdatTextBox("COBRA:DTIData/tracts_Ant_thalamic_radiation_L_RD" $item "" $vr)</TD></TR>
+							<TR><TD>tracts_Ant_thalamic_radiation_R_RD</TD><TD>#xdatTextBox("COBRA:DTIData/tracts_Ant_thalamic_radiation_R_RD" $item "" $vr)</TD></TR>
+							<TR><TD>tracts_Cingulum_L_RD</TD><TD>#xdatTextBox("COBRA:DTIData/tracts_Cingulum_L_RD" $item "" $vr)</TD></TR>
+							<TR><TD>tracts_Cingulum_R_RD</TD><TD>#xdatTextBox("COBRA:DTIData/tracts_Cingulum_R_RD" $item "" $vr)</TD></TR>
+							<TR><TD>tracts_Corticospinal_tract_L_RD</TD><TD>#xdatTextBox("COBRA:DTIData/tracts_Corticospinal_tract_L_RD" $item "" $vr)</TD></TR>
+							<TR><TD>tracts_Corticospinal_tract_R_RD</TD><TD>#xdatTextBox("COBRA:DTIData/tracts_Corticospinal_tract_R_RD" $item "" $vr)</TD></TR>
+							<TR><TD>tracts_Forceps_major_RD</TD><TD>#xdatTextBox("COBRA:DTIData/tracts_Forceps_major_RD" $item "" $vr)</TD></TR>
+							<TR><TD>tracts_Forceps_minor_RD</TD><TD>#xdatTextBox("COBRA:DTIData/tracts_Forceps_minor_RD" $item "" $vr)</TD></TR>
+							<TR><TD>tracts_Inf_fronto-occipital_fasc_L_RD</TD><TD>#xdatTextBox("COBRA:DTIData/tracts_Inf_fronto-occipital_fasc_L_RD" $item "" $vr)</TD></TR>
+							<TR><TD>tracts_Inf_fronto-occipital_fasc_R_RD</TD><TD>#xdatTextBox("COBRA:DTIData/tracts_Inf_fronto-occipital_fasc_R_RD" $item "" $vr)</TD></TR>
+							<TR><TD>tracts_Inf_long_fasc_L_RD</TD><TD>#xdatTextBox("COBRA:DTIData/tracts_Inf_long_fasc_L_RD" $item "" $vr)</TD></TR>
+							<TR><TD>tracts_Inf_long_fasc_R_RD</TD><TD>#xdatTextBox("COBRA:DTIData/tracts_Inf_long_fasc_R_RD" $item "" $vr)</TD></TR>
+							<TR><TD>tracts_Sup_long_fasc_L_RD</TD><TD>#xdatTextBox("COBRA:DTIData/tracts_Sup_long_fasc_L_RD" $item "" $vr)</TD></TR>
+							<TR><TD>tracts_Sup_long_fasc_R_RD</TD><TD>#xdatTextBox("COBRA:DTIData/tracts_Sup_long_fasc_R_RD" $item "" $vr)</TD></TR>
+							<TR><TD>tracts_Uncinate_fasc_L_RD</TD><TD>#xdatTextBox("COBRA:DTIData/tracts_Uncinate_fasc_L_RD" $item "" $vr)</TD></TR>
+							<TR><TD>tracts_Uncinate_fasc_R_RD</TD><TD>#xdatTextBox("COBRA:DTIData/tracts_Uncinate_fasc_R_RD" $item "" $vr)</TD></TR>
+							<TR><TD>tracts_whole_brain_RD</TD><TD>#xdatTextBox("COBRA:DTIData/tracts_whole_brain_RD" $item "" $vr)</TD></TR>
+						</TABLE>
+					</TD>
+				</TR>
+			</TABLE>
+		</TD>
+	</TR>
+	<TR>
+		<TD>
+<!-- BEGIN COBRA:DTIData -->
+			<TABLE>
+				<TR><TH align="left"><font face="$ui.sansSerifFonts" size="2">Related Items</font></TH></TR>
+				<TR>
+					<TD align="left" valign="top">
+						<TABLE><TR><TD>
+							#foreach($xnat_abstractResource_1_COUNTER in [0..5])
+<!-- BEGIN COBRA:DTIData/in/file[$xnat_abstractResource_1_COUNTER] -->
+								<TABLE>
+									<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">COBRA:DTIData/in/file[$xnat_abstractResource_1_COUNTER]</font></TH></TR>
+									<TR>
+										<TD align="left" valign="top">
+											<TABLE>
+												<TR><TD>note</TD><TD>#xdatStringBox("COBRA:DTIData/in/file[$xnat_abstractResource_1_COUNTER]/note" $item "" $vr)</TD></TR>
+												<TR><TD>label</TD><TD>#xdatStringBox("COBRA:DTIData/in/file[$xnat_abstractResource_1_COUNTER]/label" $item "" $vr)</TD></TR>
+												<TR><TD>file_count</TD><TD>#xdatTextBox("COBRA:DTIData/in/file[$xnat_abstractResource_1_COUNTER]/file_count" $item "" $vr)</TD></TR>
+												<TR><TD>file_size</TD><TD>#xdatTextBox("COBRA:DTIData/in/file[$xnat_abstractResource_1_COUNTER]/file_size" $item "" $vr)</TD></TR>
+																		#xdatHiddenBox("COBRA:DTIData/in/file[$xnat_abstractResource_1_COUNTER]/xnat_abstractResource_id" $item "")
+											</TABLE>
+										</TD>
+									</TR>
+<!-- BEGIN COBRA:DTIData/in/file[$xnat_abstractResource_1_COUNTER]/tags/tag -->
+									<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">COBRA:DTIData/in/file[$xnat_abstractResource_1_COUNTER]/tags/tag</font></TH></TR>
+									<TR>
+										<TD align="left" valign="top">
+											<TABLE>
+												<TR>
+													<TD>tag</TD>
+													<TD>name</TD>
+												</TR>
+												#foreach($xnat_abstractResource_tag_2_COUNTER in [0..5])
+													<TR>
+														<TD>#xdatTextBox("COBRA:DTIData/in/file[$xnat_abstractResource_1_COUNTER]/tags/tag[$xnat_abstractResource_tag_2_COUNTER]/tag" $item "" $vr)</TD>
+														<TD>#xdatTextBox("COBRA:DTIData/in/file[$xnat_abstractResource_1_COUNTER]/tags/tag[$xnat_abstractResource_tag_2_COUNTER]/name" $item "" $vr)</TD>
+														#xdatHiddenBox("COBRA:DTIData/in/file[$xnat_abstractResource_1_COUNTER]/tags/tag[$xnat_abstractResource_tag_2_COUNTER]/xnat_abstractResource_tag_id" $item "")
+													</TR>
+												#end
+											</TABLE>
+										</TD>
+									</TR>
+<!-- END COBRA:DTIData/in/file[$xnat_abstractResource_1_COUNTER]/tags/tag -->
+								</TABLE>
+<!-- END COBRA:DTIData/in/file[$xnat_abstractResource_1_COUNTER] -->
+							#end
+						</TD></TR></TABLE>
+					</TD>
+				</TR>
+				<TR>
+					<TD align="left" valign="top">
+						<TABLE><TR><TD>
+							#foreach($xnat_abstractResource_2_COUNTER in [0..5])
+<!-- BEGIN COBRA:DTIData/out/file[$xnat_abstractResource_2_COUNTER] -->
+								<TABLE>
+									<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">COBRA:DTIData/out/file[$xnat_abstractResource_2_COUNTER]</font></TH></TR>
+									<TR>
+										<TD align="left" valign="top">
+											<TABLE>
+												<TR><TD>note</TD><TD>#xdatStringBox("COBRA:DTIData/out/file[$xnat_abstractResource_2_COUNTER]/note" $item "" $vr)</TD></TR>
+												<TR><TD>label</TD><TD>#xdatStringBox("COBRA:DTIData/out/file[$xnat_abstractResource_2_COUNTER]/label" $item "" $vr)</TD></TR>
+												<TR><TD>file_count</TD><TD>#xdatTextBox("COBRA:DTIData/out/file[$xnat_abstractResource_2_COUNTER]/file_count" $item "" $vr)</TD></TR>
+												<TR><TD>file_size</TD><TD>#xdatTextBox("COBRA:DTIData/out/file[$xnat_abstractResource_2_COUNTER]/file_size" $item "" $vr)</TD></TR>
+																		#xdatHiddenBox("COBRA:DTIData/out/file[$xnat_abstractResource_2_COUNTER]/xnat_abstractResource_id" $item "")
+											</TABLE>
+										</TD>
+									</TR>
+<!-- BEGIN COBRA:DTIData/out/file[$xnat_abstractResource_2_COUNTER]/tags/tag -->
+									<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">COBRA:DTIData/out/file[$xnat_abstractResource_2_COUNTER]/tags/tag</font></TH></TR>
+									<TR>
+										<TD align="left" valign="top">
+											<TABLE>
+												<TR>
+													<TD>tag</TD>
+													<TD>name</TD>
+												</TR>
+												#foreach($xnat_abstractResource_tag_3_COUNTER in [0..5])
+													<TR>
+														<TD>#xdatTextBox("COBRA:DTIData/out/file[$xnat_abstractResource_2_COUNTER]/tags/tag[$xnat_abstractResource_tag_3_COUNTER]/tag" $item "" $vr)</TD>
+														<TD>#xdatTextBox("COBRA:DTIData/out/file[$xnat_abstractResource_2_COUNTER]/tags/tag[$xnat_abstractResource_tag_3_COUNTER]/name" $item "" $vr)</TD>
+														#xdatHiddenBox("COBRA:DTIData/out/file[$xnat_abstractResource_2_COUNTER]/tags/tag[$xnat_abstractResource_tag_3_COUNTER]/xnat_abstractResource_tag_id" $item "")
+													</TR>
+												#end
+											</TABLE>
+										</TD>
+									</TR>
+<!-- END COBRA:DTIData/out/file[$xnat_abstractResource_2_COUNTER]/tags/tag -->
+								</TABLE>
+<!-- END COBRA:DTIData/out/file[$xnat_abstractResource_2_COUNTER] -->
+							#end
+						</TD></TR></TABLE>
+					</TD>
+				</TR>
+<!-- BEGIN COBRA:DTIData/parameters/addParam -->
+				<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">COBRA:DTIData/parameters/addParam</font></TH></TR>
+				<TR>
+					<TD align="left" valign="top">
+						<TABLE>
+							<TR>
+								<TD>addField</TD>
+								<TD>name</TD>
+							</TR>
+							#foreach($xnat_addField_3_COUNTER in [0..5])
+								<TR>
+									<TD>#xdatTextBox("COBRA:DTIData/parameters/addParam[$xnat_addField_3_COUNTER]/addField" $item "" $vr)</TD>
+									<TD>#xdatTextBox("COBRA:DTIData/parameters/addParam[$xnat_addField_3_COUNTER]/name" $item "" $vr)</TD>
+									#xdatHiddenBox("COBRA:DTIData/parameters/addParam[$xnat_addField_3_COUNTER]/xnat_addField_id" $item "")
+								</TR>
+							#end
+						</TABLE>
+					</TD>
+				</TR>
+<!-- END COBRA:DTIData/parameters/addParam -->
+				<TR>
+					<TD align="left" valign="top">
+<!-- BEGIN COBRA:DTIData/provenance -->
+						<TABLE>
+							<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">COBRA:DTIData/provenance</font></TH></TR>
+							<TR>
+								<TD align="left" valign="top">
+									<TABLE>
+																#xdatHiddenBox("COBRA:DTIData/provenance/prov_process_id" $item "")
+									</TABLE>
+								</TD>
+							</TR>
+							<TR>
+								<TD align="left" valign="top">
+									<TABLE><TR><TD>
+										#foreach($prov_processStep_4_COUNTER in [0..5])
+<!-- BEGIN COBRA:DTIData/provenance/processStep[$prov_processStep_4_COUNTER] -->
+											<TABLE>
+												<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">COBRA:DTIData/provenance/processStep[$prov_processStep_4_COUNTER]</font></TH></TR>
+												<TR>
+													<TD align="left" valign="top">
+														<TABLE>
+															<TR><TD>program</TD><TD>#xdatStringBox("COBRA:DTIData/provenance/processStep[$prov_processStep_4_COUNTER]/program" $item "" $vr)</TD></TR>
+															<TR><TD>program/version</TD><TD>#xdatStringBox("COBRA:DTIData/provenance/processStep[$prov_processStep_4_COUNTER]/program/version" $item "" $vr)</TD></TR>
+															<TR><TD>program/arguments</TD><TD>#xdatStringBox("COBRA:DTIData/provenance/processStep[$prov_processStep_4_COUNTER]/program/arguments" $item "" $vr)</TD></TR>
+															<TR><TD>timestamp</TD><TD>#xdatTextBox("COBRA:DTIData/provenance/processStep[$prov_processStep_4_COUNTER]/timestamp" $item "" $vr)</TD></TR>
+															<TR><TD>cvs</TD><TD>#xdatStringBox("COBRA:DTIData/provenance/processStep[$prov_processStep_4_COUNTER]/cvs" $item "" $vr)</TD></TR>
+															<TR><TD>user</TD><TD>#xdatStringBox("COBRA:DTIData/provenance/processStep[$prov_processStep_4_COUNTER]/user" $item "" $vr)</TD></TR>
+															<TR><TD>machine</TD><TD>#xdatStringBox("COBRA:DTIData/provenance/processStep[$prov_processStep_4_COUNTER]/machine" $item "" $vr)</TD></TR>
+															<TR><TD>platform</TD><TD>#xdatStringBox("COBRA:DTIData/provenance/processStep[$prov_processStep_4_COUNTER]/platform" $item "" $vr)</TD></TR>
+															<TR><TD>platform/version</TD><TD>#xdatStringBox("COBRA:DTIData/provenance/processStep[$prov_processStep_4_COUNTER]/platform/version" $item "" $vr)</TD></TR>
+															<TR><TD>compiler</TD><TD>#xdatStringBox("COBRA:DTIData/provenance/processStep[$prov_processStep_4_COUNTER]/compiler" $item "" $vr)</TD></TR>
+															<TR><TD>compiler/version</TD><TD>#xdatStringBox("COBRA:DTIData/provenance/processStep[$prov_processStep_4_COUNTER]/compiler/version" $item "" $vr)</TD></TR>
+																					#xdatHiddenBox("COBRA:DTIData/provenance/processStep[$prov_processStep_4_COUNTER]/prov_processStep_id" $item "")
+														</TABLE>
+													</TD>
+												</TR>
+<!-- BEGIN COBRA:DTIData/provenance/processStep[$prov_processStep_4_COUNTER]/library -->
+												<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">COBRA:DTIData/provenance/processStep[$prov_processStep_4_COUNTER]/library</font></TH></TR>
+												<TR>
+													<TD align="left" valign="top">
+														<TABLE>
+															<TR>
+																<TD>library</TD>
+																<TD>version</TD>
+															</TR>
+															#foreach($prov_processStep_library_5_COUNTER in [0..5])
+																<TR>
+																	<TD>#xdatTextBox("COBRA:DTIData/provenance/processStep[$prov_processStep_4_COUNTER]/library[$prov_processStep_library_5_COUNTER]/library" $item "" $vr)</TD>
+																	<TD>#xdatTextBox("COBRA:DTIData/provenance/processStep[$prov_processStep_4_COUNTER]/library[$prov_processStep_library_5_COUNTER]/version" $item "" $vr)</TD>
+																	#xdatHiddenBox("COBRA:DTIData/provenance/processStep[$prov_processStep_4_COUNTER]/library[$prov_processStep_library_5_COUNTER]/prov_processStep_library_id" $item "")
+																</TR>
+															#end
+														</TABLE>
+													</TD>
+												</TR>
+<!-- END COBRA:DTIData/provenance/processStep[$prov_processStep_4_COUNTER]/library -->
+											</TABLE>
+<!-- END COBRA:DTIData/provenance/processStep[$prov_processStep_4_COUNTER] -->
+										#end
+									</TD></TR></TABLE>
+								</TD>
+							</TR>
+						</TABLE>
+<!-- END COBRA:DTIData/provenance -->
+					</TD>
+				</TR>
+				<TR>
+					<TD align="left" valign="top">
+<!-- BEGIN COBRA:DTIData/investigator -->
+						<TABLE>
+							<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">COBRA:DTIData/investigator</font></TH></TR>
+							<TR>
+								<TD align="left" valign="top">
+									<TABLE>
+										<TR><TD>title</TD><TD>#xdatStringBox("COBRA:DTIData/investigator/title" $item "" $vr)</TD></TR>
+										<TR><TD>firstname</TD><TD>#xdatStringBox("COBRA:DTIData/investigator/firstname" $item "" $vr)</TD></TR>
+										<TR><TD>lastname</TD><TD>#xdatStringBox("COBRA:DTIData/investigator/lastname" $item "" $vr)</TD></TR>
+										<TR><TD>institution</TD><TD>#xdatStringBox("COBRA:DTIData/investigator/institution" $item "" $vr)</TD></TR>
+										<TR><TD>department</TD><TD>#xdatStringBox("COBRA:DTIData/investigator/department" $item "" $vr)</TD></TR>
+										<TR><TD>email</TD><TD>#xdatStringBox("COBRA:DTIData/investigator/email" $item "" $vr)</TD></TR>
+										<TR><TD>phone</TD><TD>#xdatStringBox("COBRA:DTIData/investigator/phone" $item "" $vr)</TD></TR>
+										<TR><TD>ID</TD><TD>#xdatStringBox("COBRA:DTIData/investigator/ID" $item "" $vr)</TD></TR>
+																#xdatHiddenBox("COBRA:DTIData/investigator/xnat_investigatorData_id" $item "")
+									</TABLE>
+								</TD>
+							</TR>
+						</TABLE>
+<!-- END COBRA:DTIData/investigator -->
+					</TD>
+				</TR>
+				<TR>
+					<TD align="left" valign="top">
+<!-- BEGIN COBRA:DTIData/validation -->
+						<TABLE>
+							<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">COBRA:DTIData/validation</font></TH></TR>
+							<TR>
+								<TD align="left" valign="top">
+									<TABLE>
+										<TR><TD>method</TD><TD>#xdatStringBox("COBRA:DTIData/validation/method" $item "" $vr)</TD></TR>
+										<TR><TD>date</TD><TD>#xdatDateBox("COBRA:DTIData/validation/date" $item $vr $years)</TD></TR>
+										<TR><TD>notes</TD><TD>#xdatStringBox("COBRA:DTIData/validation/notes" $item "" $vr)</TD></TR>
+										<TR><TD>validated_by</TD><TD>#xdatStringBox("COBRA:DTIData/validation/validated_by" $item "" $vr)</TD></TR>
+										<TR><TD>status</TD><TD>#xdatStringBox("COBRA:DTIData/validation/status" $item "" $vr)</TD></TR>
+																#xdatHiddenBox("COBRA:DTIData/validation/xnat_validationData_id" $item "")
+									</TABLE>
+								</TD>
+							</TR>
+						</TABLE>
+<!-- END COBRA:DTIData/validation -->
+					</TD>
+				</TR>
+				<TR>
+					<TD align="left" valign="top">
+						<TABLE><TR><TD>
+							#foreach($xnat_abstractResource_7_COUNTER in [0..5])
+<!-- BEGIN COBRA:DTIData/resources/resource[$xnat_abstractResource_7_COUNTER] -->
+								<TABLE>
+									<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">COBRA:DTIData/resources/resource[$xnat_abstractResource_7_COUNTER]</font></TH></TR>
+									<TR>
+										<TD align="left" valign="top">
+											<TABLE>
+												<TR><TD>note</TD><TD>#xdatStringBox("COBRA:DTIData/resources/resource[$xnat_abstractResource_7_COUNTER]/note" $item "" $vr)</TD></TR>
+												<TR><TD>label</TD><TD>#xdatStringBox("COBRA:DTIData/resources/resource[$xnat_abstractResource_7_COUNTER]/label" $item "" $vr)</TD></TR>
+												<TR><TD>file_count</TD><TD>#xdatTextBox("COBRA:DTIData/resources/resource[$xnat_abstractResource_7_COUNTER]/file_count" $item "" $vr)</TD></TR>
+												<TR><TD>file_size</TD><TD>#xdatTextBox("COBRA:DTIData/resources/resource[$xnat_abstractResource_7_COUNTER]/file_size" $item "" $vr)</TD></TR>
+																		#xdatHiddenBox("COBRA:DTIData/resources/resource[$xnat_abstractResource_7_COUNTER]/xnat_abstractResource_id" $item "")
+											</TABLE>
+										</TD>
+									</TR>
+<!-- BEGIN COBRA:DTIData/resources/resource[$xnat_abstractResource_7_COUNTER]/tags/tag -->
+									<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">COBRA:DTIData/resources/resource[$xnat_abstractResource_7_COUNTER]/tags/tag</font></TH></TR>
+									<TR>
+										<TD align="left" valign="top">
+											<TABLE>
+												<TR>
+													<TD>tag</TD>
+													<TD>name</TD>
+												</TR>
+												#foreach($xnat_abstractResource_tag_8_COUNTER in [0..5])
+													<TR>
+														<TD>#xdatTextBox("COBRA:DTIData/resources/resource[$xnat_abstractResource_7_COUNTER]/tags/tag[$xnat_abstractResource_tag_8_COUNTER]/tag" $item "" $vr)</TD>
+														<TD>#xdatTextBox("COBRA:DTIData/resources/resource[$xnat_abstractResource_7_COUNTER]/tags/tag[$xnat_abstractResource_tag_8_COUNTER]/name" $item "" $vr)</TD>
+														#xdatHiddenBox("COBRA:DTIData/resources/resource[$xnat_abstractResource_7_COUNTER]/tags/tag[$xnat_abstractResource_tag_8_COUNTER]/xnat_abstractResource_tag_id" $item "")
+													</TR>
+												#end
+											</TABLE>
+										</TD>
+									</TR>
+<!-- END COBRA:DTIData/resources/resource[$xnat_abstractResource_7_COUNTER]/tags/tag -->
+								</TABLE>
+<!-- END COBRA:DTIData/resources/resource[$xnat_abstractResource_7_COUNTER] -->
+							#end
+						</TD></TR></TABLE>
+					</TD>
+				</TR>
+<!-- BEGIN COBRA:DTIData/fields/field -->
+				<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">COBRA:DTIData/fields/field</font></TH></TR>
+				<TR>
+					<TD align="left" valign="top">
+						<TABLE>
+							<TR>
+								<TD>field</TD>
+								<TD>name</TD>
+							</TR>
+							#foreach($xnat_experimentData_field_8_COUNTER in [0..5])
+								<TR>
+									<TD>#xdatTextBox("COBRA:DTIData/fields/field[$xnat_experimentData_field_8_COUNTER]/field" $item "" $vr)</TD>
+									<TD>#xdatTextBox("COBRA:DTIData/fields/field[$xnat_experimentData_field_8_COUNTER]/name" $item "" $vr)</TD>
+									#xdatHiddenBox("COBRA:DTIData/fields/field[$xnat_experimentData_field_8_COUNTER]/xnat_experimentData_field_id" $item "")
+								</TR>
+							#end
+						</TABLE>
+					</TD>
+				</TR>
+<!-- END COBRA:DTIData/fields/field -->
+			</TABLE>
+<!-- END COBRA:DTIData -->
+		</TD>
+	</TR>
+	<TR>
+		<TD>
+		#xdatEditProps($item $edit_screen)
+		<TR><TD COLSPAN=2 ALIGN=left><input type="button" ONCLICK="validateForm();"  name="eventSubmit_doInsert" value="Submit"/></TD></TR>
+		</TD>
+	</TR>
+</TABLE>
+</form>
+
+<script type="text/javascript">
+function validateForm()
+{
+   //INSERT CUSTOM CONTENT HERE
+
+   validateExperimentForm();
+   return false;
+}
+</script>

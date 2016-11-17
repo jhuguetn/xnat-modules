@@ -1,0 +1,627 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 3.2//EN">
+$page.setTitle("DTI Details")
+$page.setLinkColor($ui.alink)
+$page.setVlinkColor($ui.vlink)
+#if ($turbineUtils.GetPassedParameter("popup", $data))
+	#set ($popup = $turbineUtils.GetPassedParameter("popup", data) )
+	#set ($popup = "false")
+#end
+<TABLE width="100%">
+	<TR>
+		<TD>
+			<table width="100%">
+				<TR>
+					<TD align="left" valign="middle">
+						<font face="$ui.sansSerifFonts" size="3"><b>Diffusion Tensor Imaging (DTI) details</b></font>
+					</TD>
+				</TR>
+			</TABLE>
+		</TD>
+	</TR>
+	<TR>
+		<TD>
+			<TABLE width="100%">
+				<TR>
+					<TD valign="top">
+						<TABLE>
+							<TR><TD>scan/ID</TD><TD>$!item.getStringProperty("COBRA:DTIData/scan/ID")</TD></TR>
+							<TR><TD>scan/type</TD><TD>$!item.getStringProperty("COBRA:DTIData/scan/type")</TD></TR>
+							<TR><TD>imageSession ID</TD><TD>$!item.getStringProperty("COBRA:DTIData/imageSession_ID")</TD></TR>
+							<TR><TD>date</TD><TD>$!item.getProperty("COBRA:DTIData/date")</TD></TR>
+							<TR><TD>time</TD><TD>$!item.getProperty("COBRA:DTIData/time")</TD></TR>
+							<!--
+                            <TR><TD>duration</TD><TD>$!item.getProperty("COBRA:DTIData/duration")</TD></TR>
+							<TR><TD>delay</TD><TD>$!item.getIntegerProperty("COBRA:DTIData/delay")</TD></TR>
+							<TR><TD>delay/ref_expt_id</TD><TD>$!item.getStringProperty("COBRA:DTIData/delay/ref_expt_id")</TD></TR>
+							-->
+                            <TR><TD>note</TD><TD>$!item.getStringProperty("COBRA:DTIData/note")</TD></TR>
+							<TR><TD>acquisition site</TD><TD>$!item.getStringProperty("COBRA:DTIData/acquisition_site")</TD></TR>
+							<TR><TD>ID</TD><TD>$!item.getStringProperty("COBRA:DTIData/ID")</TD></TR>
+							<TR><TD>project</TD><TD>$!item.getStringProperty("COBRA:DTIData/project")</TD></TR>
+							<!--
+                            <TR><TD>visit_id</TD><TD>$!item.getStringProperty("COBRA:DTIData/visit_id")</TD></TR>
+							<TR><TD>visit</TD><TD>$!item.getStringProperty("COBRA:DTIData/visit")</TD></TR>
+							<TR><TD>original</TD><TD>$!item.getStringProperty("COBRA:DTIData/original")</TD></TR>
+                            -->
+                            <TR><TD>version</TD><TD>$!item.getIntegerProperty("COBRA:DTIData/version")</TD></TR>
+							<TR><TD>protocol</TD><TD>$!item.getStringProperty("COBRA:DTIData/protocol")</TD></TR>
+							<TR><TD>label</TD><TD>$!item.getStringProperty("COBRA:DTIData/label")</TD></TR>
+                            <TR><TD>&nbsp;</TD><TD></TD></TR>
+							<TR><TD>JHU label - Anterior corona radiata - left - Fractional anisotropy</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Ant_corona_radiata_L_FA")</TD></TR>
+							<TR><TD>JHU label - Anterior corona radiata - right - Fractional anisotropy</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Ant_corona_radiata_R_FA")</TD></TR>
+							<TR><TD>JHU label - Anterior limb of the internal capsule - left - Fractional anisotropy</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Ant_limb_internal_capsule_L_FA")</TD></TR>
+							<TR><TD>JHU label - Anterior limb of the internal capsule - right - Fractional anisotropy</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Ant_limb_internal_capsule_R_FA")</TD></TR>
+							<TR><TD>JHU label - Body of corpus callosum - Fractional anisotropy</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Body_corpus_callosum_FA")</TD></TR>
+							<TR><TD>JHU label - Cerebral peduncle - left - Fractional anisotropy</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Cerebral_ped_L_FA")</TD></TR>
+							<TR><TD>JHU label - Cerebral peduncle - right - Fractional anisotropy</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Cerebral_ped_R_FA")</TD></TR>
+							<TR><TD>JHU label - Cingulum bundle - left - Fractional anisotropy</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Cingulum_L_FA")</TD></TR>
+							<TR><TD>JHU label - Cingulum bundle - right - Fractional anisotropy</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Cingulum_R_FA")</TD></TR>
+							<TR><TD>JHU label - Corticospinal tract - left - Fractional anisotropy</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Corticospinal_tract_L_FA")</TD></TR>
+							<TR><TD>JHU label - Corticospinal tract - right  - Fractional anisotropy</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Corticospinal_tract_R_FA")</TD></TR>
+							<TR><TD>JHU label - External capsule - left - Fractional anisotropy</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_External_capsule_L_FA")</TD></TR>
+							<TR><TD>JHU label - External capsule - right - Fractional anisotropy</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_External_capsule_R_FA")</TD></TR>
+							<TR><TD>JHU label - Fornix proper - Fractional anisotropy</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Fornix_FA")</TD></TR>
+							<TR><TD>JHU label - Fornix - Stria terminalis - left - Fractional anisotropy</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Fornix_Stria_terminalis_L_FA")</TD></TR>
+							<TR><TD>JHU label - Fornix - Stria terminalis - right - Fractional anisotropy</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Fornix_Stria_terminalis_R_FA")</TD></TR>
+							<TR><TD>JHU label - Genu of corpus callosum - Fractional anisotropy</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Genu_corpus_callosum_FA")</TD></TR>
+							<TR><TD>JHU label - Inferior cereballar peduncle - left - Fractional anisotropy</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Inf_cerebellar_ped_L_FA")</TD></TR>
+							<TR><TD>JHU label - Inferior cereballar peduncle - right - Fractional anisotropy</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Inf_cerebellar_ped_R_FA")</TD></TR>
+							<TR><TD>JHU label - Medial lemniscus - left - Fractional anisotropy</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Medial_lemniscus_L_FA")</TD></TR>
+							<TR><TD>JHU label - Medial lemniscus - right - Fractional anisotropy</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Medial_lemniscus_R_FA")</TD></TR>
+							<TR><TD>JHU label - Middle cerebellar peduncle - Fractional anisotropy</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Middle_cerebellar_ped_FA")</TD></TR>
+							<TR><TD>JHU label - Pontine crossing tract - Fractional anisotropy</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Pontine_crossing_tract_FA")</TD></TR>
+							<TR><TD>JHU label - Posterior corona radiata - left - Fractional anisotropy</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Post_corona_radiata_L_FA")</TD></TR>
+							<TR><TD>JHU label - Posterior corona radiata - right - Fractional anisotropy</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Post_corona_radiata_R_FA")</TD></TR>
+							<TR><TD>JHU label - Posterior limb of the internal capsule - left - Fractional anisotropy</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Post_limb_internal_capsule_L_FA")</TD></TR>
+							<TR><TD>JHU label - Posterior limb of the internal capsule - right - Fractional anisotropy</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Post_limb_internal_capsule_R_FA")</TD></TR>
+							<TR><TD>JHU label - Posterior thalamic radiation - left - Fractional anisotropy</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Post_thalamic_radiation_L_FA")</TD></TR>
+							<TR><TD>JHU label - Posterior thalamic radiation - right - Fractional anisotropy</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Post_thalamic_radiation_R_FA")</TD></TR>
+							<TR><TD>JHU label - Retrolenticular part of the internal capsule - left - Fractional anisotropy</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Retrolenticular_part_internal_capsule_L_FA")</TD></TR>
+							<TR><TD>JHU label - Retrolenticular part of the internal capsule - right - Fractional anisotropy</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Retrolenticular_part_internal_capsule_R_FA")</TD></TR>
+							<TR><TD>JHU label - Sagittal stratum - left - Fractional anisotropy</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Sagittal_stratum_L_FA")</TD></TR>
+							<TR><TD>JHU label - Sagittal stratum - right - Fractional anisotropy</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Sagittal_stratum_R_FA")</TD></TR>
+							<TR><TD>JHU label - Splenium of corpus callosum - Fractional anisotropy</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Splenium_corpus_callosum_FA")</TD></TR>
+							<TR><TD>JHU label - Superior cerebellar peduncle - left - Fractional anisotropy</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Sup_cerebellar_ped_L_FA")</TD></TR>
+							<TR><TD>JHU label - Superior cerebellar peduncle - right - Fractional anisotropy</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Sup_cerebellar_ped_R_FA")</TD></TR>
+							<TR><TD>JHU label - Superior corona radiata - left - Fractional anisotropy</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Sup_corona_radiata_L_FA")</TD></TR>
+							<TR><TD>JHU label - Superior corona radiata - right - Fractional anisotropy</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Sup_corona_radiata_R_FA")</TD></TR>
+							<TR><TD>JHU label - Superior fronto-occipital fasciculus - left - Fractional anisotropy</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Sup_fronto-occipital_fasc_L_FA")</TD></TR>
+							<TR><TD>JHU label - Superior fronto-occipital fasciculus - right - Fractional anisotropy</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Sup_fronto-occipital_fasc_R_FA")</TD></TR>
+							<TR><TD>JHU label - Superior longitudinal fasciculus - left - Fractional anisotropy</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Sup_long_fasc_L_FA")</TD></TR>
+							<TR><TD>JHU label - Superior longitudinal fasciculus - right - Fractional anisotropy</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Sup_long_fasc_R_FA")</TD></TR>
+							<TR><TD>JHU label - Tapetum - left - Fractional anisotropy</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Tapetum_L_FA")</TD></TR>
+							<TR><TD>JHU label - Tapetum - right - Fractional anisotropy</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Tapetum_R_FA")</TD></TR>
+							<TR><TD>JHU label - Uncinate fasciculus - left - Fractional anisotropy</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Uncinate_fasc_L_FA")</TD></TR>
+							<TR><TD>JHU label - Uncinate fasciculus - right - Fractional anisotropy</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Uncinate_fasc_R_FA")</TD></TR>
+							<TR><TD>JHU label - Whole brain - Fractional anisotropy</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_whole_brain_FA")</TD></TR>
+							<TR><TD>JU tract - Anterior thalamic radiation - left - Fractional anisotropy</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/tracts_Ant_thalamic_radiation_L_FA")</TD></TR>
+							<TR><TD>JU tract - Anterior thalamic radiation - right - Fractional anisotropy</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/tracts_Ant_thalamic_radiation_R_FA")</TD></TR>
+							<TR><TD>JU tract - Cingulum bundle - left - Fractional anisotropy</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/tracts_Cingulum_L_FA")</TD></TR>
+							<TR><TD>JU tract - Cingulum bundle - right - Fractional anisotropy</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/tracts_Cingulum_R_FA")</TD></TR>
+							<TR><TD>JU tract - Corticospinal tract - left - Fractional anisotropy</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/tracts_Corticospinal_tract_L_FA")</TD></TR>
+							<TR><TD>JU tract - Corticospinal tract - right  - Fractional anisotropy</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/tracts_Corticospinal_tract_R_FA")</TD></TR>
+							<TR><TD>JU tract - Forceps major - Fractional anisotropy</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/tracts_Forceps_major_FA")</TD></TR>
+							<TR><TD>JU tract - Forceps minor - Fractional anisotropy</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/tracts_Forceps_minor_FA")</TD></TR>
+							<TR><TD>JU tract - Inferior fronto-occipital fasciculus - left - Fractional anisotropy</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/tracts_Inf_fronto-occipital_fasc_L_FA")</TD></TR>
+							<TR><TD>JU tract - Inferior fronto-occipital fasciculus - right - Fractional anisotropy</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/tracts_Inf_fronto-occipital_fasc_R_FA")</TD></TR>
+							<TR><TD>JU tract - Inferior longitudinal fasciculus - left - Fractional anisotropy</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/tracts_Inf_long_fasc_L_FA")</TD></TR>
+							<TR><TD>JU tract - Inferior longitudinal fasciculus - right - Fractional anisotropy</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/tracts_Inf_long_fasc_R_FA")</TD></TR>
+							<TR><TD>JU tract - Superior longitudinal fasciculus - left - Fractional anisotropy</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/tracts_Sup_long_fasc_L_FA")</TD></TR>
+							<TR><TD>JU tract - Superior longitudinal fasciculus - right - Fractional anisotropy</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/tracts_Sup_long_fasc_R_FA")</TD></TR>
+							<TR><TD>JU tract - Uncinate fasciculus - left - Fractional anisotropy</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/tracts_Uncinate_fasc_L_FA")</TD></TR>
+							<TR><TD>JU tract - Uncinate fasciculus - right - Fractional anisotropy</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/tracts_Uncinate_fasc_R_FA")</TD></TR>
+							<TR><TD>JU tract - Whole brain - Fractional anisotropy</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/tracts_whole_brain_FA")</TD></TR>
+							<TR><TD>JHU label - Anterior corona radiata - left - Trace</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Ant_corona_radiata_L_TR")</TD></TR>
+							<TR><TD>JHU label - Anterior corona radiata - right - Trace</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Ant_corona_radiata_R_TR")</TD></TR>
+							<TR><TD>JHU label - Anterior limb of the internal capsule - left - Trace</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Ant_limb_internal_capsule_L_TR")</TD></TR>
+							<TR><TD>JHU label - Anterior limb of the internal capsule - right - Trace</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Ant_limb_internal_capsule_R_TR")</TD></TR>
+							<TR><TD>JHU label - Body of corpus callosum - Trace</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Body_corpus_callosum_TR")</TD></TR>
+							<TR><TD>JHU label - Cerebral peduncle - left - Trace</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Cerebral_ped_L_TR")</TD></TR>
+							<TR><TD>JHU label - Cerebral peduncle - right - Trace</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Cerebral_ped_R_TR")</TD></TR>
+							<TR><TD>JHU label - Cingulum bundle - left - Trace</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Cingulum_L_TR")</TD></TR>
+							<TR><TD>JHU label - Cingulum bundle - right - Trace</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Cingulum_R_TR")</TD></TR>
+							<TR><TD>JHU label - Corticospinal tract - left - Trace</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Corticospinal_tract_L_TR")</TD></TR>
+							<TR><TD>JHU label - Corticospinal tract - right  - Trace</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Corticospinal_tract_R_TR")</TD></TR>
+							<TR><TD>JHU label - External capsule - left - Trace</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_External_capsule_L_TR")</TD></TR>
+							<TR><TD>JHU label - External capsule - right - Trace</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_External_capsule_R_TR")</TD></TR>
+							<TR><TD>JHU label - Fornix proper - Trace</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Fornix_TR")</TD></TR>
+							<TR><TD>JHU label - Fornix - Stria terminalis - left - Trace</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Fornix_Stria_terminalis_L_TR")</TD></TR>
+							<TR><TD>JHU label - Fornix - Stria terminalis - right - Trace</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Fornix_Stria_terminalis_R_TR")</TD></TR>
+							<TR><TD>JHU label - Genu of corpus callosum - Trace</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Genu_corpus_callosum_TR")</TD></TR>
+							<TR><TD>JHU label - Inferior cereballar peduncle - left - Trace</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Inf_cerebellar_ped_L_TR")</TD></TR>
+							<TR><TD>JHU label - Inferior cereballar peduncle - right - Trace</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Inf_cerebellar_ped_R_TR")</TD></TR>
+							<TR><TD>JHU label - Medial lemniscus - left - Trace</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Medial_lemniscus_L_TR")</TD></TR>
+							<TR><TD>JHU label - Medial lemniscus - right - Trace</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Medial_lemniscus_R_TR")</TD></TR>
+							<TR><TD>JHU label - Middle cerebellar peduncle - Trace</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Middle_cerebellar_ped_TR")</TD></TR>
+							<TR><TD>JHU label - Pontine crossing tract - Trace</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Pontine_crossing_tract_TR")</TD></TR>
+							<TR><TD>JHU label - Posterior corona radiata - left - Trace</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Post_corona_radiata_L_TR")</TD></TR>
+							<TR><TD>JHU label - Posterior corona radiata - right - Trace</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Post_corona_radiata_R_TR")</TD></TR>
+							<TR><TD>JHU label - Posterior limb of the internal capsule - left - Trace</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Post_limb_internal_capsule_L_TR")</TD></TR>
+							<TR><TD>JHU label - Posterior limb of the internal capsule - right - Trace</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Post_limb_internal_capsule_R_TR")</TD></TR>
+							<TR><TD>JHU label - Posterior thalamic radiation - left - Trace</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Post_thalamic_radiation_L_TR")</TD></TR>
+							<TR><TD>JHU label - Posterior thalamic radiation - right - Trace</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Post_thalamic_radiation_R_TR")</TD></TR>
+							<TR><TD>JHU label - Retrolenticular part of the internal capsule - left - Trace</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Retrolenticular_part_internal_capsule_L_TR")</TD></TR>
+							<TR><TD>JHU label - Retrolenticular part of the internal capsule - right - Trace</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Retrolenticular_part_internal_capsule_R_TR")</TD></TR>
+							<TR><TD>JHU label - Sagittal stratum - left - Trace</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Sagittal_stratum_L_TR")</TD></TR>
+							<TR><TD>JHU label - Sagittal stratum - right - Trace</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Sagittal_stratum_R_TR")</TD></TR>
+							<TR><TD>JHU label - Splenium of corpus callosum - Trace</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Splenium_corpus_callosum_TR")</TD></TR>
+							<TR><TD>JHU label - Superior cerebellar peduncle - left - Trace</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Sup_cerebellar_ped_L_TR")</TD></TR>
+							<TR><TD>JHU label - Superior cerebellar peduncle - right - Trace</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Sup_cerebellar_ped_R_TR")</TD></TR>
+							<TR><TD>JHU label - Superior corona radiata - left - Trace</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Sup_corona_radiata_L_TR")</TD></TR>
+							<TR><TD>JHU label - Superior corona radiata - right - Trace</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Sup_corona_radiata_R_TR")</TD></TR>
+							<TR><TD>JHU label - Superior fronto-occipital fasciculus - left - Trace</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Sup_fronto-occipital_fasc_L_TR")</TD></TR>
+							<TR><TD>JHU label - Superior fronto-occipital fasciculus - right - Trace</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Sup_fronto-occipital_fasc_R_TR")</TD></TR>
+							<TR><TD>JHU label - Superior longitudinal fasciculus - left - Trace</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Sup_long_fasc_L_TR")</TD></TR>
+							<TR><TD>JHU label - Superior longitudinal fasciculus - right - Trace</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Sup_long_fasc_R_TR")</TD></TR>
+							<TR><TD>JHU label - Tapetum - left - Trace</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Tapetum_L_TR")</TD></TR>
+							<TR><TD>JHU label - Tapetum - right - Trace</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Tapetum_R_TR")</TD></TR>
+							<TR><TD>JHU label - Uncinate fasciculus - left - Trace</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Uncinate_fasc_L_TR")</TD></TR>
+							<TR><TD>JHU label - Uncinate fasciculus - right - Trace</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Uncinate_fasc_R_TR")</TD></TR>
+							<TR><TD>JHU label - Whole brain - Trace</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_whole_brain_TR")</TD></TR>
+							<TR><TD>JU tract - Anterior thalamic radiation - left - Trace</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/tracts_Ant_thalamic_radiation_L_TR")</TD></TR>
+							<TR><TD>JU tract - Anterior thalamic radiation - right - Trace</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/tracts_Ant_thalamic_radiation_R_TR")</TD></TR>
+							<TR><TD>JU tract - Cingulum bundle - left - Trace</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/tracts_Cingulum_L_TR")</TD></TR>
+							<TR><TD>JU tract - Cingulum bundle - right - Trace</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/tracts_Cingulum_R_TR")</TD></TR>
+							<TR><TD>JU tract - Corticospinal tract - left - Trace</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/tracts_Corticospinal_tract_L_TR")</TD></TR>
+							<TR><TD>JU tract - Corticospinal tract - right  - Trace</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/tracts_Corticospinal_tract_R_TR")</TD></TR>
+							<TR><TD>JU tract - Forceps major - Trace</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/tracts_Forceps_major_TR")</TD></TR>
+							<TR><TD>JU tract - Forceps minor - Trace</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/tracts_Forceps_minor_TR")</TD></TR>
+							<TR><TD>JU tract - Inferior fronto-occipital fasciculus - left - Trace</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/tracts_Inf_fronto-occipital_fasc_L_TR")</TD></TR>
+							<TR><TD>JU tract - Inferior fronto-occipital fasciculus - right - Trace</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/tracts_Inf_fronto-occipital_fasc_R_TR")</TD></TR>
+							<TR><TD>JU tract - Inferior longitudinal fasciculus - left - Trace</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/tracts_Inf_long_fasc_L_TR")</TD></TR>
+							<TR><TD>JU tract - Inferior longitudinal fasciculus - right - Trace</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/tracts_Inf_long_fasc_R_TR")</TD></TR>
+							<TR><TD>JU tract - Superior longitudinal fasciculus - left - Trace</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/tracts_Sup_long_fasc_L_TR")</TD></TR>
+							<TR><TD>JU tract - Superior longitudinal fasciculus - right - Trace</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/tracts_Sup_long_fasc_R_TR")</TD></TR>
+							<TR><TD>JU tract - Uncinate fasciculus - left - Trace</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/tracts_Uncinate_fasc_L_TR")</TD></TR>
+							<TR><TD>JU tract - Uncinate fasciculus - right - Trace</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/tracts_Uncinate_fasc_R_TR")</TD></TR>
+							<TR><TD>JU tract - Whole brain - Trace</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/tracts_whole_brain_TR")</TD></TR>
+							<TR><TD>JHU label - Anterior corona radiata - left - Axial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Ant_corona_radiata_L_AD")</TD></TR>
+							<TR><TD>JHU label - Anterior corona radiata - right - Axial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Ant_corona_radiata_R_AD")</TD></TR>
+							<TR><TD>JHU label - Anterior limb of the internal capsule - left - Axial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Ant_limb_internal_capsule_L_AD")</TD></TR>
+							<TR><TD>JHU label - Anterior limb of the internal capsule - right - Axial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Ant_limb_internal_capsule_R_AD")</TD></TR>
+							<TR><TD>JHU label - Body of corpus callosum - Axial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Body_corpus_callosum_AD")</TD></TR>
+							<TR><TD>JHU label - Cerebral peduncle - left - Axial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Cerebral_ped_L_AD")</TD></TR>
+							<TR><TD>JHU label - Cerebral peduncle - right - Axial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Cerebral_ped_R_AD")</TD></TR>
+							<TR><TD>JHU label - Cingulum bundle - left - Axial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Cingulum_L_AD")</TD></TR>
+							<TR><TD>JHU label - Cingulum bundle - right - Axial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Cingulum_R_AD")</TD></TR>
+							<TR><TD>JHU label - Corticospinal tract - left - Axial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Corticospinal_tract_L_AD")</TD></TR>
+							<TR><TD>JHU label - Corticospinal tract - right  - Axial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Corticospinal_tract_R_AD")</TD></TR>
+							<TR><TD>JHU label - External capsule - left - Axial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_External_capsule_L_AD")</TD></TR>
+							<TR><TD>JHU label - External capsule - right - Axial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_External_capsule_R_AD")</TD></TR>
+							<TR><TD>JHU label - Fornix proper - Axial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Fornix_AD")</TD></TR>
+							<TR><TD>JHU label - Fornix - Stria terminalis - left - Axial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Fornix_Stria_terminalis_L_AD")</TD></TR>
+							<TR><TD>JHU label - Fornix - Stria terminalis - right - Axial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Fornix_Stria_terminalis_R_AD")</TD></TR>
+							<TR><TD>JHU label - Genu of corpus callosum - Axial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Genu_corpus_callosum_AD")</TD></TR>
+							<TR><TD>JHU label - Inferior cereballar peduncle - left - Axial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Inf_cerebellar_ped_L_AD")</TD></TR>
+							<TR><TD>JHU label - Inferior cereballar peduncle - right - Axial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Inf_cerebellar_ped_R_AD")</TD></TR>
+							<TR><TD>JHU label - Medial lemniscus - left - Axial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Medial_lemniscus_L_AD")</TD></TR>
+							<TR><TD>JHU label - Medial lemniscus - right - Axial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Medial_lemniscus_R_AD")</TD></TR>
+							<TR><TD>JHU label - Middle cerebellar peduncle - Axial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Middle_cerebellar_ped_AD")</TD></TR>
+							<TR><TD>JHU label - Pontine crossing tract - Axial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Pontine_crossing_tract_AD")</TD></TR>
+							<TR><TD>JHU label - Posterior corona radiata - left - Axial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Post_corona_radiata_L_AD")</TD></TR>
+							<TR><TD>JHU label - Posterior corona radiata - right - Axial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Post_corona_radiata_R_AD")</TD></TR>
+							<TR><TD>JHU label - Posterior limb of the internal capsule - left - Axial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Post_limb_internal_capsule_L_AD")</TD></TR>
+							<TR><TD>JHU label - Posterior limb of the internal capsule - right - Axial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Post_limb_internal_capsule_R_AD")</TD></TR>
+							<TR><TD>JHU label - Posterior thalamic radiation - left - Axial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Post_thalamic_radiation_L_AD")</TD></TR>
+							<TR><TD>JHU label - Posterior thalamic radiation - right - Axial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Post_thalamic_radiation_R_AD")</TD></TR>
+							<TR><TD>JHU label - Retrolenticular part of the internal capsule - left - Axial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Retrolenticular_part_internal_capsule_L_AD")</TD></TR>
+							<TR><TD>JHU label - Retrolenticular part of the internal capsule - right - Axial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Retrolenticular_part_internal_capsule_R_AD")</TD></TR>
+							<TR><TD>JHU label - Sagittal stratum - left - Axial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Sagittal_stratum_L_AD")</TD></TR>
+							<TR><TD>JHU label - Sagittal stratum - right - Axial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Sagittal_stratum_R_AD")</TD></TR>
+							<TR><TD>JHU label - Splenium of corpus callosum - Axial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Splenium_corpus_callosum_AD")</TD></TR>
+							<TR><TD>JHU label - Superior cerebellar peduncle - left - Axial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Sup_cerebellar_ped_L_AD")</TD></TR>
+							<TR><TD>JHU label - Superior cerebellar peduncle - right - Axial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Sup_cerebellar_ped_R_AD")</TD></TR>
+							<TR><TD>JHU label - Superior corona radiata - left - Axial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Sup_corona_radiata_L_AD")</TD></TR>
+							<TR><TD>JHU label - Superior corona radiata - right - Axial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Sup_corona_radiata_R_AD")</TD></TR>
+							<TR><TD>JHU label - Superior fronto-occipital fasciculus - left - Axial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Sup_fronto-occipital_fasc_L_AD")</TD></TR>
+							<TR><TD>JHU label - Superior fronto-occipital fasciculus - right - Axial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Sup_fronto-occipital_fasc_R_AD")</TD></TR>
+							<TR><TD>JHU label - Superior longitudinal fasciculus - left - Axial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Sup_long_fasc_L_AD")</TD></TR>
+							<TR><TD>JHU label - Superior longitudinal fasciculus - right - Axial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Sup_long_fasc_R_AD")</TD></TR>
+							<TR><TD>JHU label - Tapetum - left - Axial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Tapetum_L_AD")</TD></TR>
+							<TR><TD>JHU label - Tapetum - right - Axial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Tapetum_R_AD")</TD></TR>
+							<TR><TD>JHU label - Uncinate fasciculus - left - Axial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Uncinate_fasc_L_AD")</TD></TR>
+							<TR><TD>JHU label - Uncinate fasciculus - right - Axial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Uncinate_fasc_R_AD")</TD></TR>
+							<TR><TD>JHU label - Whole brain - Axial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_whole_brain_AD")</TD></TR>
+							<TR><TD>JU tract - Anterior thalamic radiation - left - Axial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/tracts_Ant_thalamic_radiation_L_AD")</TD></TR>
+							<TR><TD>JU tract - Anterior thalamic radiation - right - Axial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/tracts_Ant_thalamic_radiation_R_AD")</TD></TR>
+							<TR><TD>JU tract - Cingulum bundle - left - Axial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/tracts_Cingulum_L_AD")</TD></TR>
+							<TR><TD>JU tract - Cingulum bundle - right - Axial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/tracts_Cingulum_R_AD")</TD></TR>
+							<TR><TD>JU tract - Corticospinal tract - left - Axial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/tracts_Corticospinal_tract_L_AD")</TD></TR>
+							<TR><TD>JU tract - Corticospinal tract - right  - Axial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/tracts_Corticospinal_tract_R_AD")</TD></TR>
+							<TR><TD>JU tract - Forceps major - Axial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/tracts_Forceps_major_AD")</TD></TR>
+							<TR><TD>JU tract - Forceps minor - Axial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/tracts_Forceps_minor_AD")</TD></TR>
+							<TR><TD>JU tract - Inferior fronto-occipital fasciculus - left - Axial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/tracts_Inf_fronto-occipital_fasc_L_AD")</TD></TR>
+							<TR><TD>JU tract - Inferior fronto-occipital fasciculus - right - Axial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/tracts_Inf_fronto-occipital_fasc_R_AD")</TD></TR>
+							<TR><TD>JU tract - Inferior longitudinal fasciculus - left - Axial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/tracts_Inf_long_fasc_L_AD")</TD></TR>
+							<TR><TD>JU tract - Inferior longitudinal fasciculus - right - Axial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/tracts_Inf_long_fasc_R_AD")</TD></TR>
+							<TR><TD>JU tract - Superior longitudinal fasciculus - left - Axial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/tracts_Sup_long_fasc_L_AD")</TD></TR>
+							<TR><TD>JU tract - Superior longitudinal fasciculus - right - Axial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/tracts_Sup_long_fasc_R_AD")</TD></TR>
+							<TR><TD>JU tract - Uncinate fasciculus - left - Axial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/tracts_Uncinate_fasc_L_AD")</TD></TR>
+							<TR><TD>JU tract - Uncinate fasciculus - right - Axial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/tracts_Uncinate_fasc_R_AD")</TD></TR>
+							<TR><TD>JU tract - Whole brain - Axial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/tracts_whole_brain_AD")</TD></TR>
+							<TR><TD>JHU label - Anterior corona radiata - left - Radial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Ant_corona_radiata_L_RD")</TD></TR>
+							<TR><TD>JHU label - Anterior corona radiata - right - Radial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Ant_corona_radiata_R_RD")</TD></TR>
+							<TR><TD>JHU label - Anterior limb of the internal capsule - left - Radial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Ant_limb_internal_capsule_L_RD")</TD></TR>
+							<TR><TD>JHU label - Anterior limb of the internal capsule - right - Radial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Ant_limb_internal_capsule_R_RD")</TD></TR>
+							<TR><TD>JHU label - Body of corpus callosum - Radial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Body_corpus_callosum_RD")</TD></TR>
+							<TR><TD>JHU label - Cerebral peduncle - left - Radial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Cerebral_ped_L_RD")</TD></TR>
+							<TR><TD>JHU label - Cerebral peduncle - right - Radial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Cerebral_ped_R_RD")</TD></TR>
+							<TR><TD>JHU label - Cingulum bundle - left - Radial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Cingulum_L_RD")</TD></TR>
+							<TR><TD>JHU label - Cingulum bundle - right - Radial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Cingulum_R_RD")</TD></TR>
+							<TR><TD>JHU label - Corticospinal tract - left - Radial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Corticospinal_tract_L_RD")</TD></TR>
+							<TR><TD>JHU label - Corticospinal tract - right  - Radial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Corticospinal_tract_R_RD")</TD></TR>
+							<TR><TD>JHU label - External capsule - left - Radial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_External_capsule_L_RD")</TD></TR>
+							<TR><TD>JHU label - External capsule - right - Radial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_External_capsule_R_RD")</TD></TR>
+							<TR><TD>JHU label - Fornix proper - Radial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Fornix_RD")</TD></TR>
+							<TR><TD>JHU label - Fornix - Stria terminalis - left - Radial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Fornix_Stria_terminalis_L_RD")</TD></TR>
+							<TR><TD>JHU label - Fornix - Stria terminalis - right - Radial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Fornix_Stria_terminalis_R_RD")</TD></TR>
+							<TR><TD>JHU label - Genu of corpus callosum - Radial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Genu_corpus_callosum_RD")</TD></TR>
+							<TR><TD>JHU label - Inferior cereballar peduncle - left - Radial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Inf_cerebellar_ped_L_RD")</TD></TR>
+							<TR><TD>JHU label - Inferior cereballar peduncle - right - Radial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Inf_cerebellar_ped_R_RD")</TD></TR>
+							<TR><TD>JHU label - Medial lemniscus - left - Radial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Medial_lemniscus_L_RD")</TD></TR>
+							<TR><TD>JHU label - Medial lemniscus - right - Radial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Medial_lemniscus_R_RD")</TD></TR>
+							<TR><TD>JHU label - Middle cerebellar peduncle - Radial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Middle_cerebellar_ped_RD")</TD></TR>
+							<TR><TD>JHU label - Pontine crossing tract - Radial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Pontine_crossing_tract_RD")</TD></TR>
+							<TR><TD>JHU label - Posterior corona radiata - left - Radial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Post_corona_radiata_L_RD")</TD></TR>
+							<TR><TD>JHU label - Posterior corona radiata - right - Radial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Post_corona_radiata_R_RD")</TD></TR>
+							<TR><TD>JHU label - Posterior limb of the internal capsule - left - Radial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Post_limb_internal_capsule_L_RD")</TD></TR>
+							<TR><TD>JHU label - Posterior limb of the internal capsule - right - Radial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Post_limb_internal_capsule_R_RD")</TD></TR>
+							<TR><TD>JHU label - Posterior thalamic radiation - left - Radial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Post_thalamic_radiation_L_RD")</TD></TR>
+							<TR><TD>JHU label - Posterior thalamic radiation - right - Radial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Post_thalamic_radiation_R_RD")</TD></TR>
+							<TR><TD>JHU label - Retrolenticular part of the internal capsule - left - Radial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Retrolenticular_part_internal_capsule_L_RD")</TD></TR>
+							<TR><TD>JHU label - Retrolenticular part of the internal capsule - right - Radial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Retrolenticular_part_internal_capsule_R_RD")</TD></TR>
+							<TR><TD>JHU label - Sagittal stratum - left - Radial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Sagittal_stratum_L_RD")</TD></TR>
+							<TR><TD>JHU label - Sagittal stratum - right - Radial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Sagittal_stratum_R_RD")</TD></TR>
+							<TR><TD>JHU label - Splenium of corpus callosum - Radial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Splenium_corpus_callosum_RD")</TD></TR>
+							<TR><TD>JHU label - Superior cerebellar peduncle - left - Radial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Sup_cerebellar_ped_L_RD")</TD></TR>
+							<TR><TD>JHU label - Superior cerebellar peduncle - right - Radial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Sup_cerebellar_ped_R_RD")</TD></TR>
+							<TR><TD>JHU label - Superior corona radiata - left - Radial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Sup_corona_radiata_L_RD")</TD></TR>
+							<TR><TD>JHU label - Superior corona radiata - right - Radial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Sup_corona_radiata_R_RD")</TD></TR>
+							<TR><TD>JHU label - Superior fronto-occipital fasciculus - left - Radial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Sup_fronto-occipital_fasc_L_RD")</TD></TR>
+							<TR><TD>JHU label - Superior fronto-occipital fasciculus - right - Radial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Sup_fronto-occipital_fasc_R_RD")</TD></TR>
+							<TR><TD>JHU label - Superior longitudinal fasciculus - left - Radial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Sup_long_fasc_L_RD")</TD></TR>
+							<TR><TD>JHU label - Superior longitudinal fasciculus - right - Radial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Sup_long_fasc_R_RD")</TD></TR>
+							<TR><TD>JHU label - Tapetum - left - Radial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Tapetum_L_RD")</TD></TR>
+							<TR><TD>JHU label - Tapetum - right - Radial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Tapetum_R_RD")</TD></TR>
+							<TR><TD>JHU label - Uncinate fasciculus - left - Radial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Uncinate_fasc_L_RD")</TD></TR>
+							<TR><TD>JHU label - Uncinate fasciculus - right - Radial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_Uncinate_fasc_R_RD")</TD></TR>
+							<TR><TD>JHU label - Whole brain - Radial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/labels_whole_brain_RD")</TD></TR>
+							<TR><TD>JU tract - Anterior thalamic radiation - left - Radial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/tracts_Ant_thalamic_radiation_L_RD")</TD></TR>
+							<TR><TD>JU tract - Anterior thalamic radiation - right - Radial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/tracts_Ant_thalamic_radiation_R_RD")</TD></TR>
+							<TR><TD>JU tract - Cingulum bundle - left - Radial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/tracts_Cingulum_L_RD")</TD></TR>
+							<TR><TD>JU tract - Cingulum bundle - right - Radial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/tracts_Cingulum_R_RD")</TD></TR>
+							<TR><TD>JU tract - Corticospinal tract - left - Radial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/tracts_Corticospinal_tract_L_RD")</TD></TR>
+							<TR><TD>JU tract - Corticospinal tract - right  - Radial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/tracts_Corticospinal_tract_R_RD")</TD></TR>
+							<TR><TD>JU tract - Forceps major - Radial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/tracts_Forceps_major_RD")</TD></TR>
+							<TR><TD>JU tract - Forceps minor - Radial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/tracts_Forceps_minor_RD")</TD></TR>
+							<TR><TD>JU tract - Inferior fronto-occipital fasciculus - left - Radial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/tracts_Inf_fronto-occipital_fasc_L_RD")</TD></TR>
+							<TR><TD>JU tract - Inferior fronto-occipital fasciculus - right - Radial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/tracts_Inf_fronto-occipital_fasc_R_RD")</TD></TR>
+							<TR><TD>JU tract - Inferior longitudinal fasciculus - left - Radial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/tracts_Inf_long_fasc_L_RD")</TD></TR>
+							<TR><TD>JU tract - Inferior longitudinal fasciculus - right - Radial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/tracts_Inf_long_fasc_R_RD")</TD></TR>
+							<TR><TD>JU tract - Superior longitudinal fasciculus - left - Radial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/tracts_Sup_long_fasc_L_RD")</TD></TR>
+							<TR><TD>JU tract - Superior longitudinal fasciculus - right - Radial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/tracts_Sup_long_fasc_R_RD")</TD></TR>
+							<TR><TD>JU tract - Uncinate fasciculus - left - Radial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/tracts_Uncinate_fasc_L_RD")</TD></TR>
+							<TR><TD>JU tract - Uncinate fasciculus - right - Radial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/tracts_Uncinate_fasc_R_RD")</TD></TR>
+							<TR><TD>JU tract - Whole brain - Radial diffusivity</TD><TD>$!item.getDoubleProperty("COBRA:DTIData/tracts_whole_brain_RD")</TD></TR>
+						</TABLE>
+					</TD>
+					<TD valign="top" align="right">
+						#parse($turbineUtils.getTemplateName("actions",$om.getXSIType(),$project))
+					</TD>
+				</TR>
+			</TABLE>
+		</TD>
+	</TR>
+	<TR>
+		<TD>
+<!-- BEGIN COBRA:DTIData -->
+			<TABLE>
+				<TR><TH align="left"><font face="$ui.sansSerifFonts" size="2">Related Items</font></TH></TR>
+				<TR>
+					<TD align="left" valign="top">
+						<TABLE>
+						</TABLE>
+					</TD>
+				</TR>
+				<TR>
+					<TD align="left" valign="top">
+						<TABLE><TR><TD>
+							#set($xnat_abstractResource_1_NUM_ROWS=$item.getChildItems("COBRA:DTIData/in/file").size() - 1)
+							#if($xnat_abstractResource_1_NUM_ROWS>=0)
+								#foreach($xnat_abstractResource_1_COUNTER in [0..$xnat_abstractResource_1_NUM_ROWS])
+<!-- BEGIN COBRA:DTIData/in/file[$xnat_abstractResource_1_COUNTER] -->
+									<TABLE>
+										<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">COBRA:DTIData/in/file[$xnat_abstractResource_1_COUNTER]</font></TH></TR>
+										<TR>
+											<TD align="left" valign="top">
+												<TABLE>
+													<TR><TD>note</TD><TD>$!item.getStringProperty("COBRA:DTIData/in/file[$xnat_abstractResource_1_COUNTER]/note")</TD></TR>
+													<TR><TD>label</TD><TD>$!item.getStringProperty("COBRA:DTIData/in/file[$xnat_abstractResource_1_COUNTER]/label")</TD></TR>
+													<TR><TD>file_count</TD><TD>$!item.getIntegerProperty("COBRA:DTIData/in/file[$xnat_abstractResource_1_COUNTER]/file_count")</TD></TR>
+													<TR><TD>file_size</TD><TD>$!item.getProperty("COBRA:DTIData/in/file[$xnat_abstractResource_1_COUNTER]/file_size")</TD></TR>
+												</TABLE>
+											</TD>
+										</TR>
+										<TR>
+											<TD align="left" valign="top">
+												<TABLE><TR><TD>
+													#set($xnat_abstractResource_tag_2_NUM_ROWS=$item.getChildItems("COBRA:DTIData/in/file[$xnat_abstractResource_1_COUNTER]/tags/tag").size() - 1)
+													#if($xnat_abstractResource_tag_2_NUM_ROWS>=0)
+														#foreach($xnat_abstractResource_tag_2_COUNTER in [0..$xnat_abstractResource_tag_2_NUM_ROWS])
+<!-- BEGIN COBRA:DTIData/in/file[$xnat_abstractResource_1_COUNTER]/tags/tag[$xnat_abstractResource_tag_2_COUNTER] -->
+															<TABLE>
+																<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">COBRA:DTIData/in/file[$xnat_abstractResource_1_COUNTER]/tags/tag[$xnat_abstractResource_tag_2_COUNTER]</font></TH></TR>
+																<TR>
+																	<TD align="left" valign="top">
+																		<TABLE>
+																			<TR><TD>tag</TD><TD>$!item.getStringProperty("COBRA:DTIData/in/file[$xnat_abstractResource_1_COUNTER]/tags/tag[$xnat_abstractResource_tag_2_COUNTER]/tag")</TD></TR>
+																			<TR><TD>name</TD><TD>$!item.getStringProperty("COBRA:DTIData/in/file[$xnat_abstractResource_1_COUNTER]/tags/tag[$xnat_abstractResource_tag_2_COUNTER]/name")</TD></TR>
+																		</TABLE>
+																	</TD>
+																</TR>
+															</TABLE>
+<!-- END COBRA:DTIData/in/file[$xnat_abstractResource_1_COUNTER]/tags/tag[$xnat_abstractResource_tag_2_COUNTER] -->
+														#end
+													#end
+												</TD></TR></TABLE>
+											</TD>
+										</TR>
+									</TABLE>
+<!-- END COBRA:DTIData/in/file[$xnat_abstractResource_1_COUNTER] -->
+								#end
+							#end
+						</TD></TR></TABLE>
+					</TD>
+				</TR>
+				<TR>
+					<TD align="left" valign="top">
+						<TABLE><TR><TD>
+							#set($xnat_abstractResource_3_NUM_ROWS=$item.getChildItems("COBRA:DTIData/out/file").size() - 1)
+							#if($xnat_abstractResource_3_NUM_ROWS>=0)
+								#foreach($xnat_abstractResource_3_COUNTER in [0..$xnat_abstractResource_3_NUM_ROWS])
+<!-- BEGIN COBRA:DTIData/out/file[$xnat_abstractResource_3_COUNTER] -->
+									<TABLE>
+										<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">COBRA:DTIData/out/file[$xnat_abstractResource_3_COUNTER]</font></TH></TR>
+										<TR>
+											<TD align="left" valign="top">
+												<TABLE>
+													<TR><TD>note</TD><TD>$!item.getStringProperty("COBRA:DTIData/out/file[$xnat_abstractResource_3_COUNTER]/note")</TD></TR>
+													<TR><TD>label</TD><TD>$!item.getStringProperty("COBRA:DTIData/out/file[$xnat_abstractResource_3_COUNTER]/label")</TD></TR>
+													<TR><TD>file_count</TD><TD>$!item.getIntegerProperty("COBRA:DTIData/out/file[$xnat_abstractResource_3_COUNTER]/file_count")</TD></TR>
+													<TR><TD>file_size</TD><TD>$!item.getProperty("COBRA:DTIData/out/file[$xnat_abstractResource_3_COUNTER]/file_size")</TD></TR>
+												</TABLE>
+											</TD>
+										</TR>
+										<TR>
+											<TD align="left" valign="top">
+												<TABLE><TR><TD>
+													#set($xnat_abstractResource_tag_4_NUM_ROWS=$item.getChildItems("COBRA:DTIData/out/file[$xnat_abstractResource_3_COUNTER]/tags/tag").size() - 1)
+													#if($xnat_abstractResource_tag_4_NUM_ROWS>=0)
+														#foreach($xnat_abstractResource_tag_4_COUNTER in [0..$xnat_abstractResource_tag_4_NUM_ROWS])
+<!-- BEGIN COBRA:DTIData/out/file[$xnat_abstractResource_3_COUNTER]/tags/tag[$xnat_abstractResource_tag_4_COUNTER] -->
+															<TABLE>
+																<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">COBRA:DTIData/out/file[$xnat_abstractResource_3_COUNTER]/tags/tag[$xnat_abstractResource_tag_4_COUNTER]</font></TH></TR>
+																<TR>
+																	<TD align="left" valign="top">
+																		<TABLE>
+																			<TR><TD>tag</TD><TD>$!item.getStringProperty("COBRA:DTIData/out/file[$xnat_abstractResource_3_COUNTER]/tags/tag[$xnat_abstractResource_tag_4_COUNTER]/tag")</TD></TR>
+																			<TR><TD>name</TD><TD>$!item.getStringProperty("COBRA:DTIData/out/file[$xnat_abstractResource_3_COUNTER]/tags/tag[$xnat_abstractResource_tag_4_COUNTER]/name")</TD></TR>
+																		</TABLE>
+																	</TD>
+																</TR>
+															</TABLE>
+<!-- END COBRA:DTIData/out/file[$xnat_abstractResource_3_COUNTER]/tags/tag[$xnat_abstractResource_tag_4_COUNTER] -->
+														#end
+													#end
+												</TD></TR></TABLE>
+											</TD>
+										</TR>
+									</TABLE>
+<!-- END COBRA:DTIData/out/file[$xnat_abstractResource_3_COUNTER] -->
+								#end
+							#end
+						</TD></TR></TABLE>
+					</TD>
+				</TR>
+				<TR>
+					<TD align="left" valign="top">
+						<TABLE><TR><TD>
+							#set($xnat_addField_5_NUM_ROWS=$item.getChildItems("COBRA:DTIData/parameters/addParam").size() - 1)
+							#if($xnat_addField_5_NUM_ROWS>=0)
+								#foreach($xnat_addField_5_COUNTER in [0..$xnat_addField_5_NUM_ROWS])
+<!-- BEGIN COBRA:DTIData/parameters/addParam[$xnat_addField_5_COUNTER] -->
+									<TABLE>
+										<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">COBRA:DTIData/parameters/addParam[$xnat_addField_5_COUNTER]</font></TH></TR>
+										<TR>
+											<TD align="left" valign="top">
+												<TABLE>
+													<TR><TD>addField</TD><TD>$!item.getStringProperty("COBRA:DTIData/parameters/addParam[$xnat_addField_5_COUNTER]/addField")</TD></TR>
+													<TR><TD>name</TD><TD>$!item.getStringProperty("COBRA:DTIData/parameters/addParam[$xnat_addField_5_COUNTER]/name")</TD></TR>
+												</TABLE>
+											</TD>
+										</TR>
+									</TABLE>
+<!-- END COBRA:DTIData/parameters/addParam[$xnat_addField_5_COUNTER] -->
+								#end
+							#end
+						</TD></TR></TABLE>
+					</TD>
+				</TR>
+				<TR>
+					<TD align="left" valign="top">
+<!-- BEGIN COBRA:DTIData/provenance -->
+						<TABLE>
+							<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">COBRA:DTIData/provenance</font></TH></TR>
+							<TR>
+								<TD align="left" valign="top">
+									<TABLE>
+									</TABLE>
+								</TD>
+							</TR>
+							<TR>
+								<TD align="left" valign="top">
+									<TABLE><TR><TD>
+										#set($prov_processStep_7_NUM_ROWS=$item.getChildItems("COBRA:DTIData/provenance/processStep").size() - 1)
+										#if($prov_processStep_7_NUM_ROWS>=0)
+											#foreach($prov_processStep_7_COUNTER in [0..$prov_processStep_7_NUM_ROWS])
+<!-- BEGIN COBRA:DTIData/provenance/processStep[$prov_processStep_7_COUNTER] -->
+												<TABLE>
+													<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">COBRA:DTIData/provenance/processStep[$prov_processStep_7_COUNTER]</font></TH></TR>
+													<TR>
+														<TD align="left" valign="top">
+															<TABLE>
+																<TR><TD>program</TD><TD>$!item.getStringProperty("COBRA:DTIData/provenance/processStep[$prov_processStep_7_COUNTER]/program")</TD></TR>
+																<TR><TD>program/version</TD><TD>$!item.getStringProperty("COBRA:DTIData/provenance/processStep[$prov_processStep_7_COUNTER]/program/version")</TD></TR>
+																<TR><TD>program/arguments</TD><TD>$!item.getStringProperty("COBRA:DTIData/provenance/processStep[$prov_processStep_7_COUNTER]/program/arguments")</TD></TR>
+																<TR><TD>timestamp</TD><TD>$!item.getProperty("COBRA:DTIData/provenance/processStep[$prov_processStep_7_COUNTER]/timestamp")</TD></TR>
+																<TR><TD>cvs</TD><TD>$!item.getStringProperty("COBRA:DTIData/provenance/processStep[$prov_processStep_7_COUNTER]/cvs")</TD></TR>
+																<TR><TD>user</TD><TD>$!item.getStringProperty("COBRA:DTIData/provenance/processStep[$prov_processStep_7_COUNTER]/user")</TD></TR>
+																<TR><TD>machine</TD><TD>$!item.getStringProperty("COBRA:DTIData/provenance/processStep[$prov_processStep_7_COUNTER]/machine")</TD></TR>
+																<TR><TD>platform</TD><TD>$!item.getStringProperty("COBRA:DTIData/provenance/processStep[$prov_processStep_7_COUNTER]/platform")</TD></TR>
+																<TR><TD>platform/version</TD><TD>$!item.getStringProperty("COBRA:DTIData/provenance/processStep[$prov_processStep_7_COUNTER]/platform/version")</TD></TR>
+																<TR><TD>compiler</TD><TD>$!item.getStringProperty("COBRA:DTIData/provenance/processStep[$prov_processStep_7_COUNTER]/compiler")</TD></TR>
+																<TR><TD>compiler/version</TD><TD>$!item.getStringProperty("COBRA:DTIData/provenance/processStep[$prov_processStep_7_COUNTER]/compiler/version")</TD></TR>
+															</TABLE>
+														</TD>
+													</TR>
+													<TR>
+														<TD align="left" valign="top">
+															<TABLE><TR><TD>
+																#set($prov_processStep_library_8_NUM_ROWS=$item.getChildItems("COBRA:DTIData/provenance/processStep[$prov_processStep_7_COUNTER]/library").size() - 1)
+																#if($prov_processStep_library_8_NUM_ROWS>=0)
+																	#foreach($prov_processStep_library_8_COUNTER in [0..$prov_processStep_library_8_NUM_ROWS])
+<!-- BEGIN COBRA:DTIData/provenance/processStep[$prov_processStep_7_COUNTER]/library[$prov_processStep_library_8_COUNTER] -->
+																		<TABLE>
+																			<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">COBRA:DTIData/provenance/processStep[$prov_processStep_7_COUNTER]/library[$prov_processStep_library_8_COUNTER]</font></TH></TR>
+																			<TR>
+																				<TD align="left" valign="top">
+																					<TABLE>
+																						<TR><TD>library</TD><TD>$!item.getStringProperty("COBRA:DTIData/provenance/processStep[$prov_processStep_7_COUNTER]/library[$prov_processStep_library_8_COUNTER]/library")</TD></TR>
+																						<TR><TD>version</TD><TD>$!item.getStringProperty("COBRA:DTIData/provenance/processStep[$prov_processStep_7_COUNTER]/library[$prov_processStep_library_8_COUNTER]/version")</TD></TR>
+																					</TABLE>
+																				</TD>
+																			</TR>
+																		</TABLE>
+<!-- END COBRA:DTIData/provenance/processStep[$prov_processStep_7_COUNTER]/library[$prov_processStep_library_8_COUNTER] -->
+																	#end
+																#end
+															</TD></TR></TABLE>
+														</TD>
+													</TR>
+												</TABLE>
+<!-- END COBRA:DTIData/provenance/processStep[$prov_processStep_7_COUNTER] -->
+											#end
+										#end
+									</TD></TR></TABLE>
+								</TD>
+							</TR>
+						</TABLE>
+<!-- END COBRA:DTIData/provenance -->
+					</TD>
+				</TR>
+				<TR>
+					<TD align="left" valign="top">
+						<TABLE><TR><TD>
+							#set($xnat_experimentData_share_9_NUM_ROWS=$item.getChildItems("COBRA:DTIData/sharing/share").size() - 1)
+							#if($xnat_experimentData_share_9_NUM_ROWS>=0)
+								#foreach($xnat_experimentData_share_9_COUNTER in [0..$xnat_experimentData_share_9_NUM_ROWS])
+<!-- BEGIN COBRA:DTIData/sharing/share[$xnat_experimentData_share_9_COUNTER] -->
+									<TABLE>
+										<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">COBRA:DTIData/sharing/share[$xnat_experimentData_share_9_COUNTER]</font></TH></TR>
+										<TR>
+											<TD align="left" valign="top">
+												<TABLE>
+													<TR><TD>share</TD><TD>$!item.getStringProperty("COBRA:DTIData/sharing/share[$xnat_experimentData_share_9_COUNTER]/share")</TD></TR>
+													<TR><TD>label</TD><TD>$!item.getStringProperty("COBRA:DTIData/sharing/share[$xnat_experimentData_share_9_COUNTER]/label")</TD></TR>
+													<TR><TD>project</TD><TD>$!item.getStringProperty("COBRA:DTIData/sharing/share[$xnat_experimentData_share_9_COUNTER]/project")</TD></TR>
+													<TR><TD>visit</TD><TD>$!item.getStringProperty("COBRA:DTIData/sharing/share[$xnat_experimentData_share_9_COUNTER]/visit")</TD></TR>
+													<TR><TD>protocol</TD><TD>$!item.getStringProperty("COBRA:DTIData/sharing/share[$xnat_experimentData_share_9_COUNTER]/protocol")</TD></TR>
+												</TABLE>
+											</TD>
+										</TR>
+									</TABLE>
+<!-- END COBRA:DTIData/sharing/share[$xnat_experimentData_share_9_COUNTER] -->
+								#end
+							#end
+						</TD></TR></TABLE>
+					</TD>
+				</TR>
+				<TR>
+					<TD align="left" valign="top">
+						<TABLE><TR><TD>
+							#set($xnat_abstractResource_12_NUM_ROWS=$item.getChildItems("COBRA:DTIData/resources/resource").size() - 1)
+							#if($xnat_abstractResource_12_NUM_ROWS>=0)
+								#foreach($xnat_abstractResource_12_COUNTER in [0..$xnat_abstractResource_12_NUM_ROWS])
+<!-- BEGIN COBRA:DTIData/resources/resource[$xnat_abstractResource_12_COUNTER] -->
+									<TABLE>
+										<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">COBRA:DTIData/resources/resource[$xnat_abstractResource_12_COUNTER]</font></TH></TR>
+										<TR>
+											<TD align="left" valign="top">
+												<TABLE>
+													<TR><TD>note</TD><TD>$!item.getStringProperty("COBRA:DTIData/resources/resource[$xnat_abstractResource_12_COUNTER]/note")</TD></TR>
+													<TR><TD>label</TD><TD>$!item.getStringProperty("COBRA:DTIData/resources/resource[$xnat_abstractResource_12_COUNTER]/label")</TD></TR>
+													<TR><TD>file_count</TD><TD>$!item.getIntegerProperty("COBRA:DTIData/resources/resource[$xnat_abstractResource_12_COUNTER]/file_count")</TD></TR>
+													<TR><TD>file_size</TD><TD>$!item.getProperty("COBRA:DTIData/resources/resource[$xnat_abstractResource_12_COUNTER]/file_size")</TD></TR>
+												</TABLE>
+											</TD>
+										</TR>
+										<TR>
+											<TD align="left" valign="top">
+												<TABLE><TR><TD>
+													#set($xnat_abstractResource_tag_13_NUM_ROWS=$item.getChildItems("COBRA:DTIData/resources/resource[$xnat_abstractResource_12_COUNTER]/tags/tag").size() - 1)
+													#if($xnat_abstractResource_tag_13_NUM_ROWS>=0)
+														#foreach($xnat_abstractResource_tag_13_COUNTER in [0..$xnat_abstractResource_tag_13_NUM_ROWS])
+<!-- BEGIN COBRA:DTIData/resources/resource[$xnat_abstractResource_12_COUNTER]/tags/tag[$xnat_abstractResource_tag_13_COUNTER] -->
+															<TABLE>
+																<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">COBRA:DTIData/resources/resource[$xnat_abstractResource_12_COUNTER]/tags/tag[$xnat_abstractResource_tag_13_COUNTER]</font></TH></TR>
+																<TR>
+																	<TD align="left" valign="top">
+																		<TABLE>
+																			<TR><TD>tag</TD><TD>$!item.getStringProperty("COBRA:DTIData/resources/resource[$xnat_abstractResource_12_COUNTER]/tags/tag[$xnat_abstractResource_tag_13_COUNTER]/tag")</TD></TR>
+																			<TR><TD>name</TD><TD>$!item.getStringProperty("COBRA:DTIData/resources/resource[$xnat_abstractResource_12_COUNTER]/tags/tag[$xnat_abstractResource_tag_13_COUNTER]/name")</TD></TR>
+																		</TABLE>
+																	</TD>
+																</TR>
+															</TABLE>
+<!-- END COBRA:DTIData/resources/resource[$xnat_abstractResource_12_COUNTER]/tags/tag[$xnat_abstractResource_tag_13_COUNTER] -->
+														#end
+													#end
+												</TD></TR></TABLE>
+											</TD>
+										</TR>
+									</TABLE>
+<!-- END COBRA:DTIData/resources/resource[$xnat_abstractResource_12_COUNTER] -->
+								#end
+							#end
+						</TD></TR></TABLE>
+					</TD>
+				</TR>
+				<TR>
+					<TD align="left" valign="top">
+						<TABLE><TR><TD>
+							#set($xnat_experimentData_field_14_NUM_ROWS=$item.getChildItems("COBRA:DTIData/fields/field").size() - 1)
+							#if($xnat_experimentData_field_14_NUM_ROWS>=0)
+								#foreach($xnat_experimentData_field_14_COUNTER in [0..$xnat_experimentData_field_14_NUM_ROWS])
+<!-- BEGIN COBRA:DTIData/fields/field[$xnat_experimentData_field_14_COUNTER] -->
+									<TABLE>
+										<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">COBRA:DTIData/fields/field[$xnat_experimentData_field_14_COUNTER]</font></TH></TR>
+										<TR>
+											<TD align="left" valign="top">
+												<TABLE>
+													<TR><TD>field</TD><TD>$!item.getStringProperty("COBRA:DTIData/fields/field[$xnat_experimentData_field_14_COUNTER]/field")</TD></TR>
+													<TR><TD>name</TD><TD>$!item.getStringProperty("COBRA:DTIData/fields/field[$xnat_experimentData_field_14_COUNTER]/name")</TD></TR>
+												</TABLE>
+											</TD>
+										</TR>
+									</TABLE>
+<!-- END COBRA:DTIData/fields/field[$xnat_experimentData_field_14_COUNTER] -->
+								#end
+							#end
+						</TD></TR></TABLE>
+					</TD>
+				</TR>
+			</TABLE>
+<!-- END COBRA:DTIData -->
+		</TD>
+	</TR>
+</TABLE>

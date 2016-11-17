@@ -1,0 +1,385 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 3.2//EN">
+$page.setTitle("ASL Details")
+$page.setLinkColor($ui.alink)
+$page.setVlinkColor($ui.vlink)
+#if ($turbineUtils.GetPassedParameter("popup", $data))
+	#set ($popup = $turbineUtils.GetPassedParameter("popup", data) )
+	#set ($popup = "false")
+#end
+<TABLE width="100%">
+	<TR>
+		<TD>
+			<table width="100%">
+				<TR>
+					<TD align="left" valign="middle">
+						<font face="$ui.sansSerifFonts" size="3"><b>Arterial Spin Labeling (ASL) details</b></font>
+					</TD>
+				</TR>
+			</TABLE>
+		</TD>
+	</TR>
+	<TR>
+		<TD>
+			<TABLE width="100%">
+				<TR>
+					<TD valign="top">
+						<TABLE>
+							<TR><TD>scan/ID</TD><TD>$!item.getStringProperty("COBRA:ASLData/scan/ID")</TD></TR>
+							<TR><TD>scan/type</TD><TD>$!item.getStringProperty("COBRA:ASLData/scan/type")</TD></TR>
+							<TR><TD>imageSession ID</TD><TD>$!item.getStringProperty("COBRA:ASLData/imageSession_ID")</TD></TR>
+							<TR><TD>date</TD><TD>$!item.getProperty("COBRA:ASLData/date")</TD></TR>
+							<TR><TD>time</TD><TD>$!item.getProperty("COBRA:ASLData/time")</TD></TR>
+							<!--
+                            <TR><TD>duration</TD><TD>$!item.getProperty("COBRA:ASLData/duration")</TD></TR>
+							<TR><TD>delay</TD><TD>$!item.getIntegerProperty("COBRA:ASLData/delay")</TD></TR>
+							<TR><TD>delay/ref_expt_id</TD><TD>$!item.getStringProperty("COBRA:ASLData/delay/ref_expt_id")</TD></TR>
+                            -->
+							<TR><TD>note</TD><TD>$!item.getStringProperty("COBRA:ASLData/note")</TD></TR>
+							<TR><TD>acquisition site</TD><TD>$!item.getStringProperty("COBRA:ASLData/acquisition_site")</TD></TR>
+							<TR><TD>ID</TD><TD>$!item.getStringProperty("COBRA:ASLData/ID")</TD></TR>
+							<TR><TD>project</TD><TD>$!item.getStringProperty("COBRA:ASLData/project")</TD></TR>
+							<!--
+                            <TR><TD>visit_id</TD><TD>$!item.getStringProperty("COBRA:ASLData/visit_id")</TD></TR>
+							<TR><TD>visit</TD><TD>$!item.getStringProperty("COBRA:ASLData/visit")</TD></TR>
+							<TR><TD>original</TD><TD>$!item.getStringProperty("COBRA:ASLData/original")</TD></TR>
+                            -->
+                            <TR><TD>version</TD><TD>$!item.getIntegerProperty("COBRA:ASLData/version")</TD></TR>
+							<TR><TD>protocol</TD><TD>$!item.getStringProperty("COBRA:ASLData/protocol")</TD></TR>
+							<TR><TD>label</TD><TD>$!item.getStringProperty("COBRA:ASLData/label")</TD></TR>
+                            <TR><TD>&nbsp;</TD><TD></TD></TR>
+							<TR><TD><b>mean Cerebral Blood Flow (CBFmean)</b></TD><TD></TD></TR>
+                            <TR><TD>&nbsp;&nbsp;CBFmean Grey Matter (ml/100g/min)</TD><TD>$!item.getDoubleProperty("COBRA:ASLData/CBF_GM")</TD></TR>
+							<TR><TD>&nbsp;&nbsp;CBFmean White Matter (ml/100g/min)</TD><TD>$!item.getDoubleProperty("COBRA:ASLData/CBF_WM")</TD></TR>
+							<TR><TD>&nbsp;&nbsp;CBFmean Left Interal Carotid Artery (ml/100g/min)</TD><TD>$!item.getDoubleProperty("COBRA:ASLData/L_ICA")</TD></TR>
+							<TR><TD>&nbsp;&nbsp;CBFmean Right Interal Carotid Artery (ml/100g/min)</TD><TD>$!item.getDoubleProperty("COBRA:ASLData/R_ICA")</TD></TR>
+							<TR><TD>&nbsp;&nbsp;CBFmean POS (ml/100g/min)</TD><TD>$!item.getDoubleProperty("COBRA:ASLData/POS")</TD></TR>
+                            <TR><TD>&nbsp;&nbsp;CBFmean Caudate (ml/100g/min)</TD><TD>$!item.getDoubleProperty("COBRA:ASLData/Caudate")</TD></TR>
+							<TR><TD>&nbsp;&nbsp;CBFmean Frontal (ml/100g/min)</TD><TD>$!item.getDoubleProperty("COBRA:ASLData/Frontal")</TD></TR>
+							<TR><TD>&nbsp;&nbsp;CBFmean Insula (ml/100g/min)</TD><TD>$!item.getDoubleProperty("COBRA:ASLData/Insula")</TD></TR>
+							<TR><TD>&nbsp;&nbsp;CBFmean Occipital (ml/100g/min)</TD><TD>$!item.getDoubleProperty("COBRA:ASLData/Occipital")</TD></TR>
+							<TR><TD>&nbsp;&nbsp;CBFmean Parietal (ml/100g/min)</TD><TD>$!item.getDoubleProperty("COBRA:ASLData/Parietal")</TD></TR>
+							<TR><TD>&nbsp;&nbsp;CBFmean Putamen (ml/100g/min)</TD><TD>$!item.getDoubleProperty("COBRA:ASLData/Putamen")</TD></TR>
+							<TR><TD>&nbsp;&nbsp;CBFmean Temporal (ml/100g/min)</TD><TD>$!item.getDoubleProperty("COBRA:ASLData/Temporal")</TD></TR>
+							<TR><TD>&nbsp;&nbsp;CBFmean Thalamus (ml/100g/min)</TD><TD>$!item.getDoubleProperty("COBRA:ASLData/Thalamus")</TD></TR>
+						</TABLE>
+					</TD>
+					<TD valign="top" align="right">
+						#parse($turbineUtils.getTemplateName("actions",$om.getXSIType(),$project))
+					</TD>
+				</TR>
+			</TABLE>
+		</TD>
+	</TR>
+	<TR>
+		<TD>
+<!-- BEGIN COBRA:ASLData -->
+			<TABLE>
+				<TR><TH align="left"><font face="$ui.sansSerifFonts" size="2">Related Items</font></TH></TR>
+				<TR>
+					<TD align="left" valign="top">
+						<TABLE>
+						</TABLE>
+					</TD>
+				</TR>
+				<TR>
+					<TD align="left" valign="top">
+						<TABLE><TR><TD>
+							#set($xnat_abstractResource_1_NUM_ROWS=$item.getChildItems("COBRA:ASLData/in/file").size() - 1)
+							#if($xnat_abstractResource_1_NUM_ROWS>=0)
+								#foreach($xnat_abstractResource_1_COUNTER in [0..$xnat_abstractResource_1_NUM_ROWS])
+<!-- BEGIN COBRA:ASLData/in/file[$xnat_abstractResource_1_COUNTER] -->
+									<TABLE>
+										<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">COBRA:ASLData/in/file[$xnat_abstractResource_1_COUNTER]</font></TH></TR>
+										<TR>
+											<TD align="left" valign="top">
+												<TABLE>
+													<TR><TD>note</TD><TD>$!item.getStringProperty("COBRA:ASLData/in/file[$xnat_abstractResource_1_COUNTER]/note")</TD></TR>
+													<TR><TD>label</TD><TD>$!item.getStringProperty("COBRA:ASLData/in/file[$xnat_abstractResource_1_COUNTER]/label")</TD></TR>
+													<TR><TD>file_count</TD><TD>$!item.getIntegerProperty("COBRA:ASLData/in/file[$xnat_abstractResource_1_COUNTER]/file_count")</TD></TR>
+													<TR><TD>file_size</TD><TD>$!item.getProperty("COBRA:ASLData/in/file[$xnat_abstractResource_1_COUNTER]/file_size")</TD></TR>
+												</TABLE>
+											</TD>
+										</TR>
+										<TR>
+											<TD align="left" valign="top">
+												<TABLE><TR><TD>
+													#set($xnat_abstractResource_tag_2_NUM_ROWS=$item.getChildItems("COBRA:ASLData/in/file[$xnat_abstractResource_1_COUNTER]/tags/tag").size() - 1)
+													#if($xnat_abstractResource_tag_2_NUM_ROWS>=0)
+														#foreach($xnat_abstractResource_tag_2_COUNTER in [0..$xnat_abstractResource_tag_2_NUM_ROWS])
+<!-- BEGIN COBRA:ASLData/in/file[$xnat_abstractResource_1_COUNTER]/tags/tag[$xnat_abstractResource_tag_2_COUNTER] -->
+															<TABLE>
+																<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">COBRA:ASLData/in/file[$xnat_abstractResource_1_COUNTER]/tags/tag[$xnat_abstractResource_tag_2_COUNTER]</font></TH></TR>
+																<TR>
+																	<TD align="left" valign="top">
+																		<TABLE>
+																			<TR><TD>tag</TD><TD>$!item.getStringProperty("COBRA:ASLData/in/file[$xnat_abstractResource_1_COUNTER]/tags/tag[$xnat_abstractResource_tag_2_COUNTER]/tag")</TD></TR>
+																			<TR><TD>name</TD><TD>$!item.getStringProperty("COBRA:ASLData/in/file[$xnat_abstractResource_1_COUNTER]/tags/tag[$xnat_abstractResource_tag_2_COUNTER]/name")</TD></TR>
+																		</TABLE>
+																	</TD>
+																</TR>
+															</TABLE>
+<!-- END COBRA:ASLData/in/file[$xnat_abstractResource_1_COUNTER]/tags/tag[$xnat_abstractResource_tag_2_COUNTER] -->
+														#end
+													#end
+												</TD></TR></TABLE>
+											</TD>
+										</TR>
+									</TABLE>
+<!-- END COBRA:ASLData/in/file[$xnat_abstractResource_1_COUNTER] -->
+								#end
+							#end
+						</TD></TR></TABLE>
+					</TD>
+				</TR>
+				<TR>
+					<TD align="left" valign="top">
+						<TABLE><TR><TD>
+							#set($xnat_abstractResource_3_NUM_ROWS=$item.getChildItems("COBRA:ASLData/out/file").size() - 1)
+							#if($xnat_abstractResource_3_NUM_ROWS>=0)
+								#foreach($xnat_abstractResource_3_COUNTER in [0..$xnat_abstractResource_3_NUM_ROWS])
+<!-- BEGIN COBRA:ASLData/out/file[$xnat_abstractResource_3_COUNTER] -->
+									<TABLE>
+										<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">COBRA:ASLData/out/file[$xnat_abstractResource_3_COUNTER]</font></TH></TR>
+										<TR>
+											<TD align="left" valign="top">
+												<TABLE>
+													<TR><TD>note</TD><TD>$!item.getStringProperty("COBRA:ASLData/out/file[$xnat_abstractResource_3_COUNTER]/note")</TD></TR>
+													<TR><TD>label</TD><TD>$!item.getStringProperty("COBRA:ASLData/out/file[$xnat_abstractResource_3_COUNTER]/label")</TD></TR>
+													<TR><TD>file_count</TD><TD>$!item.getIntegerProperty("COBRA:ASLData/out/file[$xnat_abstractResource_3_COUNTER]/file_count")</TD></TR>
+													<TR><TD>file_size</TD><TD>$!item.getProperty("COBRA:ASLData/out/file[$xnat_abstractResource_3_COUNTER]/file_size")</TD></TR>
+												</TABLE>
+											</TD>
+										</TR>
+										<TR>
+											<TD align="left" valign="top">
+												<TABLE><TR><TD>
+													#set($xnat_abstractResource_tag_4_NUM_ROWS=$item.getChildItems("COBRA:ASLData/out/file[$xnat_abstractResource_3_COUNTER]/tags/tag").size() - 1)
+													#if($xnat_abstractResource_tag_4_NUM_ROWS>=0)
+														#foreach($xnat_abstractResource_tag_4_COUNTER in [0..$xnat_abstractResource_tag_4_NUM_ROWS])
+<!-- BEGIN COBRA:ASLData/out/file[$xnat_abstractResource_3_COUNTER]/tags/tag[$xnat_abstractResource_tag_4_COUNTER] -->
+															<TABLE>
+																<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">COBRA:ASLData/out/file[$xnat_abstractResource_3_COUNTER]/tags/tag[$xnat_abstractResource_tag_4_COUNTER]</font></TH></TR>
+																<TR>
+																	<TD align="left" valign="top">
+																		<TABLE>
+																			<TR><TD>tag</TD><TD>$!item.getStringProperty("COBRA:ASLData/out/file[$xnat_abstractResource_3_COUNTER]/tags/tag[$xnat_abstractResource_tag_4_COUNTER]/tag")</TD></TR>
+																			<TR><TD>name</TD><TD>$!item.getStringProperty("COBRA:ASLData/out/file[$xnat_abstractResource_3_COUNTER]/tags/tag[$xnat_abstractResource_tag_4_COUNTER]/name")</TD></TR>
+																		</TABLE>
+																	</TD>
+																</TR>
+															</TABLE>
+<!-- END COBRA:ASLData/out/file[$xnat_abstractResource_3_COUNTER]/tags/tag[$xnat_abstractResource_tag_4_COUNTER] -->
+														#end
+													#end
+												</TD></TR></TABLE>
+											</TD>
+										</TR>
+									</TABLE>
+<!-- END COBRA:ASLData/out/file[$xnat_abstractResource_3_COUNTER] -->
+								#end
+							#end
+						</TD></TR></TABLE>
+					</TD>
+				</TR>
+				<TR>
+					<TD align="left" valign="top">
+						<TABLE><TR><TD>
+							#set($xnat_addField_5_NUM_ROWS=$item.getChildItems("COBRA:ASLData/parameters/addParam").size() - 1)
+							#if($xnat_addField_5_NUM_ROWS>=0)
+								#foreach($xnat_addField_5_COUNTER in [0..$xnat_addField_5_NUM_ROWS])
+<!-- BEGIN COBRA:ASLData/parameters/addParam[$xnat_addField_5_COUNTER] -->
+									<TABLE>
+										<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">COBRA:ASLData/parameters/addParam[$xnat_addField_5_COUNTER]</font></TH></TR>
+										<TR>
+											<TD align="left" valign="top">
+												<TABLE>
+													<TR><TD>addField</TD><TD>$!item.getStringProperty("COBRA:ASLData/parameters/addParam[$xnat_addField_5_COUNTER]/addField")</TD></TR>
+													<TR><TD>name</TD><TD>$!item.getStringProperty("COBRA:ASLData/parameters/addParam[$xnat_addField_5_COUNTER]/name")</TD></TR>
+												</TABLE>
+											</TD>
+										</TR>
+									</TABLE>
+<!-- END COBRA:ASLData/parameters/addParam[$xnat_addField_5_COUNTER] -->
+								#end
+							#end
+						</TD></TR></TABLE>
+					</TD>
+				</TR>
+				<TR>
+					<TD align="left" valign="top">
+<!-- BEGIN COBRA:ASLData/provenance -->
+						<TABLE>
+							<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">COBRA:ASLData/provenance</font></TH></TR>
+							<TR>
+								<TD align="left" valign="top">
+									<TABLE>
+									</TABLE>
+								</TD>
+							</TR>
+							<TR>
+								<TD align="left" valign="top">
+									<TABLE><TR><TD>
+										#set($prov_processStep_7_NUM_ROWS=$item.getChildItems("COBRA:ASLData/provenance/processStep").size() - 1)
+										#if($prov_processStep_7_NUM_ROWS>=0)
+											#foreach($prov_processStep_7_COUNTER in [0..$prov_processStep_7_NUM_ROWS])
+<!-- BEGIN COBRA:ASLData/provenance/processStep[$prov_processStep_7_COUNTER] -->
+												<TABLE>
+													<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">COBRA:ASLData/provenance/processStep[$prov_processStep_7_COUNTER]</font></TH></TR>
+													<TR>
+														<TD align="left" valign="top">
+															<TABLE>
+																<TR><TD>program</TD><TD>$!item.getStringProperty("COBRA:ASLData/provenance/processStep[$prov_processStep_7_COUNTER]/program")</TD></TR>
+																<TR><TD>program/version</TD><TD>$!item.getStringProperty("COBRA:ASLData/provenance/processStep[$prov_processStep_7_COUNTER]/program/version")</TD></TR>
+																<TR><TD>program/arguments</TD><TD>$!item.getStringProperty("COBRA:ASLData/provenance/processStep[$prov_processStep_7_COUNTER]/program/arguments")</TD></TR>
+																<TR><TD>timestamp</TD><TD>$!item.getProperty("COBRA:ASLData/provenance/processStep[$prov_processStep_7_COUNTER]/timestamp")</TD></TR>
+																<TR><TD>cvs</TD><TD>$!item.getStringProperty("COBRA:ASLData/provenance/processStep[$prov_processStep_7_COUNTER]/cvs")</TD></TR>
+																<TR><TD>user</TD><TD>$!item.getStringProperty("COBRA:ASLData/provenance/processStep[$prov_processStep_7_COUNTER]/user")</TD></TR>
+																<TR><TD>machine</TD><TD>$!item.getStringProperty("COBRA:ASLData/provenance/processStep[$prov_processStep_7_COUNTER]/machine")</TD></TR>
+																<TR><TD>platform</TD><TD>$!item.getStringProperty("COBRA:ASLData/provenance/processStep[$prov_processStep_7_COUNTER]/platform")</TD></TR>
+																<TR><TD>platform/version</TD><TD>$!item.getStringProperty("COBRA:ASLData/provenance/processStep[$prov_processStep_7_COUNTER]/platform/version")</TD></TR>
+																<TR><TD>compiler</TD><TD>$!item.getStringProperty("COBRA:ASLData/provenance/processStep[$prov_processStep_7_COUNTER]/compiler")</TD></TR>
+																<TR><TD>compiler/version</TD><TD>$!item.getStringProperty("COBRA:ASLData/provenance/processStep[$prov_processStep_7_COUNTER]/compiler/version")</TD></TR>
+															</TABLE>
+														</TD>
+													</TR>
+													<TR>
+														<TD align="left" valign="top">
+															<TABLE><TR><TD>
+																#set($prov_processStep_library_8_NUM_ROWS=$item.getChildItems("COBRA:ASLData/provenance/processStep[$prov_processStep_7_COUNTER]/library").size() - 1)
+																#if($prov_processStep_library_8_NUM_ROWS>=0)
+																	#foreach($prov_processStep_library_8_COUNTER in [0..$prov_processStep_library_8_NUM_ROWS])
+<!-- BEGIN COBRA:ASLData/provenance/processStep[$prov_processStep_7_COUNTER]/library[$prov_processStep_library_8_COUNTER] -->
+																		<TABLE>
+																			<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">COBRA:ASLData/provenance/processStep[$prov_processStep_7_COUNTER]/library[$prov_processStep_library_8_COUNTER]</font></TH></TR>
+																			<TR>
+																				<TD align="left" valign="top">
+																					<TABLE>
+																						<TR><TD>library</TD><TD>$!item.getStringProperty("COBRA:ASLData/provenance/processStep[$prov_processStep_7_COUNTER]/library[$prov_processStep_library_8_COUNTER]/library")</TD></TR>
+																						<TR><TD>version</TD><TD>$!item.getStringProperty("COBRA:ASLData/provenance/processStep[$prov_processStep_7_COUNTER]/library[$prov_processStep_library_8_COUNTER]/version")</TD></TR>
+																					</TABLE>
+																				</TD>
+																			</TR>
+																		</TABLE>
+<!-- END COBRA:ASLData/provenance/processStep[$prov_processStep_7_COUNTER]/library[$prov_processStep_library_8_COUNTER] -->
+																	#end
+																#end
+															</TD></TR></TABLE>
+														</TD>
+													</TR>
+												</TABLE>
+<!-- END COBRA:ASLData/provenance/processStep[$prov_processStep_7_COUNTER] -->
+											#end
+										#end
+									</TD></TR></TABLE>
+								</TD>
+							</TR>
+						</TABLE>
+<!-- END COBRA:ASLData/provenance -->
+					</TD>
+				</TR>
+				<TR>
+					<TD align="left" valign="top">
+						<TABLE><TR><TD>
+							#set($xnat_experimentData_share_9_NUM_ROWS=$item.getChildItems("COBRA:ASLData/sharing/share").size() - 1)
+							#if($xnat_experimentData_share_9_NUM_ROWS>=0)
+								#foreach($xnat_experimentData_share_9_COUNTER in [0..$xnat_experimentData_share_9_NUM_ROWS])
+<!-- BEGIN COBRA:ASLData/sharing/share[$xnat_experimentData_share_9_COUNTER] -->
+									<TABLE>
+										<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">COBRA:ASLData/sharing/share[$xnat_experimentData_share_9_COUNTER]</font></TH></TR>
+										<TR>
+											<TD align="left" valign="top">
+												<TABLE>
+													<TR><TD>share</TD><TD>$!item.getStringProperty("COBRA:ASLData/sharing/share[$xnat_experimentData_share_9_COUNTER]/share")</TD></TR>
+													<TR><TD>label</TD><TD>$!item.getStringProperty("COBRA:ASLData/sharing/share[$xnat_experimentData_share_9_COUNTER]/label")</TD></TR>
+													<TR><TD>project</TD><TD>$!item.getStringProperty("COBRA:ASLData/sharing/share[$xnat_experimentData_share_9_COUNTER]/project")</TD></TR>
+													<TR><TD>visit</TD><TD>$!item.getStringProperty("COBRA:ASLData/sharing/share[$xnat_experimentData_share_9_COUNTER]/visit")</TD></TR>
+													<TR><TD>protocol</TD><TD>$!item.getStringProperty("COBRA:ASLData/sharing/share[$xnat_experimentData_share_9_COUNTER]/protocol")</TD></TR>
+												</TABLE>
+											</TD>
+										</TR>
+									</TABLE>
+<!-- END COBRA:ASLData/sharing/share[$xnat_experimentData_share_9_COUNTER] -->
+								#end
+							#end
+						</TD></TR></TABLE>
+					</TD>
+				</TR>
+				<TR>
+					<TD align="left" valign="top">
+						<TABLE><TR><TD>
+							#set($xnat_abstractResource_12_NUM_ROWS=$item.getChildItems("COBRA:ASLData/resources/resource").size() - 1)
+							#if($xnat_abstractResource_12_NUM_ROWS>=0)
+								#foreach($xnat_abstractResource_12_COUNTER in [0..$xnat_abstractResource_12_NUM_ROWS])
+<!-- BEGIN COBRA:ASLData/resources/resource[$xnat_abstractResource_12_COUNTER] -->
+									<TABLE>
+										<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">COBRA:ASLData/resources/resource[$xnat_abstractResource_12_COUNTER]</font></TH></TR>
+										<TR>
+											<TD align="left" valign="top">
+												<TABLE>
+													<TR><TD>note</TD><TD>$!item.getStringProperty("COBRA:ASLData/resources/resource[$xnat_abstractResource_12_COUNTER]/note")</TD></TR>
+													<TR><TD>label</TD><TD>$!item.getStringProperty("COBRA:ASLData/resources/resource[$xnat_abstractResource_12_COUNTER]/label")</TD></TR>
+													<TR><TD>file_count</TD><TD>$!item.getIntegerProperty("COBRA:ASLData/resources/resource[$xnat_abstractResource_12_COUNTER]/file_count")</TD></TR>
+													<TR><TD>file_size</TD><TD>$!item.getProperty("COBRA:ASLData/resources/resource[$xnat_abstractResource_12_COUNTER]/file_size")</TD></TR>
+												</TABLE>
+											</TD>
+										</TR>
+										<TR>
+											<TD align="left" valign="top">
+												<TABLE><TR><TD>
+													#set($xnat_abstractResource_tag_13_NUM_ROWS=$item.getChildItems("COBRA:ASLData/resources/resource[$xnat_abstractResource_12_COUNTER]/tags/tag").size() - 1)
+													#if($xnat_abstractResource_tag_13_NUM_ROWS>=0)
+														#foreach($xnat_abstractResource_tag_13_COUNTER in [0..$xnat_abstractResource_tag_13_NUM_ROWS])
+<!-- BEGIN COBRA:ASLData/resources/resource[$xnat_abstractResource_12_COUNTER]/tags/tag[$xnat_abstractResource_tag_13_COUNTER] -->
+															<TABLE>
+																<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">COBRA:ASLData/resources/resource[$xnat_abstractResource_12_COUNTER]/tags/tag[$xnat_abstractResource_tag_13_COUNTER]</font></TH></TR>
+																<TR>
+																	<TD align="left" valign="top">
+																		<TABLE>
+																			<TR><TD>tag</TD><TD>$!item.getStringProperty("COBRA:ASLData/resources/resource[$xnat_abstractResource_12_COUNTER]/tags/tag[$xnat_abstractResource_tag_13_COUNTER]/tag")</TD></TR>
+																			<TR><TD>name</TD><TD>$!item.getStringProperty("COBRA:ASLData/resources/resource[$xnat_abstractResource_12_COUNTER]/tags/tag[$xnat_abstractResource_tag_13_COUNTER]/name")</TD></TR>
+																		</TABLE>
+																	</TD>
+																</TR>
+															</TABLE>
+<!-- END COBRA:ASLData/resources/resource[$xnat_abstractResource_12_COUNTER]/tags/tag[$xnat_abstractResource_tag_13_COUNTER] -->
+														#end
+													#end
+												</TD></TR></TABLE>
+											</TD>
+										</TR>
+									</TABLE>
+<!-- END COBRA:ASLData/resources/resource[$xnat_abstractResource_12_COUNTER] -->
+								#end
+							#end
+						</TD></TR></TABLE>
+					</TD>
+				</TR>
+				<TR>
+					<TD align="left" valign="top">
+						<TABLE><TR><TD>
+							#set($xnat_experimentData_field_14_NUM_ROWS=$item.getChildItems("COBRA:ASLData/fields/field").size() - 1)
+							#if($xnat_experimentData_field_14_NUM_ROWS>=0)
+								#foreach($xnat_experimentData_field_14_COUNTER in [0..$xnat_experimentData_field_14_NUM_ROWS])
+<!-- BEGIN COBRA:ASLData/fields/field[$xnat_experimentData_field_14_COUNTER] -->
+									<TABLE>
+										<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">COBRA:ASLData/fields/field[$xnat_experimentData_field_14_COUNTER]</font></TH></TR>
+										<TR>
+											<TD align="left" valign="top">
+												<TABLE>
+													<TR><TD>field</TD><TD>$!item.getStringProperty("COBRA:ASLData/fields/field[$xnat_experimentData_field_14_COUNTER]/field")</TD></TR>
+													<TR><TD>name</TD><TD>$!item.getStringProperty("COBRA:ASLData/fields/field[$xnat_experimentData_field_14_COUNTER]/name")</TD></TR>
+												</TABLE>
+											</TD>
+										</TR>
+									</TABLE>
+<!-- END COBRA:ASLData/fields/field[$xnat_experimentData_field_14_COUNTER] -->
+								#end
+							#end
+						</TD></TR></TABLE>
+					</TD>
+				</TR>
+			</TABLE>
+<!-- END COBRA:ASLData -->
+		</TD>
+	</TR>
+</TABLE>
