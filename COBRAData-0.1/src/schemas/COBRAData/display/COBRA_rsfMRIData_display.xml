@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Displays xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xdat/display.xsd" schema-element="COBRA:rsfMRIData" full-description="fMRI" brief-description="fMRI">
+	<DisplayField id="EXPT_ID" header="ID" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:rsfMRIData.ID"/>
+		<HTML-Link>
+			<Property name="HREF" value="none"/>
+			<Property name="ONCLICK" value="return rpt('@Field1','COBRA:rsfMRIData','COBRA:rsfMRIData.ID');">
+				<InsertValue id="Field1" field="EXPT_ID"/>
+			</Property>
+		</HTML-Link>
+	</DisplayField>
+	<DisplayField id="RPT" header="ID" visible="true" image="true">
+		<Content type="sql">'/@WEBAPP/images/r.gif'::text</Content>
+		<HTML-Link>
+			<Property name="HREF" value="none"/>
+			<Property name="ONCLICK" value="return rpt('@Field1','COBRA:rsfMRIData','COBRA:rsfMRIData.ID');">
+				<InsertValue id="Field1" field="EXPT_ID"/>
+			</Property>
+		</HTML-Link>
+	</DisplayField>
+	<DisplayField id="DATE" header="Date" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:rsfMRIData.date"/>
+	</DisplayField>
+	<DisplayField header="Projects" id="PROJECTS" data-type="string">
+		<DisplayFieldElement name="Field1" viewName="COBRA_RSFMRIDATA_PROJECTS" viewColumn="PROJECTS"/>
+	</DisplayField>
+	<DisplayField header="Label" id="LABEL" data-type="string">
+	<DisplayFieldElement name="Field1" schema-element="COBRA:rsfMRIData.ID"/>
+	<DisplayFieldElement name="Field2" schema-element="COBRA:rsfMRIData.label"/>
+	<Content type="sql">COALESCE(@Field2, @Field1)</Content>
+		<HTML-Link>
+			<SecureLink elementName="COBRA:rsfMRIData">
+				<securityMappingValue displayFieldId="PROJECTS" schemaElementMap="COBRA:rsfMRIData/sharing/share/project"/>
+				<securityMappingValue displayFieldId="PROJECT" schemaElementMap="COBRA:rsfMRIData/project"/>
+			</SecureLink>
+			<Property name="HREF" value="@WEBAPPapp/action/DisplayItemAction/search_value/@Field1/search_element/COBRA:rsfMRIData/search_field/COBRA:rsfMRIData.ID">
+				<InsertValue id="Field1" field="EXPT_ID"/>
+			</Property>
+			<Property name="ONCLICK" value="return rpt('@Field1','COBRA:rsfMRIData','COBRA:rsfMRIData.ID');">
+				<InsertValue id="Field1" field="EXPT_ID"/>
+			</Property>
+			<Property name="TITLE" value="Inserted: @Field1 (@Field2)">
+				<InsertValue id="Field1" field="INSERT_DATE"/>
+				<InsertValue id="Field2" field="INSERT_USER"/>
+			</Property>
+		</HTML-Link>
+	</DisplayField>
+	<DisplayField id="PROJECT" header="Project" visible="true" searchable="true" data-type="string">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:rsfMRIData.project"/>
+	</DisplayField>
+	<DisplayField id="COBRA_RSFMRIDATA_PROJECT_IDENTIFIER" header="COBRA_RSFMRIDATA ID" visible="true" searchable="false" data-type="string" xsi:type="SubQueryField">
+		<Content type="sql">cobra_rsfmridata_project_id</Content>
+		<HTML-Link>
+			<SecureLink elementName="COBRA:rsfMRIData">
+				<securityMappingValue displayFieldId="PROJECTS" schemaElementMap="COBRA:rsfMRIData/sharing/share/project"/>
+				<securityMappingValue displayFieldId="PROJECT" schemaElementMap="COBRA:rsfMRIData/project"/>
+			</SecureLink>
+			<Property name="HREF" value="@WEBAPPapp/action/DisplayItemAction/search_value/@Field1/search_element/COBRA:rsfMRIData/search_field/COBRA:rsfMRIData.ID/project/@Field2">
+				<InsertValue id="Field1" field="EXPT_ID"/>
+				<InsertValue id="Field2" field="@WHERE"/>
+			</Property>
+		</HTML-Link>
+		<SubQuery>SELECT DISTINCT COALESCE(label,sharing_share_xnat_experimentda_id) AS cobra_rsfmridata_project_id,sharing_share_xnat_experimentda_id FROM (	SELECT sharing_share_xnat_experimentda_id,label FROM xnat_experimentdata_share WHERE project='@WHERE'	UNION 	SELECT id,label FROM xnat_experimentData WHERE project='@WHERE' )SEARCH</SubQuery>
+		<MappingColumns>
+			<MappingColumn schemaField="COBRA:rsfMRIData.ID" queryField="sharing_share_xnat_experimentda_id"/>
+		</MappingColumns>
+	</DisplayField>
+	<DisplayField id="INSERT_DATE" header="Inserted" visible="true" searchable="true" data-type="string">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:rsfMRIData.meta.insert_date"/>
+	</DisplayField>
+	<DisplayField id="INSERT_USER" header="Creator" visible="true" searchable="true" data-type="string">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:rsfMRIData.meta.insert_user.login"/>
+	</DisplayField>
+	<DisplayField id="COBRA_RSFMRIDATA_FIELD_MAP" header="Field" visible="true" searchable="false" data-type="string" xsi:type="SubQueryField">
+		<Content type="sql">field</Content>
+		<SubQuery>SELECT DISTINCT ON ( e.ID) e.ID AS expt_id,field FROM xnat_experimentData_field ef JOIN (SELECT ID,extension,element_name FROM xnat_experimentData e JOIN xdat_meta_element xme ON e.extension=xme.xdat_meta_element_id WHERE xme.element_name='COBRA:rsfMRIData') e on ef.fields_field_xnat_experimentdat_id=e.id WHERE name='@WHERE'</SubQuery>
+		<MappingColumns>
+			<MappingColumn schemaField="COBRA:rsfMRIData.ID" queryField="expt_id"/>
+		</MappingColumns>
+	</DisplayField>
+	<DisplayField id="SENSORIMOTOR" header="Sensorimotor" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:rsfMRIData/Sensorimotor"/>
+	</DisplayField>
+	<DisplayField id="AUDITORY" header="Auditory" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:rsfMRIData/Auditory"/>
+	</DisplayField>
+	<DisplayField id="VISUAL_MEDIAL" header="Visual_medial" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:rsfMRIData/Visual_medial"/>
+	</DisplayField>
+	<DisplayField id="DEFAULT_MODE" header="Default_mode" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:rsfMRIData/Default_mode"/>
+	</DisplayField>
+	<DisplayField id="EXECUTIVE_CONTROL" header="Executive_control" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:rsfMRIData/Executive_control"/>
+	</DisplayField>
+	<DisplayField id="CEREBELLAR" header="Cerebellar" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:rsfMRIData/Cerebellar"/>
+	</DisplayField>
+	<DisplayField id="VISUAL_LATERAL" header="Visual_lateral" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:rsfMRIData/Visual_lateral"/>
+	</DisplayField>
+	<DisplayField id="FRONTO_PARIETAL_RIGHT" header="Fronto-parietal_Right" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:rsfMRIData/Fronto-parietal_Right"/>
+	</DisplayField>
+	<DisplayField id="FRONTO_PARIETAL_LEFT" header="Fronto-parietal_Left" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:rsfMRIData/Fronto-parietal_Left"/>
+	</DisplayField>
+	<DisplayField id="VISUAL_OCCIPITAL" header="Visual_occipital" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:rsfMRIData/Visual_occipital"/>
+	</DisplayField>
+	<DisplayVersion versionName="listing" default-order-by="DATE" default-sort-order="DESC" brief-description="fMRI" dark-color="9999CC" light-color="CCCCFF">
+		<DisplayFieldRef id="RPT"/>
+		<DisplayFieldRef id="LABEL"/>
+		<DisplayFieldRef id="DATE"/>
+		<DisplayFieldRef id="SENSORIMOTOR"/>
+		<DisplayFieldRef id="AUDITORY"/>
+		<DisplayFieldRef id="VISUAL_MEDIAL"/>
+		<DisplayFieldRef id="DEFAULT_MODE"/>
+		<DisplayFieldRef id="EXECUTIVE_CONTROL"/>
+		<DisplayFieldRef id="CEREBELLAR"/>
+		<DisplayFieldRef id="VISUAL_LATERAL"/>
+		<DisplayFieldRef id="FRONTO_PARIETAL_RIGHT"/>
+		<DisplayFieldRef id="FRONTO_PARIETAL_LEFT"/>
+		<DisplayFieldRef id="VISUAL_OCCIPITAL"/>
+	</DisplayVersion>
+	<DisplayVersion versionName="listing_csv" default-order-by="DATE" default-sort-order="DESC" brief-description="fMRI" dark-color="9999CC" light-color="CCCCFF">
+		<DisplayFieldRef id="LABEL"/>
+		<DisplayFieldRef id="DATE"/>
+		<DisplayFieldRef id="SENSORIMOTOR"/>
+		<DisplayFieldRef id="AUDITORY"/>
+		<DisplayFieldRef id="VISUAL_MEDIAL"/>
+		<DisplayFieldRef id="DEFAULT_MODE"/>
+		<DisplayFieldRef id="EXECUTIVE_CONTROL"/>
+		<DisplayFieldRef id="CEREBELLAR"/>
+		<DisplayFieldRef id="VISUAL_LATERAL"/>
+		<DisplayFieldRef id="FRONTO_PARIETAL_RIGHT"/>
+		<DisplayFieldRef id="FRONTO_PARIETAL_LEFT"/>
+		<DisplayFieldRef id="VISUAL_OCCIPITAL"/>
+	</DisplayVersion>
+	<DisplayVersion versionName="full" default-order-by="DATE" default-sort-order="DESC" brief-description="fMRI" dark-color="9999CC" light-color="CCCCFF">
+		<DisplayFieldRef id="EXPT_ID"/>
+		<DisplayFieldRef id="DATE"/>
+		<DisplayFieldRef id="SENSORIMOTOR"/>
+		<DisplayFieldRef id="AUDITORY"/>
+		<DisplayFieldRef id="VISUAL_MEDIAL"/>
+		<DisplayFieldRef id="DEFAULT_MODE"/>
+		<DisplayFieldRef id="EXECUTIVE_CONTROL"/>
+		<DisplayFieldRef id="CEREBELLAR"/>
+		<DisplayFieldRef id="VISUAL_LATERAL"/>
+		<DisplayFieldRef id="FRONTO_PARIETAL_RIGHT"/>
+		<DisplayFieldRef id="FRONTO_PARIETAL_LEFT"/>
+		<DisplayFieldRef id="VISUAL_OCCIPITAL"/>
+	</DisplayVersion>
+	<DisplayVersion versionName="detailed" default-order-by="DATE" default-sort-order="DESC" brief-description="fMRI" dark-color="9999CC" light-color="CCCCFF">
+		<DisplayFieldRef id="EXPT_ID"/>
+		<DisplayFieldRef id="DATE"/>
+		<DisplayFieldRef id="SENSORIMOTOR"/>
+		<DisplayFieldRef id="AUDITORY"/>
+		<DisplayFieldRef id="VISUAL_MEDIAL"/>
+		<DisplayFieldRef id="DEFAULT_MODE"/>
+		<DisplayFieldRef id="EXECUTIVE_CONTROL"/>
+		<DisplayFieldRef id="CEREBELLAR"/>
+		<DisplayFieldRef id="VISUAL_LATERAL"/>
+		<DisplayFieldRef id="FRONTO_PARIETAL_RIGHT"/>
+		<DisplayFieldRef id="FRONTO_PARIETAL_LEFT"/>
+		<DisplayFieldRef id="VISUAL_OCCIPITAL"/>
+	</DisplayVersion>
+	<DisplayVersion versionName="project_bundle" default-order-by="DATE" default-sort-order="DESC" brief-description="fMRI" dark-color="9999CC" light-color="CCCCFF">
+		<DisplayFieldRef id="COBRA_RSFMRIDATA_PROJECT_IDENTIFIER"/>
+		<DisplayFieldRef id="DATE"/>
+		<DisplayFieldRef id="SENSORIMOTOR"/>
+		<DisplayFieldRef id="AUDITORY"/>
+		<DisplayFieldRef id="VISUAL_MEDIAL"/>
+		<DisplayFieldRef id="DEFAULT_MODE"/>
+		<DisplayFieldRef id="EXECUTIVE_CONTROL"/>
+		<DisplayFieldRef id="CEREBELLAR"/>
+		<DisplayFieldRef id="VISUAL_LATERAL"/>
+		<DisplayFieldRef id="FRONTO_PARIETAL_RIGHT"/>
+		<DisplayFieldRef id="FRONTO_PARIETAL_LEFT"/>
+		<DisplayFieldRef id="VISUAL_OCCIPITAL"/>
+	</DisplayVersion>
+	<ViewLink alias="COBRA_RSFMRIDATA_PROJECTS">
+		<Mapping TableName="COBRA_RSFMRIDATA_PROJECTS">
+			<MappingColumn rootElement="COBRA:rsfMRIData" fieldElement="COBRA:rsfMRIData.ID" mapsTo="id"/>
+		</Mapping>
+	</ViewLink>
+	<SQLView name="COBRA_RSFMRIDATA_PROJECTS" sql="SELECT id, '&lt;' || expt.project || '&gt;' || xs_a_concat(',&lt;' || shared.project || '&gt;') AS projects FROM xnat_experimentData expt LEFT JOIN xnat_experimentData_share shared ON expt.id=shared.sharing_share_xnat_experimentda_id LEFT JOIN xdat_meta_element xme ON expt.extension = xme.xdat_meta_element_id WHERE element_name='COBRA:rsfMRIData' GROUP BY expt.id,expt.project"/>
+</Displays>

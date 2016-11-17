@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Displays xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xdat/display.xsd" schema-element="COBRA:MRSpectroscopyData" full-description="MRS" brief-description="MRS">
+	<DisplayField id="EXPT_ID" header="ID" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:MRSpectroscopyData.ID"/>
+		<HTML-Link>
+			<Property name="HREF" value="none"/>
+			<Property name="ONCLICK" value="return rpt('@Field1','COBRA:MRSpectroscopyData','COBRA:MRSpectroscopyData.ID');">
+				<InsertValue id="Field1" field="EXPT_ID"/>
+			</Property>
+		</HTML-Link>
+	</DisplayField>
+	<DisplayField id="RPT" header="ID" visible="true" image="true">
+		<Content type="sql">'/@WEBAPP/images/r.gif'::text</Content>
+		<HTML-Link>
+			<Property name="HREF" value="none"/>
+			<Property name="ONCLICK" value="return rpt('@Field1','COBRA:MRSpectroscopyData','COBRA:MRSpectroscopyData.ID');">
+				<InsertValue id="Field1" field="EXPT_ID"/>
+			</Property>
+		</HTML-Link>
+	</DisplayField>
+	<DisplayField id="DATE" header="Date" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:MRSpectroscopyData.date"/>
+	</DisplayField>
+	<DisplayField header="Projects" id="PROJECTS" data-type="string">
+		<DisplayFieldElement name="Field1" viewName="COBRA_MRSPECTROSCOPYDATA_PROJECTS" viewColumn="PROJECTS"/>
+	</DisplayField>
+	<DisplayField header="Label" id="LABEL" data-type="string">
+	<DisplayFieldElement name="Field1" schema-element="COBRA:MRSpectroscopyData.ID"/>
+	<DisplayFieldElement name="Field2" schema-element="COBRA:MRSpectroscopyData.label"/>
+	<Content type="sql">COALESCE(@Field2, @Field1)</Content>
+		<HTML-Link>
+			<SecureLink elementName="COBRA:MRSpectroscopyData">
+				<securityMappingValue displayFieldId="PROJECTS" schemaElementMap="COBRA:MRSpectroscopyData/sharing/share/project"/>
+				<securityMappingValue displayFieldId="PROJECT" schemaElementMap="COBRA:MRSpectroscopyData/project"/>
+			</SecureLink>
+			<Property name="HREF" value="@WEBAPPapp/action/DisplayItemAction/search_value/@Field1/search_element/COBRA:MRSpectroscopyData/search_field/COBRA:MRSpectroscopyData.ID">
+				<InsertValue id="Field1" field="EXPT_ID"/>
+			</Property>
+			<Property name="ONCLICK" value="return rpt('@Field1','COBRA:MRSpectroscopyData','COBRA:MRSpectroscopyData.ID');">
+				<InsertValue id="Field1" field="EXPT_ID"/>
+			</Property>
+			<Property name="TITLE" value="Inserted: @Field1 (@Field2)">
+				<InsertValue id="Field1" field="INSERT_DATE"/>
+				<InsertValue id="Field2" field="INSERT_USER"/>
+			</Property>
+		</HTML-Link>
+	</DisplayField>
+	<DisplayField id="PROJECT" header="Project" visible="true" searchable="true" data-type="string">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:MRSpectroscopyData.project"/>
+	</DisplayField>
+	<DisplayField id="COBRA_MRSPECTROSCOPYDATA_PROJECT_IDENTIFIER" header="COBRA_MRSPECTROSCOPYDATA ID" visible="true" searchable="false" data-type="string" xsi:type="SubQueryField">
+		<Content type="sql">cobra_mrspectroscopydata_project_id</Content>
+		<HTML-Link>
+			<SecureLink elementName="COBRA:MRSpectroscopyData">
+				<securityMappingValue displayFieldId="PROJECTS" schemaElementMap="COBRA:MRSpectroscopyData/sharing/share/project"/>
+				<securityMappingValue displayFieldId="PROJECT" schemaElementMap="COBRA:MRSpectroscopyData/project"/>
+			</SecureLink>
+			<Property name="HREF" value="@WEBAPPapp/action/DisplayItemAction/search_value/@Field1/search_element/COBRA:MRSpectroscopyData/search_field/COBRA:MRSpectroscopyData.ID/project/@Field2">
+				<InsertValue id="Field1" field="EXPT_ID"/>
+				<InsertValue id="Field2" field="@WHERE"/>
+			</Property>
+		</HTML-Link>
+		<SubQuery>SELECT DISTINCT COALESCE(label,sharing_share_xnat_experimentda_id) AS cobra_mrspectroscopydata_project_id,sharing_share_xnat_experimentda_id FROM (	SELECT sharing_share_xnat_experimentda_id,label FROM xnat_experimentdata_share WHERE project='@WHERE'	UNION 	SELECT id,label FROM xnat_experimentData WHERE project='@WHERE' )SEARCH</SubQuery>
+		<MappingColumns>
+			<MappingColumn schemaField="COBRA:MRSpectroscopyData.ID" queryField="sharing_share_xnat_experimentda_id"/>
+		</MappingColumns>
+	</DisplayField>
+	<DisplayField id="INSERT_DATE" header="Inserted" visible="true" searchable="true" data-type="string">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:MRSpectroscopyData.meta.insert_date"/>
+	</DisplayField>
+	<DisplayField id="INSERT_USER" header="Creator" visible="true" searchable="true" data-type="string">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:MRSpectroscopyData.meta.insert_user.login"/>
+	</DisplayField>
+	<DisplayField id="COBRA_MRSPECTROSCOPYDATA_FIELD_MAP" header="Field" visible="true" searchable="false" data-type="string" xsi:type="SubQueryField">
+		<Content type="sql">field</Content>
+		<SubQuery>SELECT DISTINCT ON ( e.ID) e.ID AS expt_id,field FROM xnat_experimentData_field ef JOIN (SELECT ID,extension,element_name FROM xnat_experimentData e JOIN xdat_meta_element xme ON e.extension=xme.xdat_meta_element_id WHERE xme.element_name='COBRA:MRSpectroscopyData') e on ef.fields_field_xnat_experimentdat_id=e.id WHERE name='@WHERE'</SubQuery>
+		<MappingColumns>
+			<MappingColumn schemaField="COBRA:MRSpectroscopyData.ID" queryField="expt_id"/>
+		</MappingColumns>
+	</DisplayField>
+	<DisplayField id="WM_MI" header="WM_MI" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:MRSpectroscopyData/WM_MI"/>
+	</DisplayField>
+	<DisplayField id="WM_TNAA" header="WM_tNAA" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:MRSpectroscopyData/WM_tNAA"/>
+	</DisplayField>
+	<DisplayField id="WM_TCHO" header="WM_tCho" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:MRSpectroscopyData/WM_tCho"/>
+	</DisplayField>
+	<DisplayField id="WM_TCR" header="WM_tCr" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:MRSpectroscopyData/WM_tCr"/>
+	</DisplayField>
+	<DisplayField id="WM_GLX" header="WM_Glx" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:MRSpectroscopyData/WM_Glx"/>
+	</DisplayField>
+	<DisplayField id="WM_MI_CR" header="WM_MI_Cr" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:MRSpectroscopyData/WM_MI_Cr"/>
+	</DisplayField>
+	<DisplayField id="WM_NAA_CR" header="WM_NAA_Cr" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:MRSpectroscopyData/WM_NAA_Cr"/>
+	</DisplayField>
+	<DisplayField id="WM_CHO_CR" header="WM_Cho_Cr" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:MRSpectroscopyData/WM_Cho_Cr"/>
+	</DisplayField>
+	<DisplayField id="WM_GLX_CR" header="WM_Glx_Cr" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:MRSpectroscopyData/WM_Glx_Cr"/>
+	</DisplayField>
+	<DisplayField id="PUT_MI" header="put_MI" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:MRSpectroscopyData/put_MI"/>
+	</DisplayField>
+	<DisplayField id="PUT_TNAA" header="put_tNAA" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:MRSpectroscopyData/put_tNAA"/>
+	</DisplayField>
+	<DisplayField id="PUT_TCHO" header="put_tCho" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:MRSpectroscopyData/put_tCho"/>
+	</DisplayField>
+	<DisplayField id="PUT_TCR" header="put_tCr" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:MRSpectroscopyData/put_tCr"/>
+	</DisplayField>
+	<DisplayField id="PUT_GLX" header="put_Glx" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:MRSpectroscopyData/put_Glx"/>
+	</DisplayField>
+	<DisplayField id="PUT_MI_CR" header="put_MI_Cr" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:MRSpectroscopyData/put_MI_Cr"/>
+	</DisplayField>
+	<DisplayField id="PUT_NAA_CR" header="put_NAA_Cr" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:MRSpectroscopyData/put_NAA_Cr"/>
+	</DisplayField>
+	<DisplayField id="PUT_CHO_CR" header="put_Cho_Cr" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:MRSpectroscopyData/put_Cho_Cr"/>
+	</DisplayField>
+	<DisplayField id="PUT_GLX_CR" header="put_Glx_Cr" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:MRSpectroscopyData/put_Glx_Cr"/>
+	</DisplayField>
+	<DisplayVersion versionName="listing" default-order-by="DATE" default-sort-order="DESC" brief-description="MRS" dark-color="9999CC" light-color="CCCCFF">
+		<DisplayFieldRef id="RPT"/>
+		<DisplayFieldRef id="LABEL"/>
+		<DisplayFieldRef id="DATE"/>
+		<DisplayFieldRef id="WM_MI"/>
+		<DisplayFieldRef id="WM_TNAA"/>
+		<DisplayFieldRef id="WM_TCHO"/>
+		<DisplayFieldRef id="WM_TCR"/>
+		<DisplayFieldRef id="WM_GLX"/>
+		<DisplayFieldRef id="WM_MI_CR"/>
+		<DisplayFieldRef id="WM_NAA_CR"/>
+		<DisplayFieldRef id="WM_CHO_CR"/>
+		<DisplayFieldRef id="WM_GLX_CR"/>
+		<DisplayFieldRef id="PUT_MI"/>
+		<DisplayFieldRef id="PUT_TNAA"/>
+		<DisplayFieldRef id="PUT_TCHO"/>
+		<DisplayFieldRef id="PUT_TCR"/>
+		<DisplayFieldRef id="PUT_GLX"/>
+		<DisplayFieldRef id="PUT_MI_CR"/>
+		<DisplayFieldRef id="PUT_NAA_CR"/>
+		<DisplayFieldRef id="PUT_CHO_CR"/>
+		<DisplayFieldRef id="PUT_GLX_CR"/>
+	</DisplayVersion>
+	<DisplayVersion versionName="listing_csv" default-order-by="DATE" default-sort-order="DESC" brief-description="MRS" dark-color="9999CC" light-color="CCCCFF">
+		<DisplayFieldRef id="LABEL"/>
+		<DisplayFieldRef id="DATE"/>
+		<DisplayFieldRef id="WM_MI"/>
+		<DisplayFieldRef id="WM_TNAA"/>
+		<DisplayFieldRef id="WM_TCHO"/>
+		<DisplayFieldRef id="WM_TCR"/>
+		<DisplayFieldRef id="WM_GLX"/>
+		<DisplayFieldRef id="WM_MI_CR"/>
+		<DisplayFieldRef id="WM_NAA_CR"/>
+		<DisplayFieldRef id="WM_CHO_CR"/>
+		<DisplayFieldRef id="WM_GLX_CR"/>
+		<DisplayFieldRef id="PUT_MI"/>
+		<DisplayFieldRef id="PUT_TNAA"/>
+		<DisplayFieldRef id="PUT_TCHO"/>
+		<DisplayFieldRef id="PUT_TCR"/>
+		<DisplayFieldRef id="PUT_GLX"/>
+		<DisplayFieldRef id="PUT_MI_CR"/>
+		<DisplayFieldRef id="PUT_NAA_CR"/>
+		<DisplayFieldRef id="PUT_CHO_CR"/>
+		<DisplayFieldRef id="PUT_GLX_CR"/>
+	</DisplayVersion>
+	<DisplayVersion versionName="full" default-order-by="DATE" default-sort-order="DESC" brief-description="MRS" dark-color="9999CC" light-color="CCCCFF">
+		<DisplayFieldRef id="EXPT_ID"/>
+		<DisplayFieldRef id="DATE"/>
+		<DisplayFieldRef id="WM_MI"/>
+		<DisplayFieldRef id="WM_TNAA"/>
+		<DisplayFieldRef id="WM_TCHO"/>
+		<DisplayFieldRef id="WM_TCR"/>
+		<DisplayFieldRef id="WM_GLX"/>
+		<DisplayFieldRef id="WM_MI_CR"/>
+		<DisplayFieldRef id="WM_NAA_CR"/>
+		<DisplayFieldRef id="WM_CHO_CR"/>
+		<DisplayFieldRef id="WM_GLX_CR"/>
+		<DisplayFieldRef id="PUT_MI"/>
+		<DisplayFieldRef id="PUT_TNAA"/>
+		<DisplayFieldRef id="PUT_TCHO"/>
+		<DisplayFieldRef id="PUT_TCR"/>
+		<DisplayFieldRef id="PUT_GLX"/>
+		<DisplayFieldRef id="PUT_MI_CR"/>
+		<DisplayFieldRef id="PUT_NAA_CR"/>
+		<DisplayFieldRef id="PUT_CHO_CR"/>
+		<DisplayFieldRef id="PUT_GLX_CR"/>
+	</DisplayVersion>
+	<DisplayVersion versionName="detailed" default-order-by="DATE" default-sort-order="DESC" brief-description="MRS" dark-color="9999CC" light-color="CCCCFF">
+		<DisplayFieldRef id="EXPT_ID"/>
+		<DisplayFieldRef id="DATE"/>
+		<DisplayFieldRef id="WM_MI"/>
+		<DisplayFieldRef id="WM_TNAA"/>
+		<DisplayFieldRef id="WM_TCHO"/>
+		<DisplayFieldRef id="WM_TCR"/>
+		<DisplayFieldRef id="WM_GLX"/>
+		<DisplayFieldRef id="WM_MI_CR"/>
+		<DisplayFieldRef id="WM_NAA_CR"/>
+		<DisplayFieldRef id="WM_CHO_CR"/>
+		<DisplayFieldRef id="WM_GLX_CR"/>
+		<DisplayFieldRef id="PUT_MI"/>
+		<DisplayFieldRef id="PUT_TNAA"/>
+		<DisplayFieldRef id="PUT_TCHO"/>
+		<DisplayFieldRef id="PUT_TCR"/>
+		<DisplayFieldRef id="PUT_GLX"/>
+		<DisplayFieldRef id="PUT_MI_CR"/>
+		<DisplayFieldRef id="PUT_NAA_CR"/>
+		<DisplayFieldRef id="PUT_CHO_CR"/>
+		<DisplayFieldRef id="PUT_GLX_CR"/>
+	</DisplayVersion>
+	<DisplayVersion versionName="project_bundle" default-order-by="DATE" default-sort-order="DESC" brief-description="MRS" dark-color="9999CC" light-color="CCCCFF">
+		<DisplayFieldRef id="COBRA_MRSPECTROSCOPYDATA_PROJECT_IDENTIFIER"/>
+		<DisplayFieldRef id="DATE"/>
+		<DisplayFieldRef id="WM_MI"/>
+		<DisplayFieldRef id="WM_TNAA"/>
+		<DisplayFieldRef id="WM_TCHO"/>
+		<DisplayFieldRef id="WM_TCR"/>
+		<DisplayFieldRef id="WM_GLX"/>
+		<DisplayFieldRef id="WM_MI_CR"/>
+		<DisplayFieldRef id="WM_NAA_CR"/>
+		<DisplayFieldRef id="WM_CHO_CR"/>
+		<DisplayFieldRef id="WM_GLX_CR"/>
+		<DisplayFieldRef id="PUT_MI"/>
+		<DisplayFieldRef id="PUT_TNAA"/>
+		<DisplayFieldRef id="PUT_TCHO"/>
+		<DisplayFieldRef id="PUT_TCR"/>
+		<DisplayFieldRef id="PUT_GLX"/>
+		<DisplayFieldRef id="PUT_MI_CR"/>
+		<DisplayFieldRef id="PUT_NAA_CR"/>
+		<DisplayFieldRef id="PUT_CHO_CR"/>
+		<DisplayFieldRef id="PUT_GLX_CR"/>
+	</DisplayVersion>
+	<ViewLink alias="COBRA_MRSPECTROSCOPYDATA_PROJECTS">
+		<Mapping TableName="COBRA_MRSPECTROSCOPYDATA_PROJECTS">
+			<MappingColumn rootElement="COBRA:MRSpectroscopyData" fieldElement="COBRA:MRSpectroscopyData.ID" mapsTo="id"/>
+		</Mapping>
+	</ViewLink>
+	<SQLView name="COBRA_MRSPECTROSCOPYDATA_PROJECTS" sql="SELECT id, '&lt;' || expt.project || '&gt;' || xs_a_concat(',&lt;' || shared.project || '&gt;') AS projects FROM xnat_experimentData expt LEFT JOIN xnat_experimentData_share shared ON expt.id=shared.sharing_share_xnat_experimentda_id LEFT JOIN xdat_meta_element xme ON expt.extension = xme.xdat_meta_element_id WHERE element_name='COBRA:MRSpectroscopyData' GROUP BY expt.id,expt.project"/>
+</Displays>

@@ -1,0 +1,1524 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Displays xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xdat/display.xsd" schema-element="COBRA:corticalThicknessData" full-description="corticalThick" brief-description="corticalThick">
+	<DisplayField id="EXPT_ID" header="ID" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData.ID"/>
+		<HTML-Link>
+			<Property name="HREF" value="none"/>
+			<Property name="ONCLICK" value="return rpt('@Field1','COBRA:corticalThicknessData','COBRA:corticalThicknessData.ID');">
+				<InsertValue id="Field1" field="EXPT_ID"/>
+			</Property>
+		</HTML-Link>
+	</DisplayField>
+	<DisplayField id="RPT" header="ID" visible="true" image="true">
+		<Content type="sql">'/@WEBAPP/images/r.gif'::text</Content>
+		<HTML-Link>
+			<Property name="HREF" value="none"/>
+			<Property name="ONCLICK" value="return rpt('@Field1','COBRA:corticalThicknessData','COBRA:corticalThicknessData.ID');">
+				<InsertValue id="Field1" field="EXPT_ID"/>
+			</Property>
+		</HTML-Link>
+	</DisplayField>
+	<DisplayField id="DATE" header="Date" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData.date"/>
+	</DisplayField>
+	<DisplayField header="Projects" id="PROJECTS" data-type="string">
+		<DisplayFieldElement name="Field1" viewName="COBRA_CORTICALTHICKNESSDATA_PROJECTS" viewColumn="PROJECTS"/>
+	</DisplayField>
+	<DisplayField header="Label" id="LABEL" data-type="string">
+	<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData.ID"/>
+	<DisplayFieldElement name="Field2" schema-element="COBRA:corticalThicknessData.label"/>
+	<Content type="sql">COALESCE(@Field2, @Field1)</Content>
+		<HTML-Link>
+			<SecureLink elementName="COBRA:corticalThicknessData">
+				<securityMappingValue displayFieldId="PROJECTS" schemaElementMap="COBRA:corticalThicknessData/sharing/share/project"/>
+				<securityMappingValue displayFieldId="PROJECT" schemaElementMap="COBRA:corticalThicknessData/project"/>
+			</SecureLink>
+			<Property name="HREF" value="@WEBAPPapp/action/DisplayItemAction/search_value/@Field1/search_element/COBRA:corticalThicknessData/search_field/COBRA:corticalThicknessData.ID">
+				<InsertValue id="Field1" field="EXPT_ID"/>
+			</Property>
+			<Property name="ONCLICK" value="return rpt('@Field1','COBRA:corticalThicknessData','COBRA:corticalThicknessData.ID');">
+				<InsertValue id="Field1" field="EXPT_ID"/>
+			</Property>
+			<Property name="TITLE" value="Inserted: @Field1 (@Field2)">
+				<InsertValue id="Field1" field="INSERT_DATE"/>
+				<InsertValue id="Field2" field="INSERT_USER"/>
+			</Property>
+		</HTML-Link>
+	</DisplayField>
+	<DisplayField id="PROJECT" header="Project" visible="true" searchable="true" data-type="string">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData.project"/>
+	</DisplayField>
+	<DisplayField id="COBRA_CORTICALTHICKNESSDATA_PROJECT_IDENTIFIER" header="COBRA_CORTICALTHICKNESSDATA ID" visible="true" searchable="false" data-type="string" xsi:type="SubQueryField">
+		<Content type="sql">cobra_corticalthicknessdata_project_id</Content>
+		<HTML-Link>
+			<SecureLink elementName="COBRA:corticalThicknessData">
+				<securityMappingValue displayFieldId="PROJECTS" schemaElementMap="COBRA:corticalThicknessData/sharing/share/project"/>
+				<securityMappingValue displayFieldId="PROJECT" schemaElementMap="COBRA:corticalThicknessData/project"/>
+			</SecureLink>
+			<Property name="HREF" value="@WEBAPPapp/action/DisplayItemAction/search_value/@Field1/search_element/COBRA:corticalThicknessData/search_field/COBRA:corticalThicknessData.ID/project/@Field2">
+				<InsertValue id="Field1" field="EXPT_ID"/>
+				<InsertValue id="Field2" field="@WHERE"/>
+			</Property>
+		</HTML-Link>
+		<SubQuery>SELECT DISTINCT COALESCE(label,sharing_share_xnat_experimentda_id) AS cobra_corticalthicknessdata_project_id,sharing_share_xnat_experimentda_id FROM (	SELECT sharing_share_xnat_experimentda_id,label FROM xnat_experimentdata_share WHERE project='@WHERE'	UNION 	SELECT id,label FROM xnat_experimentData WHERE project='@WHERE' )SEARCH</SubQuery>
+		<MappingColumns>
+			<MappingColumn schemaField="COBRA:corticalThicknessData.ID" queryField="sharing_share_xnat_experimentda_id"/>
+		</MappingColumns>
+	</DisplayField>
+	<DisplayField id="INSERT_DATE" header="Inserted" visible="true" searchable="true" data-type="string">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData.meta.insert_date"/>
+	</DisplayField>
+	<DisplayField id="INSERT_USER" header="Creator" visible="true" searchable="true" data-type="string">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData.meta.insert_user.login"/>
+	</DisplayField>
+	<DisplayField id="COBRA_CORTICALTHICKNESSDATA_FIELD_MAP" header="Field" visible="true" searchable="false" data-type="string" xsi:type="SubQueryField">
+		<Content type="sql">field</Content>
+		<SubQuery>SELECT DISTINCT ON ( e.ID) e.ID AS expt_id,field FROM xnat_experimentData_field ef JOIN (SELECT ID,extension,element_name FROM xnat_experimentData e JOIN xdat_meta_element xme ON e.extension=xme.xdat_meta_element_id WHERE xme.element_name='COBRA:corticalThicknessData') e on ef.fields_field_xnat_experimentdat_id=e.id WHERE name='@WHERE'</SubQuery>
+		<MappingColumns>
+			<MappingColumn schemaField="COBRA:corticalThicknessData.ID" queryField="expt_id"/>
+		</MappingColumns>
+	</DisplayField>
+	<DisplayField id="LH_MEANTHICKNESS_THICKNESS" header="lh_MeanThickness_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/lh_MeanThickness_thickness"/>
+	</DisplayField>
+	<DisplayField id="RH_MEANTHICKNESS_THICKNESS" header="rh_MeanThickness_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/rh_MeanThickness_thickness"/>
+	</DisplayField>
+	<DisplayField id="LEFT_CEREBELLUM_WHITE_MATTER" header="Left-Cerebellum-White-Matter" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/Left-Cerebellum-White-Matter"/>
+	</DisplayField>
+	<DisplayField id="LEFT_CEREBELLUM_CORTEX" header="Left-Cerebellum-Cortex" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/Left-Cerebellum-Cortex"/>
+	</DisplayField>
+	<DisplayField id="LEFT_THALAMUS_PROPER" header="Left-Thalamus-Proper" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/Left-Thalamus-Proper"/>
+	</DisplayField>
+	<DisplayField id="LEFT_CAUDATE" header="Left-Caudate" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/Left-Caudate"/>
+	</DisplayField>
+	<DisplayField id="LEFT_PUTAMEN" header="Left-Putamen" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/Left-Putamen"/>
+	</DisplayField>
+	<DisplayField id="LEFT_PALLIDUM" header="Left-Pallidum" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/Left-Pallidum"/>
+	</DisplayField>
+	<DisplayField id="BRAIN_STEM" header="Brain-Stem" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/Brain-Stem"/>
+	</DisplayField>
+	<DisplayField id="LEFT_HIPPOCAMPUS" header="Left-Hippocampus" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/Left-Hippocampus"/>
+	</DisplayField>
+	<DisplayField id="LEFT_AMYGDALA" header="Left-Amygdala" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/Left-Amygdala"/>
+	</DisplayField>
+	<DisplayField id="LEFT_ACCUMBENS_AREA" header="Left-Accumbens-area" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/Left-Accumbens-area"/>
+	</DisplayField>
+	<DisplayField id="LEFT_VENTRALDC" header="Left-VentralDC" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/Left-VentralDC"/>
+	</DisplayField>
+	<DisplayField id="RIGHT_CEREBELLUM_WHITE_MATTER" header="Right-Cerebellum-White-Matter" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/Right-Cerebellum-White-Matter"/>
+	</DisplayField>
+	<DisplayField id="RIGHT_CEREBELLUM_CORTEX" header="Right-Cerebellum-Cortex" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/Right-Cerebellum-Cortex"/>
+	</DisplayField>
+	<DisplayField id="RIGHT_THALAMUS_PROPER" header="Right-Thalamus-Proper" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/Right-Thalamus-Proper"/>
+	</DisplayField>
+	<DisplayField id="RIGHT_CAUDATE" header="Right-Caudate" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/Right-Caudate"/>
+	</DisplayField>
+	<DisplayField id="RIGHT_PUTAMEN" header="Right-Putamen" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/Right-Putamen"/>
+	</DisplayField>
+	<DisplayField id="RIGHT_PALLIDUM" header="Right-Pallidum" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/Right-Pallidum"/>
+	</DisplayField>
+	<DisplayField id="RIGHT_HIPPOCAMPUS" header="Right-Hippocampus" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/Right-Hippocampus"/>
+	</DisplayField>
+	<DisplayField id="RIGHT_AMYGDALA" header="Right-Amygdala" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/Right-Amygdala"/>
+	</DisplayField>
+	<DisplayField id="RIGHT_ACCUMBENS_AREA" header="Right-Accumbens-area" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/Right-Accumbens-area"/>
+	</DisplayField>
+	<DisplayField id="RIGHT_VENTRALDC" header="Right-VentralDC" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/Right-VentralDC"/>
+	</DisplayField>
+	<DisplayField id="OPTIC_CHIASM" header="Optic-Chiasm" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/Optic-Chiasm"/>
+	</DisplayField>
+	<DisplayField id="CC_POSTERIOR" header="CC_Posterior" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/CC_Posterior"/>
+	</DisplayField>
+	<DisplayField id="CC_MID_POSTERIOR" header="CC_Mid_Posterior" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/CC_Mid_Posterior"/>
+	</DisplayField>
+	<DisplayField id="CC_CENTRAL" header="CC_Central" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/CC_Central"/>
+	</DisplayField>
+	<DisplayField id="CC_MID_ANTERIOR" header="CC_Mid_Anterior" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/CC_Mid_Anterior"/>
+	</DisplayField>
+	<DisplayField id="CC_ANTERIOR" header="CC_Anterior" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/CC_Anterior"/>
+	</DisplayField>
+	<DisplayField id="LH_G_AND_S_FRONTOMARGIN_THICKNESS" header="lh_G_and_S_frontomargin_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/lh_G_and_S_frontomargin_thickness"/>
+	</DisplayField>
+	<DisplayField id="LH_G_AND_S_OCCIPITAL_INF_THICKNESS" header="lh_G_and_S_occipital_inf_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/lh_G_and_S_occipital_inf_thickness"/>
+	</DisplayField>
+	<DisplayField id="LH_G_AND_S_PARACENTRAL_THICKNESS" header="lh_G_and_S_paracentral_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/lh_G_and_S_paracentral_thickness"/>
+	</DisplayField>
+	<DisplayField id="LH_G_AND_S_SUBCENTRAL_THICKNESS" header="lh_G_and_S_subcentral_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/lh_G_and_S_subcentral_thickness"/>
+	</DisplayField>
+	<DisplayField id="LH_G_AND_S_TRANSV_FRONTOPOL_THICKNESS" header="lh_G_and_S_transv_frontopol_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/lh_G_and_S_transv_frontopol_thickness"/>
+	</DisplayField>
+	<DisplayField id="LH_G_AND_S_CINGUL_ANT_THICKNESS" header="lh_G_and_S_cingul-Ant_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/lh_G_and_S_cingul-Ant_thickness"/>
+	</DisplayField>
+	<DisplayField id="LH_G_AND_S_CINGUL_MID_ANT_THICKNESS" header="lh_G_and_S_cingul-Mid-Ant_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/lh_G_and_S_cingul-Mid-Ant_thickness"/>
+	</DisplayField>
+	<DisplayField id="LH_G_AND_S_CINGUL_MID_POST_THICKNESS" header="lh_G_and_S_cingul-Mid-Post_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/lh_G_and_S_cingul-Mid-Post_thickness"/>
+	</DisplayField>
+	<DisplayField id="LH_G_CINGUL_POST_DORSAL_THICKNESS" header="lh_G_cingul-Post-dorsal_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/lh_G_cingul-Post-dorsal_thickness"/>
+	</DisplayField>
+	<DisplayField id="LH_G_CINGUL_POST_VENTRAL_THICKNESS" header="lh_G_cingul-Post-ventral_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/lh_G_cingul-Post-ventral_thickness"/>
+	</DisplayField>
+	<DisplayField id="LH_G_CUNEUS_THICKNESS" header="lh_G_cuneus_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/lh_G_cuneus_thickness"/>
+	</DisplayField>
+	<DisplayField id="LH_G_FRONT_INF_OPERCULAR_THICKNESS" header="lh_G_front_inf-Opercular_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/lh_G_front_inf-Opercular_thickness"/>
+	</DisplayField>
+	<DisplayField id="LH_G_FRONT_INF_ORBITAL_THICKNESS" header="lh_G_front_inf-Orbital_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/lh_G_front_inf-Orbital_thickness"/>
+	</DisplayField>
+	<DisplayField id="LH_G_FRONT_INF_TRIANGUL_THICKNESS" header="lh_G_front_inf-Triangul_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/lh_G_front_inf-Triangul_thickness"/>
+	</DisplayField>
+	<DisplayField id="LH_G_FRONT_MIDDLE_THICKNESS" header="lh_G_front_middle_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/lh_G_front_middle_thickness"/>
+	</DisplayField>
+	<DisplayField id="LH_G_FRONT_SUP_THICKNESS" header="lh_G_front_sup_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/lh_G_front_sup_thickness"/>
+	</DisplayField>
+	<DisplayField id="LH_G_INS_LG_AND_S_CENT_INS_THICKNESS" header="lh_G_Ins_lg_and_S_cent_ins_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/lh_G_Ins_lg_and_S_cent_ins_thickness"/>
+	</DisplayField>
+	<DisplayField id="LH_G_INSULAR_SHORT_THICKNESS" header="lh_G_insular_short_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/lh_G_insular_short_thickness"/>
+	</DisplayField>
+	<DisplayField id="LH_G_OCCIPITAL_MIDDLE_THICKNESS" header="lh_G_occipital_middle_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/lh_G_occipital_middle_thickness"/>
+	</DisplayField>
+	<DisplayField id="LH_G_OCCIPITAL_SUP_THICKNESS" header="lh_G_occipital_sup_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/lh_G_occipital_sup_thickness"/>
+	</DisplayField>
+	<DisplayField id="LH_G_OC_TEMP_LAT_FUSIFOR_THICKNESS" header="lh_G_oc-temp_lat-fusifor_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/lh_G_oc-temp_lat-fusifor_thickness"/>
+	</DisplayField>
+	<DisplayField id="LH_G_OC_TEMP_MED_LINGUAL_THICKNESS" header="lh_G_oc-temp_med-Lingual_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/lh_G_oc-temp_med-Lingual_thickness"/>
+	</DisplayField>
+	<DisplayField id="LH_G_OC_TEMP_MED_PARAHIP_THICKNESS" header="lh_G_oc-temp_med-Parahip_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/lh_G_oc-temp_med-Parahip_thickness"/>
+	</DisplayField>
+	<DisplayField id="LH_G_ORBITAL_THICKNESS" header="lh_G_orbital_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/lh_G_orbital_thickness"/>
+	</DisplayField>
+	<DisplayField id="LH_G_PARIET_INF_ANGULAR_THICKNESS" header="lh_G_pariet_inf-Angular_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/lh_G_pariet_inf-Angular_thickness"/>
+	</DisplayField>
+	<DisplayField id="LH_G_PARIET_INF_SUPRAMAR_THICKNESS" header="lh_G_pariet_inf-Supramar_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/lh_G_pariet_inf-Supramar_thickness"/>
+	</DisplayField>
+	<DisplayField id="LH_G_PARIETAL_SUP_THICKNESS" header="lh_G_parietal_sup_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/lh_G_parietal_sup_thickness"/>
+	</DisplayField>
+	<DisplayField id="LH_G_POSTCENTRAL_THICKNESS" header="lh_G_postcentral_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/lh_G_postcentral_thickness"/>
+	</DisplayField>
+	<DisplayField id="LH_G_PRECENTRAL_THICKNESS" header="lh_G_precentral_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/lh_G_precentral_thickness"/>
+	</DisplayField>
+	<DisplayField id="LH_G_PRECUNEUS_THICKNESS" header="lh_G_precuneus_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/lh_G_precuneus_thickness"/>
+	</DisplayField>
+	<DisplayField id="LH_G_RECTUS_THICKNESS" header="lh_G_rectus_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/lh_G_rectus_thickness"/>
+	</DisplayField>
+	<DisplayField id="LH_G_SUBCALLOSAL_THICKNESS" header="lh_G_subcallosal_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/lh_G_subcallosal_thickness"/>
+	</DisplayField>
+	<DisplayField id="LH_G_TEMP_SUP_G_T_TRANSV_THICKNESS" header="lh_G_temp_sup-G_T_transv_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/lh_G_temp_sup-G_T_transv_thickness"/>
+	</DisplayField>
+	<DisplayField id="LH_G_TEMP_SUP_LATERAL_THICKNESS" header="lh_G_temp_sup-Lateral_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/lh_G_temp_sup-Lateral_thickness"/>
+	</DisplayField>
+	<DisplayField id="LH_G_TEMP_SUP_PLAN_POLAR_THICKNESS" header="lh_G_temp_sup-Plan_polar_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/lh_G_temp_sup-Plan_polar_thickness"/>
+	</DisplayField>
+	<DisplayField id="LH_G_TEMP_SUP_PLAN_TEMPO_THICKNESS" header="lh_G_temp_sup-Plan_tempo_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/lh_G_temp_sup-Plan_tempo_thickness"/>
+	</DisplayField>
+	<DisplayField id="LH_G_TEMPORAL_INF_THICKNESS" header="lh_G_temporal_inf_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/lh_G_temporal_inf_thickness"/>
+	</DisplayField>
+	<DisplayField id="LH_G_TEMPORAL_MIDDLE_THICKNESS" header="lh_G_temporal_middle_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/lh_G_temporal_middle_thickness"/>
+	</DisplayField>
+	<DisplayField id="LH_LAT_FIS_ANT_HORIZONT_THICKNESS" header="lh_Lat_Fis-ant-Horizont_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/lh_Lat_Fis-ant-Horizont_thickness"/>
+	</DisplayField>
+	<DisplayField id="LH_LAT_FIS_ANT_VERTICAL_THICKNESS" header="lh_Lat_Fis-ant-Vertical_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/lh_Lat_Fis-ant-Vertical_thickness"/>
+	</DisplayField>
+	<DisplayField id="LH_LAT_FIS_POST_THICKNESS" header="lh_Lat_Fis-post_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/lh_Lat_Fis-post_thickness"/>
+	</DisplayField>
+	<DisplayField id="LH_POLE_OCCIPITAL_THICKNESS" header="lh_Pole_occipital_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/lh_Pole_occipital_thickness"/>
+	</DisplayField>
+	<DisplayField id="LH_POLE_TEMPORAL_THICKNESS" header="lh_Pole_temporal_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/lh_Pole_temporal_thickness"/>
+	</DisplayField>
+	<DisplayField id="LH_S_CALCARINE_THICKNESS" header="lh_S_calcarine_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/lh_S_calcarine_thickness"/>
+	</DisplayField>
+	<DisplayField id="LH_S_CENTRAL_THICKNESS" header="lh_S_central_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/lh_S_central_thickness"/>
+	</DisplayField>
+	<DisplayField id="LH_S_CINGUL_MARGINALIS_THICKNESS" header="lh_S_cingul-Marginalis_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/lh_S_cingul-Marginalis_thickness"/>
+	</DisplayField>
+	<DisplayField id="LH_S_CIRCULAR_INSULA_ANT_THICKNESS" header="lh_S_circular_insula_ant_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/lh_S_circular_insula_ant_thickness"/>
+	</DisplayField>
+	<DisplayField id="LH_S_CIRCULAR_INSULA_INF_THICKNESS" header="lh_S_circular_insula_inf_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/lh_S_circular_insula_inf_thickness"/>
+	</DisplayField>
+	<DisplayField id="LH_S_CIRCULAR_INSULA_SUP_THICKNESS" header="lh_S_circular_insula_sup_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/lh_S_circular_insula_sup_thickness"/>
+	</DisplayField>
+	<DisplayField id="LH_S_COLLAT_TRANSV_ANT_THICKNESS" header="lh_S_collat_transv_ant_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/lh_S_collat_transv_ant_thickness"/>
+	</DisplayField>
+	<DisplayField id="LH_S_COLLAT_TRANSV_POST_THICKNESS" header="lh_S_collat_transv_post_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/lh_S_collat_transv_post_thickness"/>
+	</DisplayField>
+	<DisplayField id="LH_S_FRONT_INF_THICKNESS" header="lh_S_front_inf_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/lh_S_front_inf_thickness"/>
+	</DisplayField>
+	<DisplayField id="LH_S_FRONT_MIDDLE_THICKNESS" header="lh_S_front_middle_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/lh_S_front_middle_thickness"/>
+	</DisplayField>
+	<DisplayField id="LH_S_FRONT_SUP_THICKNESS" header="lh_S_front_sup_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/lh_S_front_sup_thickness"/>
+	</DisplayField>
+	<DisplayField id="LH_S_INTERM_PRIM_JENSEN_THICKNESS" header="lh_S_interm_prim-Jensen_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/lh_S_interm_prim-Jensen_thickness"/>
+	</DisplayField>
+	<DisplayField id="LH_S_INTRAPARIET_AND_P_TRANS_THICKNESS" header="lh_S_intrapariet_and_P_trans_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/lh_S_intrapariet_and_P_trans_thickness"/>
+	</DisplayField>
+	<DisplayField id="LH_S_OC_MIDDLE_AND_LUNATUS_THICKNESS" header="lh_S_oc_middle_and_Lunatus_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/lh_S_oc_middle_and_Lunatus_thickness"/>
+	</DisplayField>
+	<DisplayField id="LH_S_OC_SUP_AND_TRANSVERSAL_THICKNESS" header="lh_S_oc_sup_and_transversal_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/lh_S_oc_sup_and_transversal_thickness"/>
+	</DisplayField>
+	<DisplayField id="LH_S_OCCIPITAL_ANT_THICKNESS" header="lh_S_occipital_ant_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/lh_S_occipital_ant_thickness"/>
+	</DisplayField>
+	<DisplayField id="LH_S_OC_TEMP_LAT_THICKNESS" header="lh_S_oc-temp_lat_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/lh_S_oc-temp_lat_thickness"/>
+	</DisplayField>
+	<DisplayField id="LH_S_OC_TEMP_MED_AND_LINGUAL_THICKNESS" header="lh_S_oc-temp_med_and_Lingual_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/lh_S_oc-temp_med_and_Lingual_thickness"/>
+	</DisplayField>
+	<DisplayField id="LH_S_ORBITAL_LATERAL_THICKNESS" header="lh_S_orbital_lateral_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/lh_S_orbital_lateral_thickness"/>
+	</DisplayField>
+	<DisplayField id="LH_S_ORBITAL_MED_OLFACT_THICKNESS" header="lh_S_orbital_med-olfact_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/lh_S_orbital_med-olfact_thickness"/>
+	</DisplayField>
+	<DisplayField id="LH_S_ORBITAL_H_SHAPED_THICKNESS" header="lh_S_orbital-H_Shaped_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/lh_S_orbital-H_Shaped_thickness"/>
+	</DisplayField>
+	<DisplayField id="LH_S_PARIETO_OCCIPITAL_THICKNESS" header="lh_S_parieto_occipital_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/lh_S_parieto_occipital_thickness"/>
+	</DisplayField>
+	<DisplayField id="LH_S_PERICALLOSAL_THICKNESS" header="lh_S_pericallosal_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/lh_S_pericallosal_thickness"/>
+	</DisplayField>
+	<DisplayField id="LH_S_POSTCENTRAL_THICKNESS" header="lh_S_postcentral_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/lh_S_postcentral_thickness"/>
+	</DisplayField>
+	<DisplayField id="LH_S_PRECENTRAL_INF_PART_THICKNESS" header="lh_S_precentral-inf-part_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/lh_S_precentral-inf-part_thickness"/>
+	</DisplayField>
+	<DisplayField id="LH_S_PRECENTRAL_SUP_PART_THICKNESS" header="lh_S_precentral-sup-part_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/lh_S_precentral-sup-part_thickness"/>
+	</DisplayField>
+	<DisplayField id="LH_S_SUBORBITAL_THICKNESS" header="lh_S_suborbital_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/lh_S_suborbital_thickness"/>
+	</DisplayField>
+	<DisplayField id="LH_S_SUBPARIETAL_THICKNESS" header="lh_S_subparietal_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/lh_S_subparietal_thickness"/>
+	</DisplayField>
+	<DisplayField id="LH_S_TEMPORAL_INF_THICKNESS" header="lh_S_temporal_inf_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/lh_S_temporal_inf_thickness"/>
+	</DisplayField>
+	<DisplayField id="LH_S_TEMPORAL_SUP_THICKNESS" header="lh_S_temporal_sup_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/lh_S_temporal_sup_thickness"/>
+	</DisplayField>
+	<DisplayField id="LH_S_TEMPORAL_TRANSVERSE_THICKNESS" header="lh_S_temporal_transverse_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/lh_S_temporal_transverse_thickness"/>
+	</DisplayField>
+	<DisplayField id="RH_G_AND_S_FRONTOMARGIN_THICKNESS" header="rh_G_and_S_frontomargin_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/rh_G_and_S_frontomargin_thickness"/>
+	</DisplayField>
+	<DisplayField id="RH_G_AND_S_OCCIPITAL_INF_THICKNESS" header="rh_G_and_S_occipital_inf_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/rh_G_and_S_occipital_inf_thickness"/>
+	</DisplayField>
+	<DisplayField id="RH_G_AND_S_PARACENTRAL_THICKNESS" header="rh_G_and_S_paracentral_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/rh_G_and_S_paracentral_thickness"/>
+	</DisplayField>
+	<DisplayField id="RH_G_AND_S_SUBCENTRAL_THICKNESS" header="rh_G_and_S_subcentral_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/rh_G_and_S_subcentral_thickness"/>
+	</DisplayField>
+	<DisplayField id="RH_G_AND_S_TRANSV_FRONTOPOL_THICKNESS" header="rh_G_and_S_transv_frontopol_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/rh_G_and_S_transv_frontopol_thickness"/>
+	</DisplayField>
+	<DisplayField id="RH_G_AND_S_CINGUL_ANT_THICKNESS" header="rh_G_and_S_cingul-Ant_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/rh_G_and_S_cingul-Ant_thickness"/>
+	</DisplayField>
+	<DisplayField id="RH_G_AND_S_CINGUL_MID_ANT_THICKNESS" header="rh_G_and_S_cingul-Mid-Ant_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/rh_G_and_S_cingul-Mid-Ant_thickness"/>
+	</DisplayField>
+	<DisplayField id="RH_G_AND_S_CINGUL_MID_POST_THICKNESS" header="rh_G_and_S_cingul-Mid-Post_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/rh_G_and_S_cingul-Mid-Post_thickness"/>
+	</DisplayField>
+	<DisplayField id="RH_G_CINGUL_POST_DORSAL_THICKNESS" header="rh_G_cingul-Post-dorsal_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/rh_G_cingul-Post-dorsal_thickness"/>
+	</DisplayField>
+	<DisplayField id="RH_G_CINGUL_POST_VENTRAL_THICKNESS" header="rh_G_cingul-Post-ventral_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/rh_G_cingul-Post-ventral_thickness"/>
+	</DisplayField>
+	<DisplayField id="RH_G_CUNEUS_THICKNESS" header="rh_G_cuneus_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/rh_G_cuneus_thickness"/>
+	</DisplayField>
+	<DisplayField id="RH_G_FRONT_INF_OPERCULAR_THICKNESS" header="rh_G_front_inf-Opercular_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/rh_G_front_inf-Opercular_thickness"/>
+	</DisplayField>
+	<DisplayField id="RH_G_FRONT_INF_ORBITAL_THICKNESS" header="rh_G_front_inf-Orbital_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/rh_G_front_inf-Orbital_thickness"/>
+	</DisplayField>
+	<DisplayField id="RH_G_FRONT_INF_TRIANGUL_THICKNESS" header="rh_G_front_inf-Triangul_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/rh_G_front_inf-Triangul_thickness"/>
+	</DisplayField>
+	<DisplayField id="RH_G_FRONT_MIDDLE_THICKNESS" header="rh_G_front_middle_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/rh_G_front_middle_thickness"/>
+	</DisplayField>
+	<DisplayField id="RH_G_FRONT_SUP_THICKNESS" header="rh_G_front_sup_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/rh_G_front_sup_thickness"/>
+	</DisplayField>
+	<DisplayField id="RH_G_INS_LG_AND_S_CENT_INS_THICKNESS" header="rh_G_Ins_lg_and_S_cent_ins_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/rh_G_Ins_lg_and_S_cent_ins_thickness"/>
+	</DisplayField>
+	<DisplayField id="RH_G_INSULAR_SHORT_THICKNESS" header="rh_G_insular_short_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/rh_G_insular_short_thickness"/>
+	</DisplayField>
+	<DisplayField id="RH_G_OCCIPITAL_MIDDLE_THICKNESS" header="rh_G_occipital_middle_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/rh_G_occipital_middle_thickness"/>
+	</DisplayField>
+	<DisplayField id="RH_G_OCCIPITAL_SUP_THICKNESS" header="rh_G_occipital_sup_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/rh_G_occipital_sup_thickness"/>
+	</DisplayField>
+	<DisplayField id="RH_G_OC_TEMP_LAT_FUSIFOR_THICKNESS" header="rh_G_oc-temp_lat-fusifor_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/rh_G_oc-temp_lat-fusifor_thickness"/>
+	</DisplayField>
+	<DisplayField id="RH_G_OC_TEMP_MED_LINGUAL_THICKNESS" header="rh_G_oc-temp_med-Lingual_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/rh_G_oc-temp_med-Lingual_thickness"/>
+	</DisplayField>
+	<DisplayField id="RH_G_OC_TEMP_MED_PARAHIP_THICKNESS" header="rh_G_oc-temp_med-Parahip_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/rh_G_oc-temp_med-Parahip_thickness"/>
+	</DisplayField>
+	<DisplayField id="RH_G_ORBITAL_THICKNESS" header="rh_G_orbital_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/rh_G_orbital_thickness"/>
+	</DisplayField>
+	<DisplayField id="RH_G_PARIET_INF_ANGULAR_THICKNESS" header="rh_G_pariet_inf-Angular_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/rh_G_pariet_inf-Angular_thickness"/>
+	</DisplayField>
+	<DisplayField id="RH_G_PARIET_INF_SUPRAMAR_THICKNESS" header="rh_G_pariet_inf-Supramar_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/rh_G_pariet_inf-Supramar_thickness"/>
+	</DisplayField>
+	<DisplayField id="RH_G_PARIETAL_SUP_THICKNESS" header="rh_G_parietal_sup_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/rh_G_parietal_sup_thickness"/>
+	</DisplayField>
+	<DisplayField id="RH_G_POSTCENTRAL_THICKNESS" header="rh_G_postcentral_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/rh_G_postcentral_thickness"/>
+	</DisplayField>
+	<DisplayField id="RH_G_PRECENTRAL_THICKNESS" header="rh_G_precentral_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/rh_G_precentral_thickness"/>
+	</DisplayField>
+	<DisplayField id="RH_G_PRECUNEUS_THICKNESS" header="rh_G_precuneus_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/rh_G_precuneus_thickness"/>
+	</DisplayField>
+	<DisplayField id="RH_G_RECTUS_THICKNESS" header="rh_G_rectus_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/rh_G_rectus_thickness"/>
+	</DisplayField>
+	<DisplayField id="RH_G_SUBCALLOSAL_THICKNESS" header="rh_G_subcallosal_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/rh_G_subcallosal_thickness"/>
+	</DisplayField>
+	<DisplayField id="RH_G_TEMP_SUP_G_T_TRANSV_THICKNESS" header="rh_G_temp_sup-G_T_transv_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/rh_G_temp_sup-G_T_transv_thickness"/>
+	</DisplayField>
+	<DisplayField id="RH_G_TEMP_SUP_LATERAL_THICKNESS" header="rh_G_temp_sup-Lateral_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/rh_G_temp_sup-Lateral_thickness"/>
+	</DisplayField>
+	<DisplayField id="RH_G_TEMP_SUP_PLAN_POLAR_THICKNESS" header="rh_G_temp_sup-Plan_polar_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/rh_G_temp_sup-Plan_polar_thickness"/>
+	</DisplayField>
+	<DisplayField id="RH_G_TEMP_SUP_PLAN_TEMPO_THICKNESS" header="rh_G_temp_sup-Plan_tempo_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/rh_G_temp_sup-Plan_tempo_thickness"/>
+	</DisplayField>
+	<DisplayField id="RH_G_TEMPORAL_INF_THICKNESS" header="rh_G_temporal_inf_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/rh_G_temporal_inf_thickness"/>
+	</DisplayField>
+	<DisplayField id="RH_G_TEMPORAL_MIDDLE_THICKNESS" header="rh_G_temporal_middle_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/rh_G_temporal_middle_thickness"/>
+	</DisplayField>
+	<DisplayField id="RH_LAT_FIS_ANT_HORIZONT_THICKNESS" header="rh_Lat_Fis-ant-Horizont_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/rh_Lat_Fis-ant-Horizont_thickness"/>
+	</DisplayField>
+	<DisplayField id="RH_LAT_FIS_ANT_VERTICAL_THICKNESS" header="rh_Lat_Fis-ant-Vertical_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/rh_Lat_Fis-ant-Vertical_thickness"/>
+	</DisplayField>
+	<DisplayField id="RH_LAT_FIS_POST_THICKNESS" header="rh_Lat_Fis-post_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/rh_Lat_Fis-post_thickness"/>
+	</DisplayField>
+	<DisplayField id="RH_POLE_OCCIPITAL_THICKNESS" header="rh_Pole_occipital_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/rh_Pole_occipital_thickness"/>
+	</DisplayField>
+	<DisplayField id="RH_POLE_TEMPORAL_THICKNESS" header="rh_Pole_temporal_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/rh_Pole_temporal_thickness"/>
+	</DisplayField>
+	<DisplayField id="RH_S_CALCARINE_THICKNESS" header="rh_S_calcarine_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/rh_S_calcarine_thickness"/>
+	</DisplayField>
+	<DisplayField id="RH_S_CENTRAL_THICKNESS" header="rh_S_central_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/rh_S_central_thickness"/>
+	</DisplayField>
+	<DisplayField id="RH_S_CINGUL_MARGINALIS_THICKNESS" header="rh_S_cingul-Marginalis_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/rh_S_cingul-Marginalis_thickness"/>
+	</DisplayField>
+	<DisplayField id="RH_S_CIRCULAR_INSULA_ANT_THICKNESS" header="rh_S_circular_insula_ant_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/rh_S_circular_insula_ant_thickness"/>
+	</DisplayField>
+	<DisplayField id="RH_S_CIRCULAR_INSULA_INF_THICKNESS" header="rh_S_circular_insula_inf_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/rh_S_circular_insula_inf_thickness"/>
+	</DisplayField>
+	<DisplayField id="RH_S_CIRCULAR_INSULA_SUP_THICKNESS" header="rh_S_circular_insula_sup_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/rh_S_circular_insula_sup_thickness"/>
+	</DisplayField>
+	<DisplayField id="RH_S_COLLAT_TRANSV_ANT_THICKNESS" header="rh_S_collat_transv_ant_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/rh_S_collat_transv_ant_thickness"/>
+	</DisplayField>
+	<DisplayField id="RH_S_COLLAT_TRANSV_POST_THICKNESS" header="rh_S_collat_transv_post_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/rh_S_collat_transv_post_thickness"/>
+	</DisplayField>
+	<DisplayField id="RH_S_FRONT_INF_THICKNESS" header="rh_S_front_inf_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/rh_S_front_inf_thickness"/>
+	</DisplayField>
+	<DisplayField id="RH_S_FRONT_MIDDLE_THICKNESS" header="rh_S_front_middle_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/rh_S_front_middle_thickness"/>
+	</DisplayField>
+	<DisplayField id="RH_S_FRONT_SUP_THICKNESS" header="rh_S_front_sup_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/rh_S_front_sup_thickness"/>
+	</DisplayField>
+	<DisplayField id="RH_S_INTERM_PRIM_JENSEN_THICKNESS" header="rh_S_interm_prim-Jensen_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/rh_S_interm_prim-Jensen_thickness"/>
+	</DisplayField>
+	<DisplayField id="RH_S_INTRAPARIET_AND_P_TRANS_THICKNESS" header="rh_S_intrapariet_and_P_trans_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/rh_S_intrapariet_and_P_trans_thickness"/>
+	</DisplayField>
+	<DisplayField id="RH_S_OC_MIDDLE_AND_LUNATUS_THICKNESS" header="rh_S_oc_middle_and_Lunatus_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/rh_S_oc_middle_and_Lunatus_thickness"/>
+	</DisplayField>
+	<DisplayField id="RH_S_OC_SUP_AND_TRANSVERSAL_THICKNESS" header="rh_S_oc_sup_and_transversal_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/rh_S_oc_sup_and_transversal_thickness"/>
+	</DisplayField>
+	<DisplayField id="RH_S_OCCIPITAL_ANT_THICKNESS" header="rh_S_occipital_ant_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/rh_S_occipital_ant_thickness"/>
+	</DisplayField>
+	<DisplayField id="RH_S_OC_TEMP_LAT_THICKNESS" header="rh_S_oc-temp_lat_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/rh_S_oc-temp_lat_thickness"/>
+	</DisplayField>
+	<DisplayField id="RH_S_OC_TEMP_MED_AND_LINGUAL_THICKNESS" header="rh_S_oc-temp_med_and_Lingual_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/rh_S_oc-temp_med_and_Lingual_thickness"/>
+	</DisplayField>
+	<DisplayField id="RH_S_ORBITAL_LATERAL_THICKNESS" header="rh_S_orbital_lateral_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/rh_S_orbital_lateral_thickness"/>
+	</DisplayField>
+	<DisplayField id="RH_S_ORBITAL_MED_OLFACT_THICKNESS" header="rh_S_orbital_med-olfact_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/rh_S_orbital_med-olfact_thickness"/>
+	</DisplayField>
+	<DisplayField id="RH_S_ORBITAL_H_SHAPED_THICKNESS" header="rh_S_orbital-H_Shaped_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/rh_S_orbital-H_Shaped_thickness"/>
+	</DisplayField>
+	<DisplayField id="RH_S_PARIETO_OCCIPITAL_THICKNESS" header="rh_S_parieto_occipital_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/rh_S_parieto_occipital_thickness"/>
+	</DisplayField>
+	<DisplayField id="RH_S_PERICALLOSAL_THICKNESS" header="rh_S_pericallosal_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/rh_S_pericallosal_thickness"/>
+	</DisplayField>
+	<DisplayField id="RH_S_POSTCENTRAL_THICKNESS" header="rh_S_postcentral_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/rh_S_postcentral_thickness"/>
+	</DisplayField>
+	<DisplayField id="RH_S_PRECENTRAL_INF_PART_THICKNESS" header="rh_S_precentral-inf-part_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/rh_S_precentral-inf-part_thickness"/>
+	</DisplayField>
+	<DisplayField id="RH_S_PRECENTRAL_SUP_PART_THICKNESS" header="rh_S_precentral-sup-part_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/rh_S_precentral-sup-part_thickness"/>
+	</DisplayField>
+	<DisplayField id="RH_S_SUBORBITAL_THICKNESS" header="rh_S_suborbital_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/rh_S_suborbital_thickness"/>
+	</DisplayField>
+	<DisplayField id="RH_S_SUBPARIETAL_THICKNESS" header="rh_S_subparietal_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/rh_S_subparietal_thickness"/>
+	</DisplayField>
+	<DisplayField id="RH_S_TEMPORAL_INF_THICKNESS" header="rh_S_temporal_inf_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/rh_S_temporal_inf_thickness"/>
+	</DisplayField>
+	<DisplayField id="RH_S_TEMPORAL_SUP_THICKNESS" header="rh_S_temporal_sup_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/rh_S_temporal_sup_thickness"/>
+	</DisplayField>
+	<DisplayField id="RH_S_TEMPORAL_TRANSVERSE_THICKNESS" header="rh_S_temporal_transverse_thickness" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:corticalThicknessData/rh_S_temporal_transverse_thickness"/>
+	</DisplayField>
+	<DisplayVersion versionName="listing" default-order-by="DATE" default-sort-order="DESC" brief-description="corticalThick" dark-color="9999CC" light-color="CCCCFF">
+		<DisplayFieldRef id="RPT"/>
+		<DisplayFieldRef id="LABEL"/>
+		<DisplayFieldRef id="DATE"/>
+		<DisplayFieldRef id="LH_MEANTHICKNESS_THICKNESS"/>
+		<DisplayFieldRef id="RH_MEANTHICKNESS_THICKNESS"/>
+		<DisplayFieldRef id="LEFT_CEREBELLUM_WHITE_MATTER"/>
+		<DisplayFieldRef id="LEFT_CEREBELLUM_CORTEX"/>
+		<DisplayFieldRef id="LEFT_THALAMUS_PROPER"/>
+		<DisplayFieldRef id="LEFT_CAUDATE"/>
+		<DisplayFieldRef id="LEFT_PUTAMEN"/>
+		<DisplayFieldRef id="LEFT_PALLIDUM"/>
+		<DisplayFieldRef id="BRAIN_STEM"/>
+		<DisplayFieldRef id="LEFT_HIPPOCAMPUS"/>
+		<DisplayFieldRef id="LEFT_AMYGDALA"/>
+		<DisplayFieldRef id="LEFT_ACCUMBENS_AREA"/>
+		<DisplayFieldRef id="LEFT_VENTRALDC"/>
+		<DisplayFieldRef id="RIGHT_CEREBELLUM_WHITE_MATTER"/>
+		<DisplayFieldRef id="RIGHT_CEREBELLUM_CORTEX"/>
+		<DisplayFieldRef id="RIGHT_THALAMUS_PROPER"/>
+		<DisplayFieldRef id="RIGHT_CAUDATE"/>
+		<DisplayFieldRef id="RIGHT_PUTAMEN"/>
+		<DisplayFieldRef id="RIGHT_PALLIDUM"/>
+		<DisplayFieldRef id="RIGHT_HIPPOCAMPUS"/>
+		<DisplayFieldRef id="RIGHT_AMYGDALA"/>
+		<DisplayFieldRef id="RIGHT_ACCUMBENS_AREA"/>
+		<DisplayFieldRef id="RIGHT_VENTRALDC"/>
+		<DisplayFieldRef id="OPTIC_CHIASM"/>
+		<DisplayFieldRef id="CC_POSTERIOR"/>
+		<DisplayFieldRef id="CC_MID_POSTERIOR"/>
+		<DisplayFieldRef id="CC_CENTRAL"/>
+		<DisplayFieldRef id="CC_MID_ANTERIOR"/>
+		<DisplayFieldRef id="CC_ANTERIOR"/>
+		<DisplayFieldRef id="LH_G_AND_S_FRONTOMARGIN_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_AND_S_OCCIPITAL_INF_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_AND_S_PARACENTRAL_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_AND_S_SUBCENTRAL_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_AND_S_TRANSV_FRONTOPOL_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_AND_S_CINGUL_ANT_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_AND_S_CINGUL_MID_ANT_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_AND_S_CINGUL_MID_POST_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_CINGUL_POST_DORSAL_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_CINGUL_POST_VENTRAL_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_CUNEUS_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_FRONT_INF_OPERCULAR_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_FRONT_INF_ORBITAL_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_FRONT_INF_TRIANGUL_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_FRONT_MIDDLE_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_FRONT_SUP_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_INS_LG_AND_S_CENT_INS_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_INSULAR_SHORT_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_OCCIPITAL_MIDDLE_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_OCCIPITAL_SUP_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_OC_TEMP_LAT_FUSIFOR_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_OC_TEMP_MED_LINGUAL_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_OC_TEMP_MED_PARAHIP_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_ORBITAL_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_PARIET_INF_ANGULAR_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_PARIET_INF_SUPRAMAR_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_PARIETAL_SUP_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_POSTCENTRAL_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_PRECENTRAL_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_PRECUNEUS_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_RECTUS_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_SUBCALLOSAL_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_TEMP_SUP_G_T_TRANSV_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_TEMP_SUP_LATERAL_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_TEMP_SUP_PLAN_POLAR_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_TEMP_SUP_PLAN_TEMPO_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_TEMPORAL_INF_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_TEMPORAL_MIDDLE_THICKNESS"/>
+		<DisplayFieldRef id="LH_LAT_FIS_ANT_HORIZONT_THICKNESS"/>
+		<DisplayFieldRef id="LH_LAT_FIS_ANT_VERTICAL_THICKNESS"/>
+		<DisplayFieldRef id="LH_LAT_FIS_POST_THICKNESS"/>
+		<DisplayFieldRef id="LH_POLE_OCCIPITAL_THICKNESS"/>
+		<DisplayFieldRef id="LH_POLE_TEMPORAL_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_CALCARINE_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_CENTRAL_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_CINGUL_MARGINALIS_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_CIRCULAR_INSULA_ANT_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_CIRCULAR_INSULA_INF_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_CIRCULAR_INSULA_SUP_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_COLLAT_TRANSV_ANT_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_COLLAT_TRANSV_POST_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_FRONT_INF_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_FRONT_MIDDLE_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_FRONT_SUP_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_INTERM_PRIM_JENSEN_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_INTRAPARIET_AND_P_TRANS_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_OC_MIDDLE_AND_LUNATUS_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_OC_SUP_AND_TRANSVERSAL_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_OCCIPITAL_ANT_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_OC_TEMP_LAT_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_OC_TEMP_MED_AND_LINGUAL_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_ORBITAL_LATERAL_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_ORBITAL_MED_OLFACT_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_ORBITAL_H_SHAPED_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_PARIETO_OCCIPITAL_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_PERICALLOSAL_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_POSTCENTRAL_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_PRECENTRAL_INF_PART_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_PRECENTRAL_SUP_PART_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_SUBORBITAL_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_SUBPARIETAL_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_TEMPORAL_INF_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_TEMPORAL_SUP_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_TEMPORAL_TRANSVERSE_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_AND_S_FRONTOMARGIN_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_AND_S_OCCIPITAL_INF_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_AND_S_PARACENTRAL_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_AND_S_SUBCENTRAL_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_AND_S_TRANSV_FRONTOPOL_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_AND_S_CINGUL_ANT_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_AND_S_CINGUL_MID_ANT_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_AND_S_CINGUL_MID_POST_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_CINGUL_POST_DORSAL_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_CINGUL_POST_VENTRAL_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_CUNEUS_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_FRONT_INF_OPERCULAR_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_FRONT_INF_ORBITAL_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_FRONT_INF_TRIANGUL_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_FRONT_MIDDLE_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_FRONT_SUP_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_INS_LG_AND_S_CENT_INS_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_INSULAR_SHORT_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_OCCIPITAL_MIDDLE_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_OCCIPITAL_SUP_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_OC_TEMP_LAT_FUSIFOR_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_OC_TEMP_MED_LINGUAL_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_OC_TEMP_MED_PARAHIP_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_ORBITAL_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_PARIET_INF_ANGULAR_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_PARIET_INF_SUPRAMAR_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_PARIETAL_SUP_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_POSTCENTRAL_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_PRECENTRAL_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_PRECUNEUS_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_RECTUS_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_SUBCALLOSAL_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_TEMP_SUP_G_T_TRANSV_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_TEMP_SUP_LATERAL_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_TEMP_SUP_PLAN_POLAR_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_TEMP_SUP_PLAN_TEMPO_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_TEMPORAL_INF_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_TEMPORAL_MIDDLE_THICKNESS"/>
+		<DisplayFieldRef id="RH_LAT_FIS_ANT_HORIZONT_THICKNESS"/>
+		<DisplayFieldRef id="RH_LAT_FIS_ANT_VERTICAL_THICKNESS"/>
+		<DisplayFieldRef id="RH_LAT_FIS_POST_THICKNESS"/>
+		<DisplayFieldRef id="RH_POLE_OCCIPITAL_THICKNESS"/>
+		<DisplayFieldRef id="RH_POLE_TEMPORAL_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_CALCARINE_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_CENTRAL_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_CINGUL_MARGINALIS_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_CIRCULAR_INSULA_ANT_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_CIRCULAR_INSULA_INF_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_CIRCULAR_INSULA_SUP_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_COLLAT_TRANSV_ANT_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_COLLAT_TRANSV_POST_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_FRONT_INF_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_FRONT_MIDDLE_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_FRONT_SUP_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_INTERM_PRIM_JENSEN_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_INTRAPARIET_AND_P_TRANS_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_OC_MIDDLE_AND_LUNATUS_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_OC_SUP_AND_TRANSVERSAL_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_OCCIPITAL_ANT_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_OC_TEMP_LAT_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_OC_TEMP_MED_AND_LINGUAL_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_ORBITAL_LATERAL_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_ORBITAL_MED_OLFACT_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_ORBITAL_H_SHAPED_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_PARIETO_OCCIPITAL_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_PERICALLOSAL_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_POSTCENTRAL_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_PRECENTRAL_INF_PART_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_PRECENTRAL_SUP_PART_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_SUBORBITAL_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_SUBPARIETAL_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_TEMPORAL_INF_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_TEMPORAL_SUP_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_TEMPORAL_TRANSVERSE_THICKNESS"/>
+	</DisplayVersion>
+	<DisplayVersion versionName="listing_csv" default-order-by="DATE" default-sort-order="DESC" brief-description="corticalThick" dark-color="9999CC" light-color="CCCCFF">
+		<DisplayFieldRef id="LABEL"/>
+		<DisplayFieldRef id="DATE"/>
+		<DisplayFieldRef id="LH_MEANTHICKNESS_THICKNESS"/>
+		<DisplayFieldRef id="RH_MEANTHICKNESS_THICKNESS"/>
+		<DisplayFieldRef id="LEFT_CEREBELLUM_WHITE_MATTER"/>
+		<DisplayFieldRef id="LEFT_CEREBELLUM_CORTEX"/>
+		<DisplayFieldRef id="LEFT_THALAMUS_PROPER"/>
+		<DisplayFieldRef id="LEFT_CAUDATE"/>
+		<DisplayFieldRef id="LEFT_PUTAMEN"/>
+		<DisplayFieldRef id="LEFT_PALLIDUM"/>
+		<DisplayFieldRef id="BRAIN_STEM"/>
+		<DisplayFieldRef id="LEFT_HIPPOCAMPUS"/>
+		<DisplayFieldRef id="LEFT_AMYGDALA"/>
+		<DisplayFieldRef id="LEFT_ACCUMBENS_AREA"/>
+		<DisplayFieldRef id="LEFT_VENTRALDC"/>
+		<DisplayFieldRef id="RIGHT_CEREBELLUM_WHITE_MATTER"/>
+		<DisplayFieldRef id="RIGHT_CEREBELLUM_CORTEX"/>
+		<DisplayFieldRef id="RIGHT_THALAMUS_PROPER"/>
+		<DisplayFieldRef id="RIGHT_CAUDATE"/>
+		<DisplayFieldRef id="RIGHT_PUTAMEN"/>
+		<DisplayFieldRef id="RIGHT_PALLIDUM"/>
+		<DisplayFieldRef id="RIGHT_HIPPOCAMPUS"/>
+		<DisplayFieldRef id="RIGHT_AMYGDALA"/>
+		<DisplayFieldRef id="RIGHT_ACCUMBENS_AREA"/>
+		<DisplayFieldRef id="RIGHT_VENTRALDC"/>
+		<DisplayFieldRef id="OPTIC_CHIASM"/>
+		<DisplayFieldRef id="CC_POSTERIOR"/>
+		<DisplayFieldRef id="CC_MID_POSTERIOR"/>
+		<DisplayFieldRef id="CC_CENTRAL"/>
+		<DisplayFieldRef id="CC_MID_ANTERIOR"/>
+		<DisplayFieldRef id="CC_ANTERIOR"/>
+		<DisplayFieldRef id="LH_G_AND_S_FRONTOMARGIN_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_AND_S_OCCIPITAL_INF_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_AND_S_PARACENTRAL_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_AND_S_SUBCENTRAL_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_AND_S_TRANSV_FRONTOPOL_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_AND_S_CINGUL_ANT_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_AND_S_CINGUL_MID_ANT_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_AND_S_CINGUL_MID_POST_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_CINGUL_POST_DORSAL_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_CINGUL_POST_VENTRAL_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_CUNEUS_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_FRONT_INF_OPERCULAR_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_FRONT_INF_ORBITAL_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_FRONT_INF_TRIANGUL_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_FRONT_MIDDLE_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_FRONT_SUP_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_INS_LG_AND_S_CENT_INS_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_INSULAR_SHORT_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_OCCIPITAL_MIDDLE_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_OCCIPITAL_SUP_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_OC_TEMP_LAT_FUSIFOR_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_OC_TEMP_MED_LINGUAL_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_OC_TEMP_MED_PARAHIP_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_ORBITAL_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_PARIET_INF_ANGULAR_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_PARIET_INF_SUPRAMAR_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_PARIETAL_SUP_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_POSTCENTRAL_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_PRECENTRAL_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_PRECUNEUS_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_RECTUS_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_SUBCALLOSAL_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_TEMP_SUP_G_T_TRANSV_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_TEMP_SUP_LATERAL_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_TEMP_SUP_PLAN_POLAR_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_TEMP_SUP_PLAN_TEMPO_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_TEMPORAL_INF_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_TEMPORAL_MIDDLE_THICKNESS"/>
+		<DisplayFieldRef id="LH_LAT_FIS_ANT_HORIZONT_THICKNESS"/>
+		<DisplayFieldRef id="LH_LAT_FIS_ANT_VERTICAL_THICKNESS"/>
+		<DisplayFieldRef id="LH_LAT_FIS_POST_THICKNESS"/>
+		<DisplayFieldRef id="LH_POLE_OCCIPITAL_THICKNESS"/>
+		<DisplayFieldRef id="LH_POLE_TEMPORAL_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_CALCARINE_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_CENTRAL_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_CINGUL_MARGINALIS_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_CIRCULAR_INSULA_ANT_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_CIRCULAR_INSULA_INF_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_CIRCULAR_INSULA_SUP_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_COLLAT_TRANSV_ANT_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_COLLAT_TRANSV_POST_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_FRONT_INF_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_FRONT_MIDDLE_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_FRONT_SUP_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_INTERM_PRIM_JENSEN_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_INTRAPARIET_AND_P_TRANS_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_OC_MIDDLE_AND_LUNATUS_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_OC_SUP_AND_TRANSVERSAL_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_OCCIPITAL_ANT_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_OC_TEMP_LAT_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_OC_TEMP_MED_AND_LINGUAL_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_ORBITAL_LATERAL_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_ORBITAL_MED_OLFACT_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_ORBITAL_H_SHAPED_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_PARIETO_OCCIPITAL_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_PERICALLOSAL_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_POSTCENTRAL_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_PRECENTRAL_INF_PART_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_PRECENTRAL_SUP_PART_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_SUBORBITAL_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_SUBPARIETAL_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_TEMPORAL_INF_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_TEMPORAL_SUP_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_TEMPORAL_TRANSVERSE_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_AND_S_FRONTOMARGIN_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_AND_S_OCCIPITAL_INF_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_AND_S_PARACENTRAL_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_AND_S_SUBCENTRAL_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_AND_S_TRANSV_FRONTOPOL_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_AND_S_CINGUL_ANT_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_AND_S_CINGUL_MID_ANT_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_AND_S_CINGUL_MID_POST_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_CINGUL_POST_DORSAL_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_CINGUL_POST_VENTRAL_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_CUNEUS_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_FRONT_INF_OPERCULAR_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_FRONT_INF_ORBITAL_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_FRONT_INF_TRIANGUL_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_FRONT_MIDDLE_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_FRONT_SUP_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_INS_LG_AND_S_CENT_INS_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_INSULAR_SHORT_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_OCCIPITAL_MIDDLE_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_OCCIPITAL_SUP_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_OC_TEMP_LAT_FUSIFOR_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_OC_TEMP_MED_LINGUAL_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_OC_TEMP_MED_PARAHIP_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_ORBITAL_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_PARIET_INF_ANGULAR_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_PARIET_INF_SUPRAMAR_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_PARIETAL_SUP_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_POSTCENTRAL_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_PRECENTRAL_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_PRECUNEUS_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_RECTUS_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_SUBCALLOSAL_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_TEMP_SUP_G_T_TRANSV_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_TEMP_SUP_LATERAL_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_TEMP_SUP_PLAN_POLAR_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_TEMP_SUP_PLAN_TEMPO_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_TEMPORAL_INF_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_TEMPORAL_MIDDLE_THICKNESS"/>
+		<DisplayFieldRef id="RH_LAT_FIS_ANT_HORIZONT_THICKNESS"/>
+		<DisplayFieldRef id="RH_LAT_FIS_ANT_VERTICAL_THICKNESS"/>
+		<DisplayFieldRef id="RH_LAT_FIS_POST_THICKNESS"/>
+		<DisplayFieldRef id="RH_POLE_OCCIPITAL_THICKNESS"/>
+		<DisplayFieldRef id="RH_POLE_TEMPORAL_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_CALCARINE_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_CENTRAL_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_CINGUL_MARGINALIS_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_CIRCULAR_INSULA_ANT_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_CIRCULAR_INSULA_INF_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_CIRCULAR_INSULA_SUP_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_COLLAT_TRANSV_ANT_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_COLLAT_TRANSV_POST_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_FRONT_INF_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_FRONT_MIDDLE_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_FRONT_SUP_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_INTERM_PRIM_JENSEN_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_INTRAPARIET_AND_P_TRANS_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_OC_MIDDLE_AND_LUNATUS_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_OC_SUP_AND_TRANSVERSAL_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_OCCIPITAL_ANT_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_OC_TEMP_LAT_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_OC_TEMP_MED_AND_LINGUAL_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_ORBITAL_LATERAL_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_ORBITAL_MED_OLFACT_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_ORBITAL_H_SHAPED_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_PARIETO_OCCIPITAL_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_PERICALLOSAL_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_POSTCENTRAL_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_PRECENTRAL_INF_PART_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_PRECENTRAL_SUP_PART_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_SUBORBITAL_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_SUBPARIETAL_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_TEMPORAL_INF_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_TEMPORAL_SUP_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_TEMPORAL_TRANSVERSE_THICKNESS"/>
+	</DisplayVersion>
+	<DisplayVersion versionName="full" default-order-by="DATE" default-sort-order="DESC" brief-description="corticalThick" dark-color="9999CC" light-color="CCCCFF">
+		<DisplayFieldRef id="EXPT_ID"/>
+		<DisplayFieldRef id="DATE"/>
+		<DisplayFieldRef id="LH_MEANTHICKNESS_THICKNESS"/>
+		<DisplayFieldRef id="RH_MEANTHICKNESS_THICKNESS"/>
+		<DisplayFieldRef id="LEFT_CEREBELLUM_WHITE_MATTER"/>
+		<DisplayFieldRef id="LEFT_CEREBELLUM_CORTEX"/>
+		<DisplayFieldRef id="LEFT_THALAMUS_PROPER"/>
+		<DisplayFieldRef id="LEFT_CAUDATE"/>
+		<DisplayFieldRef id="LEFT_PUTAMEN"/>
+		<DisplayFieldRef id="LEFT_PALLIDUM"/>
+		<DisplayFieldRef id="BRAIN_STEM"/>
+		<DisplayFieldRef id="LEFT_HIPPOCAMPUS"/>
+		<DisplayFieldRef id="LEFT_AMYGDALA"/>
+		<DisplayFieldRef id="LEFT_ACCUMBENS_AREA"/>
+		<DisplayFieldRef id="LEFT_VENTRALDC"/>
+		<DisplayFieldRef id="RIGHT_CEREBELLUM_WHITE_MATTER"/>
+		<DisplayFieldRef id="RIGHT_CEREBELLUM_CORTEX"/>
+		<DisplayFieldRef id="RIGHT_THALAMUS_PROPER"/>
+		<DisplayFieldRef id="RIGHT_CAUDATE"/>
+		<DisplayFieldRef id="RIGHT_PUTAMEN"/>
+		<DisplayFieldRef id="RIGHT_PALLIDUM"/>
+		<DisplayFieldRef id="RIGHT_HIPPOCAMPUS"/>
+		<DisplayFieldRef id="RIGHT_AMYGDALA"/>
+		<DisplayFieldRef id="RIGHT_ACCUMBENS_AREA"/>
+		<DisplayFieldRef id="RIGHT_VENTRALDC"/>
+		<DisplayFieldRef id="OPTIC_CHIASM"/>
+		<DisplayFieldRef id="CC_POSTERIOR"/>
+		<DisplayFieldRef id="CC_MID_POSTERIOR"/>
+		<DisplayFieldRef id="CC_CENTRAL"/>
+		<DisplayFieldRef id="CC_MID_ANTERIOR"/>
+		<DisplayFieldRef id="CC_ANTERIOR"/>
+		<DisplayFieldRef id="LH_G_AND_S_FRONTOMARGIN_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_AND_S_OCCIPITAL_INF_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_AND_S_PARACENTRAL_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_AND_S_SUBCENTRAL_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_AND_S_TRANSV_FRONTOPOL_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_AND_S_CINGUL_ANT_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_AND_S_CINGUL_MID_ANT_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_AND_S_CINGUL_MID_POST_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_CINGUL_POST_DORSAL_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_CINGUL_POST_VENTRAL_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_CUNEUS_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_FRONT_INF_OPERCULAR_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_FRONT_INF_ORBITAL_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_FRONT_INF_TRIANGUL_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_FRONT_MIDDLE_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_FRONT_SUP_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_INS_LG_AND_S_CENT_INS_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_INSULAR_SHORT_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_OCCIPITAL_MIDDLE_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_OCCIPITAL_SUP_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_OC_TEMP_LAT_FUSIFOR_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_OC_TEMP_MED_LINGUAL_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_OC_TEMP_MED_PARAHIP_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_ORBITAL_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_PARIET_INF_ANGULAR_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_PARIET_INF_SUPRAMAR_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_PARIETAL_SUP_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_POSTCENTRAL_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_PRECENTRAL_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_PRECUNEUS_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_RECTUS_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_SUBCALLOSAL_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_TEMP_SUP_G_T_TRANSV_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_TEMP_SUP_LATERAL_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_TEMP_SUP_PLAN_POLAR_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_TEMP_SUP_PLAN_TEMPO_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_TEMPORAL_INF_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_TEMPORAL_MIDDLE_THICKNESS"/>
+		<DisplayFieldRef id="LH_LAT_FIS_ANT_HORIZONT_THICKNESS"/>
+		<DisplayFieldRef id="LH_LAT_FIS_ANT_VERTICAL_THICKNESS"/>
+		<DisplayFieldRef id="LH_LAT_FIS_POST_THICKNESS"/>
+		<DisplayFieldRef id="LH_POLE_OCCIPITAL_THICKNESS"/>
+		<DisplayFieldRef id="LH_POLE_TEMPORAL_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_CALCARINE_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_CENTRAL_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_CINGUL_MARGINALIS_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_CIRCULAR_INSULA_ANT_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_CIRCULAR_INSULA_INF_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_CIRCULAR_INSULA_SUP_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_COLLAT_TRANSV_ANT_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_COLLAT_TRANSV_POST_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_FRONT_INF_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_FRONT_MIDDLE_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_FRONT_SUP_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_INTERM_PRIM_JENSEN_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_INTRAPARIET_AND_P_TRANS_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_OC_MIDDLE_AND_LUNATUS_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_OC_SUP_AND_TRANSVERSAL_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_OCCIPITAL_ANT_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_OC_TEMP_LAT_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_OC_TEMP_MED_AND_LINGUAL_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_ORBITAL_LATERAL_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_ORBITAL_MED_OLFACT_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_ORBITAL_H_SHAPED_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_PARIETO_OCCIPITAL_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_PERICALLOSAL_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_POSTCENTRAL_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_PRECENTRAL_INF_PART_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_PRECENTRAL_SUP_PART_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_SUBORBITAL_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_SUBPARIETAL_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_TEMPORAL_INF_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_TEMPORAL_SUP_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_TEMPORAL_TRANSVERSE_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_AND_S_FRONTOMARGIN_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_AND_S_OCCIPITAL_INF_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_AND_S_PARACENTRAL_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_AND_S_SUBCENTRAL_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_AND_S_TRANSV_FRONTOPOL_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_AND_S_CINGUL_ANT_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_AND_S_CINGUL_MID_ANT_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_AND_S_CINGUL_MID_POST_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_CINGUL_POST_DORSAL_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_CINGUL_POST_VENTRAL_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_CUNEUS_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_FRONT_INF_OPERCULAR_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_FRONT_INF_ORBITAL_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_FRONT_INF_TRIANGUL_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_FRONT_MIDDLE_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_FRONT_SUP_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_INS_LG_AND_S_CENT_INS_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_INSULAR_SHORT_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_OCCIPITAL_MIDDLE_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_OCCIPITAL_SUP_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_OC_TEMP_LAT_FUSIFOR_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_OC_TEMP_MED_LINGUAL_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_OC_TEMP_MED_PARAHIP_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_ORBITAL_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_PARIET_INF_ANGULAR_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_PARIET_INF_SUPRAMAR_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_PARIETAL_SUP_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_POSTCENTRAL_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_PRECENTRAL_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_PRECUNEUS_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_RECTUS_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_SUBCALLOSAL_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_TEMP_SUP_G_T_TRANSV_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_TEMP_SUP_LATERAL_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_TEMP_SUP_PLAN_POLAR_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_TEMP_SUP_PLAN_TEMPO_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_TEMPORAL_INF_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_TEMPORAL_MIDDLE_THICKNESS"/>
+		<DisplayFieldRef id="RH_LAT_FIS_ANT_HORIZONT_THICKNESS"/>
+		<DisplayFieldRef id="RH_LAT_FIS_ANT_VERTICAL_THICKNESS"/>
+		<DisplayFieldRef id="RH_LAT_FIS_POST_THICKNESS"/>
+		<DisplayFieldRef id="RH_POLE_OCCIPITAL_THICKNESS"/>
+		<DisplayFieldRef id="RH_POLE_TEMPORAL_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_CALCARINE_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_CENTRAL_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_CINGUL_MARGINALIS_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_CIRCULAR_INSULA_ANT_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_CIRCULAR_INSULA_INF_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_CIRCULAR_INSULA_SUP_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_COLLAT_TRANSV_ANT_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_COLLAT_TRANSV_POST_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_FRONT_INF_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_FRONT_MIDDLE_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_FRONT_SUP_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_INTERM_PRIM_JENSEN_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_INTRAPARIET_AND_P_TRANS_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_OC_MIDDLE_AND_LUNATUS_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_OC_SUP_AND_TRANSVERSAL_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_OCCIPITAL_ANT_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_OC_TEMP_LAT_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_OC_TEMP_MED_AND_LINGUAL_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_ORBITAL_LATERAL_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_ORBITAL_MED_OLFACT_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_ORBITAL_H_SHAPED_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_PARIETO_OCCIPITAL_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_PERICALLOSAL_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_POSTCENTRAL_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_PRECENTRAL_INF_PART_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_PRECENTRAL_SUP_PART_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_SUBORBITAL_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_SUBPARIETAL_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_TEMPORAL_INF_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_TEMPORAL_SUP_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_TEMPORAL_TRANSVERSE_THICKNESS"/>
+	</DisplayVersion>
+	<DisplayVersion versionName="detailed" default-order-by="DATE" default-sort-order="DESC" brief-description="corticalThick" dark-color="9999CC" light-color="CCCCFF">
+		<DisplayFieldRef id="EXPT_ID"/>
+		<DisplayFieldRef id="DATE"/>
+		<DisplayFieldRef id="LH_MEANTHICKNESS_THICKNESS"/>
+		<DisplayFieldRef id="RH_MEANTHICKNESS_THICKNESS"/>
+		<DisplayFieldRef id="LEFT_CEREBELLUM_WHITE_MATTER"/>
+		<DisplayFieldRef id="LEFT_CEREBELLUM_CORTEX"/>
+		<DisplayFieldRef id="LEFT_THALAMUS_PROPER"/>
+		<DisplayFieldRef id="LEFT_CAUDATE"/>
+		<DisplayFieldRef id="LEFT_PUTAMEN"/>
+		<DisplayFieldRef id="LEFT_PALLIDUM"/>
+		<DisplayFieldRef id="BRAIN_STEM"/>
+		<DisplayFieldRef id="LEFT_HIPPOCAMPUS"/>
+		<DisplayFieldRef id="LEFT_AMYGDALA"/>
+		<DisplayFieldRef id="LEFT_ACCUMBENS_AREA"/>
+		<DisplayFieldRef id="LEFT_VENTRALDC"/>
+		<DisplayFieldRef id="RIGHT_CEREBELLUM_WHITE_MATTER"/>
+		<DisplayFieldRef id="RIGHT_CEREBELLUM_CORTEX"/>
+		<DisplayFieldRef id="RIGHT_THALAMUS_PROPER"/>
+		<DisplayFieldRef id="RIGHT_CAUDATE"/>
+		<DisplayFieldRef id="RIGHT_PUTAMEN"/>
+		<DisplayFieldRef id="RIGHT_PALLIDUM"/>
+		<DisplayFieldRef id="RIGHT_HIPPOCAMPUS"/>
+		<DisplayFieldRef id="RIGHT_AMYGDALA"/>
+		<DisplayFieldRef id="RIGHT_ACCUMBENS_AREA"/>
+		<DisplayFieldRef id="RIGHT_VENTRALDC"/>
+		<DisplayFieldRef id="OPTIC_CHIASM"/>
+		<DisplayFieldRef id="CC_POSTERIOR"/>
+		<DisplayFieldRef id="CC_MID_POSTERIOR"/>
+		<DisplayFieldRef id="CC_CENTRAL"/>
+		<DisplayFieldRef id="CC_MID_ANTERIOR"/>
+		<DisplayFieldRef id="CC_ANTERIOR"/>
+		<DisplayFieldRef id="LH_G_AND_S_FRONTOMARGIN_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_AND_S_OCCIPITAL_INF_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_AND_S_PARACENTRAL_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_AND_S_SUBCENTRAL_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_AND_S_TRANSV_FRONTOPOL_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_AND_S_CINGUL_ANT_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_AND_S_CINGUL_MID_ANT_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_AND_S_CINGUL_MID_POST_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_CINGUL_POST_DORSAL_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_CINGUL_POST_VENTRAL_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_CUNEUS_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_FRONT_INF_OPERCULAR_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_FRONT_INF_ORBITAL_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_FRONT_INF_TRIANGUL_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_FRONT_MIDDLE_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_FRONT_SUP_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_INS_LG_AND_S_CENT_INS_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_INSULAR_SHORT_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_OCCIPITAL_MIDDLE_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_OCCIPITAL_SUP_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_OC_TEMP_LAT_FUSIFOR_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_OC_TEMP_MED_LINGUAL_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_OC_TEMP_MED_PARAHIP_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_ORBITAL_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_PARIET_INF_ANGULAR_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_PARIET_INF_SUPRAMAR_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_PARIETAL_SUP_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_POSTCENTRAL_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_PRECENTRAL_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_PRECUNEUS_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_RECTUS_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_SUBCALLOSAL_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_TEMP_SUP_G_T_TRANSV_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_TEMP_SUP_LATERAL_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_TEMP_SUP_PLAN_POLAR_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_TEMP_SUP_PLAN_TEMPO_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_TEMPORAL_INF_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_TEMPORAL_MIDDLE_THICKNESS"/>
+		<DisplayFieldRef id="LH_LAT_FIS_ANT_HORIZONT_THICKNESS"/>
+		<DisplayFieldRef id="LH_LAT_FIS_ANT_VERTICAL_THICKNESS"/>
+		<DisplayFieldRef id="LH_LAT_FIS_POST_THICKNESS"/>
+		<DisplayFieldRef id="LH_POLE_OCCIPITAL_THICKNESS"/>
+		<DisplayFieldRef id="LH_POLE_TEMPORAL_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_CALCARINE_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_CENTRAL_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_CINGUL_MARGINALIS_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_CIRCULAR_INSULA_ANT_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_CIRCULAR_INSULA_INF_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_CIRCULAR_INSULA_SUP_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_COLLAT_TRANSV_ANT_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_COLLAT_TRANSV_POST_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_FRONT_INF_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_FRONT_MIDDLE_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_FRONT_SUP_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_INTERM_PRIM_JENSEN_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_INTRAPARIET_AND_P_TRANS_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_OC_MIDDLE_AND_LUNATUS_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_OC_SUP_AND_TRANSVERSAL_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_OCCIPITAL_ANT_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_OC_TEMP_LAT_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_OC_TEMP_MED_AND_LINGUAL_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_ORBITAL_LATERAL_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_ORBITAL_MED_OLFACT_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_ORBITAL_H_SHAPED_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_PARIETO_OCCIPITAL_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_PERICALLOSAL_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_POSTCENTRAL_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_PRECENTRAL_INF_PART_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_PRECENTRAL_SUP_PART_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_SUBORBITAL_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_SUBPARIETAL_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_TEMPORAL_INF_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_TEMPORAL_SUP_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_TEMPORAL_TRANSVERSE_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_AND_S_FRONTOMARGIN_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_AND_S_OCCIPITAL_INF_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_AND_S_PARACENTRAL_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_AND_S_SUBCENTRAL_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_AND_S_TRANSV_FRONTOPOL_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_AND_S_CINGUL_ANT_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_AND_S_CINGUL_MID_ANT_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_AND_S_CINGUL_MID_POST_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_CINGUL_POST_DORSAL_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_CINGUL_POST_VENTRAL_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_CUNEUS_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_FRONT_INF_OPERCULAR_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_FRONT_INF_ORBITAL_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_FRONT_INF_TRIANGUL_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_FRONT_MIDDLE_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_FRONT_SUP_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_INS_LG_AND_S_CENT_INS_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_INSULAR_SHORT_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_OCCIPITAL_MIDDLE_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_OCCIPITAL_SUP_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_OC_TEMP_LAT_FUSIFOR_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_OC_TEMP_MED_LINGUAL_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_OC_TEMP_MED_PARAHIP_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_ORBITAL_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_PARIET_INF_ANGULAR_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_PARIET_INF_SUPRAMAR_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_PARIETAL_SUP_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_POSTCENTRAL_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_PRECENTRAL_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_PRECUNEUS_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_RECTUS_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_SUBCALLOSAL_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_TEMP_SUP_G_T_TRANSV_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_TEMP_SUP_LATERAL_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_TEMP_SUP_PLAN_POLAR_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_TEMP_SUP_PLAN_TEMPO_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_TEMPORAL_INF_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_TEMPORAL_MIDDLE_THICKNESS"/>
+		<DisplayFieldRef id="RH_LAT_FIS_ANT_HORIZONT_THICKNESS"/>
+		<DisplayFieldRef id="RH_LAT_FIS_ANT_VERTICAL_THICKNESS"/>
+		<DisplayFieldRef id="RH_LAT_FIS_POST_THICKNESS"/>
+		<DisplayFieldRef id="RH_POLE_OCCIPITAL_THICKNESS"/>
+		<DisplayFieldRef id="RH_POLE_TEMPORAL_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_CALCARINE_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_CENTRAL_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_CINGUL_MARGINALIS_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_CIRCULAR_INSULA_ANT_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_CIRCULAR_INSULA_INF_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_CIRCULAR_INSULA_SUP_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_COLLAT_TRANSV_ANT_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_COLLAT_TRANSV_POST_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_FRONT_INF_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_FRONT_MIDDLE_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_FRONT_SUP_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_INTERM_PRIM_JENSEN_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_INTRAPARIET_AND_P_TRANS_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_OC_MIDDLE_AND_LUNATUS_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_OC_SUP_AND_TRANSVERSAL_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_OCCIPITAL_ANT_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_OC_TEMP_LAT_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_OC_TEMP_MED_AND_LINGUAL_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_ORBITAL_LATERAL_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_ORBITAL_MED_OLFACT_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_ORBITAL_H_SHAPED_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_PARIETO_OCCIPITAL_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_PERICALLOSAL_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_POSTCENTRAL_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_PRECENTRAL_INF_PART_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_PRECENTRAL_SUP_PART_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_SUBORBITAL_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_SUBPARIETAL_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_TEMPORAL_INF_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_TEMPORAL_SUP_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_TEMPORAL_TRANSVERSE_THICKNESS"/>
+	</DisplayVersion>
+	<DisplayVersion versionName="project_bundle" default-order-by="DATE" default-sort-order="DESC" brief-description="corticalThick" dark-color="9999CC" light-color="CCCCFF">
+		<DisplayFieldRef id="COBRA_CORTICALTHICKNESSDATA_PROJECT_IDENTIFIER"/>
+		<DisplayFieldRef id="DATE"/>
+		<DisplayFieldRef id="LH_MEANTHICKNESS_THICKNESS"/>
+		<DisplayFieldRef id="RH_MEANTHICKNESS_THICKNESS"/>
+		<DisplayFieldRef id="LEFT_CEREBELLUM_WHITE_MATTER"/>
+		<DisplayFieldRef id="LEFT_CEREBELLUM_CORTEX"/>
+		<DisplayFieldRef id="LEFT_THALAMUS_PROPER"/>
+		<DisplayFieldRef id="LEFT_CAUDATE"/>
+		<DisplayFieldRef id="LEFT_PUTAMEN"/>
+		<DisplayFieldRef id="LEFT_PALLIDUM"/>
+		<DisplayFieldRef id="BRAIN_STEM"/>
+		<DisplayFieldRef id="LEFT_HIPPOCAMPUS"/>
+		<DisplayFieldRef id="LEFT_AMYGDALA"/>
+		<DisplayFieldRef id="LEFT_ACCUMBENS_AREA"/>
+		<DisplayFieldRef id="LEFT_VENTRALDC"/>
+		<DisplayFieldRef id="RIGHT_CEREBELLUM_WHITE_MATTER"/>
+		<DisplayFieldRef id="RIGHT_CEREBELLUM_CORTEX"/>
+		<DisplayFieldRef id="RIGHT_THALAMUS_PROPER"/>
+		<DisplayFieldRef id="RIGHT_CAUDATE"/>
+		<DisplayFieldRef id="RIGHT_PUTAMEN"/>
+		<DisplayFieldRef id="RIGHT_PALLIDUM"/>
+		<DisplayFieldRef id="RIGHT_HIPPOCAMPUS"/>
+		<DisplayFieldRef id="RIGHT_AMYGDALA"/>
+		<DisplayFieldRef id="RIGHT_ACCUMBENS_AREA"/>
+		<DisplayFieldRef id="RIGHT_VENTRALDC"/>
+		<DisplayFieldRef id="OPTIC_CHIASM"/>
+		<DisplayFieldRef id="CC_POSTERIOR"/>
+		<DisplayFieldRef id="CC_MID_POSTERIOR"/>
+		<DisplayFieldRef id="CC_CENTRAL"/>
+		<DisplayFieldRef id="CC_MID_ANTERIOR"/>
+		<DisplayFieldRef id="CC_ANTERIOR"/>
+		<DisplayFieldRef id="LH_G_AND_S_FRONTOMARGIN_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_AND_S_OCCIPITAL_INF_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_AND_S_PARACENTRAL_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_AND_S_SUBCENTRAL_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_AND_S_TRANSV_FRONTOPOL_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_AND_S_CINGUL_ANT_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_AND_S_CINGUL_MID_ANT_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_AND_S_CINGUL_MID_POST_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_CINGUL_POST_DORSAL_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_CINGUL_POST_VENTRAL_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_CUNEUS_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_FRONT_INF_OPERCULAR_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_FRONT_INF_ORBITAL_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_FRONT_INF_TRIANGUL_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_FRONT_MIDDLE_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_FRONT_SUP_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_INS_LG_AND_S_CENT_INS_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_INSULAR_SHORT_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_OCCIPITAL_MIDDLE_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_OCCIPITAL_SUP_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_OC_TEMP_LAT_FUSIFOR_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_OC_TEMP_MED_LINGUAL_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_OC_TEMP_MED_PARAHIP_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_ORBITAL_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_PARIET_INF_ANGULAR_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_PARIET_INF_SUPRAMAR_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_PARIETAL_SUP_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_POSTCENTRAL_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_PRECENTRAL_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_PRECUNEUS_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_RECTUS_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_SUBCALLOSAL_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_TEMP_SUP_G_T_TRANSV_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_TEMP_SUP_LATERAL_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_TEMP_SUP_PLAN_POLAR_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_TEMP_SUP_PLAN_TEMPO_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_TEMPORAL_INF_THICKNESS"/>
+		<DisplayFieldRef id="LH_G_TEMPORAL_MIDDLE_THICKNESS"/>
+		<DisplayFieldRef id="LH_LAT_FIS_ANT_HORIZONT_THICKNESS"/>
+		<DisplayFieldRef id="LH_LAT_FIS_ANT_VERTICAL_THICKNESS"/>
+		<DisplayFieldRef id="LH_LAT_FIS_POST_THICKNESS"/>
+		<DisplayFieldRef id="LH_POLE_OCCIPITAL_THICKNESS"/>
+		<DisplayFieldRef id="LH_POLE_TEMPORAL_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_CALCARINE_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_CENTRAL_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_CINGUL_MARGINALIS_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_CIRCULAR_INSULA_ANT_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_CIRCULAR_INSULA_INF_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_CIRCULAR_INSULA_SUP_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_COLLAT_TRANSV_ANT_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_COLLAT_TRANSV_POST_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_FRONT_INF_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_FRONT_MIDDLE_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_FRONT_SUP_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_INTERM_PRIM_JENSEN_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_INTRAPARIET_AND_P_TRANS_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_OC_MIDDLE_AND_LUNATUS_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_OC_SUP_AND_TRANSVERSAL_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_OCCIPITAL_ANT_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_OC_TEMP_LAT_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_OC_TEMP_MED_AND_LINGUAL_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_ORBITAL_LATERAL_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_ORBITAL_MED_OLFACT_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_ORBITAL_H_SHAPED_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_PARIETO_OCCIPITAL_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_PERICALLOSAL_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_POSTCENTRAL_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_PRECENTRAL_INF_PART_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_PRECENTRAL_SUP_PART_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_SUBORBITAL_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_SUBPARIETAL_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_TEMPORAL_INF_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_TEMPORAL_SUP_THICKNESS"/>
+		<DisplayFieldRef id="LH_S_TEMPORAL_TRANSVERSE_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_AND_S_FRONTOMARGIN_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_AND_S_OCCIPITAL_INF_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_AND_S_PARACENTRAL_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_AND_S_SUBCENTRAL_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_AND_S_TRANSV_FRONTOPOL_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_AND_S_CINGUL_ANT_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_AND_S_CINGUL_MID_ANT_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_AND_S_CINGUL_MID_POST_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_CINGUL_POST_DORSAL_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_CINGUL_POST_VENTRAL_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_CUNEUS_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_FRONT_INF_OPERCULAR_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_FRONT_INF_ORBITAL_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_FRONT_INF_TRIANGUL_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_FRONT_MIDDLE_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_FRONT_SUP_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_INS_LG_AND_S_CENT_INS_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_INSULAR_SHORT_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_OCCIPITAL_MIDDLE_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_OCCIPITAL_SUP_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_OC_TEMP_LAT_FUSIFOR_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_OC_TEMP_MED_LINGUAL_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_OC_TEMP_MED_PARAHIP_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_ORBITAL_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_PARIET_INF_ANGULAR_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_PARIET_INF_SUPRAMAR_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_PARIETAL_SUP_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_POSTCENTRAL_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_PRECENTRAL_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_PRECUNEUS_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_RECTUS_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_SUBCALLOSAL_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_TEMP_SUP_G_T_TRANSV_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_TEMP_SUP_LATERAL_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_TEMP_SUP_PLAN_POLAR_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_TEMP_SUP_PLAN_TEMPO_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_TEMPORAL_INF_THICKNESS"/>
+		<DisplayFieldRef id="RH_G_TEMPORAL_MIDDLE_THICKNESS"/>
+		<DisplayFieldRef id="RH_LAT_FIS_ANT_HORIZONT_THICKNESS"/>
+		<DisplayFieldRef id="RH_LAT_FIS_ANT_VERTICAL_THICKNESS"/>
+		<DisplayFieldRef id="RH_LAT_FIS_POST_THICKNESS"/>
+		<DisplayFieldRef id="RH_POLE_OCCIPITAL_THICKNESS"/>
+		<DisplayFieldRef id="RH_POLE_TEMPORAL_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_CALCARINE_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_CENTRAL_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_CINGUL_MARGINALIS_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_CIRCULAR_INSULA_ANT_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_CIRCULAR_INSULA_INF_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_CIRCULAR_INSULA_SUP_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_COLLAT_TRANSV_ANT_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_COLLAT_TRANSV_POST_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_FRONT_INF_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_FRONT_MIDDLE_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_FRONT_SUP_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_INTERM_PRIM_JENSEN_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_INTRAPARIET_AND_P_TRANS_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_OC_MIDDLE_AND_LUNATUS_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_OC_SUP_AND_TRANSVERSAL_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_OCCIPITAL_ANT_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_OC_TEMP_LAT_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_OC_TEMP_MED_AND_LINGUAL_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_ORBITAL_LATERAL_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_ORBITAL_MED_OLFACT_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_ORBITAL_H_SHAPED_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_PARIETO_OCCIPITAL_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_PERICALLOSAL_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_POSTCENTRAL_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_PRECENTRAL_INF_PART_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_PRECENTRAL_SUP_PART_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_SUBORBITAL_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_SUBPARIETAL_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_TEMPORAL_INF_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_TEMPORAL_SUP_THICKNESS"/>
+		<DisplayFieldRef id="RH_S_TEMPORAL_TRANSVERSE_THICKNESS"/>
+	</DisplayVersion>
+	<ViewLink alias="COBRA_CORTICALTHICKNESSDATA_PROJECTS">
+		<Mapping TableName="COBRA_CORTICALTHICKNESSDATA_PROJECTS">
+			<MappingColumn rootElement="COBRA:corticalThicknessData" fieldElement="COBRA:corticalThicknessData.ID" mapsTo="id"/>
+		</Mapping>
+	</ViewLink>
+	<SQLView name="COBRA_CORTICALTHICKNESSDATA_PROJECTS" sql="SELECT id, '&lt;' || expt.project || '&gt;' || xs_a_concat(',&lt;' || shared.project || '&gt;') AS projects FROM xnat_experimentData expt LEFT JOIN xnat_experimentData_share shared ON expt.id=shared.sharing_share_xnat_experimentda_id LEFT JOIN xdat_meta_element xme ON expt.extension = xme.xdat_meta_element_id WHERE element_name='COBRA:corticalThicknessData' GROUP BY expt.id,expt.project"/>
+</Displays>

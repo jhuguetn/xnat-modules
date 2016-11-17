@@ -1,0 +1,2156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Displays xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xdat/display.xsd" schema-element="COBRA:DTIData" full-description="DTI" brief-description="DTI">
+	<DisplayField id="EXPT_ID" header="ID" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData.ID"/>
+		<HTML-Link>
+			<Property name="HREF" value="none"/>
+			<Property name="ONCLICK" value="return rpt('@Field1','COBRA:DTIData','COBRA:DTIData.ID');">
+				<InsertValue id="Field1" field="EXPT_ID"/>
+			</Property>
+		</HTML-Link>
+	</DisplayField>
+	<DisplayField id="RPT" header="ID" visible="true" image="true">
+		<Content type="sql">'/@WEBAPP/images/r.gif'::text</Content>
+		<HTML-Link>
+			<Property name="HREF" value="none"/>
+			<Property name="ONCLICK" value="return rpt('@Field1','COBRA:DTIData','COBRA:DTIData.ID');">
+				<InsertValue id="Field1" field="EXPT_ID"/>
+			</Property>
+		</HTML-Link>
+	</DisplayField>
+	<DisplayField id="DATE" header="Date" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData.date"/>
+	</DisplayField>
+	<DisplayField header="Projects" id="PROJECTS" data-type="string">
+		<DisplayFieldElement name="Field1" viewName="COBRA_DTIDATA_PROJECTS" viewColumn="PROJECTS"/>
+	</DisplayField>
+	<DisplayField header="Label" id="LABEL" data-type="string">
+	<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData.ID"/>
+	<DisplayFieldElement name="Field2" schema-element="COBRA:DTIData.label"/>
+	<Content type="sql">COALESCE(@Field2, @Field1)</Content>
+		<HTML-Link>
+			<SecureLink elementName="COBRA:DTIData">
+				<securityMappingValue displayFieldId="PROJECTS" schemaElementMap="COBRA:DTIData/sharing/share/project"/>
+				<securityMappingValue displayFieldId="PROJECT" schemaElementMap="COBRA:DTIData/project"/>
+			</SecureLink>
+			<Property name="HREF" value="@WEBAPPapp/action/DisplayItemAction/search_value/@Field1/search_element/COBRA:DTIData/search_field/COBRA:DTIData.ID">
+				<InsertValue id="Field1" field="EXPT_ID"/>
+			</Property>
+			<Property name="ONCLICK" value="return rpt('@Field1','COBRA:DTIData','COBRA:DTIData.ID');">
+				<InsertValue id="Field1" field="EXPT_ID"/>
+			</Property>
+			<Property name="TITLE" value="Inserted: @Field1 (@Field2)">
+				<InsertValue id="Field1" field="INSERT_DATE"/>
+				<InsertValue id="Field2" field="INSERT_USER"/>
+			</Property>
+		</HTML-Link>
+	</DisplayField>
+	<DisplayField id="PROJECT" header="Project" visible="true" searchable="true" data-type="string">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData.project"/>
+	</DisplayField>
+	<DisplayField id="COBRA_DTIDATA_PROJECT_IDENTIFIER" header="COBRA_DTIDATA ID" visible="true" searchable="false" data-type="string" xsi:type="SubQueryField">
+		<Content type="sql">cobra_dtidata_project_id</Content>
+		<HTML-Link>
+			<SecureLink elementName="COBRA:DTIData">
+				<securityMappingValue displayFieldId="PROJECTS" schemaElementMap="COBRA:DTIData/sharing/share/project"/>
+				<securityMappingValue displayFieldId="PROJECT" schemaElementMap="COBRA:DTIData/project"/>
+			</SecureLink>
+			<Property name="HREF" value="@WEBAPPapp/action/DisplayItemAction/search_value/@Field1/search_element/COBRA:DTIData/search_field/COBRA:DTIData.ID/project/@Field2">
+				<InsertValue id="Field1" field="EXPT_ID"/>
+				<InsertValue id="Field2" field="@WHERE"/>
+			</Property>
+		</HTML-Link>
+		<SubQuery>SELECT DISTINCT COALESCE(label,sharing_share_xnat_experimentda_id) AS cobra_dtidata_project_id,sharing_share_xnat_experimentda_id FROM (	SELECT sharing_share_xnat_experimentda_id,label FROM xnat_experimentdata_share WHERE project='@WHERE'	UNION 	SELECT id,label FROM xnat_experimentData WHERE project='@WHERE' )SEARCH</SubQuery>
+		<MappingColumns>
+			<MappingColumn schemaField="COBRA:DTIData.ID" queryField="sharing_share_xnat_experimentda_id"/>
+		</MappingColumns>
+	</DisplayField>
+	<DisplayField id="INSERT_DATE" header="Inserted" visible="true" searchable="true" data-type="string">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData.meta.insert_date"/>
+	</DisplayField>
+	<DisplayField id="INSERT_USER" header="Creator" visible="true" searchable="true" data-type="string">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData.meta.insert_user.login"/>
+	</DisplayField>
+	<DisplayField id="COBRA_DTIDATA_FIELD_MAP" header="Field" visible="true" searchable="false" data-type="string" xsi:type="SubQueryField">
+		<Content type="sql">field</Content>
+		<SubQuery>SELECT DISTINCT ON ( e.ID) e.ID AS expt_id,field FROM xnat_experimentData_field ef JOIN (SELECT ID,extension,element_name FROM xnat_experimentData e JOIN xdat_meta_element xme ON e.extension=xme.xdat_meta_element_id WHERE xme.element_name='COBRA:DTIData') e on ef.fields_field_xnat_experimentdat_id=e.id WHERE name='@WHERE'</SubQuery>
+		<MappingColumns>
+			<MappingColumn schemaField="COBRA:DTIData.ID" queryField="expt_id"/>
+		</MappingColumns>
+	</DisplayField>
+	<DisplayField id="LABELS_ANT_CORONA_RADIATA_L_FA" header="labels_Ant_corona_radiata_L_FA" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Ant_corona_radiata_L_FA"/>
+	</DisplayField>
+	<DisplayField id="LABELS_ANT_CORONA_RADIATA_R_FA" header="labels_Ant_corona_radiata_R_FA" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Ant_corona_radiata_R_FA"/>
+	</DisplayField>
+	<DisplayField id="LABELS_ANT_LIMB_INTERNAL_CAPSULE_L_FA" header="labels_Ant_limb_internal_capsule_L_FA" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Ant_limb_internal_capsule_L_FA"/>
+	</DisplayField>
+	<DisplayField id="LABELS_ANT_LIMB_INTERNAL_CAPSULE_R_FA" header="labels_Ant_limb_internal_capsule_R_FA" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Ant_limb_internal_capsule_R_FA"/>
+	</DisplayField>
+	<DisplayField id="LABELS_BODY_CORPUS_CALLOSUM_FA" header="labels_Body_corpus_callosum_FA" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Body_corpus_callosum_FA"/>
+	</DisplayField>
+	<DisplayField id="LABELS_CEREBRAL_PED_L_FA" header="labels_Cerebral_ped_L_FA" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Cerebral_ped_L_FA"/>
+	</DisplayField>
+	<DisplayField id="LABELS_CEREBRAL_PED_R_FA" header="labels_Cerebral_ped_R_FA" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Cerebral_ped_R_FA"/>
+	</DisplayField>
+	<DisplayField id="LABELS_CINGULUM_L_FA" header="labels_Cingulum_L_FA" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Cingulum_L_FA"/>
+	</DisplayField>
+	<DisplayField id="LABELS_CINGULUM_R_FA" header="labels_Cingulum_R_FA" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Cingulum_R_FA"/>
+	</DisplayField>
+	<DisplayField id="LABELS_CORTICOSPINAL_TRACT_L_FA" header="labels_Corticospinal_tract_L_FA" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Corticospinal_tract_L_FA"/>
+	</DisplayField>
+	<DisplayField id="LABELS_CORTICOSPINAL_TRACT_R_FA" header="labels_Corticospinal_tract_R_FA" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Corticospinal_tract_R_FA"/>
+	</DisplayField>
+	<DisplayField id="LABELS_EXTERNAL_CAPSULE_L_FA" header="labels_External_capsule_L_FA" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_External_capsule_L_FA"/>
+	</DisplayField>
+	<DisplayField id="LABELS_EXTERNAL_CAPSULE_R_FA" header="labels_External_capsule_R_FA" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_External_capsule_R_FA"/>
+	</DisplayField>
+	<DisplayField id="LABELS_FORNIX_FA" header="labels_Fornix_FA" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Fornix_FA"/>
+	</DisplayField>
+	<DisplayField id="LABELS_FORNIX_STRIA_TERMINALIS_L_FA" header="labels_Fornix_Stria_terminalis_L_FA" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Fornix_Stria_terminalis_L_FA"/>
+	</DisplayField>
+	<DisplayField id="LABELS_FORNIX_STRIA_TERMINALIS_R_FA" header="labels_Fornix_Stria_terminalis_R_FA" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Fornix_Stria_terminalis_R_FA"/>
+	</DisplayField>
+	<DisplayField id="LABELS_GENU_CORPUS_CALLOSUM_FA" header="labels_Genu_corpus_callosum_FA" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Genu_corpus_callosum_FA"/>
+	</DisplayField>
+	<DisplayField id="LABELS_INF_CEREBELLAR_PED_L_FA" header="labels_Inf_cerebellar_ped_L_FA" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Inf_cerebellar_ped_L_FA"/>
+	</DisplayField>
+	<DisplayField id="LABELS_INF_CEREBELLAR_PED_R_FA" header="labels_Inf_cerebellar_ped_R_FA" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Inf_cerebellar_ped_R_FA"/>
+	</DisplayField>
+	<DisplayField id="LABELS_MEDIAL_LEMNISCUS_L_FA" header="labels_Medial_lemniscus_L_FA" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Medial_lemniscus_L_FA"/>
+	</DisplayField>
+	<DisplayField id="LABELS_MEDIAL_LEMNISCUS_R_FA" header="labels_Medial_lemniscus_R_FA" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Medial_lemniscus_R_FA"/>
+	</DisplayField>
+	<DisplayField id="LABELS_MIDDLE_CEREBELLAR_PED_FA" header="labels_Middle_cerebellar_ped_FA" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Middle_cerebellar_ped_FA"/>
+	</DisplayField>
+	<DisplayField id="LABELS_PONTINE_CROSSING_TRACT_FA" header="labels_Pontine_crossing_tract_FA" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Pontine_crossing_tract_FA"/>
+	</DisplayField>
+	<DisplayField id="LABELS_POST_CORONA_RADIATA_L_FA" header="labels_Post_corona_radiata_L_FA" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Post_corona_radiata_L_FA"/>
+	</DisplayField>
+	<DisplayField id="LABELS_POST_CORONA_RADIATA_R_FA" header="labels_Post_corona_radiata_R_FA" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Post_corona_radiata_R_FA"/>
+	</DisplayField>
+	<DisplayField id="LABELS_POST_LIMB_INTERNAL_CAPSULE_L_FA" header="labels_Post_limb_internal_capsule_L_FA" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Post_limb_internal_capsule_L_FA"/>
+	</DisplayField>
+	<DisplayField id="LABELS_POST_LIMB_INTERNAL_CAPSULE_R_FA" header="labels_Post_limb_internal_capsule_R_FA" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Post_limb_internal_capsule_R_FA"/>
+	</DisplayField>
+	<DisplayField id="LABELS_POST_THALAMIC_RADIATION_L_FA" header="labels_Post_thalamic_radiation_L_FA" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Post_thalamic_radiation_L_FA"/>
+	</DisplayField>
+	<DisplayField id="LABELS_POST_THALAMIC_RADIATION_R_FA" header="labels_Post_thalamic_radiation_R_FA" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Post_thalamic_radiation_R_FA"/>
+	</DisplayField>
+	<DisplayField id="LABELS_RETROLENTICULAR_PART_INTERNAL_CAPSULE_L_FA" header="labels_Retrolenticular_part_internal_capsule_L_FA" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Retrolenticular_part_internal_capsule_L_FA"/>
+	</DisplayField>
+	<DisplayField id="LABELS_RETROLENTICULAR_PART_INTERNAL_CAPSULE_R_FA" header="labels_Retrolenticular_part_internal_capsule_R_FA" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Retrolenticular_part_internal_capsule_R_FA"/>
+	</DisplayField>
+	<DisplayField id="LABELS_SAGITTAL_STRATUM_L_FA" header="labels_Sagittal_stratum_L_FA" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Sagittal_stratum_L_FA"/>
+	</DisplayField>
+	<DisplayField id="LABELS_SAGITTAL_STRATUM_R_FA" header="labels_Sagittal_stratum_R_FA" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Sagittal_stratum_R_FA"/>
+	</DisplayField>
+	<DisplayField id="LABELS_SPLENIUM_CORPUS_CALLOSUM_FA" header="labels_Splenium_corpus_callosum_FA" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Splenium_corpus_callosum_FA"/>
+	</DisplayField>
+	<DisplayField id="LABELS_SUP_CEREBELLAR_PED_L_FA" header="labels_Sup_cerebellar_ped_L_FA" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Sup_cerebellar_ped_L_FA"/>
+	</DisplayField>
+	<DisplayField id="LABELS_SUP_CEREBELLAR_PED_R_FA" header="labels_Sup_cerebellar_ped_R_FA" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Sup_cerebellar_ped_R_FA"/>
+	</DisplayField>
+	<DisplayField id="LABELS_SUP_CORONA_RADIATA_L_FA" header="labels_Sup_corona_radiata_L_FA" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Sup_corona_radiata_L_FA"/>
+	</DisplayField>
+	<DisplayField id="LABELS_SUP_CORONA_RADIATA_R_FA" header="labels_Sup_corona_radiata_R_FA" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Sup_corona_radiata_R_FA"/>
+	</DisplayField>
+	<DisplayField id="LABELS_SUP_FRONTO_OCCIPITAL_FASC_L_FA" header="labels_Sup_fronto-occipital_fasc_L_FA" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Sup_fronto-occipital_fasc_L_FA"/>
+	</DisplayField>
+	<DisplayField id="LABELS_SUP_FRONTO_OCCIPITAL_FASC_R_FA" header="labels_Sup_fronto-occipital_fasc_R_FA" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Sup_fronto-occipital_fasc_R_FA"/>
+	</DisplayField>
+	<DisplayField id="LABELS_SUP_LONG_FASC_L_FA" header="labels_Sup_long_fasc_L_FA" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Sup_long_fasc_L_FA"/>
+	</DisplayField>
+	<DisplayField id="LABELS_SUP_LONG_FASC_R_FA" header="labels_Sup_long_fasc_R_FA" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Sup_long_fasc_R_FA"/>
+	</DisplayField>
+	<DisplayField id="LABELS_TAPETUM_L_FA" header="labels_Tapetum_L_FA" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Tapetum_L_FA"/>
+	</DisplayField>
+	<DisplayField id="LABELS_TAPETUM_R_FA" header="labels_Tapetum_R_FA" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Tapetum_R_FA"/>
+	</DisplayField>
+	<DisplayField id="LABELS_UNCINATE_FASC_L_FA" header="labels_Uncinate_fasc_L_FA" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Uncinate_fasc_L_FA"/>
+	</DisplayField>
+	<DisplayField id="LABELS_UNCINATE_FASC_R_FA" header="labels_Uncinate_fasc_R_FA" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Uncinate_fasc_R_FA"/>
+	</DisplayField>
+	<DisplayField id="LABELS_WHOLE_BRAIN_FA" header="labels_whole_brain_FA" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_whole_brain_FA"/>
+	</DisplayField>
+	<DisplayField id="TRACTS_ANT_THALAMIC_RADIATION_L_FA" header="tracts_Ant_thalamic_radiation_L_FA" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/tracts_Ant_thalamic_radiation_L_FA"/>
+	</DisplayField>
+	<DisplayField id="TRACTS_ANT_THALAMIC_RADIATION_R_FA" header="tracts_Ant_thalamic_radiation_R_FA" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/tracts_Ant_thalamic_radiation_R_FA"/>
+	</DisplayField>
+	<DisplayField id="TRACTS_CINGULUM_L_FA" header="tracts_Cingulum_L_FA" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/tracts_Cingulum_L_FA"/>
+	</DisplayField>
+	<DisplayField id="TRACTS_CINGULUM_R_FA" header="tracts_Cingulum_R_FA" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/tracts_Cingulum_R_FA"/>
+	</DisplayField>
+	<DisplayField id="TRACTS_CORTICOSPINAL_TRACT_L_FA" header="tracts_Corticospinal_tract_L_FA" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/tracts_Corticospinal_tract_L_FA"/>
+	</DisplayField>
+	<DisplayField id="TRACTS_CORTICOSPINAL_TRACT_R_FA" header="tracts_Corticospinal_tract_R_FA" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/tracts_Corticospinal_tract_R_FA"/>
+	</DisplayField>
+	<DisplayField id="TRACTS_FORCEPS_MAJOR_FA" header="tracts_Forceps_major_FA" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/tracts_Forceps_major_FA"/>
+	</DisplayField>
+	<DisplayField id="TRACTS_FORCEPS_MINOR_FA" header="tracts_Forceps_minor_FA" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/tracts_Forceps_minor_FA"/>
+	</DisplayField>
+	<DisplayField id="TRACTS_INF_FRONTO_OCCIPITAL_FASC_L_FA" header="tracts_Inf_fronto-occipital_fasc_L_FA" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/tracts_Inf_fronto-occipital_fasc_L_FA"/>
+	</DisplayField>
+	<DisplayField id="TRACTS_INF_FRONTO_OCCIPITAL_FASC_R_FA" header="tracts_Inf_fronto-occipital_fasc_R_FA" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/tracts_Inf_fronto-occipital_fasc_R_FA"/>
+	</DisplayField>
+	<DisplayField id="TRACTS_INF_LONG_FASC_L_FA" header="tracts_Inf_long_fasc_L_FA" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/tracts_Inf_long_fasc_L_FA"/>
+	</DisplayField>
+	<DisplayField id="TRACTS_INF_LONG_FASC_R_FA" header="tracts_Inf_long_fasc_R_FA" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/tracts_Inf_long_fasc_R_FA"/>
+	</DisplayField>
+	<DisplayField id="TRACTS_SUP_LONG_FASC_L_FA" header="tracts_Sup_long_fasc_L_FA" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/tracts_Sup_long_fasc_L_FA"/>
+	</DisplayField>
+	<DisplayField id="TRACTS_SUP_LONG_FASC_R_FA" header="tracts_Sup_long_fasc_R_FA" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/tracts_Sup_long_fasc_R_FA"/>
+	</DisplayField>
+	<DisplayField id="TRACTS_UNCINATE_FASC_L_FA" header="tracts_Uncinate_fasc_L_FA" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/tracts_Uncinate_fasc_L_FA"/>
+	</DisplayField>
+	<DisplayField id="TRACTS_UNCINATE_FASC_R_FA" header="tracts_Uncinate_fasc_R_FA" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/tracts_Uncinate_fasc_R_FA"/>
+	</DisplayField>
+	<DisplayField id="TRACTS_WHOLE_BRAIN_FA" header="tracts_whole_brain_FA" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/tracts_whole_brain_FA"/>
+	</DisplayField>
+	<DisplayField id="LABELS_ANT_CORONA_RADIATA_L_TR" header="labels_Ant_corona_radiata_L_TR" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Ant_corona_radiata_L_TR"/>
+	</DisplayField>
+	<DisplayField id="LABELS_ANT_CORONA_RADIATA_R_TR" header="labels_Ant_corona_radiata_R_TR" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Ant_corona_radiata_R_TR"/>
+	</DisplayField>
+	<DisplayField id="LABELS_ANT_LIMB_INTERNAL_CAPSULE_L_TR" header="labels_Ant_limb_internal_capsule_L_TR" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Ant_limb_internal_capsule_L_TR"/>
+	</DisplayField>
+	<DisplayField id="LABELS_ANT_LIMB_INTERNAL_CAPSULE_R_TR" header="labels_Ant_limb_internal_capsule_R_TR" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Ant_limb_internal_capsule_R_TR"/>
+	</DisplayField>
+	<DisplayField id="LABELS_BODY_CORPUS_CALLOSUM_TR" header="labels_Body_corpus_callosum_TR" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Body_corpus_callosum_TR"/>
+	</DisplayField>
+	<DisplayField id="LABELS_CEREBRAL_PED_L_TR" header="labels_Cerebral_ped_L_TR" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Cerebral_ped_L_TR"/>
+	</DisplayField>
+	<DisplayField id="LABELS_CEREBRAL_PED_R_TR" header="labels_Cerebral_ped_R_TR" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Cerebral_ped_R_TR"/>
+	</DisplayField>
+	<DisplayField id="LABELS_CINGULUM_L_TR" header="labels_Cingulum_L_TR" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Cingulum_L_TR"/>
+	</DisplayField>
+	<DisplayField id="LABELS_CINGULUM_R_TR" header="labels_Cingulum_R_TR" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Cingulum_R_TR"/>
+	</DisplayField>
+	<DisplayField id="LABELS_CORTICOSPINAL_TRACT_L_TR" header="labels_Corticospinal_tract_L_TR" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Corticospinal_tract_L_TR"/>
+	</DisplayField>
+	<DisplayField id="LABELS_CORTICOSPINAL_TRACT_R_TR" header="labels_Corticospinal_tract_R_TR" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Corticospinal_tract_R_TR"/>
+	</DisplayField>
+	<DisplayField id="LABELS_EXTERNAL_CAPSULE_L_TR" header="labels_External_capsule_L_TR" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_External_capsule_L_TR"/>
+	</DisplayField>
+	<DisplayField id="LABELS_EXTERNAL_CAPSULE_R_TR" header="labels_External_capsule_R_TR" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_External_capsule_R_TR"/>
+	</DisplayField>
+	<DisplayField id="LABELS_FORNIX_TR" header="labels_Fornix_TR" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Fornix_TR"/>
+	</DisplayField>
+	<DisplayField id="LABELS_FORNIX_STRIA_TERMINALIS_L_TR" header="labels_Fornix_Stria_terminalis_L_TR" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Fornix_Stria_terminalis_L_TR"/>
+	</DisplayField>
+	<DisplayField id="LABELS_FORNIX_STRIA_TERMINALIS_R_TR" header="labels_Fornix_Stria_terminalis_R_TR" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Fornix_Stria_terminalis_R_TR"/>
+	</DisplayField>
+	<DisplayField id="LABELS_GENU_CORPUS_CALLOSUM_TR" header="labels_Genu_corpus_callosum_TR" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Genu_corpus_callosum_TR"/>
+	</DisplayField>
+	<DisplayField id="LABELS_INF_CEREBELLAR_PED_L_TR" header="labels_Inf_cerebellar_ped_L_TR" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Inf_cerebellar_ped_L_TR"/>
+	</DisplayField>
+	<DisplayField id="LABELS_INF_CEREBELLAR_PED_R_TR" header="labels_Inf_cerebellar_ped_R_TR" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Inf_cerebellar_ped_R_TR"/>
+	</DisplayField>
+	<DisplayField id="LABELS_MEDIAL_LEMNISCUS_L_TR" header="labels_Medial_lemniscus_L_TR" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Medial_lemniscus_L_TR"/>
+	</DisplayField>
+	<DisplayField id="LABELS_MEDIAL_LEMNISCUS_R_TR" header="labels_Medial_lemniscus_R_TR" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Medial_lemniscus_R_TR"/>
+	</DisplayField>
+	<DisplayField id="LABELS_MIDDLE_CEREBELLAR_PED_TR" header="labels_Middle_cerebellar_ped_TR" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Middle_cerebellar_ped_TR"/>
+	</DisplayField>
+	<DisplayField id="LABELS_PONTINE_CROSSING_TRACT_TR" header="labels_Pontine_crossing_tract_TR" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Pontine_crossing_tract_TR"/>
+	</DisplayField>
+	<DisplayField id="LABELS_POST_CORONA_RADIATA_L_TR" header="labels_Post_corona_radiata_L_TR" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Post_corona_radiata_L_TR"/>
+	</DisplayField>
+	<DisplayField id="LABELS_POST_CORONA_RADIATA_R_TR" header="labels_Post_corona_radiata_R_TR" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Post_corona_radiata_R_TR"/>
+	</DisplayField>
+	<DisplayField id="LABELS_POST_LIMB_INTERNAL_CAPSULE_L_TR" header="labels_Post_limb_internal_capsule_L_TR" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Post_limb_internal_capsule_L_TR"/>
+	</DisplayField>
+	<DisplayField id="LABELS_POST_LIMB_INTERNAL_CAPSULE_R_TR" header="labels_Post_limb_internal_capsule_R_TR" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Post_limb_internal_capsule_R_TR"/>
+	</DisplayField>
+	<DisplayField id="LABELS_POST_THALAMIC_RADIATION_L_TR" header="labels_Post_thalamic_radiation_L_TR" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Post_thalamic_radiation_L_TR"/>
+	</DisplayField>
+	<DisplayField id="LABELS_POST_THALAMIC_RADIATION_R_TR" header="labels_Post_thalamic_radiation_R_TR" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Post_thalamic_radiation_R_TR"/>
+	</DisplayField>
+	<DisplayField id="LABELS_RETROLENTICULAR_PART_INTERNAL_CAPSULE_L_TR" header="labels_Retrolenticular_part_internal_capsule_L_TR" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Retrolenticular_part_internal_capsule_L_TR"/>
+	</DisplayField>
+	<DisplayField id="LABELS_RETROLENTICULAR_PART_INTERNAL_CAPSULE_R_TR" header="labels_Retrolenticular_part_internal_capsule_R_TR" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Retrolenticular_part_internal_capsule_R_TR"/>
+	</DisplayField>
+	<DisplayField id="LABELS_SAGITTAL_STRATUM_L_TR" header="labels_Sagittal_stratum_L_TR" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Sagittal_stratum_L_TR"/>
+	</DisplayField>
+	<DisplayField id="LABELS_SAGITTAL_STRATUM_R_TR" header="labels_Sagittal_stratum_R_TR" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Sagittal_stratum_R_TR"/>
+	</DisplayField>
+	<DisplayField id="LABELS_SPLENIUM_CORPUS_CALLOSUM_TR" header="labels_Splenium_corpus_callosum_TR" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Splenium_corpus_callosum_TR"/>
+	</DisplayField>
+	<DisplayField id="LABELS_SUP_CEREBELLAR_PED_L_TR" header="labels_Sup_cerebellar_ped_L_TR" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Sup_cerebellar_ped_L_TR"/>
+	</DisplayField>
+	<DisplayField id="LABELS_SUP_CEREBELLAR_PED_R_TR" header="labels_Sup_cerebellar_ped_R_TR" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Sup_cerebellar_ped_R_TR"/>
+	</DisplayField>
+	<DisplayField id="LABELS_SUP_CORONA_RADIATA_L_TR" header="labels_Sup_corona_radiata_L_TR" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Sup_corona_radiata_L_TR"/>
+	</DisplayField>
+	<DisplayField id="LABELS_SUP_CORONA_RADIATA_R_TR" header="labels_Sup_corona_radiata_R_TR" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Sup_corona_radiata_R_TR"/>
+	</DisplayField>
+	<DisplayField id="LABELS_SUP_FRONTO_OCCIPITAL_FASC_L_TR" header="labels_Sup_fronto-occipital_fasc_L_TR" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Sup_fronto-occipital_fasc_L_TR"/>
+	</DisplayField>
+	<DisplayField id="LABELS_SUP_FRONTO_OCCIPITAL_FASC_R_TR" header="labels_Sup_fronto-occipital_fasc_R_TR" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Sup_fronto-occipital_fasc_R_TR"/>
+	</DisplayField>
+	<DisplayField id="LABELS_SUP_LONG_FASC_L_TR" header="labels_Sup_long_fasc_L_TR" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Sup_long_fasc_L_TR"/>
+	</DisplayField>
+	<DisplayField id="LABELS_SUP_LONG_FASC_R_TR" header="labels_Sup_long_fasc_R_TR" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Sup_long_fasc_R_TR"/>
+	</DisplayField>
+	<DisplayField id="LABELS_TAPETUM_L_TR" header="labels_Tapetum_L_TR" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Tapetum_L_TR"/>
+	</DisplayField>
+	<DisplayField id="LABELS_TAPETUM_R_TR" header="labels_Tapetum_R_TR" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Tapetum_R_TR"/>
+	</DisplayField>
+	<DisplayField id="LABELS_UNCINATE_FASC_L_TR" header="labels_Uncinate_fasc_L_TR" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Uncinate_fasc_L_TR"/>
+	</DisplayField>
+	<DisplayField id="LABELS_UNCINATE_FASC_R_TR" header="labels_Uncinate_fasc_R_TR" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Uncinate_fasc_R_TR"/>
+	</DisplayField>
+	<DisplayField id="LABELS_WHOLE_BRAIN_TR" header="labels_whole_brain_TR" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_whole_brain_TR"/>
+	</DisplayField>
+	<DisplayField id="TRACTS_ANT_THALAMIC_RADIATION_L_TR" header="tracts_Ant_thalamic_radiation_L_TR" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/tracts_Ant_thalamic_radiation_L_TR"/>
+	</DisplayField>
+	<DisplayField id="TRACTS_ANT_THALAMIC_RADIATION_R_TR" header="tracts_Ant_thalamic_radiation_R_TR" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/tracts_Ant_thalamic_radiation_R_TR"/>
+	</DisplayField>
+	<DisplayField id="TRACTS_CINGULUM_L_TR" header="tracts_Cingulum_L_TR" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/tracts_Cingulum_L_TR"/>
+	</DisplayField>
+	<DisplayField id="TRACTS_CINGULUM_R_TR" header="tracts_Cingulum_R_TR" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/tracts_Cingulum_R_TR"/>
+	</DisplayField>
+	<DisplayField id="TRACTS_CORTICOSPINAL_TRACT_L_TR" header="tracts_Corticospinal_tract_L_TR" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/tracts_Corticospinal_tract_L_TR"/>
+	</DisplayField>
+	<DisplayField id="TRACTS_CORTICOSPINAL_TRACT_R_TR" header="tracts_Corticospinal_tract_R_TR" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/tracts_Corticospinal_tract_R_TR"/>
+	</DisplayField>
+	<DisplayField id="TRACTS_FORCEPS_MAJOR_TR" header="tracts_Forceps_major_TR" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/tracts_Forceps_major_TR"/>
+	</DisplayField>
+	<DisplayField id="TRACTS_FORCEPS_MINOR_TR" header="tracts_Forceps_minor_TR" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/tracts_Forceps_minor_TR"/>
+	</DisplayField>
+	<DisplayField id="TRACTS_INF_FRONTO_OCCIPITAL_FASC_L_TR" header="tracts_Inf_fronto-occipital_fasc_L_TR" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/tracts_Inf_fronto-occipital_fasc_L_TR"/>
+	</DisplayField>
+	<DisplayField id="TRACTS_INF_FRONTO_OCCIPITAL_FASC_R_TR" header="tracts_Inf_fronto-occipital_fasc_R_TR" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/tracts_Inf_fronto-occipital_fasc_R_TR"/>
+	</DisplayField>
+	<DisplayField id="TRACTS_INF_LONG_FASC_L_TR" header="tracts_Inf_long_fasc_L_TR" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/tracts_Inf_long_fasc_L_TR"/>
+	</DisplayField>
+	<DisplayField id="TRACTS_INF_LONG_FASC_R_TR" header="tracts_Inf_long_fasc_R_TR" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/tracts_Inf_long_fasc_R_TR"/>
+	</DisplayField>
+	<DisplayField id="TRACTS_SUP_LONG_FASC_L_TR" header="tracts_Sup_long_fasc_L_TR" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/tracts_Sup_long_fasc_L_TR"/>
+	</DisplayField>
+	<DisplayField id="TRACTS_SUP_LONG_FASC_R_TR" header="tracts_Sup_long_fasc_R_TR" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/tracts_Sup_long_fasc_R_TR"/>
+	</DisplayField>
+	<DisplayField id="TRACTS_UNCINATE_FASC_L_TR" header="tracts_Uncinate_fasc_L_TR" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/tracts_Uncinate_fasc_L_TR"/>
+	</DisplayField>
+	<DisplayField id="TRACTS_UNCINATE_FASC_R_TR" header="tracts_Uncinate_fasc_R_TR" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/tracts_Uncinate_fasc_R_TR"/>
+	</DisplayField>
+	<DisplayField id="TRACTS_WHOLE_BRAIN_TR" header="tracts_whole_brain_TR" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/tracts_whole_brain_TR"/>
+	</DisplayField>
+	<DisplayField id="LABELS_ANT_CORONA_RADIATA_L_AD" header="labels_Ant_corona_radiata_L_AD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Ant_corona_radiata_L_AD"/>
+	</DisplayField>
+	<DisplayField id="LABELS_ANT_CORONA_RADIATA_R_AD" header="labels_Ant_corona_radiata_R_AD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Ant_corona_radiata_R_AD"/>
+	</DisplayField>
+	<DisplayField id="LABELS_ANT_LIMB_INTERNAL_CAPSULE_L_AD" header="labels_Ant_limb_internal_capsule_L_AD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Ant_limb_internal_capsule_L_AD"/>
+	</DisplayField>
+	<DisplayField id="LABELS_ANT_LIMB_INTERNAL_CAPSULE_R_AD" header="labels_Ant_limb_internal_capsule_R_AD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Ant_limb_internal_capsule_R_AD"/>
+	</DisplayField>
+	<DisplayField id="LABELS_BODY_CORPUS_CALLOSUM_AD" header="labels_Body_corpus_callosum_AD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Body_corpus_callosum_AD"/>
+	</DisplayField>
+	<DisplayField id="LABELS_CEREBRAL_PED_L_AD" header="labels_Cerebral_ped_L_AD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Cerebral_ped_L_AD"/>
+	</DisplayField>
+	<DisplayField id="LABELS_CEREBRAL_PED_R_AD" header="labels_Cerebral_ped_R_AD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Cerebral_ped_R_AD"/>
+	</DisplayField>
+	<DisplayField id="LABELS_CINGULUM_L_AD" header="labels_Cingulum_L_AD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Cingulum_L_AD"/>
+	</DisplayField>
+	<DisplayField id="LABELS_CINGULUM_R_AD" header="labels_Cingulum_R_AD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Cingulum_R_AD"/>
+	</DisplayField>
+	<DisplayField id="LABELS_CORTICOSPINAL_TRACT_L_AD" header="labels_Corticospinal_tract_L_AD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Corticospinal_tract_L_AD"/>
+	</DisplayField>
+	<DisplayField id="LABELS_CORTICOSPINAL_TRACT_R_AD" header="labels_Corticospinal_tract_R_AD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Corticospinal_tract_R_AD"/>
+	</DisplayField>
+	<DisplayField id="LABELS_EXTERNAL_CAPSULE_L_AD" header="labels_External_capsule_L_AD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_External_capsule_L_AD"/>
+	</DisplayField>
+	<DisplayField id="LABELS_EXTERNAL_CAPSULE_R_AD" header="labels_External_capsule_R_AD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_External_capsule_R_AD"/>
+	</DisplayField>
+	<DisplayField id="LABELS_FORNIX_AD" header="labels_Fornix_AD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Fornix_AD"/>
+	</DisplayField>
+	<DisplayField id="LABELS_FORNIX_STRIA_TERMINALIS_L_AD" header="labels_Fornix_Stria_terminalis_L_AD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Fornix_Stria_terminalis_L_AD"/>
+	</DisplayField>
+	<DisplayField id="LABELS_FORNIX_STRIA_TERMINALIS_R_AD" header="labels_Fornix_Stria_terminalis_R_AD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Fornix_Stria_terminalis_R_AD"/>
+	</DisplayField>
+	<DisplayField id="LABELS_GENU_CORPUS_CALLOSUM_AD" header="labels_Genu_corpus_callosum_AD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Genu_corpus_callosum_AD"/>
+	</DisplayField>
+	<DisplayField id="LABELS_INF_CEREBELLAR_PED_L_AD" header="labels_Inf_cerebellar_ped_L_AD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Inf_cerebellar_ped_L_AD"/>
+	</DisplayField>
+	<DisplayField id="LABELS_INF_CEREBELLAR_PED_R_AD" header="labels_Inf_cerebellar_ped_R_AD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Inf_cerebellar_ped_R_AD"/>
+	</DisplayField>
+	<DisplayField id="LABELS_MEDIAL_LEMNISCUS_L_AD" header="labels_Medial_lemniscus_L_AD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Medial_lemniscus_L_AD"/>
+	</DisplayField>
+	<DisplayField id="LABELS_MEDIAL_LEMNISCUS_R_AD" header="labels_Medial_lemniscus_R_AD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Medial_lemniscus_R_AD"/>
+	</DisplayField>
+	<DisplayField id="LABELS_MIDDLE_CEREBELLAR_PED_AD" header="labels_Middle_cerebellar_ped_AD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Middle_cerebellar_ped_AD"/>
+	</DisplayField>
+	<DisplayField id="LABELS_PONTINE_CROSSING_TRACT_AD" header="labels_Pontine_crossing_tract_AD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Pontine_crossing_tract_AD"/>
+	</DisplayField>
+	<DisplayField id="LABELS_POST_CORONA_RADIATA_L_AD" header="labels_Post_corona_radiata_L_AD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Post_corona_radiata_L_AD"/>
+	</DisplayField>
+	<DisplayField id="LABELS_POST_CORONA_RADIATA_R_AD" header="labels_Post_corona_radiata_R_AD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Post_corona_radiata_R_AD"/>
+	</DisplayField>
+	<DisplayField id="LABELS_POST_LIMB_INTERNAL_CAPSULE_L_AD" header="labels_Post_limb_internal_capsule_L_AD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Post_limb_internal_capsule_L_AD"/>
+	</DisplayField>
+	<DisplayField id="LABELS_POST_LIMB_INTERNAL_CAPSULE_R_AD" header="labels_Post_limb_internal_capsule_R_AD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Post_limb_internal_capsule_R_AD"/>
+	</DisplayField>
+	<DisplayField id="LABELS_POST_THALAMIC_RADIATION_L_AD" header="labels_Post_thalamic_radiation_L_AD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Post_thalamic_radiation_L_AD"/>
+	</DisplayField>
+	<DisplayField id="LABELS_POST_THALAMIC_RADIATION_R_AD" header="labels_Post_thalamic_radiation_R_AD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Post_thalamic_radiation_R_AD"/>
+	</DisplayField>
+	<DisplayField id="LABELS_RETROLENTICULAR_PART_INTERNAL_CAPSULE_L_AD" header="labels_Retrolenticular_part_internal_capsule_L_AD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Retrolenticular_part_internal_capsule_L_AD"/>
+	</DisplayField>
+	<DisplayField id="LABELS_RETROLENTICULAR_PART_INTERNAL_CAPSULE_R_AD" header="labels_Retrolenticular_part_internal_capsule_R_AD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Retrolenticular_part_internal_capsule_R_AD"/>
+	</DisplayField>
+	<DisplayField id="LABELS_SAGITTAL_STRATUM_L_AD" header="labels_Sagittal_stratum_L_AD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Sagittal_stratum_L_AD"/>
+	</DisplayField>
+	<DisplayField id="LABELS_SAGITTAL_STRATUM_R_AD" header="labels_Sagittal_stratum_R_AD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Sagittal_stratum_R_AD"/>
+	</DisplayField>
+	<DisplayField id="LABELS_SPLENIUM_CORPUS_CALLOSUM_AD" header="labels_Splenium_corpus_callosum_AD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Splenium_corpus_callosum_AD"/>
+	</DisplayField>
+	<DisplayField id="LABELS_SUP_CEREBELLAR_PED_L_AD" header="labels_Sup_cerebellar_ped_L_AD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Sup_cerebellar_ped_L_AD"/>
+	</DisplayField>
+	<DisplayField id="LABELS_SUP_CEREBELLAR_PED_R_AD" header="labels_Sup_cerebellar_ped_R_AD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Sup_cerebellar_ped_R_AD"/>
+	</DisplayField>
+	<DisplayField id="LABELS_SUP_CORONA_RADIATA_L_AD" header="labels_Sup_corona_radiata_L_AD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Sup_corona_radiata_L_AD"/>
+	</DisplayField>
+	<DisplayField id="LABELS_SUP_CORONA_RADIATA_R_AD" header="labels_Sup_corona_radiata_R_AD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Sup_corona_radiata_R_AD"/>
+	</DisplayField>
+	<DisplayField id="LABELS_SUP_FRONTO_OCCIPITAL_FASC_L_AD" header="labels_Sup_fronto-occipital_fasc_L_AD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Sup_fronto-occipital_fasc_L_AD"/>
+	</DisplayField>
+	<DisplayField id="LABELS_SUP_FRONTO_OCCIPITAL_FASC_R_AD" header="labels_Sup_fronto-occipital_fasc_R_AD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Sup_fronto-occipital_fasc_R_AD"/>
+	</DisplayField>
+	<DisplayField id="LABELS_SUP_LONG_FASC_L_AD" header="labels_Sup_long_fasc_L_AD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Sup_long_fasc_L_AD"/>
+	</DisplayField>
+	<DisplayField id="LABELS_SUP_LONG_FASC_R_AD" header="labels_Sup_long_fasc_R_AD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Sup_long_fasc_R_AD"/>
+	</DisplayField>
+	<DisplayField id="LABELS_TAPETUM_L_AD" header="labels_Tapetum_L_AD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Tapetum_L_AD"/>
+	</DisplayField>
+	<DisplayField id="LABELS_TAPETUM_R_AD" header="labels_Tapetum_R_AD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Tapetum_R_AD"/>
+	</DisplayField>
+	<DisplayField id="LABELS_UNCINATE_FASC_L_AD" header="labels_Uncinate_fasc_L_AD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Uncinate_fasc_L_AD"/>
+	</DisplayField>
+	<DisplayField id="LABELS_UNCINATE_FASC_R_AD" header="labels_Uncinate_fasc_R_AD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Uncinate_fasc_R_AD"/>
+	</DisplayField>
+	<DisplayField id="LABELS_WHOLE_BRAIN_AD" header="labels_whole_brain_AD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_whole_brain_AD"/>
+	</DisplayField>
+	<DisplayField id="TRACTS_ANT_THALAMIC_RADIATION_L_AD" header="tracts_Ant_thalamic_radiation_L_AD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/tracts_Ant_thalamic_radiation_L_AD"/>
+	</DisplayField>
+	<DisplayField id="TRACTS_ANT_THALAMIC_RADIATION_R_AD" header="tracts_Ant_thalamic_radiation_R_AD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/tracts_Ant_thalamic_radiation_R_AD"/>
+	</DisplayField>
+	<DisplayField id="TRACTS_CINGULUM_L_AD" header="tracts_Cingulum_L_AD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/tracts_Cingulum_L_AD"/>
+	</DisplayField>
+	<DisplayField id="TRACTS_CINGULUM_R_AD" header="tracts_Cingulum_R_AD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/tracts_Cingulum_R_AD"/>
+	</DisplayField>
+	<DisplayField id="TRACTS_CORTICOSPINAL_TRACT_L_AD" header="tracts_Corticospinal_tract_L_AD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/tracts_Corticospinal_tract_L_AD"/>
+	</DisplayField>
+	<DisplayField id="TRACTS_CORTICOSPINAL_TRACT_R_AD" header="tracts_Corticospinal_tract_R_AD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/tracts_Corticospinal_tract_R_AD"/>
+	</DisplayField>
+	<DisplayField id="TRACTS_FORCEPS_MAJOR_AD" header="tracts_Forceps_major_AD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/tracts_Forceps_major_AD"/>
+	</DisplayField>
+	<DisplayField id="TRACTS_FORCEPS_MINOR_AD" header="tracts_Forceps_minor_AD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/tracts_Forceps_minor_AD"/>
+	</DisplayField>
+	<DisplayField id="TRACTS_INF_FRONTO_OCCIPITAL_FASC_L_AD" header="tracts_Inf_fronto-occipital_fasc_L_AD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/tracts_Inf_fronto-occipital_fasc_L_AD"/>
+	</DisplayField>
+	<DisplayField id="TRACTS_INF_FRONTO_OCCIPITAL_FASC_R_AD" header="tracts_Inf_fronto-occipital_fasc_R_AD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/tracts_Inf_fronto-occipital_fasc_R_AD"/>
+	</DisplayField>
+	<DisplayField id="TRACTS_INF_LONG_FASC_L_AD" header="tracts_Inf_long_fasc_L_AD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/tracts_Inf_long_fasc_L_AD"/>
+	</DisplayField>
+	<DisplayField id="TRACTS_INF_LONG_FASC_R_AD" header="tracts_Inf_long_fasc_R_AD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/tracts_Inf_long_fasc_R_AD"/>
+	</DisplayField>
+	<DisplayField id="TRACTS_SUP_LONG_FASC_L_AD" header="tracts_Sup_long_fasc_L_AD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/tracts_Sup_long_fasc_L_AD"/>
+	</DisplayField>
+	<DisplayField id="TRACTS_SUP_LONG_FASC_R_AD" header="tracts_Sup_long_fasc_R_AD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/tracts_Sup_long_fasc_R_AD"/>
+	</DisplayField>
+	<DisplayField id="TRACTS_UNCINATE_FASC_L_AD" header="tracts_Uncinate_fasc_L_AD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/tracts_Uncinate_fasc_L_AD"/>
+	</DisplayField>
+	<DisplayField id="TRACTS_UNCINATE_FASC_R_AD" header="tracts_Uncinate_fasc_R_AD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/tracts_Uncinate_fasc_R_AD"/>
+	</DisplayField>
+	<DisplayField id="TRACTS_WHOLE_BRAIN_AD" header="tracts_whole_brain_AD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/tracts_whole_brain_AD"/>
+	</DisplayField>
+	<DisplayField id="LABELS_ANT_CORONA_RADIATA_L_RD" header="labels_Ant_corona_radiata_L_RD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Ant_corona_radiata_L_RD"/>
+	</DisplayField>
+	<DisplayField id="LABELS_ANT_CORONA_RADIATA_R_RD" header="labels_Ant_corona_radiata_R_RD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Ant_corona_radiata_R_RD"/>
+	</DisplayField>
+	<DisplayField id="LABELS_ANT_LIMB_INTERNAL_CAPSULE_L_RD" header="labels_Ant_limb_internal_capsule_L_RD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Ant_limb_internal_capsule_L_RD"/>
+	</DisplayField>
+	<DisplayField id="LABELS_ANT_LIMB_INTERNAL_CAPSULE_R_RD" header="labels_Ant_limb_internal_capsule_R_RD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Ant_limb_internal_capsule_R_RD"/>
+	</DisplayField>
+	<DisplayField id="LABELS_BODY_CORPUS_CALLOSUM_RD" header="labels_Body_corpus_callosum_RD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Body_corpus_callosum_RD"/>
+	</DisplayField>
+	<DisplayField id="LABELS_CEREBRAL_PED_L_RD" header="labels_Cerebral_ped_L_RD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Cerebral_ped_L_RD"/>
+	</DisplayField>
+	<DisplayField id="LABELS_CEREBRAL_PED_R_RD" header="labels_Cerebral_ped_R_RD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Cerebral_ped_R_RD"/>
+	</DisplayField>
+	<DisplayField id="LABELS_CINGULUM_L_RD" header="labels_Cingulum_L_RD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Cingulum_L_RD"/>
+	</DisplayField>
+	<DisplayField id="LABELS_CINGULUM_R_RD" header="labels_Cingulum_R_RD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Cingulum_R_RD"/>
+	</DisplayField>
+	<DisplayField id="LABELS_CORTICOSPINAL_TRACT_L_RD" header="labels_Corticospinal_tract_L_RD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Corticospinal_tract_L_RD"/>
+	</DisplayField>
+	<DisplayField id="LABELS_CORTICOSPINAL_TRACT_R_RD" header="labels_Corticospinal_tract_R_RD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Corticospinal_tract_R_RD"/>
+	</DisplayField>
+	<DisplayField id="LABELS_EXTERNAL_CAPSULE_L_RD" header="labels_External_capsule_L_RD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_External_capsule_L_RD"/>
+	</DisplayField>
+	<DisplayField id="LABELS_EXTERNAL_CAPSULE_R_RD" header="labels_External_capsule_R_RD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_External_capsule_R_RD"/>
+	</DisplayField>
+	<DisplayField id="LABELS_FORNIX_RD" header="labels_Fornix_RD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Fornix_RD"/>
+	</DisplayField>
+	<DisplayField id="LABELS_FORNIX_STRIA_TERMINALIS_L_RD" header="labels_Fornix_Stria_terminalis_L_RD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Fornix_Stria_terminalis_L_RD"/>
+	</DisplayField>
+	<DisplayField id="LABELS_FORNIX_STRIA_TERMINALIS_R_RD" header="labels_Fornix_Stria_terminalis_R_RD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Fornix_Stria_terminalis_R_RD"/>
+	</DisplayField>
+	<DisplayField id="LABELS_GENU_CORPUS_CALLOSUM_RD" header="labels_Genu_corpus_callosum_RD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Genu_corpus_callosum_RD"/>
+	</DisplayField>
+	<DisplayField id="LABELS_INF_CEREBELLAR_PED_L_RD" header="labels_Inf_cerebellar_ped_L_RD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Inf_cerebellar_ped_L_RD"/>
+	</DisplayField>
+	<DisplayField id="LABELS_INF_CEREBELLAR_PED_R_RD" header="labels_Inf_cerebellar_ped_R_RD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Inf_cerebellar_ped_R_RD"/>
+	</DisplayField>
+	<DisplayField id="LABELS_MEDIAL_LEMNISCUS_L_RD" header="labels_Medial_lemniscus_L_RD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Medial_lemniscus_L_RD"/>
+	</DisplayField>
+	<DisplayField id="LABELS_MEDIAL_LEMNISCUS_R_RD" header="labels_Medial_lemniscus_R_RD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Medial_lemniscus_R_RD"/>
+	</DisplayField>
+	<DisplayField id="LABELS_MIDDLE_CEREBELLAR_PED_RD" header="labels_Middle_cerebellar_ped_RD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Middle_cerebellar_ped_RD"/>
+	</DisplayField>
+	<DisplayField id="LABELS_PONTINE_CROSSING_TRACT_RD" header="labels_Pontine_crossing_tract_RD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Pontine_crossing_tract_RD"/>
+	</DisplayField>
+	<DisplayField id="LABELS_POST_CORONA_RADIATA_L_RD" header="labels_Post_corona_radiata_L_RD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Post_corona_radiata_L_RD"/>
+	</DisplayField>
+	<DisplayField id="LABELS_POST_CORONA_RADIATA_R_RD" header="labels_Post_corona_radiata_R_RD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Post_corona_radiata_R_RD"/>
+	</DisplayField>
+	<DisplayField id="LABELS_POST_LIMB_INTERNAL_CAPSULE_L_RD" header="labels_Post_limb_internal_capsule_L_RD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Post_limb_internal_capsule_L_RD"/>
+	</DisplayField>
+	<DisplayField id="LABELS_POST_LIMB_INTERNAL_CAPSULE_R_RD" header="labels_Post_limb_internal_capsule_R_RD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Post_limb_internal_capsule_R_RD"/>
+	</DisplayField>
+	<DisplayField id="LABELS_POST_THALAMIC_RADIATION_L_RD" header="labels_Post_thalamic_radiation_L_RD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Post_thalamic_radiation_L_RD"/>
+	</DisplayField>
+	<DisplayField id="LABELS_POST_THALAMIC_RADIATION_R_RD" header="labels_Post_thalamic_radiation_R_RD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Post_thalamic_radiation_R_RD"/>
+	</DisplayField>
+	<DisplayField id="LABELS_RETROLENTICULAR_PART_INTERNAL_CAPSULE_L_RD" header="labels_Retrolenticular_part_internal_capsule_L_RD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Retrolenticular_part_internal_capsule_L_RD"/>
+	</DisplayField>
+	<DisplayField id="LABELS_RETROLENTICULAR_PART_INTERNAL_CAPSULE_R_RD" header="labels_Retrolenticular_part_internal_capsule_R_RD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Retrolenticular_part_internal_capsule_R_RD"/>
+	</DisplayField>
+	<DisplayField id="LABELS_SAGITTAL_STRATUM_L_RD" header="labels_Sagittal_stratum_L_RD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Sagittal_stratum_L_RD"/>
+	</DisplayField>
+	<DisplayField id="LABELS_SAGITTAL_STRATUM_R_RD" header="labels_Sagittal_stratum_R_RD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Sagittal_stratum_R_RD"/>
+	</DisplayField>
+	<DisplayField id="LABELS_SPLENIUM_CORPUS_CALLOSUM_RD" header="labels_Splenium_corpus_callosum_RD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Splenium_corpus_callosum_RD"/>
+	</DisplayField>
+	<DisplayField id="LABELS_SUP_CEREBELLAR_PED_L_RD" header="labels_Sup_cerebellar_ped_L_RD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Sup_cerebellar_ped_L_RD"/>
+	</DisplayField>
+	<DisplayField id="LABELS_SUP_CEREBELLAR_PED_R_RD" header="labels_Sup_cerebellar_ped_R_RD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Sup_cerebellar_ped_R_RD"/>
+	</DisplayField>
+	<DisplayField id="LABELS_SUP_CORONA_RADIATA_L_RD" header="labels_Sup_corona_radiata_L_RD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Sup_corona_radiata_L_RD"/>
+	</DisplayField>
+	<DisplayField id="LABELS_SUP_CORONA_RADIATA_R_RD" header="labels_Sup_corona_radiata_R_RD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Sup_corona_radiata_R_RD"/>
+	</DisplayField>
+	<DisplayField id="LABELS_SUP_FRONTO_OCCIPITAL_FASC_L_RD" header="labels_Sup_fronto-occipital_fasc_L_RD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Sup_fronto-occipital_fasc_L_RD"/>
+	</DisplayField>
+	<DisplayField id="LABELS_SUP_FRONTO_OCCIPITAL_FASC_R_RD" header="labels_Sup_fronto-occipital_fasc_R_RD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Sup_fronto-occipital_fasc_R_RD"/>
+	</DisplayField>
+	<DisplayField id="LABELS_SUP_LONG_FASC_L_RD" header="labels_Sup_long_fasc_L_RD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Sup_long_fasc_L_RD"/>
+	</DisplayField>
+	<DisplayField id="LABELS_SUP_LONG_FASC_R_RD" header="labels_Sup_long_fasc_R_RD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Sup_long_fasc_R_RD"/>
+	</DisplayField>
+	<DisplayField id="LABELS_TAPETUM_L_RD" header="labels_Tapetum_L_RD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Tapetum_L_RD"/>
+	</DisplayField>
+	<DisplayField id="LABELS_TAPETUM_R_RD" header="labels_Tapetum_R_RD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Tapetum_R_RD"/>
+	</DisplayField>
+	<DisplayField id="LABELS_UNCINATE_FASC_L_RD" header="labels_Uncinate_fasc_L_RD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Uncinate_fasc_L_RD"/>
+	</DisplayField>
+	<DisplayField id="LABELS_UNCINATE_FASC_R_RD" header="labels_Uncinate_fasc_R_RD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_Uncinate_fasc_R_RD"/>
+	</DisplayField>
+	<DisplayField id="LABELS_WHOLE_BRAIN_RD" header="labels_whole_brain_RD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/labels_whole_brain_RD"/>
+	</DisplayField>
+	<DisplayField id="TRACTS_ANT_THALAMIC_RADIATION_L_RD" header="tracts_Ant_thalamic_radiation_L_RD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/tracts_Ant_thalamic_radiation_L_RD"/>
+	</DisplayField>
+	<DisplayField id="TRACTS_ANT_THALAMIC_RADIATION_R_RD" header="tracts_Ant_thalamic_radiation_R_RD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/tracts_Ant_thalamic_radiation_R_RD"/>
+	</DisplayField>
+	<DisplayField id="TRACTS_CINGULUM_L_RD" header="tracts_Cingulum_L_RD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/tracts_Cingulum_L_RD"/>
+	</DisplayField>
+	<DisplayField id="TRACTS_CINGULUM_R_RD" header="tracts_Cingulum_R_RD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/tracts_Cingulum_R_RD"/>
+	</DisplayField>
+	<DisplayField id="TRACTS_CORTICOSPINAL_TRACT_L_RD" header="tracts_Corticospinal_tract_L_RD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/tracts_Corticospinal_tract_L_RD"/>
+	</DisplayField>
+	<DisplayField id="TRACTS_CORTICOSPINAL_TRACT_R_RD" header="tracts_Corticospinal_tract_R_RD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/tracts_Corticospinal_tract_R_RD"/>
+	</DisplayField>
+	<DisplayField id="TRACTS_FORCEPS_MAJOR_RD" header="tracts_Forceps_major_RD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/tracts_Forceps_major_RD"/>
+	</DisplayField>
+	<DisplayField id="TRACTS_FORCEPS_MINOR_RD" header="tracts_Forceps_minor_RD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/tracts_Forceps_minor_RD"/>
+	</DisplayField>
+	<DisplayField id="TRACTS_INF_FRONTO_OCCIPITAL_FASC_L_RD" header="tracts_Inf_fronto-occipital_fasc_L_RD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/tracts_Inf_fronto-occipital_fasc_L_RD"/>
+	</DisplayField>
+	<DisplayField id="TRACTS_INF_FRONTO_OCCIPITAL_FASC_R_RD" header="tracts_Inf_fronto-occipital_fasc_R_RD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/tracts_Inf_fronto-occipital_fasc_R_RD"/>
+	</DisplayField>
+	<DisplayField id="TRACTS_INF_LONG_FASC_L_RD" header="tracts_Inf_long_fasc_L_RD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/tracts_Inf_long_fasc_L_RD"/>
+	</DisplayField>
+	<DisplayField id="TRACTS_INF_LONG_FASC_R_RD" header="tracts_Inf_long_fasc_R_RD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/tracts_Inf_long_fasc_R_RD"/>
+	</DisplayField>
+	<DisplayField id="TRACTS_SUP_LONG_FASC_L_RD" header="tracts_Sup_long_fasc_L_RD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/tracts_Sup_long_fasc_L_RD"/>
+	</DisplayField>
+	<DisplayField id="TRACTS_SUP_LONG_FASC_R_RD" header="tracts_Sup_long_fasc_R_RD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/tracts_Sup_long_fasc_R_RD"/>
+	</DisplayField>
+	<DisplayField id="TRACTS_UNCINATE_FASC_L_RD" header="tracts_Uncinate_fasc_L_RD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/tracts_Uncinate_fasc_L_RD"/>
+	</DisplayField>
+	<DisplayField id="TRACTS_UNCINATE_FASC_R_RD" header="tracts_Uncinate_fasc_R_RD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/tracts_Uncinate_fasc_R_RD"/>
+	</DisplayField>
+	<DisplayField id="TRACTS_WHOLE_BRAIN_RD" header="tracts_whole_brain_RD" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="COBRA:DTIData/tracts_whole_brain_RD"/>
+	</DisplayField>
+	<DisplayVersion versionName="listing" default-order-by="DATE" default-sort-order="DESC" brief-description="DTI" dark-color="9999CC" light-color="CCCCFF">
+		<DisplayFieldRef id="RPT"/>
+		<DisplayFieldRef id="LABEL"/>
+		<DisplayFieldRef id="DATE"/>
+		<DisplayFieldRef id="LABELS_ANT_CORONA_RADIATA_L_FA"/>
+		<DisplayFieldRef id="LABELS_ANT_CORONA_RADIATA_R_FA"/>
+		<DisplayFieldRef id="LABELS_ANT_LIMB_INTERNAL_CAPSULE_L_FA"/>
+		<DisplayFieldRef id="LABELS_ANT_LIMB_INTERNAL_CAPSULE_R_FA"/>
+		<DisplayFieldRef id="LABELS_BODY_CORPUS_CALLOSUM_FA"/>
+		<DisplayFieldRef id="LABELS_CEREBRAL_PED_L_FA"/>
+		<DisplayFieldRef id="LABELS_CEREBRAL_PED_R_FA"/>
+		<DisplayFieldRef id="LABELS_CINGULUM_L_FA"/>
+		<DisplayFieldRef id="LABELS_CINGULUM_R_FA"/>
+		<DisplayFieldRef id="LABELS_CORTICOSPINAL_TRACT_L_FA"/>
+		<DisplayFieldRef id="LABELS_CORTICOSPINAL_TRACT_R_FA"/>
+		<DisplayFieldRef id="LABELS_EXTERNAL_CAPSULE_L_FA"/>
+		<DisplayFieldRef id="LABELS_EXTERNAL_CAPSULE_R_FA"/>
+		<DisplayFieldRef id="LABELS_FORNIX_FA"/>
+		<DisplayFieldRef id="LABELS_FORNIX_STRIA_TERMINALIS_L_FA"/>
+		<DisplayFieldRef id="LABELS_FORNIX_STRIA_TERMINALIS_R_FA"/>
+		<DisplayFieldRef id="LABELS_GENU_CORPUS_CALLOSUM_FA"/>
+		<DisplayFieldRef id="LABELS_INF_CEREBELLAR_PED_L_FA"/>
+		<DisplayFieldRef id="LABELS_INF_CEREBELLAR_PED_R_FA"/>
+		<DisplayFieldRef id="LABELS_MEDIAL_LEMNISCUS_L_FA"/>
+		<DisplayFieldRef id="LABELS_MEDIAL_LEMNISCUS_R_FA"/>
+		<DisplayFieldRef id="LABELS_MIDDLE_CEREBELLAR_PED_FA"/>
+		<DisplayFieldRef id="LABELS_PONTINE_CROSSING_TRACT_FA"/>
+		<DisplayFieldRef id="LABELS_POST_CORONA_RADIATA_L_FA"/>
+		<DisplayFieldRef id="LABELS_POST_CORONA_RADIATA_R_FA"/>
+		<DisplayFieldRef id="LABELS_POST_LIMB_INTERNAL_CAPSULE_L_FA"/>
+		<DisplayFieldRef id="LABELS_POST_LIMB_INTERNAL_CAPSULE_R_FA"/>
+		<DisplayFieldRef id="LABELS_POST_THALAMIC_RADIATION_L_FA"/>
+		<DisplayFieldRef id="LABELS_POST_THALAMIC_RADIATION_R_FA"/>
+		<DisplayFieldRef id="LABELS_RETROLENTICULAR_PART_INTERNAL_CAPSULE_L_FA"/>
+		<DisplayFieldRef id="LABELS_RETROLENTICULAR_PART_INTERNAL_CAPSULE_R_FA"/>
+		<DisplayFieldRef id="LABELS_SAGITTAL_STRATUM_L_FA"/>
+		<DisplayFieldRef id="LABELS_SAGITTAL_STRATUM_R_FA"/>
+		<DisplayFieldRef id="LABELS_SPLENIUM_CORPUS_CALLOSUM_FA"/>
+		<DisplayFieldRef id="LABELS_SUP_CEREBELLAR_PED_L_FA"/>
+		<DisplayFieldRef id="LABELS_SUP_CEREBELLAR_PED_R_FA"/>
+		<DisplayFieldRef id="LABELS_SUP_CORONA_RADIATA_L_FA"/>
+		<DisplayFieldRef id="LABELS_SUP_CORONA_RADIATA_R_FA"/>
+		<DisplayFieldRef id="LABELS_SUP_FRONTO_OCCIPITAL_FASC_L_FA"/>
+		<DisplayFieldRef id="LABELS_SUP_FRONTO_OCCIPITAL_FASC_R_FA"/>
+		<DisplayFieldRef id="LABELS_SUP_LONG_FASC_L_FA"/>
+		<DisplayFieldRef id="LABELS_SUP_LONG_FASC_R_FA"/>
+		<DisplayFieldRef id="LABELS_TAPETUM_L_FA"/>
+		<DisplayFieldRef id="LABELS_TAPETUM_R_FA"/>
+		<DisplayFieldRef id="LABELS_UNCINATE_FASC_L_FA"/>
+		<DisplayFieldRef id="LABELS_UNCINATE_FASC_R_FA"/>
+		<DisplayFieldRef id="LABELS_WHOLE_BRAIN_FA"/>
+		<DisplayFieldRef id="TRACTS_ANT_THALAMIC_RADIATION_L_FA"/>
+		<DisplayFieldRef id="TRACTS_ANT_THALAMIC_RADIATION_R_FA"/>
+		<DisplayFieldRef id="TRACTS_CINGULUM_L_FA"/>
+		<DisplayFieldRef id="TRACTS_CINGULUM_R_FA"/>
+		<DisplayFieldRef id="TRACTS_CORTICOSPINAL_TRACT_L_FA"/>
+		<DisplayFieldRef id="TRACTS_CORTICOSPINAL_TRACT_R_FA"/>
+		<DisplayFieldRef id="TRACTS_FORCEPS_MAJOR_FA"/>
+		<DisplayFieldRef id="TRACTS_FORCEPS_MINOR_FA"/>
+		<DisplayFieldRef id="TRACTS_INF_FRONTO_OCCIPITAL_FASC_L_FA"/>
+		<DisplayFieldRef id="TRACTS_INF_FRONTO_OCCIPITAL_FASC_R_FA"/>
+		<DisplayFieldRef id="TRACTS_INF_LONG_FASC_L_FA"/>
+		<DisplayFieldRef id="TRACTS_INF_LONG_FASC_R_FA"/>
+		<DisplayFieldRef id="TRACTS_SUP_LONG_FASC_L_FA"/>
+		<DisplayFieldRef id="TRACTS_SUP_LONG_FASC_R_FA"/>
+		<DisplayFieldRef id="TRACTS_UNCINATE_FASC_L_FA"/>
+		<DisplayFieldRef id="TRACTS_UNCINATE_FASC_R_FA"/>
+		<DisplayFieldRef id="TRACTS_WHOLE_BRAIN_FA"/>
+		<DisplayFieldRef id="LABELS_ANT_CORONA_RADIATA_L_TR"/>
+		<DisplayFieldRef id="LABELS_ANT_CORONA_RADIATA_R_TR"/>
+		<DisplayFieldRef id="LABELS_ANT_LIMB_INTERNAL_CAPSULE_L_TR"/>
+		<DisplayFieldRef id="LABELS_ANT_LIMB_INTERNAL_CAPSULE_R_TR"/>
+		<DisplayFieldRef id="LABELS_BODY_CORPUS_CALLOSUM_TR"/>
+		<DisplayFieldRef id="LABELS_CEREBRAL_PED_L_TR"/>
+		<DisplayFieldRef id="LABELS_CEREBRAL_PED_R_TR"/>
+		<DisplayFieldRef id="LABELS_CINGULUM_L_TR"/>
+		<DisplayFieldRef id="LABELS_CINGULUM_R_TR"/>
+		<DisplayFieldRef id="LABELS_CORTICOSPINAL_TRACT_L_TR"/>
+		<DisplayFieldRef id="LABELS_CORTICOSPINAL_TRACT_R_TR"/>
+		<DisplayFieldRef id="LABELS_EXTERNAL_CAPSULE_L_TR"/>
+		<DisplayFieldRef id="LABELS_EXTERNAL_CAPSULE_R_TR"/>
+		<DisplayFieldRef id="LABELS_FORNIX_TR"/>
+		<DisplayFieldRef id="LABELS_FORNIX_STRIA_TERMINALIS_L_TR"/>
+		<DisplayFieldRef id="LABELS_FORNIX_STRIA_TERMINALIS_R_TR"/>
+		<DisplayFieldRef id="LABELS_GENU_CORPUS_CALLOSUM_TR"/>
+		<DisplayFieldRef id="LABELS_INF_CEREBELLAR_PED_L_TR"/>
+		<DisplayFieldRef id="LABELS_INF_CEREBELLAR_PED_R_TR"/>
+		<DisplayFieldRef id="LABELS_MEDIAL_LEMNISCUS_L_TR"/>
+		<DisplayFieldRef id="LABELS_MEDIAL_LEMNISCUS_R_TR"/>
+		<DisplayFieldRef id="LABELS_MIDDLE_CEREBELLAR_PED_TR"/>
+		<DisplayFieldRef id="LABELS_PONTINE_CROSSING_TRACT_TR"/>
+		<DisplayFieldRef id="LABELS_POST_CORONA_RADIATA_L_TR"/>
+		<DisplayFieldRef id="LABELS_POST_CORONA_RADIATA_R_TR"/>
+		<DisplayFieldRef id="LABELS_POST_LIMB_INTERNAL_CAPSULE_L_TR"/>
+		<DisplayFieldRef id="LABELS_POST_LIMB_INTERNAL_CAPSULE_R_TR"/>
+		<DisplayFieldRef id="LABELS_POST_THALAMIC_RADIATION_L_TR"/>
+		<DisplayFieldRef id="LABELS_POST_THALAMIC_RADIATION_R_TR"/>
+		<DisplayFieldRef id="LABELS_RETROLENTICULAR_PART_INTERNAL_CAPSULE_L_TR"/>
+		<DisplayFieldRef id="LABELS_RETROLENTICULAR_PART_INTERNAL_CAPSULE_R_TR"/>
+		<DisplayFieldRef id="LABELS_SAGITTAL_STRATUM_L_TR"/>
+		<DisplayFieldRef id="LABELS_SAGITTAL_STRATUM_R_TR"/>
+		<DisplayFieldRef id="LABELS_SPLENIUM_CORPUS_CALLOSUM_TR"/>
+		<DisplayFieldRef id="LABELS_SUP_CEREBELLAR_PED_L_TR"/>
+		<DisplayFieldRef id="LABELS_SUP_CEREBELLAR_PED_R_TR"/>
+		<DisplayFieldRef id="LABELS_SUP_CORONA_RADIATA_L_TR"/>
+		<DisplayFieldRef id="LABELS_SUP_CORONA_RADIATA_R_TR"/>
+		<DisplayFieldRef id="LABELS_SUP_FRONTO_OCCIPITAL_FASC_L_TR"/>
+		<DisplayFieldRef id="LABELS_SUP_FRONTO_OCCIPITAL_FASC_R_TR"/>
+		<DisplayFieldRef id="LABELS_SUP_LONG_FASC_L_TR"/>
+		<DisplayFieldRef id="LABELS_SUP_LONG_FASC_R_TR"/>
+		<DisplayFieldRef id="LABELS_TAPETUM_L_TR"/>
+		<DisplayFieldRef id="LABELS_TAPETUM_R_TR"/>
+		<DisplayFieldRef id="LABELS_UNCINATE_FASC_L_TR"/>
+		<DisplayFieldRef id="LABELS_UNCINATE_FASC_R_TR"/>
+		<DisplayFieldRef id="LABELS_WHOLE_BRAIN_TR"/>
+		<DisplayFieldRef id="TRACTS_ANT_THALAMIC_RADIATION_L_TR"/>
+		<DisplayFieldRef id="TRACTS_ANT_THALAMIC_RADIATION_R_TR"/>
+		<DisplayFieldRef id="TRACTS_CINGULUM_L_TR"/>
+		<DisplayFieldRef id="TRACTS_CINGULUM_R_TR"/>
+		<DisplayFieldRef id="TRACTS_CORTICOSPINAL_TRACT_L_TR"/>
+		<DisplayFieldRef id="TRACTS_CORTICOSPINAL_TRACT_R_TR"/>
+		<DisplayFieldRef id="TRACTS_FORCEPS_MAJOR_TR"/>
+		<DisplayFieldRef id="TRACTS_FORCEPS_MINOR_TR"/>
+		<DisplayFieldRef id="TRACTS_INF_FRONTO_OCCIPITAL_FASC_L_TR"/>
+		<DisplayFieldRef id="TRACTS_INF_FRONTO_OCCIPITAL_FASC_R_TR"/>
+		<DisplayFieldRef id="TRACTS_INF_LONG_FASC_L_TR"/>
+		<DisplayFieldRef id="TRACTS_INF_LONG_FASC_R_TR"/>
+		<DisplayFieldRef id="TRACTS_SUP_LONG_FASC_L_TR"/>
+		<DisplayFieldRef id="TRACTS_SUP_LONG_FASC_R_TR"/>
+		<DisplayFieldRef id="TRACTS_UNCINATE_FASC_L_TR"/>
+		<DisplayFieldRef id="TRACTS_UNCINATE_FASC_R_TR"/>
+		<DisplayFieldRef id="TRACTS_WHOLE_BRAIN_TR"/>
+		<DisplayFieldRef id="LABELS_ANT_CORONA_RADIATA_L_AD"/>
+		<DisplayFieldRef id="LABELS_ANT_CORONA_RADIATA_R_AD"/>
+		<DisplayFieldRef id="LABELS_ANT_LIMB_INTERNAL_CAPSULE_L_AD"/>
+		<DisplayFieldRef id="LABELS_ANT_LIMB_INTERNAL_CAPSULE_R_AD"/>
+		<DisplayFieldRef id="LABELS_BODY_CORPUS_CALLOSUM_AD"/>
+		<DisplayFieldRef id="LABELS_CEREBRAL_PED_L_AD"/>
+		<DisplayFieldRef id="LABELS_CEREBRAL_PED_R_AD"/>
+		<DisplayFieldRef id="LABELS_CINGULUM_L_AD"/>
+		<DisplayFieldRef id="LABELS_CINGULUM_R_AD"/>
+		<DisplayFieldRef id="LABELS_CORTICOSPINAL_TRACT_L_AD"/>
+		<DisplayFieldRef id="LABELS_CORTICOSPINAL_TRACT_R_AD"/>
+		<DisplayFieldRef id="LABELS_EXTERNAL_CAPSULE_L_AD"/>
+		<DisplayFieldRef id="LABELS_EXTERNAL_CAPSULE_R_AD"/>
+		<DisplayFieldRef id="LABELS_FORNIX_AD"/>
+		<DisplayFieldRef id="LABELS_FORNIX_STRIA_TERMINALIS_L_AD"/>
+		<DisplayFieldRef id="LABELS_FORNIX_STRIA_TERMINALIS_R_AD"/>
+		<DisplayFieldRef id="LABELS_GENU_CORPUS_CALLOSUM_AD"/>
+		<DisplayFieldRef id="LABELS_INF_CEREBELLAR_PED_L_AD"/>
+		<DisplayFieldRef id="LABELS_INF_CEREBELLAR_PED_R_AD"/>
+		<DisplayFieldRef id="LABELS_MEDIAL_LEMNISCUS_L_AD"/>
+		<DisplayFieldRef id="LABELS_MEDIAL_LEMNISCUS_R_AD"/>
+		<DisplayFieldRef id="LABELS_MIDDLE_CEREBELLAR_PED_AD"/>
+		<DisplayFieldRef id="LABELS_PONTINE_CROSSING_TRACT_AD"/>
+		<DisplayFieldRef id="LABELS_POST_CORONA_RADIATA_L_AD"/>
+		<DisplayFieldRef id="LABELS_POST_CORONA_RADIATA_R_AD"/>
+		<DisplayFieldRef id="LABELS_POST_LIMB_INTERNAL_CAPSULE_L_AD"/>
+		<DisplayFieldRef id="LABELS_POST_LIMB_INTERNAL_CAPSULE_R_AD"/>
+		<DisplayFieldRef id="LABELS_POST_THALAMIC_RADIATION_L_AD"/>
+		<DisplayFieldRef id="LABELS_POST_THALAMIC_RADIATION_R_AD"/>
+		<DisplayFieldRef id="LABELS_RETROLENTICULAR_PART_INTERNAL_CAPSULE_L_AD"/>
+		<DisplayFieldRef id="LABELS_RETROLENTICULAR_PART_INTERNAL_CAPSULE_R_AD"/>
+		<DisplayFieldRef id="LABELS_SAGITTAL_STRATUM_L_AD"/>
+		<DisplayFieldRef id="LABELS_SAGITTAL_STRATUM_R_AD"/>
+		<DisplayFieldRef id="LABELS_SPLENIUM_CORPUS_CALLOSUM_AD"/>
+		<DisplayFieldRef id="LABELS_SUP_CEREBELLAR_PED_L_AD"/>
+		<DisplayFieldRef id="LABELS_SUP_CEREBELLAR_PED_R_AD"/>
+		<DisplayFieldRef id="LABELS_SUP_CORONA_RADIATA_L_AD"/>
+		<DisplayFieldRef id="LABELS_SUP_CORONA_RADIATA_R_AD"/>
+		<DisplayFieldRef id="LABELS_SUP_FRONTO_OCCIPITAL_FASC_L_AD"/>
+		<DisplayFieldRef id="LABELS_SUP_FRONTO_OCCIPITAL_FASC_R_AD"/>
+		<DisplayFieldRef id="LABELS_SUP_LONG_FASC_L_AD"/>
+		<DisplayFieldRef id="LABELS_SUP_LONG_FASC_R_AD"/>
+		<DisplayFieldRef id="LABELS_TAPETUM_L_AD"/>
+		<DisplayFieldRef id="LABELS_TAPETUM_R_AD"/>
+		<DisplayFieldRef id="LABELS_UNCINATE_FASC_L_AD"/>
+		<DisplayFieldRef id="LABELS_UNCINATE_FASC_R_AD"/>
+		<DisplayFieldRef id="LABELS_WHOLE_BRAIN_AD"/>
+		<DisplayFieldRef id="TRACTS_ANT_THALAMIC_RADIATION_L_AD"/>
+		<DisplayFieldRef id="TRACTS_ANT_THALAMIC_RADIATION_R_AD"/>
+		<DisplayFieldRef id="TRACTS_CINGULUM_L_AD"/>
+		<DisplayFieldRef id="TRACTS_CINGULUM_R_AD"/>
+		<DisplayFieldRef id="TRACTS_CORTICOSPINAL_TRACT_L_AD"/>
+		<DisplayFieldRef id="TRACTS_CORTICOSPINAL_TRACT_R_AD"/>
+		<DisplayFieldRef id="TRACTS_FORCEPS_MAJOR_AD"/>
+		<DisplayFieldRef id="TRACTS_FORCEPS_MINOR_AD"/>
+		<DisplayFieldRef id="TRACTS_INF_FRONTO_OCCIPITAL_FASC_L_AD"/>
+		<DisplayFieldRef id="TRACTS_INF_FRONTO_OCCIPITAL_FASC_R_AD"/>
+		<DisplayFieldRef id="TRACTS_INF_LONG_FASC_L_AD"/>
+		<DisplayFieldRef id="TRACTS_INF_LONG_FASC_R_AD"/>
+		<DisplayFieldRef id="TRACTS_SUP_LONG_FASC_L_AD"/>
+		<DisplayFieldRef id="TRACTS_SUP_LONG_FASC_R_AD"/>
+		<DisplayFieldRef id="TRACTS_UNCINATE_FASC_L_AD"/>
+		<DisplayFieldRef id="TRACTS_UNCINATE_FASC_R_AD"/>
+		<DisplayFieldRef id="TRACTS_WHOLE_BRAIN_AD"/>
+		<DisplayFieldRef id="LABELS_ANT_CORONA_RADIATA_L_RD"/>
+		<DisplayFieldRef id="LABELS_ANT_CORONA_RADIATA_R_RD"/>
+		<DisplayFieldRef id="LABELS_ANT_LIMB_INTERNAL_CAPSULE_L_RD"/>
+		<DisplayFieldRef id="LABELS_ANT_LIMB_INTERNAL_CAPSULE_R_RD"/>
+		<DisplayFieldRef id="LABELS_BODY_CORPUS_CALLOSUM_RD"/>
+		<DisplayFieldRef id="LABELS_CEREBRAL_PED_L_RD"/>
+		<DisplayFieldRef id="LABELS_CEREBRAL_PED_R_RD"/>
+		<DisplayFieldRef id="LABELS_CINGULUM_L_RD"/>
+		<DisplayFieldRef id="LABELS_CINGULUM_R_RD"/>
+		<DisplayFieldRef id="LABELS_CORTICOSPINAL_TRACT_L_RD"/>
+		<DisplayFieldRef id="LABELS_CORTICOSPINAL_TRACT_R_RD"/>
+		<DisplayFieldRef id="LABELS_EXTERNAL_CAPSULE_L_RD"/>
+		<DisplayFieldRef id="LABELS_EXTERNAL_CAPSULE_R_RD"/>
+		<DisplayFieldRef id="LABELS_FORNIX_RD"/>
+		<DisplayFieldRef id="LABELS_FORNIX_STRIA_TERMINALIS_L_RD"/>
+		<DisplayFieldRef id="LABELS_FORNIX_STRIA_TERMINALIS_R_RD"/>
+		<DisplayFieldRef id="LABELS_GENU_CORPUS_CALLOSUM_RD"/>
+		<DisplayFieldRef id="LABELS_INF_CEREBELLAR_PED_L_RD"/>
+		<DisplayFieldRef id="LABELS_INF_CEREBELLAR_PED_R_RD"/>
+		<DisplayFieldRef id="LABELS_MEDIAL_LEMNISCUS_L_RD"/>
+		<DisplayFieldRef id="LABELS_MEDIAL_LEMNISCUS_R_RD"/>
+		<DisplayFieldRef id="LABELS_MIDDLE_CEREBELLAR_PED_RD"/>
+		<DisplayFieldRef id="LABELS_PONTINE_CROSSING_TRACT_RD"/>
+		<DisplayFieldRef id="LABELS_POST_CORONA_RADIATA_L_RD"/>
+		<DisplayFieldRef id="LABELS_POST_CORONA_RADIATA_R_RD"/>
+		<DisplayFieldRef id="LABELS_POST_LIMB_INTERNAL_CAPSULE_L_RD"/>
+		<DisplayFieldRef id="LABELS_POST_LIMB_INTERNAL_CAPSULE_R_RD"/>
+		<DisplayFieldRef id="LABELS_POST_THALAMIC_RADIATION_L_RD"/>
+		<DisplayFieldRef id="LABELS_POST_THALAMIC_RADIATION_R_RD"/>
+		<DisplayFieldRef id="LABELS_RETROLENTICULAR_PART_INTERNAL_CAPSULE_L_RD"/>
+		<DisplayFieldRef id="LABELS_RETROLENTICULAR_PART_INTERNAL_CAPSULE_R_RD"/>
+		<DisplayFieldRef id="LABELS_SAGITTAL_STRATUM_L_RD"/>
+		<DisplayFieldRef id="LABELS_SAGITTAL_STRATUM_R_RD"/>
+		<DisplayFieldRef id="LABELS_SPLENIUM_CORPUS_CALLOSUM_RD"/>
+		<DisplayFieldRef id="LABELS_SUP_CEREBELLAR_PED_L_RD"/>
+		<DisplayFieldRef id="LABELS_SUP_CEREBELLAR_PED_R_RD"/>
+		<DisplayFieldRef id="LABELS_SUP_CORONA_RADIATA_L_RD"/>
+		<DisplayFieldRef id="LABELS_SUP_CORONA_RADIATA_R_RD"/>
+		<DisplayFieldRef id="LABELS_SUP_FRONTO_OCCIPITAL_FASC_L_RD"/>
+		<DisplayFieldRef id="LABELS_SUP_FRONTO_OCCIPITAL_FASC_R_RD"/>
+		<DisplayFieldRef id="LABELS_SUP_LONG_FASC_L_RD"/>
+		<DisplayFieldRef id="LABELS_SUP_LONG_FASC_R_RD"/>
+		<DisplayFieldRef id="LABELS_TAPETUM_L_RD"/>
+		<DisplayFieldRef id="LABELS_TAPETUM_R_RD"/>
+		<DisplayFieldRef id="LABELS_UNCINATE_FASC_L_RD"/>
+		<DisplayFieldRef id="LABELS_UNCINATE_FASC_R_RD"/>
+		<DisplayFieldRef id="LABELS_WHOLE_BRAIN_RD"/>
+		<DisplayFieldRef id="TRACTS_ANT_THALAMIC_RADIATION_L_RD"/>
+		<DisplayFieldRef id="TRACTS_ANT_THALAMIC_RADIATION_R_RD"/>
+		<DisplayFieldRef id="TRACTS_CINGULUM_L_RD"/>
+		<DisplayFieldRef id="TRACTS_CINGULUM_R_RD"/>
+		<DisplayFieldRef id="TRACTS_CORTICOSPINAL_TRACT_L_RD"/>
+		<DisplayFieldRef id="TRACTS_CORTICOSPINAL_TRACT_R_RD"/>
+		<DisplayFieldRef id="TRACTS_FORCEPS_MAJOR_RD"/>
+		<DisplayFieldRef id="TRACTS_FORCEPS_MINOR_RD"/>
+		<DisplayFieldRef id="TRACTS_INF_FRONTO_OCCIPITAL_FASC_L_RD"/>
+		<DisplayFieldRef id="TRACTS_INF_FRONTO_OCCIPITAL_FASC_R_RD"/>
+		<DisplayFieldRef id="TRACTS_INF_LONG_FASC_L_RD"/>
+		<DisplayFieldRef id="TRACTS_INF_LONG_FASC_R_RD"/>
+		<DisplayFieldRef id="TRACTS_SUP_LONG_FASC_L_RD"/>
+		<DisplayFieldRef id="TRACTS_SUP_LONG_FASC_R_RD"/>
+		<DisplayFieldRef id="TRACTS_UNCINATE_FASC_L_RD"/>
+		<DisplayFieldRef id="TRACTS_UNCINATE_FASC_R_RD"/>
+		<DisplayFieldRef id="TRACTS_WHOLE_BRAIN_RD"/>
+	</DisplayVersion>
+	<DisplayVersion versionName="listing_csv" default-order-by="DATE" default-sort-order="DESC" brief-description="DTI" dark-color="9999CC" light-color="CCCCFF">
+		<DisplayFieldRef id="LABEL"/>
+		<DisplayFieldRef id="DATE"/>
+		<DisplayFieldRef id="LABELS_ANT_CORONA_RADIATA_L_FA"/>
+		<DisplayFieldRef id="LABELS_ANT_CORONA_RADIATA_R_FA"/>
+		<DisplayFieldRef id="LABELS_ANT_LIMB_INTERNAL_CAPSULE_L_FA"/>
+		<DisplayFieldRef id="LABELS_ANT_LIMB_INTERNAL_CAPSULE_R_FA"/>
+		<DisplayFieldRef id="LABELS_BODY_CORPUS_CALLOSUM_FA"/>
+		<DisplayFieldRef id="LABELS_CEREBRAL_PED_L_FA"/>
+		<DisplayFieldRef id="LABELS_CEREBRAL_PED_R_FA"/>
+		<DisplayFieldRef id="LABELS_CINGULUM_L_FA"/>
+		<DisplayFieldRef id="LABELS_CINGULUM_R_FA"/>
+		<DisplayFieldRef id="LABELS_CORTICOSPINAL_TRACT_L_FA"/>
+		<DisplayFieldRef id="LABELS_CORTICOSPINAL_TRACT_R_FA"/>
+		<DisplayFieldRef id="LABELS_EXTERNAL_CAPSULE_L_FA"/>
+		<DisplayFieldRef id="LABELS_EXTERNAL_CAPSULE_R_FA"/>
+		<DisplayFieldRef id="LABELS_FORNIX_FA"/>
+		<DisplayFieldRef id="LABELS_FORNIX_STRIA_TERMINALIS_L_FA"/>
+		<DisplayFieldRef id="LABELS_FORNIX_STRIA_TERMINALIS_R_FA"/>
+		<DisplayFieldRef id="LABELS_GENU_CORPUS_CALLOSUM_FA"/>
+		<DisplayFieldRef id="LABELS_INF_CEREBELLAR_PED_L_FA"/>
+		<DisplayFieldRef id="LABELS_INF_CEREBELLAR_PED_R_FA"/>
+		<DisplayFieldRef id="LABELS_MEDIAL_LEMNISCUS_L_FA"/>
+		<DisplayFieldRef id="LABELS_MEDIAL_LEMNISCUS_R_FA"/>
+		<DisplayFieldRef id="LABELS_MIDDLE_CEREBELLAR_PED_FA"/>
+		<DisplayFieldRef id="LABELS_PONTINE_CROSSING_TRACT_FA"/>
+		<DisplayFieldRef id="LABELS_POST_CORONA_RADIATA_L_FA"/>
+		<DisplayFieldRef id="LABELS_POST_CORONA_RADIATA_R_FA"/>
+		<DisplayFieldRef id="LABELS_POST_LIMB_INTERNAL_CAPSULE_L_FA"/>
+		<DisplayFieldRef id="LABELS_POST_LIMB_INTERNAL_CAPSULE_R_FA"/>
+		<DisplayFieldRef id="LABELS_POST_THALAMIC_RADIATION_L_FA"/>
+		<DisplayFieldRef id="LABELS_POST_THALAMIC_RADIATION_R_FA"/>
+		<DisplayFieldRef id="LABELS_RETROLENTICULAR_PART_INTERNAL_CAPSULE_L_FA"/>
+		<DisplayFieldRef id="LABELS_RETROLENTICULAR_PART_INTERNAL_CAPSULE_R_FA"/>
+		<DisplayFieldRef id="LABELS_SAGITTAL_STRATUM_L_FA"/>
+		<DisplayFieldRef id="LABELS_SAGITTAL_STRATUM_R_FA"/>
+		<DisplayFieldRef id="LABELS_SPLENIUM_CORPUS_CALLOSUM_FA"/>
+		<DisplayFieldRef id="LABELS_SUP_CEREBELLAR_PED_L_FA"/>
+		<DisplayFieldRef id="LABELS_SUP_CEREBELLAR_PED_R_FA"/>
+		<DisplayFieldRef id="LABELS_SUP_CORONA_RADIATA_L_FA"/>
+		<DisplayFieldRef id="LABELS_SUP_CORONA_RADIATA_R_FA"/>
+		<DisplayFieldRef id="LABELS_SUP_FRONTO_OCCIPITAL_FASC_L_FA"/>
+		<DisplayFieldRef id="LABELS_SUP_FRONTO_OCCIPITAL_FASC_R_FA"/>
+		<DisplayFieldRef id="LABELS_SUP_LONG_FASC_L_FA"/>
+		<DisplayFieldRef id="LABELS_SUP_LONG_FASC_R_FA"/>
+		<DisplayFieldRef id="LABELS_TAPETUM_L_FA"/>
+		<DisplayFieldRef id="LABELS_TAPETUM_R_FA"/>
+		<DisplayFieldRef id="LABELS_UNCINATE_FASC_L_FA"/>
+		<DisplayFieldRef id="LABELS_UNCINATE_FASC_R_FA"/>
+		<DisplayFieldRef id="LABELS_WHOLE_BRAIN_FA"/>
+		<DisplayFieldRef id="TRACTS_ANT_THALAMIC_RADIATION_L_FA"/>
+		<DisplayFieldRef id="TRACTS_ANT_THALAMIC_RADIATION_R_FA"/>
+		<DisplayFieldRef id="TRACTS_CINGULUM_L_FA"/>
+		<DisplayFieldRef id="TRACTS_CINGULUM_R_FA"/>
+		<DisplayFieldRef id="TRACTS_CORTICOSPINAL_TRACT_L_FA"/>
+		<DisplayFieldRef id="TRACTS_CORTICOSPINAL_TRACT_R_FA"/>
+		<DisplayFieldRef id="TRACTS_FORCEPS_MAJOR_FA"/>
+		<DisplayFieldRef id="TRACTS_FORCEPS_MINOR_FA"/>
+		<DisplayFieldRef id="TRACTS_INF_FRONTO_OCCIPITAL_FASC_L_FA"/>
+		<DisplayFieldRef id="TRACTS_INF_FRONTO_OCCIPITAL_FASC_R_FA"/>
+		<DisplayFieldRef id="TRACTS_INF_LONG_FASC_L_FA"/>
+		<DisplayFieldRef id="TRACTS_INF_LONG_FASC_R_FA"/>
+		<DisplayFieldRef id="TRACTS_SUP_LONG_FASC_L_FA"/>
+		<DisplayFieldRef id="TRACTS_SUP_LONG_FASC_R_FA"/>
+		<DisplayFieldRef id="TRACTS_UNCINATE_FASC_L_FA"/>
+		<DisplayFieldRef id="TRACTS_UNCINATE_FASC_R_FA"/>
+		<DisplayFieldRef id="TRACTS_WHOLE_BRAIN_FA"/>
+		<DisplayFieldRef id="LABELS_ANT_CORONA_RADIATA_L_TR"/>
+		<DisplayFieldRef id="LABELS_ANT_CORONA_RADIATA_R_TR"/>
+		<DisplayFieldRef id="LABELS_ANT_LIMB_INTERNAL_CAPSULE_L_TR"/>
+		<DisplayFieldRef id="LABELS_ANT_LIMB_INTERNAL_CAPSULE_R_TR"/>
+		<DisplayFieldRef id="LABELS_BODY_CORPUS_CALLOSUM_TR"/>
+		<DisplayFieldRef id="LABELS_CEREBRAL_PED_L_TR"/>
+		<DisplayFieldRef id="LABELS_CEREBRAL_PED_R_TR"/>
+		<DisplayFieldRef id="LABELS_CINGULUM_L_TR"/>
+		<DisplayFieldRef id="LABELS_CINGULUM_R_TR"/>
+		<DisplayFieldRef id="LABELS_CORTICOSPINAL_TRACT_L_TR"/>
+		<DisplayFieldRef id="LABELS_CORTICOSPINAL_TRACT_R_TR"/>
+		<DisplayFieldRef id="LABELS_EXTERNAL_CAPSULE_L_TR"/>
+		<DisplayFieldRef id="LABELS_EXTERNAL_CAPSULE_R_TR"/>
+		<DisplayFieldRef id="LABELS_FORNIX_TR"/>
+		<DisplayFieldRef id="LABELS_FORNIX_STRIA_TERMINALIS_L_TR"/>
+		<DisplayFieldRef id="LABELS_FORNIX_STRIA_TERMINALIS_R_TR"/>
+		<DisplayFieldRef id="LABELS_GENU_CORPUS_CALLOSUM_TR"/>
+		<DisplayFieldRef id="LABELS_INF_CEREBELLAR_PED_L_TR"/>
+		<DisplayFieldRef id="LABELS_INF_CEREBELLAR_PED_R_TR"/>
+		<DisplayFieldRef id="LABELS_MEDIAL_LEMNISCUS_L_TR"/>
+		<DisplayFieldRef id="LABELS_MEDIAL_LEMNISCUS_R_TR"/>
+		<DisplayFieldRef id="LABELS_MIDDLE_CEREBELLAR_PED_TR"/>
+		<DisplayFieldRef id="LABELS_PONTINE_CROSSING_TRACT_TR"/>
+		<DisplayFieldRef id="LABELS_POST_CORONA_RADIATA_L_TR"/>
+		<DisplayFieldRef id="LABELS_POST_CORONA_RADIATA_R_TR"/>
+		<DisplayFieldRef id="LABELS_POST_LIMB_INTERNAL_CAPSULE_L_TR"/>
+		<DisplayFieldRef id="LABELS_POST_LIMB_INTERNAL_CAPSULE_R_TR"/>
+		<DisplayFieldRef id="LABELS_POST_THALAMIC_RADIATION_L_TR"/>
+		<DisplayFieldRef id="LABELS_POST_THALAMIC_RADIATION_R_TR"/>
+		<DisplayFieldRef id="LABELS_RETROLENTICULAR_PART_INTERNAL_CAPSULE_L_TR"/>
+		<DisplayFieldRef id="LABELS_RETROLENTICULAR_PART_INTERNAL_CAPSULE_R_TR"/>
+		<DisplayFieldRef id="LABELS_SAGITTAL_STRATUM_L_TR"/>
+		<DisplayFieldRef id="LABELS_SAGITTAL_STRATUM_R_TR"/>
+		<DisplayFieldRef id="LABELS_SPLENIUM_CORPUS_CALLOSUM_TR"/>
+		<DisplayFieldRef id="LABELS_SUP_CEREBELLAR_PED_L_TR"/>
+		<DisplayFieldRef id="LABELS_SUP_CEREBELLAR_PED_R_TR"/>
+		<DisplayFieldRef id="LABELS_SUP_CORONA_RADIATA_L_TR"/>
+		<DisplayFieldRef id="LABELS_SUP_CORONA_RADIATA_R_TR"/>
+		<DisplayFieldRef id="LABELS_SUP_FRONTO_OCCIPITAL_FASC_L_TR"/>
+		<DisplayFieldRef id="LABELS_SUP_FRONTO_OCCIPITAL_FASC_R_TR"/>
+		<DisplayFieldRef id="LABELS_SUP_LONG_FASC_L_TR"/>
+		<DisplayFieldRef id="LABELS_SUP_LONG_FASC_R_TR"/>
+		<DisplayFieldRef id="LABELS_TAPETUM_L_TR"/>
+		<DisplayFieldRef id="LABELS_TAPETUM_R_TR"/>
+		<DisplayFieldRef id="LABELS_UNCINATE_FASC_L_TR"/>
+		<DisplayFieldRef id="LABELS_UNCINATE_FASC_R_TR"/>
+		<DisplayFieldRef id="LABELS_WHOLE_BRAIN_TR"/>
+		<DisplayFieldRef id="TRACTS_ANT_THALAMIC_RADIATION_L_TR"/>
+		<DisplayFieldRef id="TRACTS_ANT_THALAMIC_RADIATION_R_TR"/>
+		<DisplayFieldRef id="TRACTS_CINGULUM_L_TR"/>
+		<DisplayFieldRef id="TRACTS_CINGULUM_R_TR"/>
+		<DisplayFieldRef id="TRACTS_CORTICOSPINAL_TRACT_L_TR"/>
+		<DisplayFieldRef id="TRACTS_CORTICOSPINAL_TRACT_R_TR"/>
+		<DisplayFieldRef id="TRACTS_FORCEPS_MAJOR_TR"/>
+		<DisplayFieldRef id="TRACTS_FORCEPS_MINOR_TR"/>
+		<DisplayFieldRef id="TRACTS_INF_FRONTO_OCCIPITAL_FASC_L_TR"/>
+		<DisplayFieldRef id="TRACTS_INF_FRONTO_OCCIPITAL_FASC_R_TR"/>
+		<DisplayFieldRef id="TRACTS_INF_LONG_FASC_L_TR"/>
+		<DisplayFieldRef id="TRACTS_INF_LONG_FASC_R_TR"/>
+		<DisplayFieldRef id="TRACTS_SUP_LONG_FASC_L_TR"/>
+		<DisplayFieldRef id="TRACTS_SUP_LONG_FASC_R_TR"/>
+		<DisplayFieldRef id="TRACTS_UNCINATE_FASC_L_TR"/>
+		<DisplayFieldRef id="TRACTS_UNCINATE_FASC_R_TR"/>
+		<DisplayFieldRef id="TRACTS_WHOLE_BRAIN_TR"/>
+		<DisplayFieldRef id="LABELS_ANT_CORONA_RADIATA_L_AD"/>
+		<DisplayFieldRef id="LABELS_ANT_CORONA_RADIATA_R_AD"/>
+		<DisplayFieldRef id="LABELS_ANT_LIMB_INTERNAL_CAPSULE_L_AD"/>
+		<DisplayFieldRef id="LABELS_ANT_LIMB_INTERNAL_CAPSULE_R_AD"/>
+		<DisplayFieldRef id="LABELS_BODY_CORPUS_CALLOSUM_AD"/>
+		<DisplayFieldRef id="LABELS_CEREBRAL_PED_L_AD"/>
+		<DisplayFieldRef id="LABELS_CEREBRAL_PED_R_AD"/>
+		<DisplayFieldRef id="LABELS_CINGULUM_L_AD"/>
+		<DisplayFieldRef id="LABELS_CINGULUM_R_AD"/>
+		<DisplayFieldRef id="LABELS_CORTICOSPINAL_TRACT_L_AD"/>
+		<DisplayFieldRef id="LABELS_CORTICOSPINAL_TRACT_R_AD"/>
+		<DisplayFieldRef id="LABELS_EXTERNAL_CAPSULE_L_AD"/>
+		<DisplayFieldRef id="LABELS_EXTERNAL_CAPSULE_R_AD"/>
+		<DisplayFieldRef id="LABELS_FORNIX_AD"/>
+		<DisplayFieldRef id="LABELS_FORNIX_STRIA_TERMINALIS_L_AD"/>
+		<DisplayFieldRef id="LABELS_FORNIX_STRIA_TERMINALIS_R_AD"/>
+		<DisplayFieldRef id="LABELS_GENU_CORPUS_CALLOSUM_AD"/>
+		<DisplayFieldRef id="LABELS_INF_CEREBELLAR_PED_L_AD"/>
+		<DisplayFieldRef id="LABELS_INF_CEREBELLAR_PED_R_AD"/>
+		<DisplayFieldRef id="LABELS_MEDIAL_LEMNISCUS_L_AD"/>
+		<DisplayFieldRef id="LABELS_MEDIAL_LEMNISCUS_R_AD"/>
+		<DisplayFieldRef id="LABELS_MIDDLE_CEREBELLAR_PED_AD"/>
+		<DisplayFieldRef id="LABELS_PONTINE_CROSSING_TRACT_AD"/>
+		<DisplayFieldRef id="LABELS_POST_CORONA_RADIATA_L_AD"/>
+		<DisplayFieldRef id="LABELS_POST_CORONA_RADIATA_R_AD"/>
+		<DisplayFieldRef id="LABELS_POST_LIMB_INTERNAL_CAPSULE_L_AD"/>
+		<DisplayFieldRef id="LABELS_POST_LIMB_INTERNAL_CAPSULE_R_AD"/>
+		<DisplayFieldRef id="LABELS_POST_THALAMIC_RADIATION_L_AD"/>
+		<DisplayFieldRef id="LABELS_POST_THALAMIC_RADIATION_R_AD"/>
+		<DisplayFieldRef id="LABELS_RETROLENTICULAR_PART_INTERNAL_CAPSULE_L_AD"/>
+		<DisplayFieldRef id="LABELS_RETROLENTICULAR_PART_INTERNAL_CAPSULE_R_AD"/>
+		<DisplayFieldRef id="LABELS_SAGITTAL_STRATUM_L_AD"/>
+		<DisplayFieldRef id="LABELS_SAGITTAL_STRATUM_R_AD"/>
+		<DisplayFieldRef id="LABELS_SPLENIUM_CORPUS_CALLOSUM_AD"/>
+		<DisplayFieldRef id="LABELS_SUP_CEREBELLAR_PED_L_AD"/>
+		<DisplayFieldRef id="LABELS_SUP_CEREBELLAR_PED_R_AD"/>
+		<DisplayFieldRef id="LABELS_SUP_CORONA_RADIATA_L_AD"/>
+		<DisplayFieldRef id="LABELS_SUP_CORONA_RADIATA_R_AD"/>
+		<DisplayFieldRef id="LABELS_SUP_FRONTO_OCCIPITAL_FASC_L_AD"/>
+		<DisplayFieldRef id="LABELS_SUP_FRONTO_OCCIPITAL_FASC_R_AD"/>
+		<DisplayFieldRef id="LABELS_SUP_LONG_FASC_L_AD"/>
+		<DisplayFieldRef id="LABELS_SUP_LONG_FASC_R_AD"/>
+		<DisplayFieldRef id="LABELS_TAPETUM_L_AD"/>
+		<DisplayFieldRef id="LABELS_TAPETUM_R_AD"/>
+		<DisplayFieldRef id="LABELS_UNCINATE_FASC_L_AD"/>
+		<DisplayFieldRef id="LABELS_UNCINATE_FASC_R_AD"/>
+		<DisplayFieldRef id="LABELS_WHOLE_BRAIN_AD"/>
+		<DisplayFieldRef id="TRACTS_ANT_THALAMIC_RADIATION_L_AD"/>
+		<DisplayFieldRef id="TRACTS_ANT_THALAMIC_RADIATION_R_AD"/>
+		<DisplayFieldRef id="TRACTS_CINGULUM_L_AD"/>
+		<DisplayFieldRef id="TRACTS_CINGULUM_R_AD"/>
+		<DisplayFieldRef id="TRACTS_CORTICOSPINAL_TRACT_L_AD"/>
+		<DisplayFieldRef id="TRACTS_CORTICOSPINAL_TRACT_R_AD"/>
+		<DisplayFieldRef id="TRACTS_FORCEPS_MAJOR_AD"/>
+		<DisplayFieldRef id="TRACTS_FORCEPS_MINOR_AD"/>
+		<DisplayFieldRef id="TRACTS_INF_FRONTO_OCCIPITAL_FASC_L_AD"/>
+		<DisplayFieldRef id="TRACTS_INF_FRONTO_OCCIPITAL_FASC_R_AD"/>
+		<DisplayFieldRef id="TRACTS_INF_LONG_FASC_L_AD"/>
+		<DisplayFieldRef id="TRACTS_INF_LONG_FASC_R_AD"/>
+		<DisplayFieldRef id="TRACTS_SUP_LONG_FASC_L_AD"/>
+		<DisplayFieldRef id="TRACTS_SUP_LONG_FASC_R_AD"/>
+		<DisplayFieldRef id="TRACTS_UNCINATE_FASC_L_AD"/>
+		<DisplayFieldRef id="TRACTS_UNCINATE_FASC_R_AD"/>
+		<DisplayFieldRef id="TRACTS_WHOLE_BRAIN_AD"/>
+		<DisplayFieldRef id="LABELS_ANT_CORONA_RADIATA_L_RD"/>
+		<DisplayFieldRef id="LABELS_ANT_CORONA_RADIATA_R_RD"/>
+		<DisplayFieldRef id="LABELS_ANT_LIMB_INTERNAL_CAPSULE_L_RD"/>
+		<DisplayFieldRef id="LABELS_ANT_LIMB_INTERNAL_CAPSULE_R_RD"/>
+		<DisplayFieldRef id="LABELS_BODY_CORPUS_CALLOSUM_RD"/>
+		<DisplayFieldRef id="LABELS_CEREBRAL_PED_L_RD"/>
+		<DisplayFieldRef id="LABELS_CEREBRAL_PED_R_RD"/>
+		<DisplayFieldRef id="LABELS_CINGULUM_L_RD"/>
+		<DisplayFieldRef id="LABELS_CINGULUM_R_RD"/>
+		<DisplayFieldRef id="LABELS_CORTICOSPINAL_TRACT_L_RD"/>
+		<DisplayFieldRef id="LABELS_CORTICOSPINAL_TRACT_R_RD"/>
+		<DisplayFieldRef id="LABELS_EXTERNAL_CAPSULE_L_RD"/>
+		<DisplayFieldRef id="LABELS_EXTERNAL_CAPSULE_R_RD"/>
+		<DisplayFieldRef id="LABELS_FORNIX_RD"/>
+		<DisplayFieldRef id="LABELS_FORNIX_STRIA_TERMINALIS_L_RD"/>
+		<DisplayFieldRef id="LABELS_FORNIX_STRIA_TERMINALIS_R_RD"/>
+		<DisplayFieldRef id="LABELS_GENU_CORPUS_CALLOSUM_RD"/>
+		<DisplayFieldRef id="LABELS_INF_CEREBELLAR_PED_L_RD"/>
+		<DisplayFieldRef id="LABELS_INF_CEREBELLAR_PED_R_RD"/>
+		<DisplayFieldRef id="LABELS_MEDIAL_LEMNISCUS_L_RD"/>
+		<DisplayFieldRef id="LABELS_MEDIAL_LEMNISCUS_R_RD"/>
+		<DisplayFieldRef id="LABELS_MIDDLE_CEREBELLAR_PED_RD"/>
+		<DisplayFieldRef id="LABELS_PONTINE_CROSSING_TRACT_RD"/>
+		<DisplayFieldRef id="LABELS_POST_CORONA_RADIATA_L_RD"/>
+		<DisplayFieldRef id="LABELS_POST_CORONA_RADIATA_R_RD"/>
+		<DisplayFieldRef id="LABELS_POST_LIMB_INTERNAL_CAPSULE_L_RD"/>
+		<DisplayFieldRef id="LABELS_POST_LIMB_INTERNAL_CAPSULE_R_RD"/>
+		<DisplayFieldRef id="LABELS_POST_THALAMIC_RADIATION_L_RD"/>
+		<DisplayFieldRef id="LABELS_POST_THALAMIC_RADIATION_R_RD"/>
+		<DisplayFieldRef id="LABELS_RETROLENTICULAR_PART_INTERNAL_CAPSULE_L_RD"/>
+		<DisplayFieldRef id="LABELS_RETROLENTICULAR_PART_INTERNAL_CAPSULE_R_RD"/>
+		<DisplayFieldRef id="LABELS_SAGITTAL_STRATUM_L_RD"/>
+		<DisplayFieldRef id="LABELS_SAGITTAL_STRATUM_R_RD"/>
+		<DisplayFieldRef id="LABELS_SPLENIUM_CORPUS_CALLOSUM_RD"/>
+		<DisplayFieldRef id="LABELS_SUP_CEREBELLAR_PED_L_RD"/>
+		<DisplayFieldRef id="LABELS_SUP_CEREBELLAR_PED_R_RD"/>
+		<DisplayFieldRef id="LABELS_SUP_CORONA_RADIATA_L_RD"/>
+		<DisplayFieldRef id="LABELS_SUP_CORONA_RADIATA_R_RD"/>
+		<DisplayFieldRef id="LABELS_SUP_FRONTO_OCCIPITAL_FASC_L_RD"/>
+		<DisplayFieldRef id="LABELS_SUP_FRONTO_OCCIPITAL_FASC_R_RD"/>
+		<DisplayFieldRef id="LABELS_SUP_LONG_FASC_L_RD"/>
+		<DisplayFieldRef id="LABELS_SUP_LONG_FASC_R_RD"/>
+		<DisplayFieldRef id="LABELS_TAPETUM_L_RD"/>
+		<DisplayFieldRef id="LABELS_TAPETUM_R_RD"/>
+		<DisplayFieldRef id="LABELS_UNCINATE_FASC_L_RD"/>
+		<DisplayFieldRef id="LABELS_UNCINATE_FASC_R_RD"/>
+		<DisplayFieldRef id="LABELS_WHOLE_BRAIN_RD"/>
+		<DisplayFieldRef id="TRACTS_ANT_THALAMIC_RADIATION_L_RD"/>
+		<DisplayFieldRef id="TRACTS_ANT_THALAMIC_RADIATION_R_RD"/>
+		<DisplayFieldRef id="TRACTS_CINGULUM_L_RD"/>
+		<DisplayFieldRef id="TRACTS_CINGULUM_R_RD"/>
+		<DisplayFieldRef id="TRACTS_CORTICOSPINAL_TRACT_L_RD"/>
+		<DisplayFieldRef id="TRACTS_CORTICOSPINAL_TRACT_R_RD"/>
+		<DisplayFieldRef id="TRACTS_FORCEPS_MAJOR_RD"/>
+		<DisplayFieldRef id="TRACTS_FORCEPS_MINOR_RD"/>
+		<DisplayFieldRef id="TRACTS_INF_FRONTO_OCCIPITAL_FASC_L_RD"/>
+		<DisplayFieldRef id="TRACTS_INF_FRONTO_OCCIPITAL_FASC_R_RD"/>
+		<DisplayFieldRef id="TRACTS_INF_LONG_FASC_L_RD"/>
+		<DisplayFieldRef id="TRACTS_INF_LONG_FASC_R_RD"/>
+		<DisplayFieldRef id="TRACTS_SUP_LONG_FASC_L_RD"/>
+		<DisplayFieldRef id="TRACTS_SUP_LONG_FASC_R_RD"/>
+		<DisplayFieldRef id="TRACTS_UNCINATE_FASC_L_RD"/>
+		<DisplayFieldRef id="TRACTS_UNCINATE_FASC_R_RD"/>
+		<DisplayFieldRef id="TRACTS_WHOLE_BRAIN_RD"/>
+	</DisplayVersion>
+	<DisplayVersion versionName="full" default-order-by="DATE" default-sort-order="DESC" brief-description="DTI" dark-color="9999CC" light-color="CCCCFF">
+		<DisplayFieldRef id="EXPT_ID"/>
+		<DisplayFieldRef id="DATE"/>
+		<DisplayFieldRef id="LABELS_ANT_CORONA_RADIATA_L_FA"/>
+		<DisplayFieldRef id="LABELS_ANT_CORONA_RADIATA_R_FA"/>
+		<DisplayFieldRef id="LABELS_ANT_LIMB_INTERNAL_CAPSULE_L_FA"/>
+		<DisplayFieldRef id="LABELS_ANT_LIMB_INTERNAL_CAPSULE_R_FA"/>
+		<DisplayFieldRef id="LABELS_BODY_CORPUS_CALLOSUM_FA"/>
+		<DisplayFieldRef id="LABELS_CEREBRAL_PED_L_FA"/>
+		<DisplayFieldRef id="LABELS_CEREBRAL_PED_R_FA"/>
+		<DisplayFieldRef id="LABELS_CINGULUM_L_FA"/>
+		<DisplayFieldRef id="LABELS_CINGULUM_R_FA"/>
+		<DisplayFieldRef id="LABELS_CORTICOSPINAL_TRACT_L_FA"/>
+		<DisplayFieldRef id="LABELS_CORTICOSPINAL_TRACT_R_FA"/>
+		<DisplayFieldRef id="LABELS_EXTERNAL_CAPSULE_L_FA"/>
+		<DisplayFieldRef id="LABELS_EXTERNAL_CAPSULE_R_FA"/>
+		<DisplayFieldRef id="LABELS_FORNIX_FA"/>
+		<DisplayFieldRef id="LABELS_FORNIX_STRIA_TERMINALIS_L_FA"/>
+		<DisplayFieldRef id="LABELS_FORNIX_STRIA_TERMINALIS_R_FA"/>
+		<DisplayFieldRef id="LABELS_GENU_CORPUS_CALLOSUM_FA"/>
+		<DisplayFieldRef id="LABELS_INF_CEREBELLAR_PED_L_FA"/>
+		<DisplayFieldRef id="LABELS_INF_CEREBELLAR_PED_R_FA"/>
+		<DisplayFieldRef id="LABELS_MEDIAL_LEMNISCUS_L_FA"/>
+		<DisplayFieldRef id="LABELS_MEDIAL_LEMNISCUS_R_FA"/>
+		<DisplayFieldRef id="LABELS_MIDDLE_CEREBELLAR_PED_FA"/>
+		<DisplayFieldRef id="LABELS_PONTINE_CROSSING_TRACT_FA"/>
+		<DisplayFieldRef id="LABELS_POST_CORONA_RADIATA_L_FA"/>
+		<DisplayFieldRef id="LABELS_POST_CORONA_RADIATA_R_FA"/>
+		<DisplayFieldRef id="LABELS_POST_LIMB_INTERNAL_CAPSULE_L_FA"/>
+		<DisplayFieldRef id="LABELS_POST_LIMB_INTERNAL_CAPSULE_R_FA"/>
+		<DisplayFieldRef id="LABELS_POST_THALAMIC_RADIATION_L_FA"/>
+		<DisplayFieldRef id="LABELS_POST_THALAMIC_RADIATION_R_FA"/>
+		<DisplayFieldRef id="LABELS_RETROLENTICULAR_PART_INTERNAL_CAPSULE_L_FA"/>
+		<DisplayFieldRef id="LABELS_RETROLENTICULAR_PART_INTERNAL_CAPSULE_R_FA"/>
+		<DisplayFieldRef id="LABELS_SAGITTAL_STRATUM_L_FA"/>
+		<DisplayFieldRef id="LABELS_SAGITTAL_STRATUM_R_FA"/>
+		<DisplayFieldRef id="LABELS_SPLENIUM_CORPUS_CALLOSUM_FA"/>
+		<DisplayFieldRef id="LABELS_SUP_CEREBELLAR_PED_L_FA"/>
+		<DisplayFieldRef id="LABELS_SUP_CEREBELLAR_PED_R_FA"/>
+		<DisplayFieldRef id="LABELS_SUP_CORONA_RADIATA_L_FA"/>
+		<DisplayFieldRef id="LABELS_SUP_CORONA_RADIATA_R_FA"/>
+		<DisplayFieldRef id="LABELS_SUP_FRONTO_OCCIPITAL_FASC_L_FA"/>
+		<DisplayFieldRef id="LABELS_SUP_FRONTO_OCCIPITAL_FASC_R_FA"/>
+		<DisplayFieldRef id="LABELS_SUP_LONG_FASC_L_FA"/>
+		<DisplayFieldRef id="LABELS_SUP_LONG_FASC_R_FA"/>
+		<DisplayFieldRef id="LABELS_TAPETUM_L_FA"/>
+		<DisplayFieldRef id="LABELS_TAPETUM_R_FA"/>
+		<DisplayFieldRef id="LABELS_UNCINATE_FASC_L_FA"/>
+		<DisplayFieldRef id="LABELS_UNCINATE_FASC_R_FA"/>
+		<DisplayFieldRef id="LABELS_WHOLE_BRAIN_FA"/>
+		<DisplayFieldRef id="TRACTS_ANT_THALAMIC_RADIATION_L_FA"/>
+		<DisplayFieldRef id="TRACTS_ANT_THALAMIC_RADIATION_R_FA"/>
+		<DisplayFieldRef id="TRACTS_CINGULUM_L_FA"/>
+		<DisplayFieldRef id="TRACTS_CINGULUM_R_FA"/>
+		<DisplayFieldRef id="TRACTS_CORTICOSPINAL_TRACT_L_FA"/>
+		<DisplayFieldRef id="TRACTS_CORTICOSPINAL_TRACT_R_FA"/>
+		<DisplayFieldRef id="TRACTS_FORCEPS_MAJOR_FA"/>
+		<DisplayFieldRef id="TRACTS_FORCEPS_MINOR_FA"/>
+		<DisplayFieldRef id="TRACTS_INF_FRONTO_OCCIPITAL_FASC_L_FA"/>
+		<DisplayFieldRef id="TRACTS_INF_FRONTO_OCCIPITAL_FASC_R_FA"/>
+		<DisplayFieldRef id="TRACTS_INF_LONG_FASC_L_FA"/>
+		<DisplayFieldRef id="TRACTS_INF_LONG_FASC_R_FA"/>
+		<DisplayFieldRef id="TRACTS_SUP_LONG_FASC_L_FA"/>
+		<DisplayFieldRef id="TRACTS_SUP_LONG_FASC_R_FA"/>
+		<DisplayFieldRef id="TRACTS_UNCINATE_FASC_L_FA"/>
+		<DisplayFieldRef id="TRACTS_UNCINATE_FASC_R_FA"/>
+		<DisplayFieldRef id="TRACTS_WHOLE_BRAIN_FA"/>
+		<DisplayFieldRef id="LABELS_ANT_CORONA_RADIATA_L_TR"/>
+		<DisplayFieldRef id="LABELS_ANT_CORONA_RADIATA_R_TR"/>
+		<DisplayFieldRef id="LABELS_ANT_LIMB_INTERNAL_CAPSULE_L_TR"/>
+		<DisplayFieldRef id="LABELS_ANT_LIMB_INTERNAL_CAPSULE_R_TR"/>
+		<DisplayFieldRef id="LABELS_BODY_CORPUS_CALLOSUM_TR"/>
+		<DisplayFieldRef id="LABELS_CEREBRAL_PED_L_TR"/>
+		<DisplayFieldRef id="LABELS_CEREBRAL_PED_R_TR"/>
+		<DisplayFieldRef id="LABELS_CINGULUM_L_TR"/>
+		<DisplayFieldRef id="LABELS_CINGULUM_R_TR"/>
+		<DisplayFieldRef id="LABELS_CORTICOSPINAL_TRACT_L_TR"/>
+		<DisplayFieldRef id="LABELS_CORTICOSPINAL_TRACT_R_TR"/>
+		<DisplayFieldRef id="LABELS_EXTERNAL_CAPSULE_L_TR"/>
+		<DisplayFieldRef id="LABELS_EXTERNAL_CAPSULE_R_TR"/>
+		<DisplayFieldRef id="LABELS_FORNIX_TR"/>
+		<DisplayFieldRef id="LABELS_FORNIX_STRIA_TERMINALIS_L_TR"/>
+		<DisplayFieldRef id="LABELS_FORNIX_STRIA_TERMINALIS_R_TR"/>
+		<DisplayFieldRef id="LABELS_GENU_CORPUS_CALLOSUM_TR"/>
+		<DisplayFieldRef id="LABELS_INF_CEREBELLAR_PED_L_TR"/>
+		<DisplayFieldRef id="LABELS_INF_CEREBELLAR_PED_R_TR"/>
+		<DisplayFieldRef id="LABELS_MEDIAL_LEMNISCUS_L_TR"/>
+		<DisplayFieldRef id="LABELS_MEDIAL_LEMNISCUS_R_TR"/>
+		<DisplayFieldRef id="LABELS_MIDDLE_CEREBELLAR_PED_TR"/>
+		<DisplayFieldRef id="LABELS_PONTINE_CROSSING_TRACT_TR"/>
+		<DisplayFieldRef id="LABELS_POST_CORONA_RADIATA_L_TR"/>
+		<DisplayFieldRef id="LABELS_POST_CORONA_RADIATA_R_TR"/>
+		<DisplayFieldRef id="LABELS_POST_LIMB_INTERNAL_CAPSULE_L_TR"/>
+		<DisplayFieldRef id="LABELS_POST_LIMB_INTERNAL_CAPSULE_R_TR"/>
+		<DisplayFieldRef id="LABELS_POST_THALAMIC_RADIATION_L_TR"/>
+		<DisplayFieldRef id="LABELS_POST_THALAMIC_RADIATION_R_TR"/>
+		<DisplayFieldRef id="LABELS_RETROLENTICULAR_PART_INTERNAL_CAPSULE_L_TR"/>
+		<DisplayFieldRef id="LABELS_RETROLENTICULAR_PART_INTERNAL_CAPSULE_R_TR"/>
+		<DisplayFieldRef id="LABELS_SAGITTAL_STRATUM_L_TR"/>
+		<DisplayFieldRef id="LABELS_SAGITTAL_STRATUM_R_TR"/>
+		<DisplayFieldRef id="LABELS_SPLENIUM_CORPUS_CALLOSUM_TR"/>
+		<DisplayFieldRef id="LABELS_SUP_CEREBELLAR_PED_L_TR"/>
+		<DisplayFieldRef id="LABELS_SUP_CEREBELLAR_PED_R_TR"/>
+		<DisplayFieldRef id="LABELS_SUP_CORONA_RADIATA_L_TR"/>
+		<DisplayFieldRef id="LABELS_SUP_CORONA_RADIATA_R_TR"/>
+		<DisplayFieldRef id="LABELS_SUP_FRONTO_OCCIPITAL_FASC_L_TR"/>
+		<DisplayFieldRef id="LABELS_SUP_FRONTO_OCCIPITAL_FASC_R_TR"/>
+		<DisplayFieldRef id="LABELS_SUP_LONG_FASC_L_TR"/>
+		<DisplayFieldRef id="LABELS_SUP_LONG_FASC_R_TR"/>
+		<DisplayFieldRef id="LABELS_TAPETUM_L_TR"/>
+		<DisplayFieldRef id="LABELS_TAPETUM_R_TR"/>
+		<DisplayFieldRef id="LABELS_UNCINATE_FASC_L_TR"/>
+		<DisplayFieldRef id="LABELS_UNCINATE_FASC_R_TR"/>
+		<DisplayFieldRef id="LABELS_WHOLE_BRAIN_TR"/>
+		<DisplayFieldRef id="TRACTS_ANT_THALAMIC_RADIATION_L_TR"/>
+		<DisplayFieldRef id="TRACTS_ANT_THALAMIC_RADIATION_R_TR"/>
+		<DisplayFieldRef id="TRACTS_CINGULUM_L_TR"/>
+		<DisplayFieldRef id="TRACTS_CINGULUM_R_TR"/>
+		<DisplayFieldRef id="TRACTS_CORTICOSPINAL_TRACT_L_TR"/>
+		<DisplayFieldRef id="TRACTS_CORTICOSPINAL_TRACT_R_TR"/>
+		<DisplayFieldRef id="TRACTS_FORCEPS_MAJOR_TR"/>
+		<DisplayFieldRef id="TRACTS_FORCEPS_MINOR_TR"/>
+		<DisplayFieldRef id="TRACTS_INF_FRONTO_OCCIPITAL_FASC_L_TR"/>
+		<DisplayFieldRef id="TRACTS_INF_FRONTO_OCCIPITAL_FASC_R_TR"/>
+		<DisplayFieldRef id="TRACTS_INF_LONG_FASC_L_TR"/>
+		<DisplayFieldRef id="TRACTS_INF_LONG_FASC_R_TR"/>
+		<DisplayFieldRef id="TRACTS_SUP_LONG_FASC_L_TR"/>
+		<DisplayFieldRef id="TRACTS_SUP_LONG_FASC_R_TR"/>
+		<DisplayFieldRef id="TRACTS_UNCINATE_FASC_L_TR"/>
+		<DisplayFieldRef id="TRACTS_UNCINATE_FASC_R_TR"/>
+		<DisplayFieldRef id="TRACTS_WHOLE_BRAIN_TR"/>
+		<DisplayFieldRef id="LABELS_ANT_CORONA_RADIATA_L_AD"/>
+		<DisplayFieldRef id="LABELS_ANT_CORONA_RADIATA_R_AD"/>
+		<DisplayFieldRef id="LABELS_ANT_LIMB_INTERNAL_CAPSULE_L_AD"/>
+		<DisplayFieldRef id="LABELS_ANT_LIMB_INTERNAL_CAPSULE_R_AD"/>
+		<DisplayFieldRef id="LABELS_BODY_CORPUS_CALLOSUM_AD"/>
+		<DisplayFieldRef id="LABELS_CEREBRAL_PED_L_AD"/>
+		<DisplayFieldRef id="LABELS_CEREBRAL_PED_R_AD"/>
+		<DisplayFieldRef id="LABELS_CINGULUM_L_AD"/>
+		<DisplayFieldRef id="LABELS_CINGULUM_R_AD"/>
+		<DisplayFieldRef id="LABELS_CORTICOSPINAL_TRACT_L_AD"/>
+		<DisplayFieldRef id="LABELS_CORTICOSPINAL_TRACT_R_AD"/>
+		<DisplayFieldRef id="LABELS_EXTERNAL_CAPSULE_L_AD"/>
+		<DisplayFieldRef id="LABELS_EXTERNAL_CAPSULE_R_AD"/>
+		<DisplayFieldRef id="LABELS_FORNIX_AD"/>
+		<DisplayFieldRef id="LABELS_FORNIX_STRIA_TERMINALIS_L_AD"/>
+		<DisplayFieldRef id="LABELS_FORNIX_STRIA_TERMINALIS_R_AD"/>
+		<DisplayFieldRef id="LABELS_GENU_CORPUS_CALLOSUM_AD"/>
+		<DisplayFieldRef id="LABELS_INF_CEREBELLAR_PED_L_AD"/>
+		<DisplayFieldRef id="LABELS_INF_CEREBELLAR_PED_R_AD"/>
+		<DisplayFieldRef id="LABELS_MEDIAL_LEMNISCUS_L_AD"/>
+		<DisplayFieldRef id="LABELS_MEDIAL_LEMNISCUS_R_AD"/>
+		<DisplayFieldRef id="LABELS_MIDDLE_CEREBELLAR_PED_AD"/>
+		<DisplayFieldRef id="LABELS_PONTINE_CROSSING_TRACT_AD"/>
+		<DisplayFieldRef id="LABELS_POST_CORONA_RADIATA_L_AD"/>
+		<DisplayFieldRef id="LABELS_POST_CORONA_RADIATA_R_AD"/>
+		<DisplayFieldRef id="LABELS_POST_LIMB_INTERNAL_CAPSULE_L_AD"/>
+		<DisplayFieldRef id="LABELS_POST_LIMB_INTERNAL_CAPSULE_R_AD"/>
+		<DisplayFieldRef id="LABELS_POST_THALAMIC_RADIATION_L_AD"/>
+		<DisplayFieldRef id="LABELS_POST_THALAMIC_RADIATION_R_AD"/>
+		<DisplayFieldRef id="LABELS_RETROLENTICULAR_PART_INTERNAL_CAPSULE_L_AD"/>
+		<DisplayFieldRef id="LABELS_RETROLENTICULAR_PART_INTERNAL_CAPSULE_R_AD"/>
+		<DisplayFieldRef id="LABELS_SAGITTAL_STRATUM_L_AD"/>
+		<DisplayFieldRef id="LABELS_SAGITTAL_STRATUM_R_AD"/>
+		<DisplayFieldRef id="LABELS_SPLENIUM_CORPUS_CALLOSUM_AD"/>
+		<DisplayFieldRef id="LABELS_SUP_CEREBELLAR_PED_L_AD"/>
+		<DisplayFieldRef id="LABELS_SUP_CEREBELLAR_PED_R_AD"/>
+		<DisplayFieldRef id="LABELS_SUP_CORONA_RADIATA_L_AD"/>
+		<DisplayFieldRef id="LABELS_SUP_CORONA_RADIATA_R_AD"/>
+		<DisplayFieldRef id="LABELS_SUP_FRONTO_OCCIPITAL_FASC_L_AD"/>
+		<DisplayFieldRef id="LABELS_SUP_FRONTO_OCCIPITAL_FASC_R_AD"/>
+		<DisplayFieldRef id="LABELS_SUP_LONG_FASC_L_AD"/>
+		<DisplayFieldRef id="LABELS_SUP_LONG_FASC_R_AD"/>
+		<DisplayFieldRef id="LABELS_TAPETUM_L_AD"/>
+		<DisplayFieldRef id="LABELS_TAPETUM_R_AD"/>
+		<DisplayFieldRef id="LABELS_UNCINATE_FASC_L_AD"/>
+		<DisplayFieldRef id="LABELS_UNCINATE_FASC_R_AD"/>
+		<DisplayFieldRef id="LABELS_WHOLE_BRAIN_AD"/>
+		<DisplayFieldRef id="TRACTS_ANT_THALAMIC_RADIATION_L_AD"/>
+		<DisplayFieldRef id="TRACTS_ANT_THALAMIC_RADIATION_R_AD"/>
+		<DisplayFieldRef id="TRACTS_CINGULUM_L_AD"/>
+		<DisplayFieldRef id="TRACTS_CINGULUM_R_AD"/>
+		<DisplayFieldRef id="TRACTS_CORTICOSPINAL_TRACT_L_AD"/>
+		<DisplayFieldRef id="TRACTS_CORTICOSPINAL_TRACT_R_AD"/>
+		<DisplayFieldRef id="TRACTS_FORCEPS_MAJOR_AD"/>
+		<DisplayFieldRef id="TRACTS_FORCEPS_MINOR_AD"/>
+		<DisplayFieldRef id="TRACTS_INF_FRONTO_OCCIPITAL_FASC_L_AD"/>
+		<DisplayFieldRef id="TRACTS_INF_FRONTO_OCCIPITAL_FASC_R_AD"/>
+		<DisplayFieldRef id="TRACTS_INF_LONG_FASC_L_AD"/>
+		<DisplayFieldRef id="TRACTS_INF_LONG_FASC_R_AD"/>
+		<DisplayFieldRef id="TRACTS_SUP_LONG_FASC_L_AD"/>
+		<DisplayFieldRef id="TRACTS_SUP_LONG_FASC_R_AD"/>
+		<DisplayFieldRef id="TRACTS_UNCINATE_FASC_L_AD"/>
+		<DisplayFieldRef id="TRACTS_UNCINATE_FASC_R_AD"/>
+		<DisplayFieldRef id="TRACTS_WHOLE_BRAIN_AD"/>
+		<DisplayFieldRef id="LABELS_ANT_CORONA_RADIATA_L_RD"/>
+		<DisplayFieldRef id="LABELS_ANT_CORONA_RADIATA_R_RD"/>
+		<DisplayFieldRef id="LABELS_ANT_LIMB_INTERNAL_CAPSULE_L_RD"/>
+		<DisplayFieldRef id="LABELS_ANT_LIMB_INTERNAL_CAPSULE_R_RD"/>
+		<DisplayFieldRef id="LABELS_BODY_CORPUS_CALLOSUM_RD"/>
+		<DisplayFieldRef id="LABELS_CEREBRAL_PED_L_RD"/>
+		<DisplayFieldRef id="LABELS_CEREBRAL_PED_R_RD"/>
+		<DisplayFieldRef id="LABELS_CINGULUM_L_RD"/>
+		<DisplayFieldRef id="LABELS_CINGULUM_R_RD"/>
+		<DisplayFieldRef id="LABELS_CORTICOSPINAL_TRACT_L_RD"/>
+		<DisplayFieldRef id="LABELS_CORTICOSPINAL_TRACT_R_RD"/>
+		<DisplayFieldRef id="LABELS_EXTERNAL_CAPSULE_L_RD"/>
+		<DisplayFieldRef id="LABELS_EXTERNAL_CAPSULE_R_RD"/>
+		<DisplayFieldRef id="LABELS_FORNIX_RD"/>
+		<DisplayFieldRef id="LABELS_FORNIX_STRIA_TERMINALIS_L_RD"/>
+		<DisplayFieldRef id="LABELS_FORNIX_STRIA_TERMINALIS_R_RD"/>
+		<DisplayFieldRef id="LABELS_GENU_CORPUS_CALLOSUM_RD"/>
+		<DisplayFieldRef id="LABELS_INF_CEREBELLAR_PED_L_RD"/>
+		<DisplayFieldRef id="LABELS_INF_CEREBELLAR_PED_R_RD"/>
+		<DisplayFieldRef id="LABELS_MEDIAL_LEMNISCUS_L_RD"/>
+		<DisplayFieldRef id="LABELS_MEDIAL_LEMNISCUS_R_RD"/>
+		<DisplayFieldRef id="LABELS_MIDDLE_CEREBELLAR_PED_RD"/>
+		<DisplayFieldRef id="LABELS_PONTINE_CROSSING_TRACT_RD"/>
+		<DisplayFieldRef id="LABELS_POST_CORONA_RADIATA_L_RD"/>
+		<DisplayFieldRef id="LABELS_POST_CORONA_RADIATA_R_RD"/>
+		<DisplayFieldRef id="LABELS_POST_LIMB_INTERNAL_CAPSULE_L_RD"/>
+		<DisplayFieldRef id="LABELS_POST_LIMB_INTERNAL_CAPSULE_R_RD"/>
+		<DisplayFieldRef id="LABELS_POST_THALAMIC_RADIATION_L_RD"/>
+		<DisplayFieldRef id="LABELS_POST_THALAMIC_RADIATION_R_RD"/>
+		<DisplayFieldRef id="LABELS_RETROLENTICULAR_PART_INTERNAL_CAPSULE_L_RD"/>
+		<DisplayFieldRef id="LABELS_RETROLENTICULAR_PART_INTERNAL_CAPSULE_R_RD"/>
+		<DisplayFieldRef id="LABELS_SAGITTAL_STRATUM_L_RD"/>
+		<DisplayFieldRef id="LABELS_SAGITTAL_STRATUM_R_RD"/>
+		<DisplayFieldRef id="LABELS_SPLENIUM_CORPUS_CALLOSUM_RD"/>
+		<DisplayFieldRef id="LABELS_SUP_CEREBELLAR_PED_L_RD"/>
+		<DisplayFieldRef id="LABELS_SUP_CEREBELLAR_PED_R_RD"/>
+		<DisplayFieldRef id="LABELS_SUP_CORONA_RADIATA_L_RD"/>
+		<DisplayFieldRef id="LABELS_SUP_CORONA_RADIATA_R_RD"/>
+		<DisplayFieldRef id="LABELS_SUP_FRONTO_OCCIPITAL_FASC_L_RD"/>
+		<DisplayFieldRef id="LABELS_SUP_FRONTO_OCCIPITAL_FASC_R_RD"/>
+		<DisplayFieldRef id="LABELS_SUP_LONG_FASC_L_RD"/>
+		<DisplayFieldRef id="LABELS_SUP_LONG_FASC_R_RD"/>
+		<DisplayFieldRef id="LABELS_TAPETUM_L_RD"/>
+		<DisplayFieldRef id="LABELS_TAPETUM_R_RD"/>
+		<DisplayFieldRef id="LABELS_UNCINATE_FASC_L_RD"/>
+		<DisplayFieldRef id="LABELS_UNCINATE_FASC_R_RD"/>
+		<DisplayFieldRef id="LABELS_WHOLE_BRAIN_RD"/>
+		<DisplayFieldRef id="TRACTS_ANT_THALAMIC_RADIATION_L_RD"/>
+		<DisplayFieldRef id="TRACTS_ANT_THALAMIC_RADIATION_R_RD"/>
+		<DisplayFieldRef id="TRACTS_CINGULUM_L_RD"/>
+		<DisplayFieldRef id="TRACTS_CINGULUM_R_RD"/>
+		<DisplayFieldRef id="TRACTS_CORTICOSPINAL_TRACT_L_RD"/>
+		<DisplayFieldRef id="TRACTS_CORTICOSPINAL_TRACT_R_RD"/>
+		<DisplayFieldRef id="TRACTS_FORCEPS_MAJOR_RD"/>
+		<DisplayFieldRef id="TRACTS_FORCEPS_MINOR_RD"/>
+		<DisplayFieldRef id="TRACTS_INF_FRONTO_OCCIPITAL_FASC_L_RD"/>
+		<DisplayFieldRef id="TRACTS_INF_FRONTO_OCCIPITAL_FASC_R_RD"/>
+		<DisplayFieldRef id="TRACTS_INF_LONG_FASC_L_RD"/>
+		<DisplayFieldRef id="TRACTS_INF_LONG_FASC_R_RD"/>
+		<DisplayFieldRef id="TRACTS_SUP_LONG_FASC_L_RD"/>
+		<DisplayFieldRef id="TRACTS_SUP_LONG_FASC_R_RD"/>
+		<DisplayFieldRef id="TRACTS_UNCINATE_FASC_L_RD"/>
+		<DisplayFieldRef id="TRACTS_UNCINATE_FASC_R_RD"/>
+		<DisplayFieldRef id="TRACTS_WHOLE_BRAIN_RD"/>
+	</DisplayVersion>
+	<DisplayVersion versionName="detailed" default-order-by="DATE" default-sort-order="DESC" brief-description="DTI" dark-color="9999CC" light-color="CCCCFF">
+		<DisplayFieldRef id="EXPT_ID"/>
+		<DisplayFieldRef id="DATE"/>
+		<DisplayFieldRef id="LABELS_ANT_CORONA_RADIATA_L_FA"/>
+		<DisplayFieldRef id="LABELS_ANT_CORONA_RADIATA_R_FA"/>
+		<DisplayFieldRef id="LABELS_ANT_LIMB_INTERNAL_CAPSULE_L_FA"/>
+		<DisplayFieldRef id="LABELS_ANT_LIMB_INTERNAL_CAPSULE_R_FA"/>
+		<DisplayFieldRef id="LABELS_BODY_CORPUS_CALLOSUM_FA"/>
+		<DisplayFieldRef id="LABELS_CEREBRAL_PED_L_FA"/>
+		<DisplayFieldRef id="LABELS_CEREBRAL_PED_R_FA"/>
+		<DisplayFieldRef id="LABELS_CINGULUM_L_FA"/>
+		<DisplayFieldRef id="LABELS_CINGULUM_R_FA"/>
+		<DisplayFieldRef id="LABELS_CORTICOSPINAL_TRACT_L_FA"/>
+		<DisplayFieldRef id="LABELS_CORTICOSPINAL_TRACT_R_FA"/>
+		<DisplayFieldRef id="LABELS_EXTERNAL_CAPSULE_L_FA"/>
+		<DisplayFieldRef id="LABELS_EXTERNAL_CAPSULE_R_FA"/>
+		<DisplayFieldRef id="LABELS_FORNIX_FA"/>
+		<DisplayFieldRef id="LABELS_FORNIX_STRIA_TERMINALIS_L_FA"/>
+		<DisplayFieldRef id="LABELS_FORNIX_STRIA_TERMINALIS_R_FA"/>
+		<DisplayFieldRef id="LABELS_GENU_CORPUS_CALLOSUM_FA"/>
+		<DisplayFieldRef id="LABELS_INF_CEREBELLAR_PED_L_FA"/>
+		<DisplayFieldRef id="LABELS_INF_CEREBELLAR_PED_R_FA"/>
+		<DisplayFieldRef id="LABELS_MEDIAL_LEMNISCUS_L_FA"/>
+		<DisplayFieldRef id="LABELS_MEDIAL_LEMNISCUS_R_FA"/>
+		<DisplayFieldRef id="LABELS_MIDDLE_CEREBELLAR_PED_FA"/>
+		<DisplayFieldRef id="LABELS_PONTINE_CROSSING_TRACT_FA"/>
+		<DisplayFieldRef id="LABELS_POST_CORONA_RADIATA_L_FA"/>
+		<DisplayFieldRef id="LABELS_POST_CORONA_RADIATA_R_FA"/>
+		<DisplayFieldRef id="LABELS_POST_LIMB_INTERNAL_CAPSULE_L_FA"/>
+		<DisplayFieldRef id="LABELS_POST_LIMB_INTERNAL_CAPSULE_R_FA"/>
+		<DisplayFieldRef id="LABELS_POST_THALAMIC_RADIATION_L_FA"/>
+		<DisplayFieldRef id="LABELS_POST_THALAMIC_RADIATION_R_FA"/>
+		<DisplayFieldRef id="LABELS_RETROLENTICULAR_PART_INTERNAL_CAPSULE_L_FA"/>
+		<DisplayFieldRef id="LABELS_RETROLENTICULAR_PART_INTERNAL_CAPSULE_R_FA"/>
+		<DisplayFieldRef id="LABELS_SAGITTAL_STRATUM_L_FA"/>
+		<DisplayFieldRef id="LABELS_SAGITTAL_STRATUM_R_FA"/>
+		<DisplayFieldRef id="LABELS_SPLENIUM_CORPUS_CALLOSUM_FA"/>
+		<DisplayFieldRef id="LABELS_SUP_CEREBELLAR_PED_L_FA"/>
+		<DisplayFieldRef id="LABELS_SUP_CEREBELLAR_PED_R_FA"/>
+		<DisplayFieldRef id="LABELS_SUP_CORONA_RADIATA_L_FA"/>
+		<DisplayFieldRef id="LABELS_SUP_CORONA_RADIATA_R_FA"/>
+		<DisplayFieldRef id="LABELS_SUP_FRONTO_OCCIPITAL_FASC_L_FA"/>
+		<DisplayFieldRef id="LABELS_SUP_FRONTO_OCCIPITAL_FASC_R_FA"/>
+		<DisplayFieldRef id="LABELS_SUP_LONG_FASC_L_FA"/>
+		<DisplayFieldRef id="LABELS_SUP_LONG_FASC_R_FA"/>
+		<DisplayFieldRef id="LABELS_TAPETUM_L_FA"/>
+		<DisplayFieldRef id="LABELS_TAPETUM_R_FA"/>
+		<DisplayFieldRef id="LABELS_UNCINATE_FASC_L_FA"/>
+		<DisplayFieldRef id="LABELS_UNCINATE_FASC_R_FA"/>
+		<DisplayFieldRef id="LABELS_WHOLE_BRAIN_FA"/>
+		<DisplayFieldRef id="TRACTS_ANT_THALAMIC_RADIATION_L_FA"/>
+		<DisplayFieldRef id="TRACTS_ANT_THALAMIC_RADIATION_R_FA"/>
+		<DisplayFieldRef id="TRACTS_CINGULUM_L_FA"/>
+		<DisplayFieldRef id="TRACTS_CINGULUM_R_FA"/>
+		<DisplayFieldRef id="TRACTS_CORTICOSPINAL_TRACT_L_FA"/>
+		<DisplayFieldRef id="TRACTS_CORTICOSPINAL_TRACT_R_FA"/>
+		<DisplayFieldRef id="TRACTS_FORCEPS_MAJOR_FA"/>
+		<DisplayFieldRef id="TRACTS_FORCEPS_MINOR_FA"/>
+		<DisplayFieldRef id="TRACTS_INF_FRONTO_OCCIPITAL_FASC_L_FA"/>
+		<DisplayFieldRef id="TRACTS_INF_FRONTO_OCCIPITAL_FASC_R_FA"/>
+		<DisplayFieldRef id="TRACTS_INF_LONG_FASC_L_FA"/>
+		<DisplayFieldRef id="TRACTS_INF_LONG_FASC_R_FA"/>
+		<DisplayFieldRef id="TRACTS_SUP_LONG_FASC_L_FA"/>
+		<DisplayFieldRef id="TRACTS_SUP_LONG_FASC_R_FA"/>
+		<DisplayFieldRef id="TRACTS_UNCINATE_FASC_L_FA"/>
+		<DisplayFieldRef id="TRACTS_UNCINATE_FASC_R_FA"/>
+		<DisplayFieldRef id="TRACTS_WHOLE_BRAIN_FA"/>
+		<DisplayFieldRef id="LABELS_ANT_CORONA_RADIATA_L_TR"/>
+		<DisplayFieldRef id="LABELS_ANT_CORONA_RADIATA_R_TR"/>
+		<DisplayFieldRef id="LABELS_ANT_LIMB_INTERNAL_CAPSULE_L_TR"/>
+		<DisplayFieldRef id="LABELS_ANT_LIMB_INTERNAL_CAPSULE_R_TR"/>
+		<DisplayFieldRef id="LABELS_BODY_CORPUS_CALLOSUM_TR"/>
+		<DisplayFieldRef id="LABELS_CEREBRAL_PED_L_TR"/>
+		<DisplayFieldRef id="LABELS_CEREBRAL_PED_R_TR"/>
+		<DisplayFieldRef id="LABELS_CINGULUM_L_TR"/>
+		<DisplayFieldRef id="LABELS_CINGULUM_R_TR"/>
+		<DisplayFieldRef id="LABELS_CORTICOSPINAL_TRACT_L_TR"/>
+		<DisplayFieldRef id="LABELS_CORTICOSPINAL_TRACT_R_TR"/>
+		<DisplayFieldRef id="LABELS_EXTERNAL_CAPSULE_L_TR"/>
+		<DisplayFieldRef id="LABELS_EXTERNAL_CAPSULE_R_TR"/>
+		<DisplayFieldRef id="LABELS_FORNIX_TR"/>
+		<DisplayFieldRef id="LABELS_FORNIX_STRIA_TERMINALIS_L_TR"/>
+		<DisplayFieldRef id="LABELS_FORNIX_STRIA_TERMINALIS_R_TR"/>
+		<DisplayFieldRef id="LABELS_GENU_CORPUS_CALLOSUM_TR"/>
+		<DisplayFieldRef id="LABELS_INF_CEREBELLAR_PED_L_TR"/>
+		<DisplayFieldRef id="LABELS_INF_CEREBELLAR_PED_R_TR"/>
+		<DisplayFieldRef id="LABELS_MEDIAL_LEMNISCUS_L_TR"/>
+		<DisplayFieldRef id="LABELS_MEDIAL_LEMNISCUS_R_TR"/>
+		<DisplayFieldRef id="LABELS_MIDDLE_CEREBELLAR_PED_TR"/>
+		<DisplayFieldRef id="LABELS_PONTINE_CROSSING_TRACT_TR"/>
+		<DisplayFieldRef id="LABELS_POST_CORONA_RADIATA_L_TR"/>
+		<DisplayFieldRef id="LABELS_POST_CORONA_RADIATA_R_TR"/>
+		<DisplayFieldRef id="LABELS_POST_LIMB_INTERNAL_CAPSULE_L_TR"/>
+		<DisplayFieldRef id="LABELS_POST_LIMB_INTERNAL_CAPSULE_R_TR"/>
+		<DisplayFieldRef id="LABELS_POST_THALAMIC_RADIATION_L_TR"/>
+		<DisplayFieldRef id="LABELS_POST_THALAMIC_RADIATION_R_TR"/>
+		<DisplayFieldRef id="LABELS_RETROLENTICULAR_PART_INTERNAL_CAPSULE_L_TR"/>
+		<DisplayFieldRef id="LABELS_RETROLENTICULAR_PART_INTERNAL_CAPSULE_R_TR"/>
+		<DisplayFieldRef id="LABELS_SAGITTAL_STRATUM_L_TR"/>
+		<DisplayFieldRef id="LABELS_SAGITTAL_STRATUM_R_TR"/>
+		<DisplayFieldRef id="LABELS_SPLENIUM_CORPUS_CALLOSUM_TR"/>
+		<DisplayFieldRef id="LABELS_SUP_CEREBELLAR_PED_L_TR"/>
+		<DisplayFieldRef id="LABELS_SUP_CEREBELLAR_PED_R_TR"/>
+		<DisplayFieldRef id="LABELS_SUP_CORONA_RADIATA_L_TR"/>
+		<DisplayFieldRef id="LABELS_SUP_CORONA_RADIATA_R_TR"/>
+		<DisplayFieldRef id="LABELS_SUP_FRONTO_OCCIPITAL_FASC_L_TR"/>
+		<DisplayFieldRef id="LABELS_SUP_FRONTO_OCCIPITAL_FASC_R_TR"/>
+		<DisplayFieldRef id="LABELS_SUP_LONG_FASC_L_TR"/>
+		<DisplayFieldRef id="LABELS_SUP_LONG_FASC_R_TR"/>
+		<DisplayFieldRef id="LABELS_TAPETUM_L_TR"/>
+		<DisplayFieldRef id="LABELS_TAPETUM_R_TR"/>
+		<DisplayFieldRef id="LABELS_UNCINATE_FASC_L_TR"/>
+		<DisplayFieldRef id="LABELS_UNCINATE_FASC_R_TR"/>
+		<DisplayFieldRef id="LABELS_WHOLE_BRAIN_TR"/>
+		<DisplayFieldRef id="TRACTS_ANT_THALAMIC_RADIATION_L_TR"/>
+		<DisplayFieldRef id="TRACTS_ANT_THALAMIC_RADIATION_R_TR"/>
+		<DisplayFieldRef id="TRACTS_CINGULUM_L_TR"/>
+		<DisplayFieldRef id="TRACTS_CINGULUM_R_TR"/>
+		<DisplayFieldRef id="TRACTS_CORTICOSPINAL_TRACT_L_TR"/>
+		<DisplayFieldRef id="TRACTS_CORTICOSPINAL_TRACT_R_TR"/>
+		<DisplayFieldRef id="TRACTS_FORCEPS_MAJOR_TR"/>
+		<DisplayFieldRef id="TRACTS_FORCEPS_MINOR_TR"/>
+		<DisplayFieldRef id="TRACTS_INF_FRONTO_OCCIPITAL_FASC_L_TR"/>
+		<DisplayFieldRef id="TRACTS_INF_FRONTO_OCCIPITAL_FASC_R_TR"/>
+		<DisplayFieldRef id="TRACTS_INF_LONG_FASC_L_TR"/>
+		<DisplayFieldRef id="TRACTS_INF_LONG_FASC_R_TR"/>
+		<DisplayFieldRef id="TRACTS_SUP_LONG_FASC_L_TR"/>
+		<DisplayFieldRef id="TRACTS_SUP_LONG_FASC_R_TR"/>
+		<DisplayFieldRef id="TRACTS_UNCINATE_FASC_L_TR"/>
+		<DisplayFieldRef id="TRACTS_UNCINATE_FASC_R_TR"/>
+		<DisplayFieldRef id="TRACTS_WHOLE_BRAIN_TR"/>
+		<DisplayFieldRef id="LABELS_ANT_CORONA_RADIATA_L_AD"/>
+		<DisplayFieldRef id="LABELS_ANT_CORONA_RADIATA_R_AD"/>
+		<DisplayFieldRef id="LABELS_ANT_LIMB_INTERNAL_CAPSULE_L_AD"/>
+		<DisplayFieldRef id="LABELS_ANT_LIMB_INTERNAL_CAPSULE_R_AD"/>
+		<DisplayFieldRef id="LABELS_BODY_CORPUS_CALLOSUM_AD"/>
+		<DisplayFieldRef id="LABELS_CEREBRAL_PED_L_AD"/>
+		<DisplayFieldRef id="LABELS_CEREBRAL_PED_R_AD"/>
+		<DisplayFieldRef id="LABELS_CINGULUM_L_AD"/>
+		<DisplayFieldRef id="LABELS_CINGULUM_R_AD"/>
+		<DisplayFieldRef id="LABELS_CORTICOSPINAL_TRACT_L_AD"/>
+		<DisplayFieldRef id="LABELS_CORTICOSPINAL_TRACT_R_AD"/>
+		<DisplayFieldRef id="LABELS_EXTERNAL_CAPSULE_L_AD"/>
+		<DisplayFieldRef id="LABELS_EXTERNAL_CAPSULE_R_AD"/>
+		<DisplayFieldRef id="LABELS_FORNIX_AD"/>
+		<DisplayFieldRef id="LABELS_FORNIX_STRIA_TERMINALIS_L_AD"/>
+		<DisplayFieldRef id="LABELS_FORNIX_STRIA_TERMINALIS_R_AD"/>
+		<DisplayFieldRef id="LABELS_GENU_CORPUS_CALLOSUM_AD"/>
+		<DisplayFieldRef id="LABELS_INF_CEREBELLAR_PED_L_AD"/>
+		<DisplayFieldRef id="LABELS_INF_CEREBELLAR_PED_R_AD"/>
+		<DisplayFieldRef id="LABELS_MEDIAL_LEMNISCUS_L_AD"/>
+		<DisplayFieldRef id="LABELS_MEDIAL_LEMNISCUS_R_AD"/>
+		<DisplayFieldRef id="LABELS_MIDDLE_CEREBELLAR_PED_AD"/>
+		<DisplayFieldRef id="LABELS_PONTINE_CROSSING_TRACT_AD"/>
+		<DisplayFieldRef id="LABELS_POST_CORONA_RADIATA_L_AD"/>
+		<DisplayFieldRef id="LABELS_POST_CORONA_RADIATA_R_AD"/>
+		<DisplayFieldRef id="LABELS_POST_LIMB_INTERNAL_CAPSULE_L_AD"/>
+		<DisplayFieldRef id="LABELS_POST_LIMB_INTERNAL_CAPSULE_R_AD"/>
+		<DisplayFieldRef id="LABELS_POST_THALAMIC_RADIATION_L_AD"/>
+		<DisplayFieldRef id="LABELS_POST_THALAMIC_RADIATION_R_AD"/>
+		<DisplayFieldRef id="LABELS_RETROLENTICULAR_PART_INTERNAL_CAPSULE_L_AD"/>
+		<DisplayFieldRef id="LABELS_RETROLENTICULAR_PART_INTERNAL_CAPSULE_R_AD"/>
+		<DisplayFieldRef id="LABELS_SAGITTAL_STRATUM_L_AD"/>
+		<DisplayFieldRef id="LABELS_SAGITTAL_STRATUM_R_AD"/>
+		<DisplayFieldRef id="LABELS_SPLENIUM_CORPUS_CALLOSUM_AD"/>
+		<DisplayFieldRef id="LABELS_SUP_CEREBELLAR_PED_L_AD"/>
+		<DisplayFieldRef id="LABELS_SUP_CEREBELLAR_PED_R_AD"/>
+		<DisplayFieldRef id="LABELS_SUP_CORONA_RADIATA_L_AD"/>
+		<DisplayFieldRef id="LABELS_SUP_CORONA_RADIATA_R_AD"/>
+		<DisplayFieldRef id="LABELS_SUP_FRONTO_OCCIPITAL_FASC_L_AD"/>
+		<DisplayFieldRef id="LABELS_SUP_FRONTO_OCCIPITAL_FASC_R_AD"/>
+		<DisplayFieldRef id="LABELS_SUP_LONG_FASC_L_AD"/>
+		<DisplayFieldRef id="LABELS_SUP_LONG_FASC_R_AD"/>
+		<DisplayFieldRef id="LABELS_TAPETUM_L_AD"/>
+		<DisplayFieldRef id="LABELS_TAPETUM_R_AD"/>
+		<DisplayFieldRef id="LABELS_UNCINATE_FASC_L_AD"/>
+		<DisplayFieldRef id="LABELS_UNCINATE_FASC_R_AD"/>
+		<DisplayFieldRef id="LABELS_WHOLE_BRAIN_AD"/>
+		<DisplayFieldRef id="TRACTS_ANT_THALAMIC_RADIATION_L_AD"/>
+		<DisplayFieldRef id="TRACTS_ANT_THALAMIC_RADIATION_R_AD"/>
+		<DisplayFieldRef id="TRACTS_CINGULUM_L_AD"/>
+		<DisplayFieldRef id="TRACTS_CINGULUM_R_AD"/>
+		<DisplayFieldRef id="TRACTS_CORTICOSPINAL_TRACT_L_AD"/>
+		<DisplayFieldRef id="TRACTS_CORTICOSPINAL_TRACT_R_AD"/>
+		<DisplayFieldRef id="TRACTS_FORCEPS_MAJOR_AD"/>
+		<DisplayFieldRef id="TRACTS_FORCEPS_MINOR_AD"/>
+		<DisplayFieldRef id="TRACTS_INF_FRONTO_OCCIPITAL_FASC_L_AD"/>
+		<DisplayFieldRef id="TRACTS_INF_FRONTO_OCCIPITAL_FASC_R_AD"/>
+		<DisplayFieldRef id="TRACTS_INF_LONG_FASC_L_AD"/>
+		<DisplayFieldRef id="TRACTS_INF_LONG_FASC_R_AD"/>
+		<DisplayFieldRef id="TRACTS_SUP_LONG_FASC_L_AD"/>
+		<DisplayFieldRef id="TRACTS_SUP_LONG_FASC_R_AD"/>
+		<DisplayFieldRef id="TRACTS_UNCINATE_FASC_L_AD"/>
+		<DisplayFieldRef id="TRACTS_UNCINATE_FASC_R_AD"/>
+		<DisplayFieldRef id="TRACTS_WHOLE_BRAIN_AD"/>
+		<DisplayFieldRef id="LABELS_ANT_CORONA_RADIATA_L_RD"/>
+		<DisplayFieldRef id="LABELS_ANT_CORONA_RADIATA_R_RD"/>
+		<DisplayFieldRef id="LABELS_ANT_LIMB_INTERNAL_CAPSULE_L_RD"/>
+		<DisplayFieldRef id="LABELS_ANT_LIMB_INTERNAL_CAPSULE_R_RD"/>
+		<DisplayFieldRef id="LABELS_BODY_CORPUS_CALLOSUM_RD"/>
+		<DisplayFieldRef id="LABELS_CEREBRAL_PED_L_RD"/>
+		<DisplayFieldRef id="LABELS_CEREBRAL_PED_R_RD"/>
+		<DisplayFieldRef id="LABELS_CINGULUM_L_RD"/>
+		<DisplayFieldRef id="LABELS_CINGULUM_R_RD"/>
+		<DisplayFieldRef id="LABELS_CORTICOSPINAL_TRACT_L_RD"/>
+		<DisplayFieldRef id="LABELS_CORTICOSPINAL_TRACT_R_RD"/>
+		<DisplayFieldRef id="LABELS_EXTERNAL_CAPSULE_L_RD"/>
+		<DisplayFieldRef id="LABELS_EXTERNAL_CAPSULE_R_RD"/>
+		<DisplayFieldRef id="LABELS_FORNIX_RD"/>
+		<DisplayFieldRef id="LABELS_FORNIX_STRIA_TERMINALIS_L_RD"/>
+		<DisplayFieldRef id="LABELS_FORNIX_STRIA_TERMINALIS_R_RD"/>
+		<DisplayFieldRef id="LABELS_GENU_CORPUS_CALLOSUM_RD"/>
+		<DisplayFieldRef id="LABELS_INF_CEREBELLAR_PED_L_RD"/>
+		<DisplayFieldRef id="LABELS_INF_CEREBELLAR_PED_R_RD"/>
+		<DisplayFieldRef id="LABELS_MEDIAL_LEMNISCUS_L_RD"/>
+		<DisplayFieldRef id="LABELS_MEDIAL_LEMNISCUS_R_RD"/>
+		<DisplayFieldRef id="LABELS_MIDDLE_CEREBELLAR_PED_RD"/>
+		<DisplayFieldRef id="LABELS_PONTINE_CROSSING_TRACT_RD"/>
+		<DisplayFieldRef id="LABELS_POST_CORONA_RADIATA_L_RD"/>
+		<DisplayFieldRef id="LABELS_POST_CORONA_RADIATA_R_RD"/>
+		<DisplayFieldRef id="LABELS_POST_LIMB_INTERNAL_CAPSULE_L_RD"/>
+		<DisplayFieldRef id="LABELS_POST_LIMB_INTERNAL_CAPSULE_R_RD"/>
+		<DisplayFieldRef id="LABELS_POST_THALAMIC_RADIATION_L_RD"/>
+		<DisplayFieldRef id="LABELS_POST_THALAMIC_RADIATION_R_RD"/>
+		<DisplayFieldRef id="LABELS_RETROLENTICULAR_PART_INTERNAL_CAPSULE_L_RD"/>
+		<DisplayFieldRef id="LABELS_RETROLENTICULAR_PART_INTERNAL_CAPSULE_R_RD"/>
+		<DisplayFieldRef id="LABELS_SAGITTAL_STRATUM_L_RD"/>
+		<DisplayFieldRef id="LABELS_SAGITTAL_STRATUM_R_RD"/>
+		<DisplayFieldRef id="LABELS_SPLENIUM_CORPUS_CALLOSUM_RD"/>
+		<DisplayFieldRef id="LABELS_SUP_CEREBELLAR_PED_L_RD"/>
+		<DisplayFieldRef id="LABELS_SUP_CEREBELLAR_PED_R_RD"/>
+		<DisplayFieldRef id="LABELS_SUP_CORONA_RADIATA_L_RD"/>
+		<DisplayFieldRef id="LABELS_SUP_CORONA_RADIATA_R_RD"/>
+		<DisplayFieldRef id="LABELS_SUP_FRONTO_OCCIPITAL_FASC_L_RD"/>
+		<DisplayFieldRef id="LABELS_SUP_FRONTO_OCCIPITAL_FASC_R_RD"/>
+		<DisplayFieldRef id="LABELS_SUP_LONG_FASC_L_RD"/>
+		<DisplayFieldRef id="LABELS_SUP_LONG_FASC_R_RD"/>
+		<DisplayFieldRef id="LABELS_TAPETUM_L_RD"/>
+		<DisplayFieldRef id="LABELS_TAPETUM_R_RD"/>
+		<DisplayFieldRef id="LABELS_UNCINATE_FASC_L_RD"/>
+		<DisplayFieldRef id="LABELS_UNCINATE_FASC_R_RD"/>
+		<DisplayFieldRef id="LABELS_WHOLE_BRAIN_RD"/>
+		<DisplayFieldRef id="TRACTS_ANT_THALAMIC_RADIATION_L_RD"/>
+		<DisplayFieldRef id="TRACTS_ANT_THALAMIC_RADIATION_R_RD"/>
+		<DisplayFieldRef id="TRACTS_CINGULUM_L_RD"/>
+		<DisplayFieldRef id="TRACTS_CINGULUM_R_RD"/>
+		<DisplayFieldRef id="TRACTS_CORTICOSPINAL_TRACT_L_RD"/>
+		<DisplayFieldRef id="TRACTS_CORTICOSPINAL_TRACT_R_RD"/>
+		<DisplayFieldRef id="TRACTS_FORCEPS_MAJOR_RD"/>
+		<DisplayFieldRef id="TRACTS_FORCEPS_MINOR_RD"/>
+		<DisplayFieldRef id="TRACTS_INF_FRONTO_OCCIPITAL_FASC_L_RD"/>
+		<DisplayFieldRef id="TRACTS_INF_FRONTO_OCCIPITAL_FASC_R_RD"/>
+		<DisplayFieldRef id="TRACTS_INF_LONG_FASC_L_RD"/>
+		<DisplayFieldRef id="TRACTS_INF_LONG_FASC_R_RD"/>
+		<DisplayFieldRef id="TRACTS_SUP_LONG_FASC_L_RD"/>
+		<DisplayFieldRef id="TRACTS_SUP_LONG_FASC_R_RD"/>
+		<DisplayFieldRef id="TRACTS_UNCINATE_FASC_L_RD"/>
+		<DisplayFieldRef id="TRACTS_UNCINATE_FASC_R_RD"/>
+		<DisplayFieldRef id="TRACTS_WHOLE_BRAIN_RD"/>
+	</DisplayVersion>
+	<DisplayVersion versionName="project_bundle" default-order-by="DATE" default-sort-order="DESC" brief-description="DTI" dark-color="9999CC" light-color="CCCCFF">
+		<DisplayFieldRef id="COBRA_DTIDATA_PROJECT_IDENTIFIER"/>
+		<DisplayFieldRef id="DATE"/>
+		<DisplayFieldRef id="LABELS_ANT_CORONA_RADIATA_L_FA"/>
+		<DisplayFieldRef id="LABELS_ANT_CORONA_RADIATA_R_FA"/>
+		<DisplayFieldRef id="LABELS_ANT_LIMB_INTERNAL_CAPSULE_L_FA"/>
+		<DisplayFieldRef id="LABELS_ANT_LIMB_INTERNAL_CAPSULE_R_FA"/>
+		<DisplayFieldRef id="LABELS_BODY_CORPUS_CALLOSUM_FA"/>
+		<DisplayFieldRef id="LABELS_CEREBRAL_PED_L_FA"/>
+		<DisplayFieldRef id="LABELS_CEREBRAL_PED_R_FA"/>
+		<DisplayFieldRef id="LABELS_CINGULUM_L_FA"/>
+		<DisplayFieldRef id="LABELS_CINGULUM_R_FA"/>
+		<DisplayFieldRef id="LABELS_CORTICOSPINAL_TRACT_L_FA"/>
+		<DisplayFieldRef id="LABELS_CORTICOSPINAL_TRACT_R_FA"/>
+		<DisplayFieldRef id="LABELS_EXTERNAL_CAPSULE_L_FA"/>
+		<DisplayFieldRef id="LABELS_EXTERNAL_CAPSULE_R_FA"/>
+		<DisplayFieldRef id="LABELS_FORNIX_FA"/>
+		<DisplayFieldRef id="LABELS_FORNIX_STRIA_TERMINALIS_L_FA"/>
+		<DisplayFieldRef id="LABELS_FORNIX_STRIA_TERMINALIS_R_FA"/>
+		<DisplayFieldRef id="LABELS_GENU_CORPUS_CALLOSUM_FA"/>
+		<DisplayFieldRef id="LABELS_INF_CEREBELLAR_PED_L_FA"/>
+		<DisplayFieldRef id="LABELS_INF_CEREBELLAR_PED_R_FA"/>
+		<DisplayFieldRef id="LABELS_MEDIAL_LEMNISCUS_L_FA"/>
+		<DisplayFieldRef id="LABELS_MEDIAL_LEMNISCUS_R_FA"/>
+		<DisplayFieldRef id="LABELS_MIDDLE_CEREBELLAR_PED_FA"/>
+		<DisplayFieldRef id="LABELS_PONTINE_CROSSING_TRACT_FA"/>
+		<DisplayFieldRef id="LABELS_POST_CORONA_RADIATA_L_FA"/>
+		<DisplayFieldRef id="LABELS_POST_CORONA_RADIATA_R_FA"/>
+		<DisplayFieldRef id="LABELS_POST_LIMB_INTERNAL_CAPSULE_L_FA"/>
+		<DisplayFieldRef id="LABELS_POST_LIMB_INTERNAL_CAPSULE_R_FA"/>
+		<DisplayFieldRef id="LABELS_POST_THALAMIC_RADIATION_L_FA"/>
+		<DisplayFieldRef id="LABELS_POST_THALAMIC_RADIATION_R_FA"/>
+		<DisplayFieldRef id="LABELS_RETROLENTICULAR_PART_INTERNAL_CAPSULE_L_FA"/>
+		<DisplayFieldRef id="LABELS_RETROLENTICULAR_PART_INTERNAL_CAPSULE_R_FA"/>
+		<DisplayFieldRef id="LABELS_SAGITTAL_STRATUM_L_FA"/>
+		<DisplayFieldRef id="LABELS_SAGITTAL_STRATUM_R_FA"/>
+		<DisplayFieldRef id="LABELS_SPLENIUM_CORPUS_CALLOSUM_FA"/>
+		<DisplayFieldRef id="LABELS_SUP_CEREBELLAR_PED_L_FA"/>
+		<DisplayFieldRef id="LABELS_SUP_CEREBELLAR_PED_R_FA"/>
+		<DisplayFieldRef id="LABELS_SUP_CORONA_RADIATA_L_FA"/>
+		<DisplayFieldRef id="LABELS_SUP_CORONA_RADIATA_R_FA"/>
+		<DisplayFieldRef id="LABELS_SUP_FRONTO_OCCIPITAL_FASC_L_FA"/>
+		<DisplayFieldRef id="LABELS_SUP_FRONTO_OCCIPITAL_FASC_R_FA"/>
+		<DisplayFieldRef id="LABELS_SUP_LONG_FASC_L_FA"/>
+		<DisplayFieldRef id="LABELS_SUP_LONG_FASC_R_FA"/>
+		<DisplayFieldRef id="LABELS_TAPETUM_L_FA"/>
+		<DisplayFieldRef id="LABELS_TAPETUM_R_FA"/>
+		<DisplayFieldRef id="LABELS_UNCINATE_FASC_L_FA"/>
+		<DisplayFieldRef id="LABELS_UNCINATE_FASC_R_FA"/>
+		<DisplayFieldRef id="LABELS_WHOLE_BRAIN_FA"/>
+		<DisplayFieldRef id="TRACTS_ANT_THALAMIC_RADIATION_L_FA"/>
+		<DisplayFieldRef id="TRACTS_ANT_THALAMIC_RADIATION_R_FA"/>
+		<DisplayFieldRef id="TRACTS_CINGULUM_L_FA"/>
+		<DisplayFieldRef id="TRACTS_CINGULUM_R_FA"/>
+		<DisplayFieldRef id="TRACTS_CORTICOSPINAL_TRACT_L_FA"/>
+		<DisplayFieldRef id="TRACTS_CORTICOSPINAL_TRACT_R_FA"/>
+		<DisplayFieldRef id="TRACTS_FORCEPS_MAJOR_FA"/>
+		<DisplayFieldRef id="TRACTS_FORCEPS_MINOR_FA"/>
+		<DisplayFieldRef id="TRACTS_INF_FRONTO_OCCIPITAL_FASC_L_FA"/>
+		<DisplayFieldRef id="TRACTS_INF_FRONTO_OCCIPITAL_FASC_R_FA"/>
+		<DisplayFieldRef id="TRACTS_INF_LONG_FASC_L_FA"/>
+		<DisplayFieldRef id="TRACTS_INF_LONG_FASC_R_FA"/>
+		<DisplayFieldRef id="TRACTS_SUP_LONG_FASC_L_FA"/>
+		<DisplayFieldRef id="TRACTS_SUP_LONG_FASC_R_FA"/>
+		<DisplayFieldRef id="TRACTS_UNCINATE_FASC_L_FA"/>
+		<DisplayFieldRef id="TRACTS_UNCINATE_FASC_R_FA"/>
+		<DisplayFieldRef id="TRACTS_WHOLE_BRAIN_FA"/>
+		<DisplayFieldRef id="LABELS_ANT_CORONA_RADIATA_L_TR"/>
+		<DisplayFieldRef id="LABELS_ANT_CORONA_RADIATA_R_TR"/>
+		<DisplayFieldRef id="LABELS_ANT_LIMB_INTERNAL_CAPSULE_L_TR"/>
+		<DisplayFieldRef id="LABELS_ANT_LIMB_INTERNAL_CAPSULE_R_TR"/>
+		<DisplayFieldRef id="LABELS_BODY_CORPUS_CALLOSUM_TR"/>
+		<DisplayFieldRef id="LABELS_CEREBRAL_PED_L_TR"/>
+		<DisplayFieldRef id="LABELS_CEREBRAL_PED_R_TR"/>
+		<DisplayFieldRef id="LABELS_CINGULUM_L_TR"/>
+		<DisplayFieldRef id="LABELS_CINGULUM_R_TR"/>
+		<DisplayFieldRef id="LABELS_CORTICOSPINAL_TRACT_L_TR"/>
+		<DisplayFieldRef id="LABELS_CORTICOSPINAL_TRACT_R_TR"/>
+		<DisplayFieldRef id="LABELS_EXTERNAL_CAPSULE_L_TR"/>
+		<DisplayFieldRef id="LABELS_EXTERNAL_CAPSULE_R_TR"/>
+		<DisplayFieldRef id="LABELS_FORNIX_TR"/>
+		<DisplayFieldRef id="LABELS_FORNIX_STRIA_TERMINALIS_L_TR"/>
+		<DisplayFieldRef id="LABELS_FORNIX_STRIA_TERMINALIS_R_TR"/>
+		<DisplayFieldRef id="LABELS_GENU_CORPUS_CALLOSUM_TR"/>
+		<DisplayFieldRef id="LABELS_INF_CEREBELLAR_PED_L_TR"/>
+		<DisplayFieldRef id="LABELS_INF_CEREBELLAR_PED_R_TR"/>
+		<DisplayFieldRef id="LABELS_MEDIAL_LEMNISCUS_L_TR"/>
+		<DisplayFieldRef id="LABELS_MEDIAL_LEMNISCUS_R_TR"/>
+		<DisplayFieldRef id="LABELS_MIDDLE_CEREBELLAR_PED_TR"/>
+		<DisplayFieldRef id="LABELS_PONTINE_CROSSING_TRACT_TR"/>
+		<DisplayFieldRef id="LABELS_POST_CORONA_RADIATA_L_TR"/>
+		<DisplayFieldRef id="LABELS_POST_CORONA_RADIATA_R_TR"/>
+		<DisplayFieldRef id="LABELS_POST_LIMB_INTERNAL_CAPSULE_L_TR"/>
+		<DisplayFieldRef id="LABELS_POST_LIMB_INTERNAL_CAPSULE_R_TR"/>
+		<DisplayFieldRef id="LABELS_POST_THALAMIC_RADIATION_L_TR"/>
+		<DisplayFieldRef id="LABELS_POST_THALAMIC_RADIATION_R_TR"/>
+		<DisplayFieldRef id="LABELS_RETROLENTICULAR_PART_INTERNAL_CAPSULE_L_TR"/>
+		<DisplayFieldRef id="LABELS_RETROLENTICULAR_PART_INTERNAL_CAPSULE_R_TR"/>
+		<DisplayFieldRef id="LABELS_SAGITTAL_STRATUM_L_TR"/>
+		<DisplayFieldRef id="LABELS_SAGITTAL_STRATUM_R_TR"/>
+		<DisplayFieldRef id="LABELS_SPLENIUM_CORPUS_CALLOSUM_TR"/>
+		<DisplayFieldRef id="LABELS_SUP_CEREBELLAR_PED_L_TR"/>
+		<DisplayFieldRef id="LABELS_SUP_CEREBELLAR_PED_R_TR"/>
+		<DisplayFieldRef id="LABELS_SUP_CORONA_RADIATA_L_TR"/>
+		<DisplayFieldRef id="LABELS_SUP_CORONA_RADIATA_R_TR"/>
+		<DisplayFieldRef id="LABELS_SUP_FRONTO_OCCIPITAL_FASC_L_TR"/>
+		<DisplayFieldRef id="LABELS_SUP_FRONTO_OCCIPITAL_FASC_R_TR"/>
+		<DisplayFieldRef id="LABELS_SUP_LONG_FASC_L_TR"/>
+		<DisplayFieldRef id="LABELS_SUP_LONG_FASC_R_TR"/>
+		<DisplayFieldRef id="LABELS_TAPETUM_L_TR"/>
+		<DisplayFieldRef id="LABELS_TAPETUM_R_TR"/>
+		<DisplayFieldRef id="LABELS_UNCINATE_FASC_L_TR"/>
+		<DisplayFieldRef id="LABELS_UNCINATE_FASC_R_TR"/>
+		<DisplayFieldRef id="LABELS_WHOLE_BRAIN_TR"/>
+		<DisplayFieldRef id="TRACTS_ANT_THALAMIC_RADIATION_L_TR"/>
+		<DisplayFieldRef id="TRACTS_ANT_THALAMIC_RADIATION_R_TR"/>
+		<DisplayFieldRef id="TRACTS_CINGULUM_L_TR"/>
+		<DisplayFieldRef id="TRACTS_CINGULUM_R_TR"/>
+		<DisplayFieldRef id="TRACTS_CORTICOSPINAL_TRACT_L_TR"/>
+		<DisplayFieldRef id="TRACTS_CORTICOSPINAL_TRACT_R_TR"/>
+		<DisplayFieldRef id="TRACTS_FORCEPS_MAJOR_TR"/>
+		<DisplayFieldRef id="TRACTS_FORCEPS_MINOR_TR"/>
+		<DisplayFieldRef id="TRACTS_INF_FRONTO_OCCIPITAL_FASC_L_TR"/>
+		<DisplayFieldRef id="TRACTS_INF_FRONTO_OCCIPITAL_FASC_R_TR"/>
+		<DisplayFieldRef id="TRACTS_INF_LONG_FASC_L_TR"/>
+		<DisplayFieldRef id="TRACTS_INF_LONG_FASC_R_TR"/>
+		<DisplayFieldRef id="TRACTS_SUP_LONG_FASC_L_TR"/>
+		<DisplayFieldRef id="TRACTS_SUP_LONG_FASC_R_TR"/>
+		<DisplayFieldRef id="TRACTS_UNCINATE_FASC_L_TR"/>
+		<DisplayFieldRef id="TRACTS_UNCINATE_FASC_R_TR"/>
+		<DisplayFieldRef id="TRACTS_WHOLE_BRAIN_TR"/>
+		<DisplayFieldRef id="LABELS_ANT_CORONA_RADIATA_L_AD"/>
+		<DisplayFieldRef id="LABELS_ANT_CORONA_RADIATA_R_AD"/>
+		<DisplayFieldRef id="LABELS_ANT_LIMB_INTERNAL_CAPSULE_L_AD"/>
+		<DisplayFieldRef id="LABELS_ANT_LIMB_INTERNAL_CAPSULE_R_AD"/>
+		<DisplayFieldRef id="LABELS_BODY_CORPUS_CALLOSUM_AD"/>
+		<DisplayFieldRef id="LABELS_CEREBRAL_PED_L_AD"/>
+		<DisplayFieldRef id="LABELS_CEREBRAL_PED_R_AD"/>
+		<DisplayFieldRef id="LABELS_CINGULUM_L_AD"/>
+		<DisplayFieldRef id="LABELS_CINGULUM_R_AD"/>
+		<DisplayFieldRef id="LABELS_CORTICOSPINAL_TRACT_L_AD"/>
+		<DisplayFieldRef id="LABELS_CORTICOSPINAL_TRACT_R_AD"/>
+		<DisplayFieldRef id="LABELS_EXTERNAL_CAPSULE_L_AD"/>
+		<DisplayFieldRef id="LABELS_EXTERNAL_CAPSULE_R_AD"/>
+		<DisplayFieldRef id="LABELS_FORNIX_AD"/>
+		<DisplayFieldRef id="LABELS_FORNIX_STRIA_TERMINALIS_L_AD"/>
+		<DisplayFieldRef id="LABELS_FORNIX_STRIA_TERMINALIS_R_AD"/>
+		<DisplayFieldRef id="LABELS_GENU_CORPUS_CALLOSUM_AD"/>
+		<DisplayFieldRef id="LABELS_INF_CEREBELLAR_PED_L_AD"/>
+		<DisplayFieldRef id="LABELS_INF_CEREBELLAR_PED_R_AD"/>
+		<DisplayFieldRef id="LABELS_MEDIAL_LEMNISCUS_L_AD"/>
+		<DisplayFieldRef id="LABELS_MEDIAL_LEMNISCUS_R_AD"/>
+		<DisplayFieldRef id="LABELS_MIDDLE_CEREBELLAR_PED_AD"/>
+		<DisplayFieldRef id="LABELS_PONTINE_CROSSING_TRACT_AD"/>
+		<DisplayFieldRef id="LABELS_POST_CORONA_RADIATA_L_AD"/>
+		<DisplayFieldRef id="LABELS_POST_CORONA_RADIATA_R_AD"/>
+		<DisplayFieldRef id="LABELS_POST_LIMB_INTERNAL_CAPSULE_L_AD"/>
+		<DisplayFieldRef id="LABELS_POST_LIMB_INTERNAL_CAPSULE_R_AD"/>
+		<DisplayFieldRef id="LABELS_POST_THALAMIC_RADIATION_L_AD"/>
+		<DisplayFieldRef id="LABELS_POST_THALAMIC_RADIATION_R_AD"/>
+		<DisplayFieldRef id="LABELS_RETROLENTICULAR_PART_INTERNAL_CAPSULE_L_AD"/>
+		<DisplayFieldRef id="LABELS_RETROLENTICULAR_PART_INTERNAL_CAPSULE_R_AD"/>
+		<DisplayFieldRef id="LABELS_SAGITTAL_STRATUM_L_AD"/>
+		<DisplayFieldRef id="LABELS_SAGITTAL_STRATUM_R_AD"/>
+		<DisplayFieldRef id="LABELS_SPLENIUM_CORPUS_CALLOSUM_AD"/>
+		<DisplayFieldRef id="LABELS_SUP_CEREBELLAR_PED_L_AD"/>
+		<DisplayFieldRef id="LABELS_SUP_CEREBELLAR_PED_R_AD"/>
+		<DisplayFieldRef id="LABELS_SUP_CORONA_RADIATA_L_AD"/>
+		<DisplayFieldRef id="LABELS_SUP_CORONA_RADIATA_R_AD"/>
+		<DisplayFieldRef id="LABELS_SUP_FRONTO_OCCIPITAL_FASC_L_AD"/>
+		<DisplayFieldRef id="LABELS_SUP_FRONTO_OCCIPITAL_FASC_R_AD"/>
+		<DisplayFieldRef id="LABELS_SUP_LONG_FASC_L_AD"/>
+		<DisplayFieldRef id="LABELS_SUP_LONG_FASC_R_AD"/>
+		<DisplayFieldRef id="LABELS_TAPETUM_L_AD"/>
+		<DisplayFieldRef id="LABELS_TAPETUM_R_AD"/>
+		<DisplayFieldRef id="LABELS_UNCINATE_FASC_L_AD"/>
+		<DisplayFieldRef id="LABELS_UNCINATE_FASC_R_AD"/>
+		<DisplayFieldRef id="LABELS_WHOLE_BRAIN_AD"/>
+		<DisplayFieldRef id="TRACTS_ANT_THALAMIC_RADIATION_L_AD"/>
+		<DisplayFieldRef id="TRACTS_ANT_THALAMIC_RADIATION_R_AD"/>
+		<DisplayFieldRef id="TRACTS_CINGULUM_L_AD"/>
+		<DisplayFieldRef id="TRACTS_CINGULUM_R_AD"/>
+		<DisplayFieldRef id="TRACTS_CORTICOSPINAL_TRACT_L_AD"/>
+		<DisplayFieldRef id="TRACTS_CORTICOSPINAL_TRACT_R_AD"/>
+		<DisplayFieldRef id="TRACTS_FORCEPS_MAJOR_AD"/>
+		<DisplayFieldRef id="TRACTS_FORCEPS_MINOR_AD"/>
+		<DisplayFieldRef id="TRACTS_INF_FRONTO_OCCIPITAL_FASC_L_AD"/>
+		<DisplayFieldRef id="TRACTS_INF_FRONTO_OCCIPITAL_FASC_R_AD"/>
+		<DisplayFieldRef id="TRACTS_INF_LONG_FASC_L_AD"/>
+		<DisplayFieldRef id="TRACTS_INF_LONG_FASC_R_AD"/>
+		<DisplayFieldRef id="TRACTS_SUP_LONG_FASC_L_AD"/>
+		<DisplayFieldRef id="TRACTS_SUP_LONG_FASC_R_AD"/>
+		<DisplayFieldRef id="TRACTS_UNCINATE_FASC_L_AD"/>
+		<DisplayFieldRef id="TRACTS_UNCINATE_FASC_R_AD"/>
+		<DisplayFieldRef id="TRACTS_WHOLE_BRAIN_AD"/>
+		<DisplayFieldRef id="LABELS_ANT_CORONA_RADIATA_L_RD"/>
+		<DisplayFieldRef id="LABELS_ANT_CORONA_RADIATA_R_RD"/>
+		<DisplayFieldRef id="LABELS_ANT_LIMB_INTERNAL_CAPSULE_L_RD"/>
+		<DisplayFieldRef id="LABELS_ANT_LIMB_INTERNAL_CAPSULE_R_RD"/>
+		<DisplayFieldRef id="LABELS_BODY_CORPUS_CALLOSUM_RD"/>
+		<DisplayFieldRef id="LABELS_CEREBRAL_PED_L_RD"/>
+		<DisplayFieldRef id="LABELS_CEREBRAL_PED_R_RD"/>
+		<DisplayFieldRef id="LABELS_CINGULUM_L_RD"/>
+		<DisplayFieldRef id="LABELS_CINGULUM_R_RD"/>
+		<DisplayFieldRef id="LABELS_CORTICOSPINAL_TRACT_L_RD"/>
+		<DisplayFieldRef id="LABELS_CORTICOSPINAL_TRACT_R_RD"/>
+		<DisplayFieldRef id="LABELS_EXTERNAL_CAPSULE_L_RD"/>
+		<DisplayFieldRef id="LABELS_EXTERNAL_CAPSULE_R_RD"/>
+		<DisplayFieldRef id="LABELS_FORNIX_RD"/>
+		<DisplayFieldRef id="LABELS_FORNIX_STRIA_TERMINALIS_L_RD"/>
+		<DisplayFieldRef id="LABELS_FORNIX_STRIA_TERMINALIS_R_RD"/>
+		<DisplayFieldRef id="LABELS_GENU_CORPUS_CALLOSUM_RD"/>
+		<DisplayFieldRef id="LABELS_INF_CEREBELLAR_PED_L_RD"/>
+		<DisplayFieldRef id="LABELS_INF_CEREBELLAR_PED_R_RD"/>
+		<DisplayFieldRef id="LABELS_MEDIAL_LEMNISCUS_L_RD"/>
+		<DisplayFieldRef id="LABELS_MEDIAL_LEMNISCUS_R_RD"/>
+		<DisplayFieldRef id="LABELS_MIDDLE_CEREBELLAR_PED_RD"/>
+		<DisplayFieldRef id="LABELS_PONTINE_CROSSING_TRACT_RD"/>
+		<DisplayFieldRef id="LABELS_POST_CORONA_RADIATA_L_RD"/>
+		<DisplayFieldRef id="LABELS_POST_CORONA_RADIATA_R_RD"/>
+		<DisplayFieldRef id="LABELS_POST_LIMB_INTERNAL_CAPSULE_L_RD"/>
+		<DisplayFieldRef id="LABELS_POST_LIMB_INTERNAL_CAPSULE_R_RD"/>
+		<DisplayFieldRef id="LABELS_POST_THALAMIC_RADIATION_L_RD"/>
+		<DisplayFieldRef id="LABELS_POST_THALAMIC_RADIATION_R_RD"/>
+		<DisplayFieldRef id="LABELS_RETROLENTICULAR_PART_INTERNAL_CAPSULE_L_RD"/>
+		<DisplayFieldRef id="LABELS_RETROLENTICULAR_PART_INTERNAL_CAPSULE_R_RD"/>
+		<DisplayFieldRef id="LABELS_SAGITTAL_STRATUM_L_RD"/>
+		<DisplayFieldRef id="LABELS_SAGITTAL_STRATUM_R_RD"/>
+		<DisplayFieldRef id="LABELS_SPLENIUM_CORPUS_CALLOSUM_RD"/>
+		<DisplayFieldRef id="LABELS_SUP_CEREBELLAR_PED_L_RD"/>
+		<DisplayFieldRef id="LABELS_SUP_CEREBELLAR_PED_R_RD"/>
+		<DisplayFieldRef id="LABELS_SUP_CORONA_RADIATA_L_RD"/>
+		<DisplayFieldRef id="LABELS_SUP_CORONA_RADIATA_R_RD"/>
+		<DisplayFieldRef id="LABELS_SUP_FRONTO_OCCIPITAL_FASC_L_RD"/>
+		<DisplayFieldRef id="LABELS_SUP_FRONTO_OCCIPITAL_FASC_R_RD"/>
+		<DisplayFieldRef id="LABELS_SUP_LONG_FASC_L_RD"/>
+		<DisplayFieldRef id="LABELS_SUP_LONG_FASC_R_RD"/>
+		<DisplayFieldRef id="LABELS_TAPETUM_L_RD"/>
+		<DisplayFieldRef id="LABELS_TAPETUM_R_RD"/>
+		<DisplayFieldRef id="LABELS_UNCINATE_FASC_L_RD"/>
+		<DisplayFieldRef id="LABELS_UNCINATE_FASC_R_RD"/>
+		<DisplayFieldRef id="LABELS_WHOLE_BRAIN_RD"/>
+		<DisplayFieldRef id="TRACTS_ANT_THALAMIC_RADIATION_L_RD"/>
+		<DisplayFieldRef id="TRACTS_ANT_THALAMIC_RADIATION_R_RD"/>
+		<DisplayFieldRef id="TRACTS_CINGULUM_L_RD"/>
+		<DisplayFieldRef id="TRACTS_CINGULUM_R_RD"/>
+		<DisplayFieldRef id="TRACTS_CORTICOSPINAL_TRACT_L_RD"/>
+		<DisplayFieldRef id="TRACTS_CORTICOSPINAL_TRACT_R_RD"/>
+		<DisplayFieldRef id="TRACTS_FORCEPS_MAJOR_RD"/>
+		<DisplayFieldRef id="TRACTS_FORCEPS_MINOR_RD"/>
+		<DisplayFieldRef id="TRACTS_INF_FRONTO_OCCIPITAL_FASC_L_RD"/>
+		<DisplayFieldRef id="TRACTS_INF_FRONTO_OCCIPITAL_FASC_R_RD"/>
+		<DisplayFieldRef id="TRACTS_INF_LONG_FASC_L_RD"/>
+		<DisplayFieldRef id="TRACTS_INF_LONG_FASC_R_RD"/>
+		<DisplayFieldRef id="TRACTS_SUP_LONG_FASC_L_RD"/>
+		<DisplayFieldRef id="TRACTS_SUP_LONG_FASC_R_RD"/>
+		<DisplayFieldRef id="TRACTS_UNCINATE_FASC_L_RD"/>
+		<DisplayFieldRef id="TRACTS_UNCINATE_FASC_R_RD"/>
+		<DisplayFieldRef id="TRACTS_WHOLE_BRAIN_RD"/>
+	</DisplayVersion>
+	<ViewLink alias="COBRA_DTIDATA_PROJECTS">
+		<Mapping TableName="COBRA_DTIDATA_PROJECTS">
+			<MappingColumn rootElement="COBRA:DTIData" fieldElement="COBRA:DTIData.ID" mapsTo="id"/>
+		</Mapping>
+	</ViewLink>
+	<SQLView name="COBRA_DTIDATA_PROJECTS" sql="SELECT id, '&lt;' || expt.project || '&gt;' || xs_a_concat(',&lt;' || shared.project || '&gt;') AS projects FROM xnat_experimentData expt LEFT JOIN xnat_experimentData_share shared ON expt.id=shared.sharing_share_xnat_experimentda_id LEFT JOIN xdat_meta_element xme ON expt.extension = xme.xdat_meta_element_id WHERE element_name='COBRA:DTIData' GROUP BY expt.id,expt.project"/>
+</Displays>
