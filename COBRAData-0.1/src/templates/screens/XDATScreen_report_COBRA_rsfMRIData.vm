@@ -47,16 +47,16 @@ $page.setVlinkColor($ui.vlink)
 							<TR><TD>protocol</TD><TD>$!item.getStringProperty("COBRA:rsfMRIData/protocol")</TD></TR>
 							<TR><TD>label</TD><TD>$!item.getStringProperty("COBRA:rsfMRIData/label")</TD></TR>
 							<TR><TD>&nbsp;</TD><TD></TD></TR>
-                            <TR><TD>Sensorimotor network (mean β coefficient)</TD><TD>$!item.getDoubleProperty("COBRA:rsfMRIData/Sensorimotor")</TD></TR>
-							<TR><TD>Auditory network (mean β coefficient)</TD><TD>$!item.getDoubleProperty("COBRA:rsfMRIData/Auditory")</TD></TR>
-							<TR><TD>Medial visual network (mean β coefficient)</TD><TD>$!item.getDoubleProperty("COBRA:rsfMRIData/Visual_medial")</TD></TR>
-							<TR><TD>Default mode network (mean β coefficient)</TD><TD>$!item.getDoubleProperty("COBRA:rsfMRIData/Default_mode")</TD></TR>
-							<TR><TD>Executive control network (mean β coefficient)</TD><TD>$!item.getDoubleProperty("COBRA:rsfMRIData/Executive_control")</TD></TR>
-							<TR><TD>Cerebellar network (mean β coefficient)</TD><TD>$!item.getDoubleProperty("COBRA:rsfMRIData/Cerebellar")</TD></TR>
-							<TR><TD>Lateral visual network (mean β coefficient)</TD><TD>$!item.getDoubleProperty("COBRA:rsfMRIData/Visual_lateral")</TD></TR>
-							<TR><TD>Right fronto-parietal network (mean β coefficient)</TD><TD>$!item.getDoubleProperty("COBRA:rsfMRIData/Fronto-parietal_Right")</TD></TR>
-							<TR><TD>Left fronto-parietal network (mean β coefficient)</TD><TD>$!item.getDoubleProperty("COBRA:rsfMRIData/Fronto-parietal_Left")</TD></TR>
-							<TR><TD>Occipital visual network (mean β coefficient)</TD><TD>$!item.getDoubleProperty("COBRA:rsfMRIData/Visual_occipital")</TD></TR>
+                            			<TR><TD>Sensorimotor network</TD><TD>$!item.getDoubleProperty("COBRA:rsfMRIData/Sensorimotor")</TD><TD>(mean β coefficient)</TD></TR>
+							<TR><TD>Auditory network</TD><TD>$!item.getDoubleProperty("COBRA:rsfMRIData/Auditory")</TD><TD>(mean β coefficient)</TD></TR>
+							<TR><TD>Medial visual network</TD><TD>$!item.getDoubleProperty("COBRA:rsfMRIData/Visual_medial")</TD><TD>(mean β coefficient)</TD></TR>
+							<TR><TD>Default mode network</TD><TD>$!item.getDoubleProperty("COBRA:rsfMRIData/Default_mode")</TD><TD>(mean β coefficient)</TD></TR>
+							<TR><TD>Executive control network</TD><TD>$!item.getDoubleProperty("COBRA:rsfMRIData/Executive_control")</TD><TD>(mean β coefficient)</TD></TR>
+							<TR><TD>Cerebellar network</TD><TD>$!item.getDoubleProperty("COBRA:rsfMRIData/Cerebellar")</TD><TD>(mean β coefficient)</TD></TR>
+							<TR><TD>Lateral visual network</TD><TD>$!item.getDoubleProperty("COBRA:rsfMRIData/Visual_lateral")</TD><TD>(mean β coefficient)</TD></TR>
+							<TR><TD>Right fronto-parietal network</TD><TD>$!item.getDoubleProperty("COBRA:rsfMRIData/Fronto-parietal_Right")</TD><TD>(mean β coefficient)</TD></TR>
+							<TR><TD>Left fronto-parietal network</TD><TD>$!item.getDoubleProperty("COBRA:rsfMRIData/Fronto-parietal_Left")</TD><TD>(mean β coefficient)</TD></TR>
+							<TR><TD>Occipital visual network</TD><TD>$!item.getDoubleProperty("COBRA:rsfMRIData/Visual_occipital")</TD><TD>(mean β coefficient)</TD></TR>
 						</TABLE>
 					</TD>
 					<TD valign="top" align="right">

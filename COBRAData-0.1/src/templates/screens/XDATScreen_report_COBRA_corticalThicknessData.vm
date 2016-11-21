@@ -47,183 +47,183 @@ $page.setVlinkColor($ui.vlink)
 							<TR><TD>protocol</TD><TD>$!item.getStringProperty("COBRA:corticalThicknessData/protocol")</TD></TR>
 							<TR><TD>label</TD><TD>$!item.getStringProperty("COBRA:corticalThicknessData/label")</TD></TR>
                             <TR><TD>&nbsp;</TD><TD></TD></TR>
-							<TR><TD>left hemisphere cortical thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_MeanThickness_thickness")</TD></TR>
-							<TR><TD>right hemisphere cortical thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_MeanThickness_thickness")</TD></TR>
-							<TR><TD>Cerebellum white matter - left (mm^3)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/Left-Cerebellum-White-Matter")</TD></TR>
-							<TR><TD>Cerebellum grey matter - left (mm^3)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/Left-Cerebellum-Cortex")</TD></TR>
-							<TR><TD>Thalamus - left (mm^3)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/Left-Thalamus-Proper")</TD></TR>
-							<TR><TD>Caudate - left (mm^3)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/Left-Caudate")</TD></TR>
-							<TR><TD>Putamen - left (mm^3)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/Left-Putamen")</TD></TR>
-							<TR><TD>Pallidum - left (mm^3)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/Left-Pallidum")</TD></TR>
-							<TR><TD>Brain stem (mm^3)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/Brain-Stem")</TD></TR>
-							<TR><TD>Hippcampus - left (mm^3)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/Left-Hippocampus")</TD></TR>
-							<TR><TD>Amgydala - left (mm^3)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/Left-Amygdala")</TD></TR>
-							<TR><TD>Nucleus Accumbens - left (mm^3)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/Left-Accumbens-area")</TD></TR>
-							<TR><TD>Ventral diencephalon - left (mm^3)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/Left-VentralDC")</TD></TR>
-							<TR><TD>Cerebellum white matter - right (mm^3)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/Right-Cerebellum-White-Matter")</TD></TR>
-							<TR><TD>Cerebellum grey matter - right (mm^3)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/Right-Cerebellum-Cortex")</TD></TR>
-							<TR><TD>Thalamus - right (mm^3)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/Right-Thalamus-Proper")</TD></TR>
-							<TR><TD>Caudate - right (mm^3)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/Right-Caudate")</TD></TR>
-							<TR><TD>Putamen - right (mm^3)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/Right-Putamen")</TD></TR>
-							<TR><TD>Pallidum - right (mm^3)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/Right-Pallidum")</TD></TR>
-							<TR><TD>Hippcampus - right (mm^3)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/Right-Hippocampus")</TD></TR>
-							<TR><TD>Amgydala - right (mm^3)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/Right-Amygdala")</TD></TR>
-							<TR><TD>Nucleus Accumbens - right (mm^3)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/Right-Accumbens-area")</TD></TR>
-							<TR><TD>Ventral diencephalon - right (mm^3)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/Right-VentralDC")</TD></TR>
-							<TR><TD>Optic chiasm (mm^3)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/Optic-Chiasm")</TD></TR>
-							<TR><TD>Corpus callosum - posterior (mm^3)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/CC_Posterior")</TD></TR>
-							<TR><TD>Corpus callosum - mid posterior (mm^3)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/CC_Mid_Posterior")</TD></TR>
-							<TR><TD>Corpus callosum - centre (mm^3)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/CC_Central")</TD></TR>
-							<TR><TD>Corpus callosum - mid anterior (mm^3)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/CC_Mid_Anterior")</TD></TR>
-							<TR><TD>Corpus callosum - anterior (mm^3)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/CC_Anterior")</TD></TR>
-							<TR><TD>left hemisphere cortical parcellation ROIs (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_G_and_S_frontomargin_thickness")</TD></TR>
-							<TR><TD>lh_G_and_S_occipital_inf_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_G_and_S_occipital_inf_thickness")</TD></TR>
-							<TR><TD>lh_G_and_S_paracentral_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_G_and_S_paracentral_thickness")</TD></TR>
-							<TR><TD>lh_G_and_S_subcentral_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_G_and_S_subcentral_thickness")</TD></TR>
-							<TR><TD>lh_G_and_S_transv_frontopol_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_G_and_S_transv_frontopol_thickness")</TD></TR>
-							<TR><TD>lh_G_and_S_cingul-Ant_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_G_and_S_cingul-Ant_thickness")</TD></TR>
-							<TR><TD>lh_G_and_S_cingul-Mid-Ant_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_G_and_S_cingul-Mid-Ant_thickness")</TD></TR>
-							<TR><TD>lh_G_and_S_cingul-Mid-Post_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_G_and_S_cingul-Mid-Post_thickness")</TD></TR>
-							<TR><TD>lh_G_cingul-Post-dorsal_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_G_cingul-Post-dorsal_thickness")</TD></TR>
-							<TR><TD>lh_G_cingul-Post-ventral_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_G_cingul-Post-ventral_thickness")</TD></TR>
-							<TR><TD>lh_G_cuneus_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_G_cuneus_thickness")</TD></TR>
-							<TR><TD>lh_G_front_inf-Opercular_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_G_front_inf-Opercular_thickness")</TD></TR>
-							<TR><TD>lh_G_front_inf-Orbital_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_G_front_inf-Orbital_thickness")</TD></TR>
-							<TR><TD>lh_G_front_inf-Triangul_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_G_front_inf-Triangul_thickness")</TD></TR>
-							<TR><TD>lh_G_front_middle_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_G_front_middle_thickness")</TD></TR>
-							<TR><TD>lh_G_front_sup_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_G_front_sup_thickness")</TD></TR>
-							<TR><TD>lh_G_Ins_lg_and_S_cent_ins_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_G_Ins_lg_and_S_cent_ins_thickness")</TD></TR>
-							<TR><TD>lh_G_insular_short_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_G_insular_short_thickness")</TD></TR>
-							<TR><TD>lh_G_occipital_middle_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_G_occipital_middle_thickness")</TD></TR>
-							<TR><TD>lh_G_occipital_sup_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_G_occipital_sup_thickness")</TD></TR>
-							<TR><TD>lh_G_oc-temp_lat-fusifor_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_G_oc-temp_lat-fusifor_thickness")</TD></TR>
-							<TR><TD>lh_G_oc-temp_med-Lingual_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_G_oc-temp_med-Lingual_thickness")</TD></TR>
-							<TR><TD>lh_G_oc-temp_med-Parahip_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_G_oc-temp_med-Parahip_thickness")</TD></TR>
-							<TR><TD>lh_G_orbital_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_G_orbital_thickness")</TD></TR>
-							<TR><TD>lh_G_pariet_inf-Angular_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_G_pariet_inf-Angular_thickness")</TD></TR>
-							<TR><TD>lh_G_pariet_inf-Supramar_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_G_pariet_inf-Supramar_thickness")</TD></TR>
-							<TR><TD>lh_G_parietal_sup_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_G_parietal_sup_thickness")</TD></TR>
-							<TR><TD>lh_G_postcentral_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_G_postcentral_thickness")</TD></TR>
-							<TR><TD>lh_G_precentral_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_G_precentral_thickness")</TD></TR>
-							<TR><TD>lh_G_precuneus_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_G_precuneus_thickness")</TD></TR>
-							<TR><TD>lh_G_rectus_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_G_rectus_thickness")</TD></TR>
-							<TR><TD>lh_G_subcallosal_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_G_subcallosal_thickness")</TD></TR>
-							<TR><TD>lh_G_temp_sup-G_T_transv_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_G_temp_sup-G_T_transv_thickness")</TD></TR>
-							<TR><TD>lh_G_temp_sup-Lateral_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_G_temp_sup-Lateral_thickness")</TD></TR>
-							<TR><TD>lh_G_temp_sup-Plan_polar_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_G_temp_sup-Plan_polar_thickness")</TD></TR>
-							<TR><TD>lh_G_temp_sup-Plan_tempo_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_G_temp_sup-Plan_tempo_thickness")</TD></TR>
-							<TR><TD>lh_G_temporal_inf_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_G_temporal_inf_thickness")</TD></TR>
-							<TR><TD>lh_G_temporal_middle_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_G_temporal_middle_thickness")</TD></TR>
-							<TR><TD>lh_Lat_Fis-ant-Horizont_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_Lat_Fis-ant-Horizont_thickness")</TD></TR>
-							<TR><TD>lh_Lat_Fis-ant-Vertical_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_Lat_Fis-ant-Vertical_thickness")</TD></TR>
-							<TR><TD>lh_Lat_Fis-post_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_Lat_Fis-post_thickness")</TD></TR>
-							<TR><TD>lh_Pole_occipital_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_Pole_occipital_thickness")</TD></TR>
-							<TR><TD>lh_Pole_temporal_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_Pole_temporal_thickness")</TD></TR>
-							<TR><TD>lh_S_calcarine_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_S_calcarine_thickness")</TD></TR>
-							<TR><TD>lh_S_central_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_S_central_thickness")</TD></TR>
-							<TR><TD>lh_S_cingul-Marginalis_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_S_cingul-Marginalis_thickness")</TD></TR>
-							<TR><TD>lh_S_circular_insula_ant_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_S_circular_insula_ant_thickness")</TD></TR>
-							<TR><TD>lh_S_circular_insula_inf_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_S_circular_insula_inf_thickness")</TD></TR>
-							<TR><TD>lh_S_circular_insula_sup_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_S_circular_insula_sup_thickness")</TD></TR>
-							<TR><TD>lh_S_collat_transv_ant_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_S_collat_transv_ant_thickness")</TD></TR>
-							<TR><TD>lh_S_collat_transv_post_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_S_collat_transv_post_thickness")</TD></TR>
-							<TR><TD>lh_S_front_inf_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_S_front_inf_thickness")</TD></TR>
-							<TR><TD>lh_S_front_middle_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_S_front_middle_thickness")</TD></TR>
-							<TR><TD>lh_S_front_sup_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_S_front_sup_thickness")</TD></TR>
-							<TR><TD>lh_S_interm_prim-Jensen_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_S_interm_prim-Jensen_thickness")</TD></TR>
-							<TR><TD>lh_S_intrapariet_and_P_trans_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_S_intrapariet_and_P_trans_thickness")</TD></TR>
-							<TR><TD>lh_S_oc_middle_and_Lunatus_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_S_oc_middle_and_Lunatus_thickness")</TD></TR>
-							<TR><TD>lh_S_oc_sup_and_transversal_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_S_oc_sup_and_transversal_thickness")</TD></TR>
-							<TR><TD>lh_S_occipital_ant_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_S_occipital_ant_thickness")</TD></TR>
-							<TR><TD>lh_S_oc-temp_lat_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_S_oc-temp_lat_thickness")</TD></TR>
-							<TR><TD>lh_S_oc-temp_med_and_Lingual_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_S_oc-temp_med_and_Lingual_thickness")</TD></TR>
-							<TR><TD>lh_S_orbital_lateral_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_S_orbital_lateral_thickness")</TD></TR>
-							<TR><TD>lh_S_orbital_med-olfact_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_S_orbital_med-olfact_thickness")</TD></TR>
-							<TR><TD>lh_S_orbital-H_Shaped_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_S_orbital-H_Shaped_thickness")</TD></TR>
-							<TR><TD>lh_S_parieto_occipital_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_S_parieto_occipital_thickness")</TD></TR>
-							<TR><TD>lh_S_pericallosal_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_S_pericallosal_thickness")</TD></TR>
-							<TR><TD>lh_S_postcentral_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_S_postcentral_thickness")</TD></TR>
-							<TR><TD>lh_S_precentral-inf-part_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_S_precentral-inf-part_thickness")</TD></TR>
-							<TR><TD>lh_S_precentral-sup-part_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_S_precentral-sup-part_thickness")</TD></TR>
-							<TR><TD>lh_S_suborbital_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_S_suborbital_thickness")</TD></TR>
-							<TR><TD>lh_S_subparietal_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_S_subparietal_thickness")</TD></TR>
-							<TR><TD>lh_S_temporal_inf_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_S_temporal_inf_thickness")</TD></TR>
-							<TR><TD>lh_S_temporal_sup_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_S_temporal_sup_thickness")</TD></TR>
-							<TR><TD>lh_S_temporal_transverse_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_S_temporal_transverse_thickness")</TD></TR>
-							<TR><TD>right hemisphere cortical parcellation ROIs (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_G_and_S_frontomargin_thickness")</TD></TR>
-							<TR><TD>rh_G_and_S_occipital_inf_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_G_and_S_occipital_inf_thickness")</TD></TR>
-							<TR><TD>rh_G_and_S_paracentral_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_G_and_S_paracentral_thickness")</TD></TR>
-							<TR><TD>rh_G_and_S_subcentral_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_G_and_S_subcentral_thickness")</TD></TR>
-							<TR><TD>rh_G_and_S_transv_frontopol_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_G_and_S_transv_frontopol_thickness")</TD></TR>
-							<TR><TD>rh_G_and_S_cingul-Ant_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_G_and_S_cingul-Ant_thickness")</TD></TR>
-							<TR><TD>rh_G_and_S_cingul-Mid-Ant_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_G_and_S_cingul-Mid-Ant_thickness")</TD></TR>
-							<TR><TD>rh_G_and_S_cingul-Mid-Post_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_G_and_S_cingul-Mid-Post_thickness")</TD></TR>
-							<TR><TD>rh_G_cingul-Post-dorsal_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_G_cingul-Post-dorsal_thickness")</TD></TR>
-							<TR><TD>rh_G_cingul-Post-ventral_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_G_cingul-Post-ventral_thickness")</TD></TR>
-							<TR><TD>rh_G_cuneus_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_G_cuneus_thickness")</TD></TR>
-							<TR><TD>rh_G_front_inf-Opercular_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_G_front_inf-Opercular_thickness")</TD></TR>
-							<TR><TD>rh_G_front_inf-Orbital_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_G_front_inf-Orbital_thickness")</TD></TR>
-							<TR><TD>rh_G_front_inf-Triangul_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_G_front_inf-Triangul_thickness")</TD></TR>
-							<TR><TD>rh_G_front_middle_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_G_front_middle_thickness")</TD></TR>
-							<TR><TD>rh_G_front_sup_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_G_front_sup_thickness")</TD></TR>
-							<TR><TD>rh_G_Ins_lg_and_S_cent_ins_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_G_Ins_lg_and_S_cent_ins_thickness")</TD></TR>
-							<TR><TD>rh_G_insular_short_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_G_insular_short_thickness")</TD></TR>
-							<TR><TD>rh_G_occipital_middle_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_G_occipital_middle_thickness")</TD></TR>
-							<TR><TD>rh_G_occipital_sup_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_G_occipital_sup_thickness")</TD></TR>
-							<TR><TD>rh_G_oc-temp_lat-fusifor_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_G_oc-temp_lat-fusifor_thickness")</TD></TR>
-							<TR><TD>rh_G_oc-temp_med-Lingual_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_G_oc-temp_med-Lingual_thickness")</TD></TR>
-							<TR><TD>rh_G_oc-temp_med-Parahip_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_G_oc-temp_med-Parahip_thickness")</TD></TR>
-							<TR><TD>rh_G_orbital_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_G_orbital_thickness")</TD></TR>
-							<TR><TD>rh_G_pariet_inf-Angular_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_G_pariet_inf-Angular_thickness")</TD></TR>
-							<TR><TD>rh_G_pariet_inf-Supramar_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_G_pariet_inf-Supramar_thickness")</TD></TR>
-							<TR><TD>rh_G_parietal_sup_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_G_parietal_sup_thickness")</TD></TR>
-							<TR><TD>rh_G_postcentral_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_G_postcentral_thickness")</TD></TR>
-							<TR><TD>rh_G_precentral_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_G_precentral_thickness")</TD></TR>
-							<TR><TD>rh_G_precuneus_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_G_precuneus_thickness")</TD></TR>
-							<TR><TD>rh_G_rectus_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_G_rectus_thickness")</TD></TR>
-							<TR><TD>rh_G_subcallosal_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_G_subcallosal_thickness")</TD></TR>
-							<TR><TD>rh_G_temp_sup-G_T_transv_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_G_temp_sup-G_T_transv_thickness")</TD></TR>
-							<TR><TD>rh_G_temp_sup-Lateral_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_G_temp_sup-Lateral_thickness")</TD></TR>
-							<TR><TD>rh_G_temp_sup-Plan_polar_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_G_temp_sup-Plan_polar_thickness")</TD></TR>
-							<TR><TD>rh_G_temp_sup-Plan_tempo_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_G_temp_sup-Plan_tempo_thickness")</TD></TR>
-							<TR><TD>rh_G_temporal_inf_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_G_temporal_inf_thickness")</TD></TR>
-							<TR><TD>rh_G_temporal_middle_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_G_temporal_middle_thickness")</TD></TR>
-							<TR><TD>rh_Lat_Fis-ant-Horizont_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_Lat_Fis-ant-Horizont_thickness")</TD></TR>
-							<TR><TD>rh_Lat_Fis-ant-Vertical_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_Lat_Fis-ant-Vertical_thickness")</TD></TR>
-							<TR><TD>rh_Lat_Fis-post_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_Lat_Fis-post_thickness")</TD></TR>
-							<TR><TD>rh_Pole_occipital_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_Pole_occipital_thickness")</TD></TR>
-							<TR><TD>rh_Pole_temporal_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_Pole_temporal_thickness")</TD></TR>
-							<TR><TD>rh_S_calcarine_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_S_calcarine_thickness")</TD></TR>
-							<TR><TD>rh_S_central_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_S_central_thickness")</TD></TR>
-							<TR><TD>rh_S_cingul-Marginalis_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_S_cingul-Marginalis_thickness")</TD></TR>
-							<TR><TD>rh_S_circular_insula_ant_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_S_circular_insula_ant_thickness")</TD></TR>
-							<TR><TD>rh_S_circular_insula_inf_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_S_circular_insula_inf_thickness")</TD></TR>
-							<TR><TD>rh_S_circular_insula_sup_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_S_circular_insula_sup_thickness")</TD></TR>
-							<TR><TD>rh_S_collat_transv_ant_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_S_collat_transv_ant_thickness")</TD></TR>
-							<TR><TD>rh_S_collat_transv_post_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_S_collat_transv_post_thickness")</TD></TR>
-							<TR><TD>rh_S_front_inf_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_S_front_inf_thickness")</TD></TR>
-							<TR><TD>rh_S_front_middle_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_S_front_middle_thickness")</TD></TR>
-							<TR><TD>rh_S_front_sup_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_S_front_sup_thickness")</TD></TR>
-							<TR><TD>rh_S_interm_prim-Jensen_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_S_interm_prim-Jensen_thickness")</TD></TR>
-							<TR><TD>rh_S_intrapariet_and_P_trans_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_S_intrapariet_and_P_trans_thickness")</TD></TR>
-							<TR><TD>rh_S_oc_middle_and_Lunatus_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_S_oc_middle_and_Lunatus_thickness")</TD></TR>
-							<TR><TD>rh_S_oc_sup_and_transversal_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_S_oc_sup_and_transversal_thickness")</TD></TR>
-							<TR><TD>rh_S_occipital_ant_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_S_occipital_ant_thickness")</TD></TR>
-							<TR><TD>rh_S_oc-temp_lat_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_S_oc-temp_lat_thickness")</TD></TR>
-							<TR><TD>rh_S_oc-temp_med_and_Lingual_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_S_oc-temp_med_and_Lingual_thickness")</TD></TR>
-							<TR><TD>rh_S_orbital_lateral_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_S_orbital_lateral_thickness")</TD></TR>
-							<TR><TD>rh_S_orbital_med-olfact_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_S_orbital_med-olfact_thickness")</TD></TR>
-							<TR><TD>rh_S_orbital-H_Shaped_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_S_orbital-H_Shaped_thickness")</TD></TR>
-							<TR><TD>rh_S_parieto_occipital_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_S_parieto_occipital_thickness")</TD></TR>
-							<TR><TD>rh_S_pericallosal_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_S_pericallosal_thickness")</TD></TR>
-							<TR><TD>rh_S_postcentral_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_S_postcentral_thickness")</TD></TR>
-							<TR><TD>rh_S_precentral-inf-part_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_S_precentral-inf-part_thickness")</TD></TR>
-							<TR><TD>rh_S_precentral-sup-part_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_S_precentral-sup-part_thickness")</TD></TR>
-							<TR><TD>rh_S_suborbital_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_S_suborbital_thickness")</TD></TR>
-							<TR><TD>rh_S_subparietal_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_S_subparietal_thickness")</TD></TR>
-							<TR><TD>rh_S_temporal_inf_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_S_temporal_inf_thickness")</TD></TR>
-							<TR><TD>rh_S_temporal_sup_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_S_temporal_sup_thickness")</TD></TR>
-							<TR><TD>rh_S_temporal_transverse_thickness (mm)</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_S_temporal_transverse_thickness")</TD></TR>
+							<TR><TD>left hemisphere cortical thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_MeanThickness_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>right hemisphere cortical thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_MeanThickness_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>Cerebellum white matter - left</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/Left-Cerebellum-White-Matter")</TD><TD>(mm^3)</TD></TR>
+							<TR><TD>Cerebellum grey matter - left</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/Left-Cerebellum-Cortex")</TD><TD>(mm^3)</TD></TR>
+							<TR><TD>Thalamus - left</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/Left-Thalamus-Proper")</TD><TD>(mm^3)</TD></TR>
+							<TR><TD>Caudate - left</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/Left-Caudate")</TD><TD>(mm^3)</TD></TR>
+							<TR><TD>Putamen - left</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/Left-Putamen")</TD><TD>(mm^3)</TD></TR>
+							<TR><TD>Pallidum - left</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/Left-Pallidum")</TD><TD>(mm^3)</TD></TR>
+							<TR><TD>Brain stem</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/Brain-Stem")</TD><TD>(mm^3)</TD></TR>
+							<TR><TD>Hippcampus - left</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/Left-Hippocampus")</TD><TD>(mm^3)</TD></TR>
+							<TR><TD>Amgydala - left</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/Left-Amygdala")</TD><TD>(mm^3)</TD></TR>
+							<TR><TD>Nucleus Accumbens - left</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/Left-Accumbens-area")</TD><TD>(mm^3)</TD></TR>
+							<TR><TD>Ventral diencephalon - left</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/Left-VentralDC")</TD><TD>(mm^3)</TD></TR>
+							<TR><TD>Cerebellum white matter - right</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/Right-Cerebellum-White-Matter")</TD><TD>(mm^3)</TD></TR>
+							<TR><TD>Cerebellum grey matter - right</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/Right-Cerebellum-Cortex")</TD><TD>(mm^3)</TD></TR>
+							<TR><TD>Thalamus - right</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/Right-Thalamus-Proper")</TD><TD>(mm^3)</TD></TR>
+							<TR><TD>Caudate - right</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/Right-Caudate")</TD><TD>(mm^3)</TD></TR>
+							<TR><TD>Putamen - right</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/Right-Putamen")</TD><TD>(mm^3)</TD></TR>
+							<TR><TD>Pallidum - right</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/Right-Pallidum")</TD><TD>(mm^3)</TD></TR>
+							<TR><TD>Hippcampus - right</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/Right-Hippocampus")</TD><TD>(mm^3)</TD></TR>
+							<TR><TD>Amgydala - right</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/Right-Amygdala")</TD><TD>(mm^3)</TD></TR>
+							<TR><TD>Nucleus Accumbens - right</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/Right-Accumbens-area")</TD><TD>(mm^3)</TD></TR>
+							<TR><TD>Ventral diencephalon - right</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/Right-VentralDC")</TD><TD>(mm^3)</TD></TR>
+							<TR><TD>Optic chiasm</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/Optic-Chiasm")</TD><TD>(mm^3)</TD></TR>
+							<TR><TD>Corpus callosum - posterior</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/CC_Posterior")</TD><TD>(mm^3)</TD></TR>
+							<TR><TD>Corpus callosum - mid posterior</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/CC_Mid_Posterior")</TD><TD>(mm^3)</TD></TR>
+							<TR><TD>Corpus callosum - centre</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/CC_Central")</TD><TD>(mm^3)</TD></TR>
+							<TR><TD>Corpus callosum - mid anterior</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/CC_Mid_Anterior")</TD><TD>(mm^3)</TD></TR>
+							<TR><TD>Corpus callosum - anterior</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/CC_Anterior")</TD><TD>(mm^3)</TD></TR>
+							<TR><TD>left hemisphere cortical parcellation ROIs</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_G_and_S_frontomargin_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>lh_G_and_S_occipital_inf_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_G_and_S_occipital_inf_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>lh_G_and_S_paracentral_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_G_and_S_paracentral_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>lh_G_and_S_subcentral_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_G_and_S_subcentral_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>lh_G_and_S_transv_frontopol_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_G_and_S_transv_frontopol_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>lh_G_and_S_cingul-Ant_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_G_and_S_cingul-Ant_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>lh_G_and_S_cingul-Mid-Ant_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_G_and_S_cingul-Mid-Ant_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>lh_G_and_S_cingul-Mid-Post_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_G_and_S_cingul-Mid-Post_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>lh_G_cingul-Post-dorsal_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_G_cingul-Post-dorsal_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>lh_G_cingul-Post-ventral_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_G_cingul-Post-ventral_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>lh_G_cuneus_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_G_cuneus_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>lh_G_front_inf-Opercular_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_G_front_inf-Opercular_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>lh_G_front_inf-Orbital_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_G_front_inf-Orbital_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>lh_G_front_inf-Triangul_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_G_front_inf-Triangul_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>lh_G_front_middle_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_G_front_middle_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>lh_G_front_sup_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_G_front_sup_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>lh_G_Ins_lg_and_S_cent_ins_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_G_Ins_lg_and_S_cent_ins_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>lh_G_insular_short_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_G_insular_short_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>lh_G_occipital_middle_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_G_occipital_middle_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>lh_G_occipital_sup_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_G_occipital_sup_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>lh_G_oc-temp_lat-fusifor_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_G_oc-temp_lat-fusifor_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>lh_G_oc-temp_med-Lingual_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_G_oc-temp_med-Lingual_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>lh_G_oc-temp_med-Parahip_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_G_oc-temp_med-Parahip_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>lh_G_orbital_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_G_orbital_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>lh_G_pariet_inf-Angular_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_G_pariet_inf-Angular_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>lh_G_pariet_inf-Supramar_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_G_pariet_inf-Supramar_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>lh_G_parietal_sup_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_G_parietal_sup_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>lh_G_postcentral_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_G_postcentral_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>lh_G_precentral_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_G_precentral_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>lh_G_precuneus_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_G_precuneus_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>lh_G_rectus_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_G_rectus_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>lh_G_subcallosal_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_G_subcallosal_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>lh_G_temp_sup-G_T_transv_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_G_temp_sup-G_T_transv_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>lh_G_temp_sup-Lateral_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_G_temp_sup-Lateral_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>lh_G_temp_sup-Plan_polar_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_G_temp_sup-Plan_polar_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>lh_G_temp_sup-Plan_tempo_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_G_temp_sup-Plan_tempo_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>lh_G_temporal_inf_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_G_temporal_inf_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>lh_G_temporal_middle_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_G_temporal_middle_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>lh_Lat_Fis-ant-Horizont_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_Lat_Fis-ant-Horizont_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>lh_Lat_Fis-ant-Vertical_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_Lat_Fis-ant-Vertical_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>lh_Lat_Fis-post_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_Lat_Fis-post_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>lh_Pole_occipital_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_Pole_occipital_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>lh_Pole_temporal_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_Pole_temporal_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>lh_S_calcarine_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_S_calcarine_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>lh_S_central_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_S_central_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>lh_S_cingul-Marginalis_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_S_cingul-Marginalis_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>lh_S_circular_insula_ant_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_S_circular_insula_ant_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>lh_S_circular_insula_inf_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_S_circular_insula_inf_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>lh_S_circular_insula_sup_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_S_circular_insula_sup_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>lh_S_collat_transv_ant_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_S_collat_transv_ant_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>lh_S_collat_transv_post_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_S_collat_transv_post_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>lh_S_front_inf_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_S_front_inf_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>lh_S_front_middle_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_S_front_middle_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>lh_S_front_sup_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_S_front_sup_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>lh_S_interm_prim-Jensen_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_S_interm_prim-Jensen_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>lh_S_intrapariet_and_P_trans_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_S_intrapariet_and_P_trans_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>lh_S_oc_middle_and_Lunatus_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_S_oc_middle_and_Lunatus_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>lh_S_oc_sup_and_transversal_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_S_oc_sup_and_transversal_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>lh_S_occipital_ant_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_S_occipital_ant_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>lh_S_oc-temp_lat_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_S_oc-temp_lat_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>lh_S_oc-temp_med_and_Lingual_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_S_oc-temp_med_and_Lingual_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>lh_S_orbital_lateral_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_S_orbital_lateral_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>lh_S_orbital_med-olfact_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_S_orbital_med-olfact_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>lh_S_orbital-H_Shaped_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_S_orbital-H_Shaped_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>lh_S_parieto_occipital_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_S_parieto_occipital_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>lh_S_pericallosal_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_S_pericallosal_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>lh_S_postcentral_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_S_postcentral_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>lh_S_precentral-inf-part_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_S_precentral-inf-part_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>lh_S_precentral-sup-part_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_S_precentral-sup-part_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>lh_S_suborbital_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_S_suborbital_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>lh_S_subparietal_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_S_subparietal_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>lh_S_temporal_inf_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_S_temporal_inf_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>lh_S_temporal_sup_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_S_temporal_sup_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>lh_S_temporal_transverse_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/lh_S_temporal_transverse_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>right hemisphere cortical parcellation ROIs</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_G_and_S_frontomargin_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>rh_G_and_S_occipital_inf_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_G_and_S_occipital_inf_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>rh_G_and_S_paracentral_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_G_and_S_paracentral_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>rh_G_and_S_subcentral_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_G_and_S_subcentral_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>rh_G_and_S_transv_frontopol_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_G_and_S_transv_frontopol_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>rh_G_and_S_cingul-Ant_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_G_and_S_cingul-Ant_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>rh_G_and_S_cingul-Mid-Ant_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_G_and_S_cingul-Mid-Ant_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>rh_G_and_S_cingul-Mid-Post_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_G_and_S_cingul-Mid-Post_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>rh_G_cingul-Post-dorsal_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_G_cingul-Post-dorsal_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>rh_G_cingul-Post-ventral_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_G_cingul-Post-ventral_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>rh_G_cuneus_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_G_cuneus_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>rh_G_front_inf-Opercular_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_G_front_inf-Opercular_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>rh_G_front_inf-Orbital_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_G_front_inf-Orbital_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>rh_G_front_inf-Triangul_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_G_front_inf-Triangul_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>rh_G_front_middle_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_G_front_middle_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>rh_G_front_sup_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_G_front_sup_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>rh_G_Ins_lg_and_S_cent_ins_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_G_Ins_lg_and_S_cent_ins_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>rh_G_insular_short_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_G_insular_short_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>rh_G_occipital_middle_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_G_occipital_middle_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>rh_G_occipital_sup_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_G_occipital_sup_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>rh_G_oc-temp_lat-fusifor_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_G_oc-temp_lat-fusifor_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>rh_G_oc-temp_med-Lingual_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_G_oc-temp_med-Lingual_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>rh_G_oc-temp_med-Parahip_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_G_oc-temp_med-Parahip_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>rh_G_orbital_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_G_orbital_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>rh_G_pariet_inf-Angular_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_G_pariet_inf-Angular_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>rh_G_pariet_inf-Supramar_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_G_pariet_inf-Supramar_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>rh_G_parietal_sup_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_G_parietal_sup_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>rh_G_postcentral_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_G_postcentral_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>rh_G_precentral_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_G_precentral_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>rh_G_precuneus_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_G_precuneus_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>rh_G_rectus_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_G_rectus_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>rh_G_subcallosal_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_G_subcallosal_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>rh_G_temp_sup-G_T_transv_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_G_temp_sup-G_T_transv_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>rh_G_temp_sup-Lateral_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_G_temp_sup-Lateral_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>rh_G_temp_sup-Plan_polar_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_G_temp_sup-Plan_polar_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>rh_G_temp_sup-Plan_tempo_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_G_temp_sup-Plan_tempo_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>rh_G_temporal_inf_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_G_temporal_inf_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>rh_G_temporal_middle_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_G_temporal_middle_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>rh_Lat_Fis-ant-Horizont_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_Lat_Fis-ant-Horizont_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>rh_Lat_Fis-ant-Vertical_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_Lat_Fis-ant-Vertical_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>rh_Lat_Fis-post_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_Lat_Fis-post_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>rh_Pole_occipital_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_Pole_occipital_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>rh_Pole_temporal_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_Pole_temporal_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>rh_S_calcarine_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_S_calcarine_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>rh_S_central_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_S_central_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>rh_S_cingul-Marginalis_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_S_cingul-Marginalis_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>rh_S_circular_insula_ant_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_S_circular_insula_ant_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>rh_S_circular_insula_inf_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_S_circular_insula_inf_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>rh_S_circular_insula_sup_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_S_circular_insula_sup_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>rh_S_collat_transv_ant_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_S_collat_transv_ant_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>rh_S_collat_transv_post_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_S_collat_transv_post_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>rh_S_front_inf_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_S_front_inf_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>rh_S_front_middle_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_S_front_middle_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>rh_S_front_sup_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_S_front_sup_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>rh_S_interm_prim-Jensen_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_S_interm_prim-Jensen_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>rh_S_intrapariet_and_P_trans_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_S_intrapariet_and_P_trans_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>rh_S_oc_middle_and_Lunatus_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_S_oc_middle_and_Lunatus_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>rh_S_oc_sup_and_transversal_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_S_oc_sup_and_transversal_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>rh_S_occipital_ant_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_S_occipital_ant_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>rh_S_oc-temp_lat_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_S_oc-temp_lat_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>rh_S_oc-temp_med_and_Lingual_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_S_oc-temp_med_and_Lingual_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>rh_S_orbital_lateral_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_S_orbital_lateral_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>rh_S_orbital_med-olfact_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_S_orbital_med-olfact_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>rh_S_orbital-H_Shaped_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_S_orbital-H_Shaped_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>rh_S_parieto_occipital_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_S_parieto_occipital_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>rh_S_pericallosal_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_S_pericallosal_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>rh_S_postcentral_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_S_postcentral_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>rh_S_precentral-inf-part_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_S_precentral-inf-part_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>rh_S_precentral-sup-part_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_S_precentral-sup-part_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>rh_S_suborbital_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_S_suborbital_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>rh_S_subparietal_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_S_subparietal_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>rh_S_temporal_inf_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_S_temporal_inf_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>rh_S_temporal_sup_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_S_temporal_sup_thickness")</TD><TD>(mm)</TD></TR>
+							<TR><TD>rh_S_temporal_transverse_thickness</TD><TD>$!item.getDoubleProperty("COBRA:corticalThicknessData/rh_S_temporal_transverse_thickness")</TD><TD>(mm)</TD></TR>
 						</TABLE>
 					</TD>
 					<TD valign="top" align="right">

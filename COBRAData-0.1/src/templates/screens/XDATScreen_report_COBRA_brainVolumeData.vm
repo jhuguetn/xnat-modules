@@ -47,11 +47,11 @@ $page.setVlinkColor($ui.vlink)
 							<TR><TD>protocol</TD><TD>$!item.getStringProperty("COBRA:brainVolumeData/protocol")</TD></TR>
 							<TR><TD>label</TD><TD>$!item.getStringProperty("COBRA:brainVolumeData/label")</TD></TR>
                             <TR><TD>&nbsp;</TD><TD></TD></TR>
-							<TR><TD>Grey matter volume (litres)</TD><TD>$!item.getDoubleProperty("COBRA:brainVolumeData/GM")</TD></TR>
-							<TR><TD>White matter volume (litre)</TD><TD>$!item.getDoubleProperty("COBRA:brainVolumeData/WM")</TD></TR>
-							<TR><TD>Cerebrospinal fluid volume (litres)</TD><TD>$!item.getDoubleProperty("COBRA:brainVolumeData/CSF")</TD></TR>
-							<TR><TD>Whole brain volume [gm + wm] (litres)</TD><TD>$!item.getDoubleProperty("COBRA:brainVolumeData/WBV")</TD></TR>
-							<TR><TD>Intracranial volume [gm + wm + csf] (litres)</TD><TD>$!item.getDoubleProperty("COBRA:brainVolumeData/ICV")</TD></TR>
+							<TR><TD>Grey matter volume (GM)</TD><TD>$!item.getDoubleProperty("COBRA:brainVolumeData/GM")</TD><TD>(litres)</TD></TR>
+							<TR><TD>White matter volume (WM)</TD><TD>$!item.getDoubleProperty("COBRA:brainVolumeData/WM")</TD><TD>(litres)</TD></TR>
+							<TR><TD>Cerebrospinal fluid volume (CSF)</TD><TD>$!item.getDoubleProperty("COBRA:brainVolumeData/CSF")</TD><TD>(litres)</TD></TR>
+							<TR><TD>Whole brain volume (WBV) [GM + WM]</TD><TD>$!item.getDoubleProperty("COBRA:brainVolumeData/WBV")</TD><TD>(litres)</TD></TR>
+							<TR><TD>Intracranial volume (ICV) [GM + WM + CSF]</TD><TD>$!item.getDoubleProperty("COBRA:brainVolumeData/ICV")</TD><TD>(litres)</TD></TR>
 						</TABLE>
 					</TD>
 					<TD valign="top" align="right">
@@ -294,7 +294,7 @@ $page.setVlinkColor($ui.vlink)
 							#end
 						</TD></TR></TABLE>
 					</TD>
-				</TR>				
+				</TR>
 				<TR>
 					<TD align="left" valign="top">
 						<TABLE><TR><TD>

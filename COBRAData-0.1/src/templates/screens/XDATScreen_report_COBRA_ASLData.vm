@@ -39,28 +39,28 @@ $page.setVlinkColor($ui.vlink)
 							<TR><TD>ID</TD><TD>$!item.getStringProperty("COBRA:ASLData/ID")</TD></TR>
 							<TR><TD>project</TD><TD>$!item.getStringProperty("COBRA:ASLData/project")</TD></TR>
 							<!--
-                            <TR><TD>visit_id</TD><TD>$!item.getStringProperty("COBRA:ASLData/visit_id")</TD></TR>
+                            			<TR><TD>visit_id</TD><TD>$!item.getStringProperty("COBRA:ASLData/visit_id")</TD></TR>
 							<TR><TD>visit</TD><TD>$!item.getStringProperty("COBRA:ASLData/visit")</TD></TR>
 							<TR><TD>original</TD><TD>$!item.getStringProperty("COBRA:ASLData/original")</TD></TR>
-                            -->
-                            <TR><TD>version</TD><TD>$!item.getIntegerProperty("COBRA:ASLData/version")</TD></TR>
+			                            -->
+                            			<TR><TD>version</TD><TD>$!item.getIntegerProperty("COBRA:ASLData/version")</TD></TR>
 							<TR><TD>protocol</TD><TD>$!item.getStringProperty("COBRA:ASLData/protocol")</TD></TR>
 							<TR><TD>label</TD><TD>$!item.getStringProperty("COBRA:ASLData/label")</TD></TR>
-                            <TR><TD>&nbsp;</TD><TD></TD></TR>
+                            			<TR><TD>&nbsp;</TD><TD></TD></TR>
 							<TR><TD><b>mean Cerebral Blood Flow (CBFmean)</b></TD><TD></TD></TR>
-                            <TR><TD>&nbsp;&nbsp;CBFmean Grey Matter (ml/100g/min)</TD><TD>$!item.getDoubleProperty("COBRA:ASLData/CBF_GM")</TD></TR>
-							<TR><TD>&nbsp;&nbsp;CBFmean White Matter (ml/100g/min)</TD><TD>$!item.getDoubleProperty("COBRA:ASLData/CBF_WM")</TD></TR>
-							<TR><TD>&nbsp;&nbsp;CBFmean Left Interal Carotid Artery (ml/100g/min)</TD><TD>$!item.getDoubleProperty("COBRA:ASLData/L_ICA")</TD></TR>
-							<TR><TD>&nbsp;&nbsp;CBFmean Right Interal Carotid Artery (ml/100g/min)</TD><TD>$!item.getDoubleProperty("COBRA:ASLData/R_ICA")</TD></TR>
-							<TR><TD>&nbsp;&nbsp;CBFmean POS (ml/100g/min)</TD><TD>$!item.getDoubleProperty("COBRA:ASLData/POS")</TD></TR>
-                            <TR><TD>&nbsp;&nbsp;CBFmean Caudate (ml/100g/min)</TD><TD>$!item.getDoubleProperty("COBRA:ASLData/Caudate")</TD></TR>
-							<TR><TD>&nbsp;&nbsp;CBFmean Frontal (ml/100g/min)</TD><TD>$!item.getDoubleProperty("COBRA:ASLData/Frontal")</TD></TR>
-							<TR><TD>&nbsp;&nbsp;CBFmean Insula (ml/100g/min)</TD><TD>$!item.getDoubleProperty("COBRA:ASLData/Insula")</TD></TR>
-							<TR><TD>&nbsp;&nbsp;CBFmean Occipital (ml/100g/min)</TD><TD>$!item.getDoubleProperty("COBRA:ASLData/Occipital")</TD></TR>
-							<TR><TD>&nbsp;&nbsp;CBFmean Parietal (ml/100g/min)</TD><TD>$!item.getDoubleProperty("COBRA:ASLData/Parietal")</TD></TR>
-							<TR><TD>&nbsp;&nbsp;CBFmean Putamen (ml/100g/min)</TD><TD>$!item.getDoubleProperty("COBRA:ASLData/Putamen")</TD></TR>
-							<TR><TD>&nbsp;&nbsp;CBFmean Temporal (ml/100g/min)</TD><TD>$!item.getDoubleProperty("COBRA:ASLData/Temporal")</TD></TR>
-							<TR><TD>&nbsp;&nbsp;CBFmean Thalamus (ml/100g/min)</TD><TD>$!item.getDoubleProperty("COBRA:ASLData/Thalamus")</TD></TR>
+                            			<TR><TD>&nbsp;&nbsp;CBFmean Grey Matter</TD><TD>$!item.getDoubleProperty("COBRA:ASLData/CBF_GM")</TD><TD>(ml/100g/min)</TD></TR>
+							<TR><TD>&nbsp;&nbsp;CBFmean White Matter</TD><TD>$!item.getDoubleProperty("COBRA:ASLData/CBF_WM")</TD><TD>(ml/100g/min)</TD></TR>
+							<TR><TD>&nbsp;&nbsp;CBFmean Left Interal Carotid Artery</TD><TD>$!item.getDoubleProperty("COBRA:ASLData/L_ICA")</TD><TD>(ml/100g/min)</TD></TR>
+							<TR><TD>&nbsp;&nbsp;CBFmean Right Interal Carotid Artery</TD><TD>$!item.getDoubleProperty("COBRA:ASLData/R_ICA")</TD><TD>(ml/100g/min)</TD></TR>
+							<TR><TD>&nbsp;&nbsp;CBFmean POS</TD><TD>$!item.getDoubleProperty("COBRA:ASLData/POS")</TD><TD>(ml/100g/min)</TD></TR>
+                            			<TR><TD>&nbsp;&nbsp;CBFmean Caudate</TD><TD>$!item.getDoubleProperty("COBRA:ASLData/Caudate")</TD><TD>(ml/100g/min)</TD></TR>
+							<TR><TD>&nbsp;&nbsp;CBFmean Frontal</TD><TD>$!item.getDoubleProperty("COBRA:ASLData/Frontal")</TD><TD>(ml/100g/min)</TD></TR>
+							<TR><TD>&nbsp;&nbsp;CBFmean Insula</TD><TD>$!item.getDoubleProperty("COBRA:ASLData/Insula")</TD><TD>(ml/100g/min)</TD></TR>
+							<TR><TD>&nbsp;&nbsp;CBFmean Occipital</TD><TD>$!item.getDoubleProperty("COBRA:ASLData/Occipital")</TD><TD>(ml/100g/min)</TD></TR>
+							<TR><TD>&nbsp;&nbsp;CBFmean Parietal</TD><TD>$!item.getDoubleProperty("COBRA:ASLData/Parietal")</TD><TD>(ml/100g/min)</TD></TR>
+							<TR><TD>&nbsp;&nbsp;CBFmean Putamen</TD><TD>$!item.getDoubleProperty("COBRA:ASLData/Putamen")</TD><TD>(ml/100g/min)</TD></TR>
+							<TR><TD>&nbsp;&nbsp;CBFmean Temporal</TD><TD>$!item.getDoubleProperty("COBRA:ASLData/Temporal")</TD><TD>(ml/100g/min)</TD></TR>
+							<TR><TD>&nbsp;&nbsp;CBFmean Thalamus</TD><TD>$!item.getDoubleProperty("COBRA:ASLData/Thalamus")</TD><TD>(ml/100g/min)</TD></TR>
 						</TABLE>
 					</TD>
 					<TD valign="top" align="right">

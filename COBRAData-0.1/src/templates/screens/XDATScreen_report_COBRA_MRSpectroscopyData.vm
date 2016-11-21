@@ -47,20 +47,20 @@ $page.setVlinkColor($ui.vlink)
 							<TR><TD>protocol</TD><TD>$!item.getStringProperty("COBRA:MRSpectroscopyData/protocol")</TD></TR>
 							<TR><TD>label</TD><TD>$!item.getStringProperty("COBRA:MRSpectroscopyData/label")</TD></TR>
                             <TR><TD>&nbsp;</TD><TD></TD></TR>
-							<TR><TD>White matter myoinositol concentration (mM)</TD><TD>$!item.getDoubleProperty("COBRA:MRSpectroscopyData/WM_MI")</TD></TR>
-							<TR><TD>White matter total N-Acetylaspartate concentration (mM)</TD><TD>$!item.getDoubleProperty("COBRA:MRSpectroscopyData/WM_tNAA")</TD></TR>
-							<TR><TD>White matter total choline containing compounds concentration (mM)</TD><TD>$!item.getDoubleProperty("COBRA:MRSpectroscopyData/WM_tCho")</TD></TR>
-							<TR><TD>White matter total creatine concentration (mM)</TD><TD>$!item.getDoubleProperty("COBRA:MRSpectroscopyData/WM_tCr")</TD></TR>
-							<TR><TD>White matter glutamate/glutamine concentration (mM)</TD><TD>$!item.getDoubleProperty("COBRA:MRSpectroscopyData/WM_Glx")</TD></TR>
+							<TR><TD>White matter myoinositol concentration</TD><TD>$!item.getDoubleProperty("COBRA:MRSpectroscopyData/WM_MI")</TD><TD>(mM)</TD></TR>
+							<TR><TD>White matter total N-Acetylaspartate concentration</TD><TD>$!item.getDoubleProperty("COBRA:MRSpectroscopyData/WM_tNAA")</TD><TD>(mM)</TD></TR>
+							<TR><TD>White matter total choline containing compounds concentration</TD><TD>$!item.getDoubleProperty("COBRA:MRSpectroscopyData/WM_tCho")</TD><TD>(mM)</TD></TR>
+							<TR><TD>White matter total creatine concentration</TD><TD>$!item.getDoubleProperty("COBRA:MRSpectroscopyData/WM_tCr")</TD><TD>(mM)</TD></TR>
+							<TR><TD>White matter glutamate/glutamine concentration</TD><TD>$!item.getDoubleProperty("COBRA:MRSpectroscopyData/WM_Glx")</TD><TD>(mM)</TD></TR>
 							<TR><TD>White matter MI to Cr ratio</TD><TD>$!item.getDoubleProperty("COBRA:MRSpectroscopyData/WM_MI_Cr")</TD></TR>
 							<TR><TD>White matter NAA to Cr ratio</TD><TD>$!item.getDoubleProperty("COBRA:MRSpectroscopyData/WM_NAA_Cr")</TD></TR>
 							<TR><TD>White matter Cho to Cr ratio</TD><TD>$!item.getDoubleProperty("COBRA:MRSpectroscopyData/WM_Cho_Cr")</TD></TR>
 							<TR><TD>White matter Glx to Cr ratio</TD><TD>$!item.getDoubleProperty("COBRA:MRSpectroscopyData/WM_Glx_Cr")</TD></TR>
-							<TR><TD>Putamen myoinositol concentration (mM)</TD><TD>$!item.getDoubleProperty("COBRA:MRSpectroscopyData/put_MI")</TD></TR>
-							<TR><TD>Putamen total N-Acetylaspartate concentration (mM)</TD><TD>$!item.getDoubleProperty("COBRA:MRSpectroscopyData/put_tNAA")</TD></TR>
-							<TR><TD>Putamen total choline containing compounds concentration (mM)</TD><TD>$!item.getDoubleProperty("COBRA:MRSpectroscopyData/put_tCho")</TD></TR>
-							<TR><TD>Putamen total creatine concentration (mM)</TD><TD>$!item.getDoubleProperty("COBRA:MRSpectroscopyData/put_tCr")</TD></TR>
-							<TR><TD>Putamen glutamate/glutamine concentration (mM)</TD><TD>$!item.getDoubleProperty("COBRA:MRSpectroscopyData/put_Glx")</TD></TR>
+							<TR><TD>Putamen myoinositol concentration</TD><TD>$!item.getDoubleProperty("COBRA:MRSpectroscopyData/put_MI")</TD><TD>(mM)</TD></TR>
+							<TR><TD>Putamen total N-Acetylaspartate concentration</TD><TD>$!item.getDoubleProperty("COBRA:MRSpectroscopyData/put_tNAA")</TD><TD>(mM)</TD></TR>
+							<TR><TD>Putamen total choline containing compounds concentration</TD><TD>$!item.getDoubleProperty("COBRA:MRSpectroscopyData/put_tCho")</TD><TD>(mM)</TD></TR>
+							<TR><TD>Putamen total creatine concentration</TD><TD>$!item.getDoubleProperty("COBRA:MRSpectroscopyData/put_tCr")</TD><TD>(mM)</TD></TR>
+							<TR><TD>Putamen glutamate/glutamine concentration</TD><TD>$!item.getDoubleProperty("COBRA:MRSpectroscopyData/put_Glx")</TD><TD>(mM)</TD></TR>
 							<TR><TD>Putamen MI to Cr ratio</TD><TD>$!item.getDoubleProperty("COBRA:MRSpectroscopyData/put_MI_Cr")</TD></TR>
 							<TR><TD>Putamen NAA to Cr ratio</TD><TD>$!item.getDoubleProperty("COBRA:MRSpectroscopyData/put_NAA_Cr")</TD></TR>
 							<TR><TD>Putamen Cho to Cr ratio</TD><TD>$!item.getDoubleProperty("COBRA:MRSpectroscopyData/put_Cho_Cr")</TD></TR>
