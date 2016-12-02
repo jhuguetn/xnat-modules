@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- created by Jordi Huguet (Dept. Radiology AMC, University of Amsterdam) -->
+<Displays xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xdat/display.xsd" schema-element="xnat:mrSessionData" full-description="MR Session" brief-description="MR Session">
+    <DisplayField id="RESOURCES_AGG" header="Resources" searchable="true" data-type="string">
+        <DisplayFieldElement name="Field1" viewName="RESOURCES_AGG" viewColumn="TYPE_COUNT"/>
+    <description>Aggregated of resource collections</description>
+    </DisplayField>
+    <ViewLink alias="RESOURCES_AGG">
+        <Mapping TableName="RESOURCES_AGG">
+            <MappingColumn rootElement="xnat:mrSessionData" fieldElement="xnat:mrSessionData.ID" mapsTo="image_id"/>
+        </Mapping>
+    </ViewLink>
+    <SQLView name="resources_agg" sql="SELECT IMAGE_ID, TRIM(', ' FROM xs_a_concat(TYPE_COUNT || ', ')) AS TYPE_COUNT FROM (SELECT xnat_experimentdata_resource.xnat_experimentdata_id AS IMAGE_ID,xnat_abstractresource.label AS TYPE_COUNT FROM xnat_abstractresource,xnat_experimentdata_resource WHERE xnat_experimentdata_resource.xnat_abstractresource_xnat_abstractresource_id=xnat_abstractresource.xnat_abstractresource_id GROUP BY xnat_experimentdata_resource.xnat_experimentdata_id,xnat_abstractresource.label,xnat_abstractresource.file_count ORDER BY xnat_experimentdata_resource.xnat_experimentdata_id,xnat_abstractresource.label) _TYPES GROUP BY IMAGE_ID"/>    
+</Displays>
