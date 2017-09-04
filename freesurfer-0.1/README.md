@@ -1,15 +1,15 @@
-#FreeSurfer
+# FreeSurfer
 
-##Introduction
+## Introduction
 [FreeSurfer](https://surfer.nmr.mgh.harvard.edu) is an open source software suite for processing and analyzing (human) brain MRI images. 
 
 FreeSurfer module shapes FreeSurfer output stats metrics as custom XNAT data-types (ImageData assessments) for integrating them as an additional information type to XNAT.
 
-###Taxonomy of FreeSurfer output metrics 
+### Taxonomy of FreeSurfer output metrics 
 * Subcortical segmentation (asec.stats), more info [here](http://surfer.nmr.mgh.harvard.edu/fswiki/FsTutorial/VolumetricGroupAnalysis#aseg.stats)
 * Cortical parcellation (lh.aparc.stats & rh.aparc.stats), more info [here](http://surfer.nmr.mgh.harvard.edu/fswiki/FsTutorial/VolumetricGroupAnalysis#aparc.stats)
 
-##Installation procedure
+## Installation procedure
 
 1. Get the lattest version of the module as follows: 
   ```
@@ -28,6 +28,6 @@ FreeSurfer module shapes FreeSurfer output stats metrics as custom XNAT data-typ
   psql -f ${XNAT_HOME}/deployments/xnat/sql/xnat-update.sql
   ```
 
-##Questions/Comments?
+## Questions/Comments?
 
 Submit an issue, fork and/or PR. Alternatively, reach me at j.huguet(at)amc.uva.nl
