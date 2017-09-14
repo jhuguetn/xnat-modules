@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Displays xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xdat/display.xsd" schema-element="AMCZ0:qMRIData" full-description="QMRI" brief-description="QMRI">
+	<DisplayField id="EXPT_ID" header="ID" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="AMCZ0:qMRIData.ID"/>
+		<HTML-Link>
+			<Property name="HREF" value="none"/>
+			<Property name="ONCLICK" value="return rpt('@Field1','AMCZ0:qMRIData','AMCZ0:qMRIData.ID');">
+				<InsertValue id="Field1" field="EXPT_ID"/>
+			</Property>
+		</HTML-Link>
+	</DisplayField>
+	<DisplayField id="RPT" header="ID" visible="true" image="true">
+		<Content type="sql">'/@WEBAPP/images/r.gif'::text</Content>
+		<HTML-Link>
+			<Property name="HREF" value="none"/>
+			<Property name="ONCLICK" value="return rpt('@Field1','AMCZ0:qMRIData','AMCZ0:qMRIData.ID');">
+				<InsertValue id="Field1" field="EXPT_ID"/>
+			</Property>
+		</HTML-Link>
+	</DisplayField>
+	<DisplayField id="DATE" header="Date" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="AMCZ0:qMRIData.date"/>
+	</DisplayField>
+	<DisplayField header="Projects" id="PROJECTS" data-type="string">
+		<DisplayFieldElement name="Field1" viewName="AMCZ0_QMRIDATA_PROJECTS" viewColumn="PROJECTS"/>
+	</DisplayField>
+	<DisplayField header="Label" id="LABEL" data-type="string">
+	<DisplayFieldElement name="Field1" schema-element="AMCZ0:qMRIData.ID"/>
+	<DisplayFieldElement name="Field2" schema-element="AMCZ0:qMRIData.label"/>
+	<Content type="sql">COALESCE(@Field2, @Field1)</Content>
+		<HTML-Link>
+			<SecureLink elementName="AMCZ0:qMRIData">
+				<securityMappingValue displayFieldId="PROJECTS" schemaElementMap="AMCZ0:qMRIData/sharing/share/project"/>
+				<securityMappingValue displayFieldId="PROJECT" schemaElementMap="AMCZ0:qMRIData/project"/>
+			</SecureLink>
+			<Property name="HREF" value="@WEBAPPapp/action/DisplayItemAction/search_value/@Field1/search_element/AMCZ0:qMRIData/search_field/AMCZ0:qMRIData.ID">
+				<InsertValue id="Field1" field="EXPT_ID"/>
+			</Property>
+			<Property name="ONCLICK" value="return rpt('@Field1','AMCZ0:qMRIData','AMCZ0:qMRIData.ID');">
+				<InsertValue id="Field1" field="EXPT_ID"/>
+			</Property>
+			<Property name="TITLE" value="Inserted: @Field1 (@Field2)">
+				<InsertValue id="Field1" field="INSERT_DATE"/>
+				<InsertValue id="Field2" field="INSERT_USER"/>
+			</Property>
+		</HTML-Link>
+	</DisplayField>
+	<DisplayField id="PROJECT" header="Project" visible="true" searchable="true" data-type="string">
+		<DisplayFieldElement name="Field1" schema-element="AMCZ0:qMRIData.project"/>
+	</DisplayField>
+	<DisplayField id="AMCZ0_QMRIDATA_PROJECT_IDENTIFIER" header="AMCZ0_QMRIDATA ID" visible="true" searchable="false" data-type="string" xsi:type="SubQueryField">
+		<Content type="sql">amcz0_qmridata_project_id</Content>
+		<HTML-Link>
+			<SecureLink elementName="AMCZ0:qMRIData">
+				<securityMappingValue displayFieldId="PROJECTS" schemaElementMap="AMCZ0:qMRIData/sharing/share/project"/>
+				<securityMappingValue displayFieldId="PROJECT" schemaElementMap="AMCZ0:qMRIData/project"/>
+			</SecureLink>
+			<Property name="HREF" value="@WEBAPPapp/action/DisplayItemAction/search_value/@Field1/search_element/AMCZ0:qMRIData/search_field/AMCZ0:qMRIData.ID/project/@Field2">
+				<InsertValue id="Field1" field="EXPT_ID"/>
+				<InsertValue id="Field2" field="@WHERE"/>
+			</Property>
+		</HTML-Link>
+		<SubQuery>SELECT DISTINCT COALESCE(label,sharing_share_xnat_experimentda_id) AS amcz0_qmridata_project_id,sharing_share_xnat_experimentda_id FROM (	SELECT sharing_share_xnat_experimentda_id,label FROM xnat_experimentdata_share WHERE project='@WHERE'	UNION 	SELECT id,label FROM xnat_experimentData WHERE project='@WHERE' )SEARCH</SubQuery>
+		<MappingColumns>
+			<MappingColumn schemaField="AMCZ0:qMRIData.ID" queryField="sharing_share_xnat_experimentda_id"/>
+		</MappingColumns>
+	</DisplayField>
+	<DisplayField id="INSERT_DATE" header="Inserted" visible="true" searchable="true" data-type="string">
+		<DisplayFieldElement name="Field1" schema-element="AMCZ0:qMRIData.meta.insert_date"/>
+	</DisplayField>
+	<DisplayField id="INSERT_USER" header="Creator" visible="true" searchable="true" data-type="string">
+		<DisplayFieldElement name="Field1" schema-element="AMCZ0:qMRIData.meta.insert_user.login"/>
+	</DisplayField>
+	<DisplayField id="AMCZ0_QMRIDATA_FIELD_MAP" header="Field" visible="true" searchable="false" data-type="string" xsi:type="SubQueryField">
+		<Content type="sql">field</Content>
+		<SubQuery>SELECT DISTINCT ON ( e.ID) e.ID AS expt_id,field FROM xnat_experimentData_field ef JOIN (SELECT ID,extension,element_name FROM xnat_experimentData e JOIN xdat_meta_element xme ON e.extension=xme.xdat_meta_element_id WHERE xme.element_name='AMCZ0:qMRIData') e on ef.fields_field_xnat_experimentdat_id=e.id WHERE name='@WHERE'</SubQuery>
+		<MappingColumns>
+			<MappingColumn schemaField="AMCZ0:qMRIData.ID" queryField="expt_id"/>
+		</MappingColumns>
+	</DisplayField>
+	<DisplayField id="GM_R1" header="gm_r1" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="AMCZ0:qMRIData/gm_r1"/>
+	</DisplayField>
+	<DisplayField id="GM_R2S" header="gm_r2s" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="AMCZ0:qMRIData/gm_r2s"/>
+	</DisplayField>
+	<DisplayField id="WM_R1" header="wm_r1" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="AMCZ0:qMRIData/wm_r1"/>
+	</DisplayField>
+	<DisplayField id="WM_R2S" header="wm_r2s" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="AMCZ0:qMRIData/wm_r2s"/>
+	</DisplayField>
+	<DisplayField id="GM_VOL" header="gm_vol" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="AMCZ0:qMRIData/gm_vol"/>
+	</DisplayField>
+	<DisplayField id="WM_VOL" header="wm_vol" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="AMCZ0:qMRIData/wm_vol"/>
+	</DisplayField>
+	<DisplayField id="ICV" header="icv" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="AMCZ0:qMRIData/icv"/>
+	</DisplayField>
+	<DisplayField id="B1MEAN" header="b1mean" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="AMCZ0:qMRIData/b1mean"/>
+	</DisplayField>
+	<DisplayField id="B1STD" header="b1std" visible="true" searchable="true">
+		<DisplayFieldElement name="Field1" schema-element="AMCZ0:qMRIData/b1std"/>
+	</DisplayField>
+	<DisplayVersion versionName="listing" default-order-by="DATE" default-sort-order="DESC" brief-description="QMRI" dark-color="9999CC" light-color="CCCCFF">
+		<DisplayFieldRef id="RPT"/>
+		<DisplayFieldRef id="LABEL"/>
+		<DisplayFieldRef id="DATE"/>
+		<DisplayFieldRef id="GM_R1"/>
+		<DisplayFieldRef id="GM_R2S"/>
+		<DisplayFieldRef id="WM_R1"/>
+		<DisplayFieldRef id="WM_R2S"/>
+		<DisplayFieldRef id="GM_VOL"/>
+		<DisplayFieldRef id="WM_VOL"/>
+		<DisplayFieldRef id="ICV"/>
+		<DisplayFieldRef id="B1MEAN"/>
+		<DisplayFieldRef id="B1STD"/>
+	</DisplayVersion>
+	<DisplayVersion versionName="listing_csv" default-order-by="DATE" default-sort-order="DESC" brief-description="QMRI" dark-color="9999CC" light-color="CCCCFF">
+		<DisplayFieldRef id="LABEL"/>
+		<DisplayFieldRef id="DATE"/>
+		<DisplayFieldRef id="GM_R1"/>
+		<DisplayFieldRef id="GM_R2S"/>
+		<DisplayFieldRef id="WM_R1"/>
+		<DisplayFieldRef id="WM_R2S"/>
+		<DisplayFieldRef id="GM_VOL"/>
+		<DisplayFieldRef id="WM_VOL"/>
+		<DisplayFieldRef id="ICV"/>
+		<DisplayFieldRef id="B1MEAN"/>
+		<DisplayFieldRef id="B1STD"/>
+	</DisplayVersion>
+	<DisplayVersion versionName="full" default-order-by="DATE" default-sort-order="DESC" brief-description="QMRI" dark-color="9999CC" light-color="CCCCFF">
+		<DisplayFieldRef id="EXPT_ID"/>
+		<DisplayFieldRef id="DATE"/>
+		<DisplayFieldRef id="GM_R1"/>
+		<DisplayFieldRef id="GM_R2S"/>
+		<DisplayFieldRef id="WM_R1"/>
+		<DisplayFieldRef id="WM_R2S"/>
+		<DisplayFieldRef id="GM_VOL"/>
+		<DisplayFieldRef id="WM_VOL"/>
+		<DisplayFieldRef id="ICV"/>
+		<DisplayFieldRef id="B1MEAN"/>
+		<DisplayFieldRef id="B1STD"/>
+	</DisplayVersion>
+	<DisplayVersion versionName="detailed" default-order-by="DATE" default-sort-order="DESC" brief-description="QMRI" dark-color="9999CC" light-color="CCCCFF">
+		<DisplayFieldRef id="EXPT_ID"/>
+		<DisplayFieldRef id="DATE"/>
+		<DisplayFieldRef id="GM_R1"/>
+		<DisplayFieldRef id="GM_R2S"/>
+		<DisplayFieldRef id="WM_R1"/>
+		<DisplayFieldRef id="WM_R2S"/>
+		<DisplayFieldRef id="GM_VOL"/>
+		<DisplayFieldRef id="WM_VOL"/>
+		<DisplayFieldRef id="ICV"/>
+		<DisplayFieldRef id="B1MEAN"/>
+		<DisplayFieldRef id="B1STD"/>
+	</DisplayVersion>
+	<DisplayVersion versionName="project_bundle" default-order-by="DATE" default-sort-order="DESC" brief-description="QMRI" dark-color="9999CC" light-color="CCCCFF">
+		<DisplayFieldRef id="AMCZ0_QMRIDATA_PROJECT_IDENTIFIER"/>
+		<DisplayFieldRef id="DATE"/>
+		<DisplayFieldRef id="GM_R1"/>
+		<DisplayFieldRef id="GM_R2S"/>
+		<DisplayFieldRef id="WM_R1"/>
+		<DisplayFieldRef id="WM_R2S"/>
+		<DisplayFieldRef id="GM_VOL"/>
+		<DisplayFieldRef id="WM_VOL"/>
+		<DisplayFieldRef id="ICV"/>
+		<DisplayFieldRef id="B1MEAN"/>
+		<DisplayFieldRef id="B1STD"/>
+	</DisplayVersion>
+	<ViewLink alias="AMCZ0_QMRIDATA_PROJECTS">
+		<Mapping TableName="AMCZ0_QMRIDATA_PROJECTS">
+			<MappingColumn rootElement="AMCZ0:qMRIData" fieldElement="AMCZ0:qMRIData.ID" mapsTo="id"/>
+		</Mapping>
+	</ViewLink>
+	<SQLView name="AMCZ0_QMRIDATA_PROJECTS" sql="SELECT id, '&lt;' || expt.project || '&gt;' || xs_a_concat(',&lt;' || shared.project || '&gt;') AS projects FROM xnat_experimentData expt LEFT JOIN xnat_experimentData_share shared ON expt.id=shared.sharing_share_xnat_experimentda_id LEFT JOIN xdat_meta_element xme ON expt.extension = xme.xdat_meta_element_id WHERE element_name='AMCZ0:qMRIData' GROUP BY expt.id,expt.project"/>
+</Displays>
