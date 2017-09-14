@@ -61,8 +61,8 @@ $page.setVlinkColor($ui.vlink)
                 <TR><TH align="left"><font face="$ui.sansSerifFonts" size="2">QMRI fitting</font></TH></TR>
                 <TR>
 				     <TD align="left">					  
-					  <A target="_blank" HREF="/xnat/data/archive/experiments/${exp_ID}/assessors/${asses_ID}/resources/SNAPSHOTS/files?file_content=MOSAIC&index=0" >
-					       <IMG SRC="/xnat/data/archive/experiments/${exp_ID}/assessors/${asses_ID}/resources/SNAPSHOTS/files?file_content=QC_IMG&index=0" height=500>
+					  <A target="_blank" HREF="/xnat/data/archive/experiments/${exp_ID}/assessors/${asses_ID}/resources/SNAPSHOTS/files?file_content=QMRI_FITS&index=0" >
+					       <IMG SRC="/xnat/data/archive/experiments/${exp_ID}/assessors/${asses_ID}/resources/SNAPSHOTS/files?file_content=QMRI_FITS&index=0" width=800>
 					  </A>
 				     </TD>	
 				</TR>
